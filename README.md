@@ -1,6 +1,6 @@
 # 1102tools Agents
 
-**Coming soon.** Pre-composed AI agents for federal contracting, packaged as installable plugin bundles. Each agent wires the orchestration skills from [federal-contracting-skills](https://github.com/1102tools/federal-contracting-skills) to the MCP data servers from [federal-contracting-mcps](https://github.com/1102tools/federal-contracting-mcps), so what you install is not a box of parts but a working unit: a cost analyst, a scope builder, an OT toolkit.
+**Coming soon.** Pre-composed AI agents for federal contracting, packaged as installable plugin bundles. Each agent wires the orchestration skills from [federal-contracting-skills](https://github.com/1102tools-dev/federal-contracting-skills) to the MCP data servers from [federal-contracting-mcps](https://github.com/1102tools-dev/federal-contracting-mcps), so what you install is not a box of parts but a working unit: a cost analyst, a scope builder, an OT toolkit.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -34,7 +34,7 @@ The compositions follow the architecture diagram in the skills repo: these agent
 
 ## The parts
 
-- Skills: [federal-contracting-skills](https://github.com/1102tools/federal-contracting-skills)
-- Data servers: [federal-contracting-mcps](https://github.com/1102tools/federal-contracting-mcps)
+- Skills: [federal-contracting-skills](https://github.com/1102tools-dev/federal-contracting-skills)
+- Data servers: [federal-contracting-mcps](https://github.com/1102tools-dev/federal-contracting-mcps)
 
 Same terms as everything else under 1102tools: free, open source, no signup. Watch the repo for the release.
