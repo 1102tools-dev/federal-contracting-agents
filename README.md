@@ -19,7 +19,7 @@ Every agent in this repo ships as an Agent Plugins 1.0 package first. If your pl
 Claude Code has its own plugin and marketplace format, and it carries a component the open standard does not: agent persona files with explicit routing logic. Each agent folder here will include the Claude Code manifest and persona alongside the standard package, same folder, no separate download. When the packages land, this repo becomes installable as a Claude Code marketplace:
 
 ```
-/plugin marketplace add 1102tools/federal-contracting-agents
+/plugin marketplace add 1102tools-dev/federal-contracting-agents
 ```
 
 ## The planned lineup
