@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "bls-oews": {
+      "command": "uvx",
+      "args": ["--from", "bls-oews-mcp==1.0.3", "bls-oews-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    },
+    "gsa-calc": {
+      "command": "uvx",
+      "args": ["--from", "gsa-calc-mcp==1.0.2", "gsa-calc-mcp"]
+    },
+    "gsa-perdiem": {
+      "command": "uvx",
+      "args": ["--from", "gsa-perdiem-mcp==1.0.3", "gsa-perdiem-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    }
+  }
+}

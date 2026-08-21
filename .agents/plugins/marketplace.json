@@ -1,0 +1,32 @@
+{
+  "name": "1102tools",
+  "interface": {
+    "displayName": "1102tools"
+  },
+  "plugins": [
+    {
+      "name": "pre-award-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pre-award-agent"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "other-transaction-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/other-transaction-agent"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

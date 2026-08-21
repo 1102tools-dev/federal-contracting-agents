@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pre-Award Workflow"
+  short_description: "Build a SOW or PWS and its correctly routed IGCE"
+  default_prompt: "Use $pre-award-workflow to carry my requirement from scope development through the correctly routed IGCE without manual handoff copying."
+
+policy:
+  allow_implicit_invocation: true

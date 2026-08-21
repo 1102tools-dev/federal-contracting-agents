@@ -1,0 +1,7 @@
+interface:
+  display_name: "Other Transaction Workflow"
+  short_description: "Build an OT project description and cost analysis"
+  default_prompt: "Use $other-transaction-workflow to carry my OT concept from project description through cost analysis without manual milestone-handoff copying."
+
+policy:
+  allow_implicit_invocation: true

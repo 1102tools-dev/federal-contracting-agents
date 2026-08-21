@@ -1,0 +1,57 @@
+name: Validate agent packages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out agent packages
+        uses: actions/checkout@v4
+
+      - name: Check out locked skills source
+        uses: actions/checkout@v4
+        with:
+          repository: 1102tools-dev/federal-contracting-skills
+          ref: f28404af67d454a1313d145962de79e7ba37a7b1
+          path: _skills
+
+      - name: Check out locked MCP source
+        uses: actions/checkout@v4
+        with:
+          repository: 1102tools-dev/federal-contracting-mcps
+          ref: 4e46c06bb58aacce44a24d372200c4116adb4483
+          path: _mcps
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install validation dependencies
+        run: python -m pip install jsonschema PyYAML openpyxl python-docx lxml mcp
+
+      - name: Validate schemas, references, pins, and package hygiene
+        run: python scripts/validate_packages.py
+
+      - name: Reject vendored component drift
+        run: python scripts/sync_components.py --check --skills-root _skills --mcp-root _mcps
+
+      - name: Run deterministic orchestration tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Compile bundled validators and run help
+        run: python scripts/check_bundled_scripts.py
+
+      - name: Start pinned MCP servers and discover tools without API calls
+        run: uv run --with mcp python scripts/smoke_mcp_discovery.py --plugin pre-award-agent

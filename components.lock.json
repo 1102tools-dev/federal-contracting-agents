@@ -1,0 +1,119 @@
+{
+  "format_version": 1,
+  "agent_plugins_spec": "1.0.0",
+  "sources": {
+    "skills": {
+      "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
+      "commit": "f28404af67d454a1313d145962de79e7ba37a7b1"
+    },
+    "mcps": {
+      "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
+      "commit": "4e46c06bb58aacce44a24d372200c4116adb4483",
+      "packages": {
+        "bls-oews": {
+          "distribution": "bls-oews-mcp",
+          "version": "1.0.3"
+        },
+        "gsa-calc": {
+          "distribution": "gsa-calc-mcp",
+          "version": "1.0.2"
+        },
+        "gsa-perdiem": {
+          "distribution": "gsa-perdiem-mcp",
+          "version": "1.0.3"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "pre-award-agent": {
+      "version": "1.0.0-rc.1",
+      "skills": {
+        "sow-pws-builder": {
+          "files": {
+            "SKILL.md": "9a959975cd5474f645959f66bc7b4f7351ec75793cda3fa1120fc9e80c127e0d",
+            "agents/openai.yaml": "92fd031bf53de6bb7535ac950993a85410d743ea7677712d4d586af1d18f9f48",
+            "references/document-specification.md": "18d256310578d904049ab502b46a2fd91934dbb3cdd5910a23894f00e932aba4",
+            "references/handoff-specification.md": "31f636cfa9d59535af58fa63ebe2cda17cc0cd8b008ed39075fa421951907a0e",
+            "references/question-blocks.md": "1a4931bd2bcb632ae4a059d3f6788410d0fe59352babec29bfa8bb5f39479f1a",
+            "references/regulatory-and-content-rules.md": "b13e59237f19ccd0c718fd40d685c2cd484c42dc4e8ee9d85fb458462fb2db41",
+            "references/runtime-adaptation.md": "cc86833d282a94df627b4921936e69e203023056a07d310118aa15ef6c427eb8",
+            "references/validation-gates.md": "3106156a6ab05875944796bcf53b7b362c8ab11b9e14ee41b3be24e296714580",
+            "scripts/validate_docx.py": "d03d8a32ed7075db32f9181d3f849cef8e92614c38f9ef0caa0b2ae8064f2175"
+          }
+        },
+        "igce-builder-ffp": {
+          "files": {
+            "SKILL.md": "4a3c13b5d445deba601c01e3956d9e4a3d889df5bf37562f0649b2b839a25942",
+            "agents/openai.yaml": "7f6829b2ea276adca433feb1c0de93dedf74ead18ccf7a13ea2244f7eff1688e",
+            "references/data-source-operations.md": "4c533b8aa4f34882ea0fcf6a86831f2efcfa0dc46bea5441e9b52d41d1309e38",
+            "references/runtime-adaptation.md": "347ffd2d9044e726e31789d2dc044b026f9658803898a4c594b126c1ca5d2c3e",
+            "references/validation-gates.md": "b8139ceab6733049667633cfad93eb9e52cb2e9f5a5ec8969add398f08c54e36",
+            "references/workbook-specification.md": "2a1ea15305532092d369cac0d398b90b51d4c367c045d37e5ba2eb8dfcd38e20",
+            "references/wrap-rate-presets.md": "4739f05f086e0d1865c7120b1421f20d3598d0a199e32ea09d282c0d42813201",
+            "scripts/recompute_expected_values.py": "df2c6dd83e7aea590423ce6224da2352c87c59985273dce51b91b3c5ccd98a51",
+            "scripts/validate_workbook.py": "21c4289e5d9789802c4bd4587f91acba816b35e8febb55d09269bc82b15c1f46"
+          }
+        },
+        "igce-builder-lh-tm": {
+          "files": {
+            "SKILL.md": "ab7a444eb8def5cb8456ff529b6e561f0ae779abe3fa0de6b347a8a589aeb799",
+            "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
+            "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
+            "references/runtime-adaptation.md": "db08ddbed79fdfe6794dc0b00782ba49d6c057d7350f43f3bf1938db7293face",
+            "references/validation-gates.md": "726c429f371f36a5e2bd8fa435ac2a13cb34aba468535ae036557534667f810a",
+            "references/workbook-specification.md": "b4b7a470e3e90ceb3d35657b7e44ba54c01b587e50c9333af6921db4dd3b8f6a",
+            "references/wrap-rate-presets.md": "340b5a6f8458be4da567921fa8830f713fff2616635f4c72f04a9693e79d65e1",
+            "scripts/recompute_expected_values.py": "bbfb40352eb6c5a309dcf6945eddcdb5a48df79c616ac90c16ef5074c709f3df",
+            "scripts/validate_workbook.py": "3438850d80422f2fa26c4dd9c6db8e0be18a738d830a673c863351ac7d7d0923"
+          }
+        },
+        "igce-builder-cr": {
+          "files": {
+            "SKILL.md": "c9dd352d42ef139ed0ea7793dd36e04d3ab108918ebb994252f9e9708de4de6b",
+            "agents/openai.yaml": "93485c245128c2de80e06d513d25d65f4210cf5e368fc77fdcfb39f3a5bfa99a",
+            "references/data-source-operations.md": "23bbbda749131f7a26dcea08889bf0893959da78f910b0b07546e9312625b8e1",
+            "references/runtime-adaptation.md": "db08ddbed79fdfe6794dc0b00782ba49d6c057d7350f43f3bf1938db7293face",
+            "references/validation-gates.md": "4c1f56f2a70ed871640c7a3c354d1aaae8d2a43803e855bb9db498960983dce0",
+            "references/workbook-specification.md": "7cfec6d7cfa4a95f40a06b0acf721f057c8f7fc74c95dfab3a041322f08be5c6",
+            "references/wrap-rate-presets.md": "458502322a8f88f759a14d1db54653899be7d94f551a2fc8482658db13a62404",
+            "scripts/recompute_expected_values.py": "682d38537cf57a3a564d8834aa827644e575d1e48304a527a9410ff5d07f3cba",
+            "scripts/validate_workbook.py": "0b9c8d96e52ab08afe6b7bf08ae06bf02b3eaf3a13338fc5e347846490a50173"
+          }
+        }
+      }
+    },
+    "other-transaction-agent": {
+      "version": "1.0.0-rc.1",
+      "skills": {
+        "ot-project-description-builder": {
+          "files": {
+            "SKILL.md": "244ad8c519ca59ec324d64578514b1d5089d5b6328316a4efadd8101b7f8113a",
+            "agents/openai.yaml": "c6ceb8947291f6185580d886db47b678ea24bd9eae1d6ac155449aeea805809f",
+            "references/authority-and-scope-rules.md": "1f07042b623b2be487038a8a3cd497ad6ee8fdfa2dfc39f8f08ef98a65d0aa4d",
+            "references/document-specification.md": "c0aa275a05563ce0d1ad141791560daa256fe074e9d40f75d68c4d9dee1cb1a3",
+            "references/handoff-specification.md": "e9354b6e574fbe80c0b00fbe0afe4b11b76ad0acacf1ba26e60a659dd0e9e566",
+            "references/question-blocks.md": "617e4c33d5d206c5f4896e40d9eb744439c0f6af523dce26a8ece6983c1c84ec",
+            "references/runtime-adaptation.md": "0f614e8c13438a1f773832aaf4851aca372d1b0975fa8196a0319752efc7de4f",
+            "references/validation-gates.md": "b53fe010962376844a95aa42e6153fae6f5e6f4573780a0f95542cf26f8932f1",
+            "scripts/validate_docx.py": "aaa26fadc63178a579f80857eb38aa50af6e3e0341814162bfa2644af076468d"
+          }
+        },
+        "ot-cost-analysis": {
+          "files": {
+            "SKILL.md": "162a42106d0fb1cb5eb5efaf82cc169ef3afd52fcd4d772436967aae729b545c",
+            "agents/openai.yaml": "96b4376fce31e81038a4806df129389424d05950432f388e4bdd681bec658ce3",
+            "references/authority-and-cost-sharing.md": "9ef3bcd4c493fba4452da2d9c0f9030eb7648a336854aabdf27f9f566452f4fa",
+            "references/data-source-operations.md": "d011471cb2cd1a41b4ea10bc0ce994f61d921079a974983daa5fd43399d7e82a",
+            "references/labor-and-costing-methods.md": "535b0ad4944a118c7325bb7401b3eba672d2323d7f69d9bc2189693caf0f8247",
+            "references/runtime-adaptation.md": "0c602fe93beac5e36a9a16a2c9ff942d06900a916866dfb107ac03c944491a36",
+            "references/validation-gates.md": "ae5bc253c776348063f4debd6a9273f558ee85316d14803d024e83139094031b",
+            "references/workbook-specification.md": "eaaf01ce69a4f13a6805f5703c8f91b67e2cdb7c9d202c3efc113f2e229fe787",
+            "scripts/recompute_expected_values.py": "a818480ab4e7b3dd95f4251475721ccf0925ddbd4dcb5347b11115d0c5ad293b",
+            "scripts/validate_workbook.py": "5a7cace1fd6325c5c8da3b064c244c2fd1e2da81b822d01aa94dfe174862407a"
+          }
+        }
+      }
+    }
+  }
+}

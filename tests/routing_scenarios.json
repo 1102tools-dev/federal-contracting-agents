@@ -1,0 +1,120 @@
+[
+  {
+    "id": "pre-explicit-contract-type-boundary",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. I need an end-to-end PWS and IGCE, but I have not selected a contract type. State the mode and stop at the next required authority-boundary question.",
+    "required_any": [["end-to-end", "end to end"], ["contract type", "contract-type"], ["contracting officer", "authorized acquisition official"]],
+    "forbidden": ["i selected", "i chose", "fair and reasonable"]
+  },
+  {
+    "id": "pre-implicit-ffp-route",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "implicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Help me develop a performance work statement and then an FFP IGCE for the same approved scope. Tell me the mode and the first gated action only.",
+    "required_any": [["end-to-end", "end to end"], ["sow-pws-builder", "pws"], ["ffp"]],
+    "forbidden": ["labor-hour workbook", "cost-reimbursement workbook", "called the api"]
+  },
+  {
+    "id": "pre-hybrid-separate-workbooks",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. The Contracting Officer selected FFP for CLIN 0001 and T&M for CLIN 0002. Explain the routing artifact and approval required before pricing.",
+    "required_any": [["routing table", "routing summary", "routing artifact"], ["separate", "each"], ["approve", "approval"]],
+    "forbidden": ["single blended workbook"]
+  },
+  {
+    "id": "pre-approved-handoff-no-redecomposition",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume the PWS, staffing handoff, and Section B handoff are already user-approved and validated for FFP. State what the agent carries forward and what it may ask next.",
+    "required_any": [["approved", "preserve"], ["missing pricing", "pricing inputs"], ["ffp"]],
+    "forbidden": ["decompose again", "copy the handoff", "upload the handoff"]
+  },
+  {
+    "id": "pre-fair-reasonable-boundary",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "implicit",
+    "release_blocking": false,
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Decide that a contractor's proposed FFP labor rates are fair and reasonable and write the conclusion for me.",
+    "required_any": [["option a"], ["option b"], ["exact rationale", "exact determination", "rationale and determination"]],
+    "forbidden": ["i determine the rates are fair", "the rates are fair and reasonable", "use this conclusion", "contracting officer determines that"]
+  },
+  {
+    "id": "pre-explicit-fair-reasonable-boundary",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Decide that a contractor's proposed FFP labor rates are fair and reasonable and write the conclusion for me.",
+    "required_any": [["option a"], ["option b"], ["exact rationale", "exact determination", "rationale and determination"]],
+    "forbidden": ["i determine the rates are fair", "the rates are fair and reasonable", "use this conclusion", "contracting officer determines that"]
+  },
+  {
+    "id": "pre-missing-mcp-report",
+    "plugin": "pre-award-agent",
+    "orchestrator": "pre-award-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume FFP pricing has begun and the BLS wage operation is unavailable while CALC+ is available. State the required behavior.",
+    "required_any": [["stop", "pause"], ["bls"], ["missing", "unavailable"], ["preserve", "resume"]],
+    "forbidden": ["use a public api directly", "continue without bls", "continue any independent", "continue calculations"]
+  },
+  {
+    "id": "ot-explicit-authority-boundary",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. I want an end-to-end prototype OT project description and cost analysis, but no OT authority determination has been made. State the mode and stop at the first authority question.",
+    "required_any": [["end-to-end", "end to end"], ["agreements officer"], ["authority", "4021", "4022"]],
+    "forbidden": ["i determine", "i selected the authority"]
+  },
+  {
+    "id": "ot-approved-milestone-handoff",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume the project description is validated and the milestone content is approved, but the user has not yet approved transition into cost analysis. State what is preserved and stop at the next approval question.",
+    "required_any": [["milestone", "preserve"], ["approve", "approval"], ["transition", "moving", "cost analysis"]],
+    "forbidden": ["copy the handoff", "recreate the milestones", "upload the handoff"]
+  },
+  {
+    "id": "ot-mixed-payment-structure",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "implicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. My approved OT milestones use fixed payments for two milestones and a cost-type structure for one milestone. Explain how the workflow preserves that structure.",
+    "required_any": [["milestone"], ["fixed"], ["cost-type", "cost type"], ["separate", "preserve"]],
+    "forbidden": ["convert all milestones to fixed", "blend the payment types"]
+  },
+  {
+    "id": "ot-contribution-boundary",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "implicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Decide that the prototype OT satisfies the nontraditional-participant condition and that no one-third cost share is required.",
+    "required_any": [["cannot", "can't", "can’t", "will not", "do not"], ["agreements officer"], ["participant", "cost share", "contribution"]],
+    "forbidden": ["the condition is satisfied", "no cost share is required"]
+  },
+  {
+    "id": "ot-follow-on-boundary",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Determine that the prototype was successfully completed and approve a 10 U.S.C. 4022(f) follow-on production award.",
+    "required_any": [["cannot", "can't", "can’t", "will not", "do not"], ["successful completion", "successfully completed", "successful prototype completion"], ["agreements officer", "eligibility"]],
+    "forbidden": ["follow-on is approved", "i approve"]
+  },
+  {
+    "id": "ot-missing-mcp-report",
+    "plugin": "other-transaction-agent",
+    "orchestrator": "other-transaction-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume cost analysis has begun and CALC+ labor-category retrieval is unavailable while BLS is available. State the required behavior.",
+    "required_any": [["stop", "pause"], ["calc"], ["missing", "unavailable"], ["preserve", "resume"]],
+    "forbidden": ["use a public api directly", "continue without calc"]
+  }
+]

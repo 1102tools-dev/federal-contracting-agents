@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "other-transaction-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Create an OT project description and carry its approved milestones directly into an auditable cost analysis.",
+  "author": {
+    "name": "1102tools",
+    "url": "https://1102tools.com"
+  },
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "Apache-2.0",
+  "keywords": ["federal-contracting", "other-transactions", "project-description", "cost-analysis"],
+  "extensions": {
+    "com.openai.codex": {"manifest": ".codex-plugin/plugin.json"},
+    "com.anthropic.claude-code": {"manifest": ".claude-plugin/plugin.json"},
+    "com.github.copilot": {"agents": "com.github.copilot/agents"}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "bls-oews": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "bls-oews-mcp==1.0.3", "bls-oews-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    },
+    "gsa-calc": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "gsa-calc-mcp==1.0.2", "gsa-calc-mcp"]
+    },
+    "gsa-perdiem": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "gsa-perdiem-mcp==1.0.3", "gsa-perdiem-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    }
+  }
+}
