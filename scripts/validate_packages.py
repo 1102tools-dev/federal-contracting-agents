@@ -252,7 +252,8 @@ def validate_release_versions(errors: list[str]) -> None:
 
 def validate_repository_hygiene(errors: list[str]) -> None:
     for path in REPO_ROOT.rglob("*"):
-        if ".git" in path.parts:
+        relative = path.relative_to(REPO_ROOT)
+        if relative.parts and relative.parts[0] in {".git", "_skills", "_mcps"}:
             continue
         if path.is_symlink():
             errors.append(f"Symlinks are prohibited in package repository: {path}")
