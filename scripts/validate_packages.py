@@ -15,7 +15,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_NAMES = ("pre-award-agent", "other-transaction-agent")
-EXPECTED_VERSION = "1.0.0-rc.1"
+EXPECTED_VERSION = "1.0.0-rc.2"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",

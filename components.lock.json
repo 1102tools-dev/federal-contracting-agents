@@ -27,7 +27,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -84,7 +84,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "skills": {
         "ot-project-description-builder": {
           "files": {

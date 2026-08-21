@@ -1,6 +1,6 @@
 # 1102tools Agent Plugins
 
-Two self-contained Agent Plugins compose the six tested 1102tools skills with the three federal pricing MCP servers they actually use. The repository is currently at `1.0.0-rc.1` while the remaining authenticated-client release gates are completed.
+Two self-contained Agent Plugins compose the six tested 1102tools skills with the three federal pricing MCP servers they actually use. Both packages are public previews at `1.0.0-rc.2`; final `1.0.0` remains blocked by the authenticated-client and end-to-end artifact matrix.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -64,7 +64,9 @@ Export keys in the environment that launches the client, or set them through tha
 
 Credentialed BLS and Per Diem releases enforce `FEDERAL_API_MIN_INTERVAL_SECONDS=3` inside the MCP process. Longer provider retry instructions still take precedence, and automated tests never call live federal APIs.
 
-## Install the release candidate
+## Install the public preview
+
+The [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-universal-setup.pdf) is the installation source of truth. The agents are distributed through the repository marketplaces below. No agent ZIP is maintained on the website or in GitHub Releases.
 
 ### Codex CLI and Desktop
 
@@ -125,7 +127,7 @@ The package structure, schema validation, vendored-component lock, MCP startup a
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
 
-OpenAI public-directory submission is deferred because the current submission path does not accept a plugin whose MCP dependencies are local `stdio` servers. Repository marketplace installation remains supported. See [OpenAI’s submission guidance](https://developers.openai.com/plugins/guides/submit-claude-plugin).
+OpenAI public-directory submission is deferred because the current submission path does not accept a plugin whose MCP dependencies are only local `stdio` servers. Repository marketplace installation remains supported. See [OpenAI’s submission guidance](https://developers.openai.com/plugins/guides/submit-claude-plugin).
 
 ## Canonical components
 

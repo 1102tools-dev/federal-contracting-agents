@@ -1,11 +1,11 @@
 {
   "name": "other-transaction-agent",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Create an OT project description and carry its approved milestones into cost analysis.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
   "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": ["federal-contracting", "other-transactions", "cost-analysis"],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json"

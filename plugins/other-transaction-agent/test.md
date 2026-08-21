@@ -2,7 +2,7 @@
 
 Date: August 21, 2026
 
-Package: `other-transaction-agent` `1.0.0-rc.1`
+Package: `other-transaction-agent` `1.0.0-rc.2`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
@@ -69,10 +69,10 @@ Those component records are evidence for the locked skill implementations, not p
 
 | Surface | Result |
 |---|---|
-| Codex CLI | Clean `1.0.0-rc.1` marketplace installation, skill discovery, MCP discovery, explicit routing, and natural-language routing passed; a post-install missing-capability smoke passed |
+| Codex CLI | Clean `1.0.0-rc.2` marketplace installation, package inventory, skill discovery, and MCP discovery passed; the `rc.1` explicit routing, natural-language routing, and post-install missing-capability evidence remains applicable because the runtime components are unchanged |
 | Codex Desktop | Plugin was installed locally, but a clean new-task end-to-end artifact run remains pending |
-| Claude Code | Marketplace update to `1.0.0-rc.1`, strict validation, three-MCP inventory, and local component inventory passed; restart is required to apply the update, and model runs are blocked because the OAuth session is expired and cannot refresh |
-| Copilot CLI | Marketplace update to `1.0.0-rc.1` and plugin inventory passed; model runs are blocked because no supported OAuth or fine-grained token is configured |
+| Claude Code | Clean marketplace installation of `1.0.0-rc.2`, strict validation, and package inventory passed; model runs remain blocked because the OAuth session is expired and cannot refresh |
+| Copilot CLI | Clean marketplace installation of `1.0.0-rc.2` and plugin inventory passed; model runs remain blocked because no supported OAuth or fine-grained token is configured |
 | VS Code/Copilot | Installation, discovery, and representative workflow remain pending |
 
 When both 1102tools plugins are installed, Codex 0.149.0-alpha.4 reports duplicate MCP-name warnings for the three shared servers and resolves one configuration for each name. Both package configurations are byte-for-byte equivalent at the semantic server level, and repository validation rejects drift. This warning is recorded as current client behavior.
@@ -85,4 +85,4 @@ No live federal API was called during package testing. This avoided shared-key r
 
 ## Release decision
 
-Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The package remains `1.0.0-rc.1`.
+Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.2`.
