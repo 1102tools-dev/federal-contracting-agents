@@ -18,10 +18,14 @@ from mcp.client.streamable_http import streamable_http_client
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_TOOLS = {
+    "acquisition-gov": {"list_rfo_parts", "get_rfo_part", "list_rfo_agency_deviations", "get_rfo_agency_deviation", "get_rfo_guidance"},
     "bls-oews": {"detect_latest_year", "get_wage_data", "list_common_soc_codes"},
+    "ecfr": {"get_cfr_content", "get_version_history", "compare_versions"},
+    "federal-register": {"search_documents", "get_document", "open_comment_periods"},
     "gsa-calc": {"keyword_search"},
     "gsa-perdiem": {"lookup_city_perdiem", "get_mie_breakdown"},
     "sam-gov": {"search_opportunities", "search_entities", "search_contract_awards"},
+    "regulations-gov": {"search_documents", "search_comments", "search_dockets"},
     "usaspending": {"search_awards", "spending_over_time", "search_recipients"},
     "tavily-web": {"tavily_search", "tavily_extract"},
 }
@@ -38,6 +42,7 @@ def parse_args() -> argparse.Namespace:
             "other-transaction-agent",
             "govcon-growth-agent",
             "market-research-agent",
+            "acquisition-policy-agent",
         ),
         default="pre-award-agent",
     )

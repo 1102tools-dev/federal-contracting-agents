@@ -4,8 +4,8 @@
     "name": "1102tools"
   },
   "metadata": {
-    "description": "Four federal acquisition and GovCon workflow plugins",
-    "version": "1.1.0-rc.2"
+    "description": "Five federal acquisition and GovCon workflow plugins",
+    "version": "1.2.0-rc.1"
   },
   "plugins": [
     {
@@ -31,6 +31,12 @@
       "description": "Conduct acquisition market research from supplied documents, federal data, and approved evidence plans.",
       "version": "1.0.0-rc.2",
       "source": "./plugins/market-research-agent"
+    },
+    {
+      "name": "acquisition-policy-agent",
+      "description": "Trace acquisition-policy status and impacts through codified text, rulemakings, dockets, and posted deviations.",
+      "version": "1.0.0-rc.1",
+      "source": "./plugins/acquisition-policy-agent"
     }
   ]
 }

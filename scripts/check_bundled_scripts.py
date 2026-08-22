@@ -15,8 +15,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 def main() -> None:
     scripts = sorted((REPO_ROOT / "plugins").glob("*/skills/*/scripts/*.py"))
-    if len(scripts) != 16:
-        raise SystemExit(f"Expected 16 bundled Python scripts, found {len(scripts)}")
+    if len(scripts) != 19:
+        raise SystemExit(f"Expected 19 bundled Python scripts, found {len(scripts)}")
     with tempfile.TemporaryDirectory() as compile_dir:
         for index, script in enumerate(scripts):
             cfile = Path(compile_dir) / f"{index}-{script.stem}.pyc"

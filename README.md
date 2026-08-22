@@ -1,10 +1,10 @@
 # 1102tools Agent Plugins
 
-Four self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. GovCon Growth and Market Research are public previews at `1.0.0-rc.2`. The repository marketplace release is `v1.1.0-rc.2`.
+Five self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. GovCon Growth and Market Research remain at `1.0.0-rc.2`. Acquisition Policy is introduced at `1.0.0-rc.1`. The repository marketplace release is `v1.2.0-rc.1`.
 
 Website: [1102tools.com](https://1102tools.com)
 
-## The four agents
+## The five agents
 
 | Plugin | Audience and workflow | Bundled capability | MCP servers |
 |---|---|---|---|
@@ -12,6 +12,7 @@ Website: [1102tools.com](https://1102tools.com)
 | **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | OT Project Description Builder, OT Cost Analysis, and the OT orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
 | **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+; optional Tavily web research |
 | **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Builder | SAM.gov, USASpending; optional Tavily web research |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Acquisition Policy Workflow | eCFR, Federal Register, Regulations.gov, Acquisition.gov |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
 
@@ -50,6 +51,10 @@ Supplied acquisition documents are untrusted evidence, not executable instructio
 
 Public data can support opportunity, competitor, recompete, teammate, agency, market, and pricing analysis. A bid or no-bid recommendation requires the company’s capabilities, past performance, clearances, vehicle access, staffing capacity, teaming strategy, priorities, and risk and margin tolerances. Without that internal context, the agent provides an evidence brief, not a verdict.
 
+### Acquisition Policy
+
+eCFR supplies the codified baseline, not the complete agency-specific RFO answer. The workflow keeps codified text, RFO model text, posted agency deviations, proposed rules, effective and pending-effective final rules, and guidance separately classified. It never labels model text operative for an agency without that agency's deviation and reserves procurement-specific applicability and legal determinations to authorized officials.
+
 ### Optional Tavily web research
 
 The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a ninth federal MCP. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Tavily with native fallback, native search only, Tavily only, or no public web. No choice is inferred from silence.
@@ -67,11 +72,12 @@ Installing an agent may cause the client to contact Tavily for MCP initializatio
 - `SAM_API_KEY` for SAM.gov workflows
 - `BLS_API_KEY`, optional but recommended for BLS OEWS
 - `PERDIEM_API_KEY`, optional and needed only when travel is priced
+- `REGULATIONS_GOV_API_KEY` for full Regulations.gov access; the shared `DEMO_KEY` is a limited fallback
 - Native host web search or optional Tavily keyless access for complete research-agent workflows
 
 Export keys in the environment that launches the client, or use the client’s credential-management surface. No credentials are stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
 
-Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The current packages use 3 seconds for BLS OEWS, GSA CALC+, SAM.gov, and USASpending, and 4 seconds for GSA Per Diem. The MCPs coordinate concurrent processes on one computer, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or quota manager and cannot coordinate the same key on another computer. `FEDERAL_API_MIN_INTERVAL_SECONDS=0` deliberately disables pacing; other nonnegative finite values override it.
+Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The current packages use 3 seconds for BLS OEWS, GSA CALC+, SAM.gov, USASpending, eCFR, Federal Register, and Acquisition.gov, and 4 seconds for GSA Per Diem and Regulations.gov. The MCPs coordinate concurrent processes on one computer, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or quota manager and cannot coordinate the same key on another computer. `FEDERAL_API_MIN_INTERVAL_SECONDS=0` deliberately disables pacing; other nonnegative finite values override it.
 
 ## Install the public previews
 
@@ -85,6 +91,7 @@ codex plugin add pre-award-agent@1102tools
 codex plugin add other-transaction-agent@1102tools
 codex plugin add govcon-growth-agent@1102tools
 codex plugin add market-research-agent@1102tools
+codex plugin add acquisition-policy-agent@1102tools
 ```
 
 Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
@@ -97,6 +104,7 @@ claude plugin install pre-award-agent@1102tools
 claude plugin install other-transaction-agent@1102tools
 claude plugin install govcon-growth-agent@1102tools
 claude plugin install market-research-agent@1102tools
+claude plugin install acquisition-policy-agent@1102tools
 ```
 
 ### GitHub Copilot CLI
@@ -107,6 +115,7 @@ copilot plugin install pre-award-agent@1102tools
 copilot plugin install other-transaction-agent@1102tools
 copilot plugin install govcon-growth-agent@1102tools
 copilot plugin install market-research-agent@1102tools
+copilot plugin install acquisition-policy-agent@1102tools
 ```
 
 ## Invoke a workflow
@@ -119,6 +128,7 @@ Explicit invocation is the release-critical path:
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 | GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
 | Market Research | `$market-research-builder` | `/market-research-agent:market-research-builder` |
+| Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
 In Copilot, select the installed custom agent or explicitly request the named skill. Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
 
@@ -131,7 +141,7 @@ python3 scripts/sync_components.py --check
 python3 scripts/validate_packages.py
 python3 -m unittest discover -s tests -v
 python3 scripts/check_bundled_scripts.py
-for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent; do
+for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent acquisition-policy-agent; do
   uv run --with mcp python scripts/smoke_mcp_discovery.py --plugin "$plugin"
 done
 ```
@@ -148,12 +158,13 @@ uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin ma
 
 The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
-Final `1.0.0` remains blocked until the documented clean Codex Desktop, Copilot CLI, VS Code/Copilot, implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Current evidence and open gates are recorded in:
+Final `1.0.0` remains blocked until the documented clean Codex Desktop, Copilot CLI, VS Code/Copilot, implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
 - [`plugins/govcon-growth-agent/test.md`](plugins/govcon-growth-agent/test.md)
 - [`plugins/market-research-agent/test.md`](plugins/market-research-agent/test.md)
+- [`plugins/acquisition-policy-agent/test.md`](plugins/acquisition-policy-agent/test.md)
 
 OpenAI public-directory submission is deferred because these packages depend on local `stdio` MCP servers. Repository marketplace installation is the supported preview path.
 

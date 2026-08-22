@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the four self-contained 1102tools Agent Plugins packages."""
+"""Validate the five self-contained 1102tools Agent Plugins packages."""
 
 from __future__ import annotations
 
@@ -19,14 +19,16 @@ PLUGIN_NAMES = (
     "other-transaction-agent",
     "govcon-growth-agent",
     "market-research-agent",
+    "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
     "pre-award-agent": "1.0.0-rc.3",
     "other-transaction-agent": "1.0.0-rc.3",
     "govcon-growth-agent": "1.0.0-rc.2",
     "market-research-agent": "1.0.0-rc.2",
+    "acquisition-policy-agent": "1.0.0-rc.1",
 }
-MARKETPLACE_VERSION = "1.1.0-rc.2"
+MARKETPLACE_VERSION = "1.2.0-rc.1"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -42,25 +44,40 @@ EXPECTED_SKILLS = {
     },
     "govcon-growth-agent": {"govcon-growth-workflow"},
     "market-research-agent": {"market-research-builder"},
+    "acquisition-policy-agent": {"acquisition-policy-workflow"},
 }
 EXPECTED_MCPS = {
     "pre-award-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
     "other-transaction-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
     "govcon-growth-agent": {"sam-gov", "usaspending", "gsa-calc", "tavily-web"},
     "market-research-agent": {"sam-gov", "usaspending", "tavily-web"},
+    "acquisition-policy-agent": {
+        "ecfr",
+        "federal-register",
+        "regulations-gov",
+        "acquisition-gov",
+    },
 }
 EXPECTED_MCP_REQUIREMENTS = {
+    "acquisition-gov": "acquisition-gov-mcp==1.0.0",
     "bls-oews": "bls-oews-mcp==1.0.4",
+    "ecfr": "ecfr-mcp==1.0.4",
+    "federal-register": "federal-register-mcp==1.0.3",
     "gsa-calc": "gsa-calc-mcp==1.0.3",
     "gsa-perdiem": "gsa-perdiem-mcp==1.0.4",
     "sam-gov": "sam-gov-mcp==1.0.6",
+    "regulations-gov": "regulationsgov-mcp==1.0.3",
     "usaspending": "usaspending-gov-mcp==1.0.3",
 }
 EXPECTED_PACING = {
+    "acquisition-gov": "3",
     "bls-oews": "3",
+    "ecfr": "3",
+    "federal-register": "3",
     "gsa-calc": "3",
     "gsa-perdiem": "4",
     "sam-gov": "3",
+    "regulations-gov": "4",
     "usaspending": "3",
 }
 TAVILY_ENDPOINT = "https://mcp.tavily.com/mcp/"
@@ -365,7 +382,7 @@ def main() -> None:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         raise SystemExit(1)
-    print("All four Agent Plugins packages passed schema, portability, reference, federal pin, Tavily, and hygiene checks.")
+    print("All five Agent Plugins packages passed schema, portability, reference, federal pin, Tavily, and hygiene checks.")
 
 
 if __name__ == "__main__":

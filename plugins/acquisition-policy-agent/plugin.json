@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "acquisition-policy-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Research federal acquisition policy status, changes, rulemakings, and public comments with source-specific evidence.",
+  "author": {"name": "1102tools", "url": "https://1102tools.com"},
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "MIT",
+  "keywords": ["federal-contracting", "acquisition-policy", "far", "rulemaking", "class-deviation"],
+  "extensions": {
+    "com.openai.codex": {"manifest": ".codex-plugin/plugin.json"},
+    "com.anthropic.claude-code": {"manifest": ".claude-plugin/plugin.json"},
+    "com.github.copilot": {"agents": "com.github.copilot/agents"}
+  }
+}
+

@@ -27,13 +27,18 @@ PLUGIN_SKILLS = {
     ],
     "govcon-growth-agent": ["govcon-growth-workflow"],
     "market-research-agent": ["market-research-builder"],
+    "acquisition-policy-agent": ["acquisition-policy-workflow"],
 }
 RUNTIME_DIRS = ("agents", "references", "scripts", "assets")
 MCP_PACKAGES = {
+    "acquisition-gov": {"distribution": "acquisition-gov-mcp", "version": "1.0.0"},
     "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.4"},
+    "ecfr": {"distribution": "ecfr-mcp", "version": "1.0.4"},
+    "federal-register": {"distribution": "federal-register-mcp", "version": "1.0.3"},
     "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.3"},
     "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.4"},
     "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.6"},
+    "regulations-gov": {"distribution": "regulationsgov-mcp", "version": "1.0.3"},
     "usaspending": {"distribution": "usaspending-gov-mcp", "version": "1.0.3"},
 }
 EXTERNAL_MCPS = {
@@ -111,7 +116,12 @@ def runtime_files(skill_root: Path) -> list[Path]:
         for path in directory.rglob("*"):
             if path.is_symlink():
                 raise SystemExit(f"Runtime symlinks are prohibited: {path}")
-            if path.is_file() and path.name != ".DS_Store":
+            if (
+                path.is_file()
+                and path.name != ".DS_Store"
+                and path.suffix != ".pyc"
+                and "__pycache__" not in path.parts
+            ):
                 files.append(path)
     return sorted(files, key=lambda path: path.relative_to(skill_root).as_posix())
 

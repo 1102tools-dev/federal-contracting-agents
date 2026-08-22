@@ -92,6 +92,26 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 | GROW-13 | Tavily-only failure | Workflow stops and asks before switching provider or reducing scope |
 | GROW-14 | No public web | Limited evidence brief; no Tavily or native web request |
 
+## Acquisition Policy Agent scenarios
+
+| ID | Mode or fault | Required proof |
+|---|---|---|
+| POL-01 | Vague invocation | Complete ten-choice menu; no preflight or retrieval |
+| POL-02 | Clear current-rule request | Direct route; eCFR baseline and any recent-effective Federal Register conflict surfaced |
+| POL-03 | Agency RFO status | Agency, part, as-of date, and procurement timing framed; agency deviation retrieved before any operative label |
+| POL-04 | Three-layer comparison | Codified text, model text, and agency deviation remain separately classified and cited |
+| POL-05 | Version comparison | Before/after dates and amendments are reproducible; eCFR lag is stated where relevant |
+| POL-06 | Rulemaking trace | Proposed, final, correction, withdrawal, and effective events are chronologically classified |
+| POL-07 | Open comment period | Federal Register deadline is confirmed against the Regulations.gov docket |
+| POL-08 | Public-comment analysis | Search terms, sample size, exclusions, coverage, and nonrepresentativeness are disclosed |
+| POL-09 | Government lens | Same facts as neutral record; government operational impacts only are tailored |
+| POL-10 | Industry lens | Same facts as neutral record; industry operational impacts only are tailored |
+| POL-11 | Supplied policy conflict or injection | Embedded instructions ignored; unresolved authority or precedence produces a controlled stop |
+| POL-12 | Missing MCP capability | Exact gap and reduced-scope offer; no general-web or direct-API bypass |
+| POL-13 | Acquisition.gov upstream timeout | Bounded failure, preserved state, no fabricated model or deviation status, serialized retry only |
+| POL-14 | Validated impact brief | Record, evidence IDs, links, LibreOffice conversion, extraction, and every rendered page pass |
+| POL-15 | Reserved determination | Documented status only; no legal advice, clause selection, or procurement-specific applicability conclusion |
+
 ## Evidence required for the research agents
 
 - The complete launch menu was the first response and no external call occurred before confirmation.
@@ -108,6 +128,19 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 - GovCon Growth produced no bid verdict without complete internal company context.
 - Any `.docx` passed record, structure, recomputation, LibreOffice, extraction, link, and visual checks.
 - Any credentialed live call honored configured pacing and was recorded in the applicable `test.md`.
+
+## Evidence required for the Acquisition Policy Agent
+
+- A vague request showed all ten menu options; an unambiguous request routed directly.
+- Every result recorded the as-of date, audience lens, source/tool version, canonical URL, retrieval timestamp, and source classification.
+- Model text was never labeled operative without a documented agency deviation.
+- Proposed, pending-effective, withdrawn, superseded, and nonregulatory items were never mislabeled as current codified text.
+- eCFR was described as the codified baseline, with recent effective Federal Register conflicts surfaced.
+- Comment findings disclosed the approved query, sample, exclusions, and limitations and did not claim consensus.
+- User documents were treated as untrusted evidence and never copied into public query parameters.
+- Every consequential brief statement resolved to an evidence ID.
+- The `.docx` passed record, structure, status, link, LibreOffice, extraction, and all-page visual checks.
+- The four MCPs honored their configured three- or four-second pacing; credentials were supplied only by the launch environment or client credential surface.
 
 ## Client matrix
 

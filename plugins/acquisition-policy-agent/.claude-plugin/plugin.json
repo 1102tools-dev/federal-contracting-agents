@@ -1,0 +1,13 @@
+{
+  "name": "acquisition-policy-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Trace federal acquisition policy status and impacts through primary published sources.",
+  "author": {"name": "1102tools", "url": "https://1102tools.com"},
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "MIT",
+  "keywords": ["federal-contracting", "acquisition-policy", "far", "rulemaking"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
+

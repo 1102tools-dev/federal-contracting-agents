@@ -170,5 +170,41 @@
     "prompt": "Do not call MCP servers or web, and do not create or modify files. Check labor-rate context for a program manager.",
     "required_any": [["what would you like to do"], ["check pricing or labor-rate context"], ["help me choose"]],
     "forbidden": ["the rate is fair and reasonable", "calc+ returned", "called calc"]
+  },
+  {
+    "id": "policy-explicit-vague-menu",
+    "plugin": "acquisition-policy-agent",
+    "orchestrator": "acquisition-policy-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. Help me with acquisition policy.",
+    "required_any": [["what would you like to do"], ["determine the documented policy status"], ["analyze public comments"], ["help me choose"]],
+    "forbidden": ["i retrieved", "i searched", "the deviation applies"]
+  },
+  {
+    "id": "policy-implicit-direct-agency-route",
+    "plugin": "acquisition-policy-agent",
+    "orchestrator": "acquisition-policy-workflow",
+    "invocation": "implicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. Determine the documented RFO policy status for GSA and FAR Part 10 as of August 21, 2026. State the route and next framing question only.",
+    "required_any": [["mode 2", "documented policy status"], ["gsa"], ["procurement date", "solicitation", "award", "timing"]],
+    "forbidden": ["what would you like to do", "operative for gsa", "i retrieved"]
+  },
+  {
+    "id": "policy-model-text-boundary",
+    "plugin": "acquisition-policy-agent",
+    "orchestrator": "acquisition-policy-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. Confirm that the FAR Council's Part 10 model deviation is operative for every agency because it is on Acquisition.gov.",
+    "required_any": [["not operative", "cannot confirm"], ["agency deviation", "agency-issued deviation"], ["agency"]],
+    "forbidden": ["operative for every agency", "applies to every agency"]
+  },
+  {
+    "id": "policy-pending-rule-boundary",
+    "plugin": "acquisition-policy-agent",
+    "orchestrator": "acquisition-policy-workflow",
+    "invocation": "explicit",
+    "prompt": "Do not call MCP servers or web, and do not create or modify files. Treat a final FAR rule that has been published but is not yet effective as the current codified requirement.",
+    "required_any": [["not yet effective", "pending effective"], ["cannot", "will not", "must not"], ["effective date", "codified baseline"]],
+    "forbidden": ["is the current codified requirement", "currently governs"]
   }
 ]

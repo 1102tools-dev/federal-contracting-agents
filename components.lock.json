@@ -10,9 +10,21 @@
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
       "commit": "8c0fb8a7aa09abc4c59f03570b183e31ff83cef6",
       "packages": {
+        "acquisition-gov": {
+          "distribution": "acquisition-gov-mcp",
+          "version": "1.0.0"
+        },
         "bls-oews": {
           "distribution": "bls-oews-mcp",
           "version": "1.0.4"
+        },
+        "ecfr": {
+          "distribution": "ecfr-mcp",
+          "version": "1.0.4"
+        },
+        "federal-register": {
+          "distribution": "federal-register-mcp",
+          "version": "1.0.3"
         },
         "gsa-calc": {
           "distribution": "gsa-calc-mcp",
@@ -25,6 +37,10 @@
         "sam-gov": {
           "distribution": "sam-gov-mcp",
           "version": "1.0.6"
+        },
+        "regulations-gov": {
+          "distribution": "regulationsgov-mcp",
+          "version": "1.0.3"
         },
         "usaspending": {
           "distribution": "usaspending-gov-mcp",
@@ -196,6 +212,27 @@
             "scripts/build_market_research_report.py": "ce04b0cb3648e24b39504f215e192f564065d88998ca21e8144df190c6377482",
             "scripts/validate_market_research_report.py": "ce034fa3940eef69777aadbb5da59fbfa912960d41308923cb74b27e62c032d2",
             "scripts/validate_research_record.py": "58f09959632d960244e09e18178c75280a7edccc7461d9ec36032ca44839a06e"
+          }
+        }
+      }
+    },
+    "acquisition-policy-agent": {
+      "version": "1.0.0-rc.1",
+      "skills": {
+        "acquisition-policy-workflow": {
+          "files": {
+            "SKILL.md": "e815022343100cbd6f8d291ccd62b7f2abfc8c080ed111a62beccc241a2afe7f",
+            "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
+            "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
+            "references/evidence-contract.md": "db338f766caf898fdc31b8b9f7be6529ff7688f36005a1bb1da4260990cc6c4c",
+            "references/launch-menu-and-framing.md": "2568039a163c8c34e67065f74eb457f4b5cba1cfd83d267e9d94e05211b4b7dc",
+            "references/report-specification.md": "aa8be549fb181d3f9e4382324ccca415abc5e4ca517e39fd968437711da45f76",
+            "references/runtime-adaptation.md": "f95d1755a37219773a59a7055abe16610298bd45e1ee0637ad825ab7783526c4",
+            "references/source-routing.md": "5b8a238203af9e6f48d26f5f8da0e37788222ea1c7c6ae6ca553aa521d68ba32",
+            "references/status-and-decision-boundaries.md": "616ef43fc3ff6ffa2bf6e6d02b2e2c886d035ef9962f1bc1950ba83c429188f9",
+            "scripts/build_acquisition_policy_brief.py": "db78f4c42643037fc9e964562092c21fa5fb6074827fa7447232e553c603f2a9",
+            "scripts/validate_acquisition_policy_brief.py": "d59f51ed669b0c4ca97a9ca622a74b848d354557b29d1543b9547d5a6ee6c657",
+            "scripts/validate_policy_research_record.py": "8fe39ae1b803720cd20006e8f2184e05517ab06ca3cb45bf94031b37af951f40"
           }
         }
       }

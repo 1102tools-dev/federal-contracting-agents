@@ -1,0 +1,24 @@
+{
+  "name": "acquisition-policy-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Trace federal acquisition policy status and impacts through primary published sources.",
+  "author": {"name": "1102tools", "url": "https://1102tools.com"},
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "MIT",
+  "keywords": ["federal-contracting", "acquisition-policy", "far", "rulemaking"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Acquisition Policy Agent",
+    "shortDescription": "Trace FAR policy status and changes",
+    "longDescription": "Uses codified regulations, rulemaking records, public dockets, and posted RFO deviations to produce sourced answers and validated impact briefs.",
+    "developerName": "1102tools",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://1102tools.com",
+    "brandColor": "#5CB8E6",
+    "defaultPrompt": "Use $acquisition-policy-workflow to analyze the acquisition-policy question."
+  }
+}
+
