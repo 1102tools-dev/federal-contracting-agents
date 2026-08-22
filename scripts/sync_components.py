@@ -26,7 +26,7 @@ PLUGIN_SKILLS = {
         "ot-cost-analysis",
     ],
     "govcon-growth-agent": ["govcon-growth-workflow"],
-    "market-research-agent": ["market-research-builder"],
+    "market-research-agent": ["market-research-workflow"],
     "acquisition-policy-agent": ["acquisition-policy-workflow"],
 }
 RUNTIME_DIRS = ("agents", "references", "scripts", "assets")

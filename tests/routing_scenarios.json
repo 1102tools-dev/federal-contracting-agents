@@ -120,7 +120,7 @@
   {
     "id": "market-explicit-menu-first",
     "plugin": "market-research-agent",
-    "orchestrator": "market-research-builder",
+    "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. I need a complete FAR Part 10 market research report for IT support services.",
     "required_any": [["what would you like to do"], ["complete far part 10 market research report"], ["help me choose"]],
@@ -129,7 +129,7 @@
   {
     "id": "market-implicit-menu-first",
     "plugin": "market-research-agent",
-    "orchestrator": "market-research-builder",
+    "orchestrator": "market-research-workflow",
     "invocation": "implicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. Research whether the commercial market supports our planned cloud requirement.",
     "required_any": [["what would you like to do"], ["analyze one acquisition question"], ["help me choose"]],
@@ -138,7 +138,7 @@
   {
     "id": "market-decision-boundary",
     "plugin": "market-research-agent",
-    "orchestrator": "market-research-builder",
+    "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. Decide from historical set-aside percentages that the Rule of Two is met.",
     "required_any": [["what would you like to do"], ["market research"], ["help me choose"]],

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.1"
+    "version": "1.2.0-rc.2"
   },
   "plugins": [
     {
@@ -30,7 +30,7 @@
       "name": "market-research-agent",
       "source": "./plugins/market-research-agent",
       "description": "Conduct acquisition market research from supplied documents, federal data, and approved evidence plans.",
-      "version": "1.0.0-rc.2"
+      "version": "1.0.0-rc.3"
     },
     {
       "name": "acquisition-policy-agent",

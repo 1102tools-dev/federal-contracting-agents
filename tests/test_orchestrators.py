@@ -54,7 +54,7 @@ class OrchestratorContractTests(unittest.TestCase):
             self.assertIn("do not call another pricing mcp", text.lower())
 
     def test_market_research_menu_and_document_intake_are_hard_gates(self) -> None:
-        text = self.text("market-research-agent", "market-research-builder")
+        text = self.text("market-research-agent", "market-research-workflow")
         for required in (
             "The entire first-turn response consists only of the complete six-choice menu",
             "1. Conduct quick market research and show the findings in chat",

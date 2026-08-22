@@ -9,14 +9,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RESEARCH_PLUGINS = {
     "govcon-growth-agent": "govcon-growth-workflow",
-    "market-research-agent": "market-research-builder",
+    "market-research-agent": "market-research-workflow",
 }
 
 
 def load_validator():
     path = (
         ROOT
-        / "plugins/market-research-agent/skills/market-research-builder/scripts/validate_research_record.py"
+        / "plugins/market-research-agent/skills/market-research-workflow/scripts/validate_research_record.py"
     )
     spec = importlib.util.spec_from_file_location("vendored_research_validator", path)
     module = importlib.util.module_from_spec(spec)
@@ -28,7 +28,7 @@ def load_validator():
 def base_record(mode: str, providers: list[str]) -> dict[str, object]:
     return {
         "schema_version": "1.1",
-        "skill": "market-research-builder",
+        "skill": "market-research-workflow",
         "workflow_mode": "quick-chat",
         "question": "Synthetic offline policy test",
         "scope": {"as_of_date": "2026-08-21"},

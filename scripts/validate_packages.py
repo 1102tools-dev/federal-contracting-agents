@@ -25,10 +25,10 @@ EXPECTED_VERSIONS = {
     "pre-award-agent": "1.0.0-rc.3",
     "other-transaction-agent": "1.0.0-rc.3",
     "govcon-growth-agent": "1.0.0-rc.2",
-    "market-research-agent": "1.0.0-rc.2",
+    "market-research-agent": "1.0.0-rc.3",
     "acquisition-policy-agent": "1.0.0-rc.1",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.1"
+MARKETPLACE_VERSION = "1.2.0-rc.2"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -43,7 +43,7 @@ EXPECTED_SKILLS = {
         "ot-cost-analysis",
     },
     "govcon-growth-agent": {"govcon-growth-workflow"},
-    "market-research-agent": {"market-research-builder"},
+    "market-research-agent": {"market-research-workflow"},
     "acquisition-policy-agent": {"acquisition-policy-workflow"},
 }
 EXPECTED_MCPS = {

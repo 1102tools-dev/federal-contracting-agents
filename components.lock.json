@@ -4,11 +4,11 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "6337508992730f9d670c7e69eebf4174f287eb31"
+      "commit": "a73d5a23b1b14fb9791dc5d4e92515e1f3a9dcb7"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "8c0fb8a7aa09abc4c59f03570b183e31ff83cef6",
+      "commit": "e240158e409e61cbfe51631c90cec670048907ca",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
@@ -174,7 +174,7 @@
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "ea4aa434387948da3812ec122ebc97382abf366b6b999316188d17e602bfbb95",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
-            "references/evidence-contract.md": "41e61297bb2635fc2d709183843f13bf79602c8a552c963b350aaace8c8d2bea",
+            "references/evidence-contract.md": "e3b80232ff52f10bcb163287e8c523c2f8985ae6eac30d69ec7188cd10886cd7",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
             "references/launch-menu-and-question-blocks.md": "77d27421e4af039937f79ffceb8eec96333e8ece5c548fe67d2f8dfa5a9ab572",
             "references/market-and-agency-intelligence.md": "1c7e5b9ba834f91cbfe06b9806f4f4b81f68730241b1568e187941a4fc787f42",
@@ -186,22 +186,22 @@
             "references/web-provider-policy.md": "b6f37efaec1a255e7c69e185ad7f5b957db2ad2d5ebe94c0a86f4db81b717861",
             "scripts/build_growth_brief.py": "9cf3a3761d6d68b4c829417165d9a93a175a1491d10e965cf3a0af198f0f28d5",
             "scripts/validate_growth_brief.py": "6171f628a9aa11fd0cca2c208504c049c512e890a2e4ce128f7f6d335135d115",
-            "scripts/validate_research_record.py": "58f09959632d960244e09e18178c75280a7edccc7461d9ec36032ca44839a06e"
+            "scripts/validate_research_record.py": "4b01cf7615e2a6aa733d42e69f2646b54609c4c67c34cf36f77ec370af82040d"
           }
         }
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "skills": {
-        "market-research-builder": {
+        "market-research-workflow": {
           "files": {
-            "SKILL.md": "1a0bd4cf8fa1b09996b3d2cbb263e7330dc08df4e7b2c36810ffce60f677590f",
-            "agents/openai.yaml": "5ccd5cf5f7814c2dcd07e1df32b964050123f78d52cf43fb0a44f3618b441c9e",
+            "SKILL.md": "6c66683b826aeb1c690267c87ff9bd41ce2b2cc95ef1bf82f60820ddfe078c69",
+            "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "356868fc5c4d33091cd7e13a3e0b3016ce5290de677d5cc286d50e39b8b3cc2c",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
-            "references/evidence-contract.md": "41e61297bb2635fc2d709183843f13bf79602c8a552c963b350aaace8c8d2bea",
+            "references/evidence-contract.md": "e3b80232ff52f10bcb163287e8c523c2f8985ae6eac30d69ec7188cd10886cd7",
             "references/federal-data-operations.md": "b7554132dfad2872e4a617b9c0155d1bcc7899ac8d1260c91b4b8fa9f587d58b",
             "references/launch-menu-and-question-blocks.md": "88a2ad4765b181787498f85b19c7e88cdc142683df7f2d7af56808b89da61123",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
@@ -211,7 +211,7 @@
             "references/web-research-method.md": "a06b7eafce92b0be3b24cd518c4dbe81b456aed301bc90c70c2b61caa9e362d6",
             "scripts/build_market_research_report.py": "ce04b0cb3648e24b39504f215e192f564065d88998ca21e8144df190c6377482",
             "scripts/validate_market_research_report.py": "ce034fa3940eef69777aadbb5da59fbfa912960d41308923cb74b27e62c032d2",
-            "scripts/validate_research_record.py": "58f09959632d960244e09e18178c75280a7edccc7461d9ec36032ca44839a06e"
+            "scripts/validate_research_record.py": "4b01cf7615e2a6aa733d42e69f2646b54609c4c67c34cf36f77ec370af82040d"
           }
         }
       }

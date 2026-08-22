@@ -1,6 +1,6 @@
 # 1102tools Agent Plugins
 
-Five self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. GovCon Growth and Market Research remain at `1.0.0-rc.2`. Acquisition Policy is introduced at `1.0.0-rc.1`. The repository marketplace release is `v1.2.0-rc.1`.
+Five self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. Pre-Award, Other Transaction, and Market Research are at `1.0.0-rc.3`. GovCon Growth remains at `1.0.0-rc.2`, and Acquisition Policy is at `1.0.0-rc.1`. The repository marketplace release is `v1.2.0-rc.2`.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -11,7 +11,7 @@ Website: [1102tools.com](https://1102tools.com)
 | **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | SOW/PWS Builder, FFP IGCE, LH/T&M IGCE, CR IGCE, and the Pre-Award orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
 | **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | OT Project Description Builder, OT Cost Analysis, and the OT orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
 | **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+; optional Tavily web research |
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Builder | SAM.gov, USASpending; optional Tavily web research |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Workflow | SAM.gov, USASpending; optional Tavily web research |
 | **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Acquisition Policy Workflow | eCFR, Federal Register, Regulations.gov, Acquisition.gov |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
@@ -127,7 +127,7 @@ Explicit invocation is the release-critical path:
 | Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 | GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
-| Market Research | `$market-research-builder` | `/market-research-agent:market-research-builder` |
+| Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` |
 | Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
 In Copilot, select the installed custom agent or explicitly request the named skill. Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.

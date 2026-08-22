@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Build evidence-backed federal acquisition market research through a staged FAR Part 10 workflow.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -18,6 +18,6 @@
     "capabilities": ["Interactive", "Write"],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $market-research-builder to begin. Show the complete workflow menu before any research."
+    "defaultPrompt": "Use $market-research-workflow to begin. Show the complete workflow menu before any research."
   }
 }

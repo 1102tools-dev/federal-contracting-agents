@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.2`
+Version: `1.0.0-rc.3`
 Evidence date: August 21, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-builder` runtime is synchronized from `federal-contracting-skills` commit `6337508992730f9d670c7e69eebf4174f287eb31`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `a73d5a23b1b14fb9791dc5d4e92515e1f3a9dcb7`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -13,6 +13,14 @@ The bundled `market-research-builder` runtime is synchronized from `federal-cont
 - A Sonnet packaged-plugin smoke initially exposed an omitted selection question. The exact question was moved into the front-loaded core; a fresh `claude-sonnet-5` max-effort run then returned the six choices and exact question with zero web-search and web-fetch requests.
 
 No live federal API call was made.
+
+## `rc.3` rename and repackage evidence
+
+- Component synchronization and SHA-256 locking resolve exactly one bundled skill named `market-research-workflow`; the retired skill folder is absent.
+- All five agent packages passed schema, portability, reference, pinned-MCP, Tavily-policy, and credential-hygiene validation after the rename.
+- The agent repository passed 15 tests plus 8 subtests, and every bundled deterministic script passed its `--help` discovery check.
+- Local startup discovered 19 SAM.gov and 55 USASpending tools without invoking a tool. Remote Tavily discovery was intentionally not repeated for this naming-only package revision.
+- The prior `rc.2` installed-client results below remain behavioral evidence. A clean `rc.3` install and explicit `$market-research-workflow` invocation remain open before final release.
 
 ## Package and remote-MCP evidence
 
@@ -23,7 +31,7 @@ Passed:
 - Live keyless initialization and `tools/list` completed without OAuth and without invoking a tool. The server advertised five operations and produced schema SHA-256 `f28255db8e816ce522e9bd20a89b6fcf2312af41e60c3846799e9c3195e60992`. The required `tavily_search` and `tavily_extract` operations were present.
 - The current keyless endpoint also advertises `tavily_crawl`, `tavily_map`, and `tavily_research`. The skill and record validator prohibit all three; this upstream tool-surface mismatch is recorded in `components.lock.json`.
 - One approved, non-sensitive Market Research Tavily search was sent for `official FAR Part 10 market research guidance`, restricted to `acquisition.gov`. Tavily returned a `CallToolResult`; the local evidence formatter then used the wrong Python attribute name and failed before retaining the response text. No repeat query was made. The equivalent native-only run independently verified the underlying Acquisition.gov pages.
-- Clean isolated installation and `1.0.0-rc.2` inventory passed in Codex CLI, Claude Code, and GitHub Copilot CLI `1.0.80`. Claude resolved one skill, one native agent, and the expected SAM.gov, USASpending, and Tavily servers.
+- Clean isolated installation and `1.0.0-rc.2` inventory passed in Codex CLI, Claude Code, and GitHub Copilot CLI `1.0.80`. Claude resolved one skill, one native agent, and the expected SAM.gov, USASpending, and Tavily servers. This remains historical behavioral evidence; the naming-only `rc.3` package requires a fresh clean-install check before final release.
 
 ## Installed-client behavior
 
