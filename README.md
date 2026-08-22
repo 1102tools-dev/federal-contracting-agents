@@ -28,7 +28,6 @@ plugins/market-research-agent/
 ├── skills/                     complete canonical skill package
 ├── .codex-plugin/              OpenAI presentation metadata
 ├── .claude-plugin/             Claude Code manifest
-├── deepseek-harness.patch.yml  DeepSeek Harness connection overlay
 ├── agents/                     Claude Code native wrapper
 ```
 
@@ -82,7 +81,7 @@ Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The 
 
 ## Install the public previews
 
-The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex, Claude Code, and DeepSeek Harness. Packages are distributed through repository marketplaces or the tested Harness launcher. No agent ZIP is maintained.
+The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex and Claude Code. Packages are distributed through repository marketplaces. No agent ZIP is maintained.
 
 Acquisition Policy is intentionally excluded from the install commands below. Its source remains visible for review, but installation support waits for its Acquisition.gov dependency and clean release checks.
 
@@ -108,32 +107,20 @@ claude plugin install govcon-growth-agent@1102tools
 claude plugin install other-transaction-agent@1102tools
 ```
 
-### DeepSeek Harness Web
-
-Clone the repository once, change to the folder where the agent should create files, and launch one package through the tested wrapper:
-
-```bash
-git clone https://github.com/1102tools-dev/federal-contracting-agents.git "$HOME/.dsh/1102tools-agents"
-cd "/path/to/your/work-folder"
-"$HOME/.dsh/1102tools-agents/scripts/launch_deepseek_agent.sh" pre-award-agent
-```
-
-Replace `pre-award-agent` with `market-research-agent`, `govcon-growth-agent`, or `other-transaction-agent` as needed. The wrapper loads only that available package's skill surface and pinned source connections, forwards supported API keys from the launching environment, and starts `dsh web`. Add `--port 0` after the agent name if port 3080 is already in use.
-
 ### Other clients
 
-The packages may work in other compatible hosts, but Codex, Claude Code, and DeepSeek Harness Web are the maintained public-preview paths. Installation and troubleshooting outside those three paths are self-supported.
+The packages may work in other compatible hosts, but Codex and Claude Code are the maintained public-preview paths. Installation and troubleshooting outside those two paths are self-supported.
 
 ## Invoke a workflow
 
 Explicit invocation is the release-critical path:
 
-| Agent | Codex | Claude Code | DeepSeek Harness Web |
-|---|---|---|---|
-| Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` | `launch_deepseek_agent.sh market-research-agent` |
-| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` | `launch_deepseek_agent.sh pre-award-agent` |
-| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` | `launch_deepseek_agent.sh govcon-growth-agent` |
-| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` | `launch_deepseek_agent.sh other-transaction-agent` |
+| Agent | Codex | Claude Code |
+|---|---|---|
+| Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` |
+| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
+| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
+| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 
 Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
 
@@ -165,7 +152,7 @@ uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin ma
 
 The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
-Final `1.0.0` remains blocked until the documented clean Codex Desktop, authenticated Claude Code, and DeepSeek Harness implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
+Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
