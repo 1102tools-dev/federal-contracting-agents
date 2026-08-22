@@ -4,11 +4,11 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "a73d5a23b1b14fb9791dc5d4e92515e1f3a9dcb7"
+      "commit": "5d1f85d6893c1e0e2747598212562409eaff6428"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "e240158e409e61cbfe51631c90cec670048907ca",
+      "commit": "3f9376a406a2af17e5810d81f319d81efe34417e",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
