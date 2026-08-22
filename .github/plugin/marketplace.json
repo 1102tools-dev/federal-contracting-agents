@@ -5,19 +5,19 @@
   },
   "metadata": {
     "description": "Federal pre-award and Other Transaction workflow plugins",
-    "version": "1.0.0-rc.2"
+    "version": "1.0.0-rc.3"
   },
   "plugins": [
     {
       "name": "pre-award-agent",
       "description": "Build a SOW or PWS and carry its approved scope into the correctly routed IGCE.",
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "source": "./plugins/pre-award-agent"
     },
     {
       "name": "other-transaction-agent",
       "description": "Build an OT project description and carry its approved milestones into cost analysis.",
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "source": "./plugins/other-transaction-agent"
     }
   ]

@@ -15,7 +15,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_NAMES = ("pre-award-agent", "other-transaction-agent")
-EXPECTED_VERSION = "1.0.0-rc.2"
+EXPECTED_VERSION = "1.0.0-rc.3"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -32,10 +32,11 @@ EXPECTED_SKILLS = {
 }
 EXPECTED_MCPS = {"bls-oews", "gsa-calc", "gsa-perdiem"}
 EXPECTED_MCP_REQUIREMENTS = {
-    "bls-oews": "bls-oews-mcp==1.0.3",
-    "gsa-calc": "gsa-calc-mcp==1.0.2",
-    "gsa-perdiem": "gsa-perdiem-mcp==1.0.3",
+    "bls-oews": "bls-oews-mcp==1.0.4",
+    "gsa-calc": "gsa-calc-mcp==1.0.3",
+    "gsa-perdiem": "gsa-perdiem-mcp==1.0.4",
 }
+EXPECTED_PACING = {"bls-oews": "3", "gsa-calc": "3", "gsa-perdiem": "4"}
 ALLOWED_SKILL_FIELDS = {
     "name",
     "description",
@@ -137,9 +138,11 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
         env = portable_server.get("env", {})
         if isinstance(env, dict) and any(key.endswith("API_KEY") for key in env):
             errors.append(f"{plugin_root.name}: credentials must not be embedded in MCP env")
-        if name in {"bls-oews", "gsa-perdiem"}:
-            if not isinstance(env, dict) or env.get("FEDERAL_API_MIN_INTERVAL_SECONDS") != "3":
-                errors.append(f"{plugin_root.name}: {name} must enforce the three-second pacing floor")
+        if not isinstance(env, dict) or env.get("FEDERAL_API_MIN_INTERVAL_SECONDS") != EXPECTED_PACING[name]:
+            errors.append(
+                f"{plugin_root.name}: {name} must set the explicit "
+                f"{EXPECTED_PACING[name]}-second pacing safeguard"
+            )
 
 
 def validate_skill(skill_root: Path, errors: list[str]) -> None:

@@ -1,6 +1,6 @@
 {
   "name": "other-transaction-agent",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Create an OT project description and carry its approved milestones directly into cost analysis.",
   "author": {
     "name": "1102tools",

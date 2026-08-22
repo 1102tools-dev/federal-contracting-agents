@@ -28,9 +28,9 @@ PLUGIN_SKILLS = {
 }
 RUNTIME_DIRS = ("agents", "references", "scripts", "assets")
 MCP_PACKAGES = {
-    "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.3"},
-    "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.2"},
-    "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.3"},
+    "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.4"},
+    "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.3"},
+    "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.4"},
 }
 
 

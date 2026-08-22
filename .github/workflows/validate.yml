@@ -20,14 +20,14 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: f28404af67d454a1313d145962de79e7ba37a7b1
+          ref: 8b46d1b4b53965efc62bac18aeffdbdc32e7ecf6
           path: _skills
 
       - name: Check out locked MCP source
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-mcps
-          ref: 4e46c06bb58aacce44a24d372200c4116adb4483
+          ref: 8c0fb8a7aa09abc4c59f03570b183e31ff83cef6
           path: _mcps
 
       - name: Set up Python

@@ -1,6 +1,6 @@
 # 1102tools Agent Plugins
 
-Two self-contained Agent Plugins compose the six tested 1102tools skills with the three federal pricing MCP servers they actually use. Both packages are public previews at `1.0.0-rc.2`; final `1.0.0` remains blocked by the authenticated-client and end-to-end artifact matrix.
+Two self-contained Agent Plugins compose the six tested 1102tools skills with the three federal pricing MCP servers they actually use. Both packages are public previews at `1.0.0-rc.3`; final `1.0.0` remains blocked by the authenticated-client and end-to-end artifact matrix.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -62,7 +62,7 @@ The internal handoff never enters the `.docx`, and the workbook is never merged 
 
 Export keys in the environment that launches the client, or set them through that client’s credential-management surface. No credentials are stored in this repository or either manifest. GSA CALC+ does not require a key.
 
-Credentialed BLS and Per Diem releases enforce `FEDERAL_API_MIN_INTERVAL_SECONDS=3` inside the MCP process. Longer provider retry instructions still take precedence, and automated tests never call live federal APIs.
+The `rc.3` packages pin the suite-wide MCP safety release and set explicit 1102tools anti-burst safeguards: 3 seconds for BLS OEWS and GSA CALC+, and 4 seconds for GSA Per Diem. The MCPs coordinate concurrent processes on one computer through a local lock, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or daily-quota manager, and it cannot coordinate use of the same key from another computer. Set `FEDERAL_API_MIN_INTERVAL_SECONDS` to a nonnegative finite number to override it; `0` deliberately disables pacing. Automated plugin tests never call live federal APIs.
 
 ## Install the public preview
 

@@ -4,19 +4,20 @@
     "bls-oews": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "bls-oews-mcp==1.0.3", "bls-oews-mcp"],
+      "args": ["--from", "bls-oews-mcp==1.0.4", "bls-oews-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "gsa-calc": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "gsa-calc-mcp==1.0.2", "gsa-calc-mcp"]
+      "args": ["--from", "gsa-calc-mcp==1.0.3", "gsa-calc-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "gsa-perdiem": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "gsa-perdiem-mcp==1.0.3", "gsa-perdiem-mcp"],
-      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+      "args": ["--from", "gsa-perdiem-mcp==1.0.4", "gsa-perdiem-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4"}
     }
   }
 }

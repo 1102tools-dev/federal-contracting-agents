@@ -4,30 +4,30 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "f28404af67d454a1313d145962de79e7ba37a7b1"
+      "commit": "8b46d1b4b53965efc62bac18aeffdbdc32e7ecf6"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "4e46c06bb58aacce44a24d372200c4116adb4483",
+      "commit": "8c0fb8a7aa09abc4c59f03570b183e31ff83cef6",
       "packages": {
         "bls-oews": {
           "distribution": "bls-oews-mcp",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         "gsa-calc": {
           "distribution": "gsa-calc-mcp",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         "gsa-perdiem": {
           "distribution": "gsa-perdiem-mcp",
-          "version": "1.0.3"
+          "version": "1.0.4"
         }
       }
     }
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -84,7 +84,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "skills": {
         "ot-project-description-builder": {
           "files": {
