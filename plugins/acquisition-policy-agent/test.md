@@ -19,9 +19,13 @@ On 2026-08-22 the serialized release gate passed twice. The official RFO index, 
 
 The immutable MCP source commit `3f9376a406a2af17e5810d81f319d81efe34417e` installed into an isolated `uvx` environment directly from GitHub and exposed exactly five tools without invoking an upstream tool. Release workflow `32561799836` then passed shared safety checks, all nine package test-and-build jobs, trusted publication, and release creation. A fresh `uvx` environment installed `acquisition-gov-mcp==1.0.0` from PyPI and discovered all four policy-agent servers without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 
+## Client installation and explicit routing
+
+On 2026-08-22 the repository marketplace installed `acquisition-policy-agent==1.0.0-rc.2` successfully in Codex CLI and Claude Code. Fresh noninteractive sessions invoked the workflow explicitly and returned the exact ten-item launch menu without external retrieval or MCP calls. The Codex check read the packaged launch-menu reference as required; forbidding all local file operations prevents progressive-disclosure references from loading and is not a valid workflow invocation.
+
 ## Open agent release gates
 
-- Run explicit and implicit routing cases in clean Codex CLI/Desktop and Claude Code.
+- Run implicit routing cases in clean Codex CLI/Desktop and Claude Code.
 - Complete an agency RFO status analysis, rulemaking/comment workflow, public-comment analysis, and validated impact brief with live sources.
 - Record the complete client and artifact matrix below before removing `rc`.
 
