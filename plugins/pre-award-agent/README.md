@@ -40,6 +40,7 @@ Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is required onl
 
 - Codex: `$pre-award-workflow`
 - Claude Code: `/pre-award-agent:pre-award-workflow`
-- Copilot: select `pre-award-agent` or explicitly request `pre-award-workflow`
+
+Codex and Claude Code are the maintained public-preview paths. Other compatible clients are self-supported.
 
 See the repository [README](../../README.md) for installation, optional-key setup, architecture, and release status. See [`test.md`](test.md) for exact evidence and open gates.

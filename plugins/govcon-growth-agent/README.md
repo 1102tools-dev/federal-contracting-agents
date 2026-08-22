@@ -10,6 +10,6 @@ Before public web research, the agent shows the sanitized search terms and publi
 
 A bid recommendation requires internal company capabilities, past performance, clearances and certifications, vehicle access, staffing and geographic capacity, teaming strategy, strategic priorities, and risk and margin tolerances. Without that context, the agent produces an evidence brief and no verdict.
 
-Install and update through the [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-universal-setup.pdf). No plugin ZIP is maintained.
+Install and update through the [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf). Codex and Claude Code are the maintained public-preview paths. Other compatible clients are self-supported. No plugin ZIP is maintained.
 
 Current test evidence and limitations are in [test.md](test.md).

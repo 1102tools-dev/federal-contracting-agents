@@ -150,11 +150,10 @@ Run every release-blocking control scenario and at least one representative end-
 - Codex Desktop with GPT-5.6 Sol at xhigh reasoning
 - Claude Code CLI with Opus 5 at high effort
 - Claude Code CLI with a current Sonnet model
-- DeepSeek Harness Web with a current supported DeepSeek model
 
 For every CLI, run both explicit orchestrator invocation and natural-language routing. Explicit invocation must pass every release-blocking case. Record any host-specific implicit-activation limitation rather than weakening the explicit contract.
 
-GitHub Copilot CLI, VS Code/Copilot, and other compatible hosts are non-blocking compatibility paths. They may be checked when practical, but they are not maintained public-preview support claims.
+DeepSeek Harness, GitHub Copilot CLI, VS Code/Copilot, and other compatible hosts are non-blocking compatibility paths. They may be checked when practical, but they are not maintained public-preview support claims.
 
 ## DeepSeek Harness smoke evidence — 2026-08-22
 
@@ -164,3 +163,5 @@ GitHub Copilot CLI, VS Code/Copilot, and other compatible hosts are non-blocking
 - The Pre-Award overlay made a live local MCP call and returned all 18 bundled common SOC mappings.
 - Acquisition Policy opened its ten-choice workflow menu, but the `acquisition-gov-mcp==1.0.0` dependency was unavailable from the package registry. Agency-specific RFO work remains an open release gate on every client until that package is published and the full path passes.
 - No DeepSeek Harness artifact workflow is claimed complete from this smoke run.
+
+**Current status:** the package-availability conclusion above is superseded. `acquisition-gov-mcp==1.0.0` is now published on PyPI, and the current [Acquisition Policy Agent test record](../plugins/acquisition-policy-agent/test.md) records fresh four-server discovery plus clean Codex and Claude Code installation and explicit-menu checks. The dated DeepSeek smoke remains historical compatibility evidence and does not create a maintained-support claim.
