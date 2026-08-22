@@ -1,18 +1,19 @@
-# 1102tools Agent Plugins
+# 1102tools Federal Acquisition Agents
 
-Five self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. Pre-Award, Other Transaction, and Market Research are at `1.0.0-rc.3`. GovCon Growth remains at `1.0.0-rc.2`, and Acquisition Policy is at `1.0.0-rc.1`. The repository marketplace release is `v1.2.0-rc.2`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.3`; GovCon Growth is at `1.0.0-rc.2`; and Acquisition Policy is a gated `1.0.0-rc.1` preview that is not currently offered as an installable supported path. The repository marketplace release is `v1.2.0-rc.2`.
 
 Website: [1102tools.com](https://1102tools.com)
+Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
 
 ## The five agents
 
-| Plugin | Audience and workflow | Bundled capability | MCP servers |
-|---|---|---|---|
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | SOW/PWS Builder, FFP IGCE, LH/T&M IGCE, CR IGCE, and the Pre-Award orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | OT Project Description Builder, OT Cost Analysis, and the OT orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+; optional Tavily web research |
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Workflow | SAM.gov, USASpending; optional Tavily web research |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Acquisition Policy Workflow | eCFR, Federal Register, Regulations.gov, Acquisition.gov |
+| Agent | Audience and workflow | Current status |
+|---|---|---|
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.3` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.3` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.2` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.3` |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Gated preview `1.0.0-rc.1`; not an installable supported path |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
 
@@ -29,7 +30,6 @@ plugins/market-research-agent/
 ├── .claude-plugin/             Claude Code manifest
 ├── deepseek-harness.patch.yml  DeepSeek Harness connection overlay
 ├── agents/                     Claude Code native wrapper
-└── com.github.copilot/         Copilot custom-agent wrapper
 ```
 
 The installed skills are multi-file packages, not single prompts. Each includes a compact `SKILL.md` core plus references, deterministic validators, runtime guidance, assets when needed, and client metadata. Load-bearing workflow and safety gates stay in the core; supporting detail loads only when needed.
@@ -82,17 +82,18 @@ Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The 
 
 ## Install the public previews
 
-The [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-universal-setup.pdf) is the installation source of truth. Plugins are distributed through repository marketplaces. No agent ZIP is maintained.
+The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex, Claude Code, and DeepSeek Harness. Packages are distributed through repository marketplaces or the tested Harness launcher. No agent ZIP is maintained.
+
+Acquisition Policy is intentionally excluded from the install commands below. Its source remains visible for review, but installation support waits for its Acquisition.gov dependency and clean release checks.
 
 ### Codex CLI and Desktop
 
 ```bash
 codex plugin marketplace add 1102tools-dev/federal-contracting-agents --ref main
-codex plugin add pre-award-agent@1102tools
-codex plugin add other-transaction-agent@1102tools
-codex plugin add govcon-growth-agent@1102tools
 codex plugin add market-research-agent@1102tools
-codex plugin add acquisition-policy-agent@1102tools
+codex plugin add pre-award-agent@1102tools
+codex plugin add govcon-growth-agent@1102tools
+codex plugin add other-transaction-agent@1102tools
 ```
 
 Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
@@ -101,11 +102,10 @@ Start a new Codex task after installing or upgrading so the refreshed skills and
 
 ```bash
 claude plugin marketplace add 1102tools-dev/federal-contracting-agents
-claude plugin install pre-award-agent@1102tools
-claude plugin install other-transaction-agent@1102tools
-claude plugin install govcon-growth-agent@1102tools
 claude plugin install market-research-agent@1102tools
-claude plugin install acquisition-policy-agent@1102tools
+claude plugin install pre-award-agent@1102tools
+claude plugin install govcon-growth-agent@1102tools
+claude plugin install other-transaction-agent@1102tools
 ```
 
 ### DeepSeek Harness Web
@@ -118,7 +118,7 @@ cd "/path/to/your/work-folder"
 "$HOME/.dsh/1102tools-agents/scripts/launch_deepseek_agent.sh" pre-award-agent
 ```
 
-Replace `pre-award-agent` with any of the five plugin names. The wrapper loads only that package's skill surface and pinned MCP connections, forwards supported API keys from the launching environment, and starts `dsh web`. Add `--port 0` after the agent name if port 3080 is already in use.
+Replace `pre-award-agent` with `market-research-agent`, `govcon-growth-agent`, or `other-transaction-agent` as needed. The wrapper loads only that available package's skill surface and pinned source connections, forwards supported API keys from the launching environment, and starts `dsh web`. Add `--port 0` after the agent name if port 3080 is already in use.
 
 ### Other clients
 
@@ -130,13 +130,14 @@ Explicit invocation is the release-critical path:
 
 | Agent | Codex | Claude Code | DeepSeek Harness Web |
 |---|---|---|---|
-| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` | `launch_deepseek_agent.sh pre-award-agent` |
-| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` | `launch_deepseek_agent.sh other-transaction-agent` |
-| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` | `launch_deepseek_agent.sh govcon-growth-agent` |
 | Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` | `launch_deepseek_agent.sh market-research-agent` |
-| Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` | `launch_deepseek_agent.sh acquisition-policy-agent` |
+| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` | `launch_deepseek_agent.sh pre-award-agent` |
+| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` | `launch_deepseek_agent.sh govcon-growth-agent` |
+| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` | `launch_deepseek_agent.sh other-transaction-agent` |
 
 Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
+
+The Acquisition Policy invocation contract is documented in its source and testing record, but it is not part of the supported invocation table until the release gate closes.
 
 ## Reproducibility and synchronization
 
