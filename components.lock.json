@@ -8,7 +8,7 @@
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "3f9376a406a2af17e5810d81f319d81efe34417e",
+      "commit": "e37c33361e6bef02f3ec8b13b891f58d8da295cb",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
@@ -36,7 +36,7 @@
         },
         "sam-gov": {
           "distribution": "sam-gov-mcp",
-          "version": "1.0.6"
+          "version": "1.0.7"
         },
         "regulations-gov": {
           "distribution": "regulationsgov-mcp",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.3",
+      "version": "1.0.0-rc.4",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.3",
+      "version": "1.0.0-rc.4",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -166,7 +166,7 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.2",
+      "version": "1.0.0-rc.3",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
@@ -192,7 +192,7 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.3",
+      "version": "1.0.0-rc.4",
       "skills": {
         "market-research-workflow": {
           "files": {

@@ -1,7 +1,7 @@
 ---
 name: other-transaction-workflow
 description: Coordinate project-description-only, cost-analysis-only, end-to-end OT project-description-to-cost-analysis, and milestone revision or recosting workflows using the bundled 1102tools skills. Trigger when OT work spans scope and cost, carries an approved milestone handoff forward, encounters a missing pricing MCP, or requests a reserved authority, participant, contribution, successful-completion, price-reasonableness, or follow-on determination.
-license: Apache-2.0
+license: MIT
 ---
 
 # Other Transaction Workflow

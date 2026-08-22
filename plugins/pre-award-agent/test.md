@@ -2,7 +2,7 @@
 
 Date: August 21, 2026
 
-Package: `pre-award-agent` `1.0.0-rc.3`
+Package: `pre-award-agent` `1.0.0-rc.4`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
@@ -16,6 +16,55 @@ Status: release candidate; not approved for a `1.0.0` tag
 - `gsa-perdiem-mcp==1.0.4`, explicit 4-second safeguard
 
 Every vendored runtime file matched its SHA-256 lock. Development-only `test.md` and `testing.md` files were not copied into installed skill folders.
+
+## Claude Code acceptance — August 22, 2026
+
+Both Claude Code surfaces were exercised against this package. Claude Code is one
+runtime distributed two ways: the Claude Desktop app bundles `claude-code`
+`2.1.237`, and the standalone CLI is a separate binary at `2.1.240`. Both
+read the same `~/.claude/plugins` cache and the same `settings.json`, and both resolved all
+five plugins and the same ten plugin MCP servers with identical pins. The
+packages this record covers were installed by the CLI binary and consumed by the
+desktop runtime, so the cross-surface path is exercised rather than assumed.
+There is no separate desktop package.
+
+- Full teardown first: all five plugins uninstalled, the marketplace removed,
+  and `~/.claude/plugins/cache/1102tools` deleted. A fresh marketplace add and
+  install of all five reported the expected versions.
+- All ten plugin MCP servers connected, each launching its pinned distribution.
+- Launch surfaces verified in five fresh noninteractive sessions with no MCP
+  calls, retrieval, or file operations. Harness: `tests/manual/menu_smoke.sh`.
+- Coexistence, install-order, plugin-only reachability, and winner promotion
+  verified. Harness: `tests/manual/coexistence.sh`, zero failures.
+
+### Shared MCP server names
+
+The five packages declare seventeen MCP servers across ten distinct names.
+Claude Code deduplicates by name and the first declarer wins, so ten register
+and ownership depends on install order. Order A (Market Research first) gave
+`sam-gov`, `usaspending`, and `tavily-web` to Market Research; order B
+(Acquisition Policy, Other Transaction, GovCon Growth first) gave them to GovCon
+Growth. Ten registered in both orders.
+
+This is namespace attribution, not capability loss. Under order B, with
+`gsa-calc` owned by Other Transaction, a Pre-Award request restricted to
+plugin-provided tools only was satisfied by the Other Transaction plugin's own
+GSA CALC+ server and returned rate data. Uninstalling the owning plugin promoted the next declarer immediately:
+`sam-gov` moved from GovCon Growth to Market Research with no loss of
+capability. Every skill matches tools by server and semantic operation rather
+than by generated prefix, which is what makes the surviving instance
+interchangeable.
+
+Duplicate-name warnings at startup are a packaging-polish item. Renaming the
+shared servers would start duplicate identical processes and duplicate remote
+initialization, so it is deliberately not done.
+
+### Package-specific results
+
+Installed and verified at `1.0.0-rc.4`.
+
+- This orchestrator defines no launch menu by design; it infers the mode from the request. Explicit invocation offered all four modes (scope only, pricing only, end to end, revision and repricing) and asked which to use, with no research, retrieval, or MCP call.
+- The bundled `pre-award-workflow` skill declared `license: Apache-2.0` through `1.0.0-rc.3` while every manifest and LICENSE in the package declared MIT. Corrected to MIT in this release, and `scripts/validate_packages.py` now fails when a skill, package, and repository license disagree.
 
 ## Test environment
 
@@ -88,4 +137,4 @@ No live federal API was called during package testing. This avoided shared-key r
 
 ## Release decision
 
-Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.3`.
+Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.4`.

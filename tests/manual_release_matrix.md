@@ -148,8 +148,21 @@ Run every release-blocking control scenario and at least one representative end-
 
 - Codex CLI with GPT-5.6 Sol at xhigh reasoning
 - Codex Desktop with GPT-5.6 Sol at xhigh reasoning
+- Claude Code in the Claude Desktop app with Opus 5 at high effort
 - Claude Code CLI with Opus 5 at high effort
 - Claude Code CLI with a current Sonnet model
+
+Claude Code is one runtime distributed two ways. The Claude Desktop app bundles
+`claude-code`, and the standalone CLI is a separate binary, often at a different
+patch version. Both read the same `~/.claude/plugins` cache and the same
+`settings.json`, and one package serves both. Record the resolved binary and
+version for each run, but do not treat the desktop app and the CLI as separate
+support targets and do not build a second package for either.
+
+Claude Desktop's chat surface and Cowork are different products, not Claude
+Code. They do not load Claude Code plugin marketplaces, so the packaged agents
+do not install there. They are outside the support claim and are not release
+gates.
 
 For every CLI, run both explicit orchestrator invocation and natural-language routing. Explicit invocation must pass every release-blocking case. Record any host-specific implicit-activation limitation rather than weakening the explicit contract.
 
@@ -165,3 +178,53 @@ DeepSeek Harness, GitHub Copilot CLI, VS Code/Copilot, and other compatible host
 - No DeepSeek Harness artifact workflow is claimed complete from this smoke run.
 
 **Current status:** the package-availability conclusion above is superseded. `acquisition-gov-mcp==1.0.0` is now published on PyPI, and the current [Acquisition Policy Agent test record](../plugins/acquisition-policy-agent/test.md) records fresh four-server discovery plus clean Codex and Claude Code installation and explicit-menu checks. The dated DeepSeek smoke remains historical compatibility evidence and does not create a maintained-support claim.
+
+## Manual harness
+
+Two scripts under `tests/manual/` cover what unauthenticated GitHub Actions
+cannot: a real client installation, install-order permutations, plugin-only
+reachability, and winner promotion. They are deliberately not in CI.
+
+| Script | Covers |
+|---|---|
+| `menu_smoke.sh` | Launch surface for all five agents in fresh noninteractive sessions, no MCP calls |
+| `coexistence.sh` | Both install orders, plugin-only reachability, winner promotion after uninstall |
+
+`menu_smoke.sh` uses two assertion shapes because the five skills are not
+uniform. Market Research, GovCon Growth, and Acquisition Policy define numbered
+launch menus of 6, 9, and 10 items. The two agent-level orchestrators,
+`pre-award-workflow` and `other-transaction-workflow`, define no menu at all and
+infer the mode from the request, so the assertion is that every mode name is
+offered. Asserting a numbered menu for those two is a harness error, not a
+package defect.
+
+`coexistence.sh` enforces plugin-only reachability through its assertion rather
+than through the environment. A separate `CLAUDE_CONFIG_DIR` reports "Not logged
+in" because the OAuth credential resolves from the system keychain scoped to the
+default config directory, and `--strict-mcp-config` drops plugin-provided
+servers along with user-level ones. The assertion requires the invoked tool name to carry the plugin-scoped prefix
+Claude Code generates for a plugin-provided server, so a call satisfied by a
+developer machine's own user-level MCP configuration fails rather than passing
+for the wrong reason.
+
+## Claude Code acceptance results — 2026-08-22
+
+Run against the `1.0.0-rc.4` candidate packages after a full teardown of all
+five plugins, the marketplace, and the plugin cache.
+
+| Check | Result |
+|---|---|
+| Clean install, all five | Pass, expected versions reported |
+| Plugin MCP servers connected | 10 of 10, each launching its pinned distribution |
+| Market Research launch menu | Pass, six items |
+| GovCon Growth launch menu | Pass, nine items |
+| Acquisition Policy launch menu | Pass, exact packaged ten-item menu verbatim |
+| Pre-Award modes offered | Pass, all four |
+| Other Transaction modes offered | Pass, all four |
+| Install order A and B | Pass, 10 registered in both, ownership differs |
+| Plugin-only reachability | Pass, satisfied by the Other Transaction plugin's own GSA CALC+ server |
+| Winner promotion | Pass, `sam-gov` moved to the next declarer on uninstall |
+
+Still open for final `1.0.0`: natural-language routing in clean sessions,
+authenticated multi-turn live workflows, and client-generated artifact
+validation across both maintained clients. These remain release gates.

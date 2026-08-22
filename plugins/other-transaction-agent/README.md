@@ -39,6 +39,6 @@ Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is required onl
 - Codex: `$other-transaction-workflow`
 - Claude Code: `/other-transaction-agent:other-transaction-workflow`
 
-Codex and Claude Code are the maintained public-preview paths. Other compatible clients are self-supported.
+Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Other compatible clients are self-supported.
 
 See the repository [README](../../README.md) for installation, optional-key setup, architecture, and release status. See [`test.md`](test.md) for exact evidence and open gates.

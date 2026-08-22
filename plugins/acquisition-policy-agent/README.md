@@ -9,7 +9,7 @@ The Acquisition Policy Agent combines one host-neutral workflow with four source
 - Regulations.gov `1.0.3` for docket confirmation and public-comment evidence;
 - Acquisition.gov `1.0.0` for RFO model text, approved guidance, and agency deviations posted to the official index.
 
-Use `$acquisition-policy-workflow` in Codex or `/acquisition-policy-agent:acquisition-policy-workflow` in Claude Code. These are the maintained public-preview paths; other compatible clients are self-supported. A vague request produces the complete ten-choice workflow menu; a clear request routes directly and asks only for missing framing.
+Use `$acquisition-policy-workflow` in Codex or `/acquisition-policy-agent:acquisition-policy-workflow` in Claude Code (in the Claude Desktop app or the CLI). These are the maintained public-preview paths; other compatible clients are self-supported. A vague request produces the complete ten-choice workflow menu; a clear request routes directly and asks only for missing framing.
 
 The agent produces sourced chat findings and, when requested and approved, a validated Acquisition Policy Impact Brief `.docx`. It supports government, industry, and neutral lenses without changing the underlying facts.
 

@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-mcps
-          ref: 3f9376a406a2af17e5810d81f319d81efe34417e
+          ref: e37c33361e6bef02f3ec8b13b891f58d8da295cb
           path: _mcps
 
       - name: Set up Python

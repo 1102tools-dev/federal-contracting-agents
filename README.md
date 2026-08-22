@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.3`; GovCon Growth and Acquisition Policy are at `1.0.0-rc.2`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.3`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.4`; GovCon Growth is at `1.0.0-rc.3`; Acquisition Policy is at `1.0.0-rc.2`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.4`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -9,10 +9,10 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 
 | Agent | Audience and workflow | Current status |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.3` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.3` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.2` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.3` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.4` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.4` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.3` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.4` |
 | **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.2` |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
@@ -57,7 +57,7 @@ eCFR supplies the codified baseline, not the complete agency-specific RFO answer
 
 ### Optional Tavily web research
 
-The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a ninth federal MCP. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Tavily with native fallback, native search only, Tavily only, or no public web. No choice is inferred from silence.
+The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a federal source. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Tavily with native fallback, native search only, Tavily only, or no public web. No choice is inferred from silence.
 
 Tavily receives only approved sanitized search terms and approved public HTTP(S) URLs. Uploaded document text, local files, private or signed URLs, proprietary or procurement-sensitive information, source-selection information, PII, CUI, export-controlled data, and classified information are prohibited. The skills use only `tavily_search` and `tavily_extract`; Crawl, Map, and Research are prohibited even though the current keyless server advertises them. Factual citations point to the underlying webpage, not Tavily.
 
@@ -81,7 +81,7 @@ Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The 
 
 ## Install the public previews
 
-The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex and Claude Code. Packages are distributed through repository marketplaces. No agent ZIP is maintained.
+The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex and Claude Code (in the Claude Desktop app or the CLI). Packages are distributed through repository marketplaces. No agent ZIP is maintained.
 
 ### Codex CLI and Desktop
 
@@ -96,7 +96,7 @@ codex plugin add acquisition-policy-agent@1102tools
 
 Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
 
-### Claude Code
+### Claude Code (Claude Desktop app or CLI)
 
 ```bash
 claude plugin marketplace add 1102tools-dev/federal-contracting-agents
@@ -109,7 +109,7 @@ claude plugin install acquisition-policy-agent@1102tools
 
 ### Other clients
 
-The packages may work in other compatible hosts, but Codex and Claude Code are the maintained public-preview paths. Installation and troubleshooting outside those two paths are self-supported.
+The packages may work in other compatible hosts, but Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Claude Code is the same runtime and the same package in both the Claude Desktop app and the standalone CLI; there is no separate desktop package. Installation and troubleshooting outside those two paths are self-supported.
 
 ## Invoke a workflow
 
@@ -135,7 +135,7 @@ python3 scripts/validate_packages.py
 python3 -m unittest discover -s tests -v
 python3 scripts/check_bundled_scripts.py
 for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent acquisition-policy-agent; do
-  uv run --with mcp python scripts/smoke_mcp_discovery.py --plugin "$plugin"
+  uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin "$plugin"
 done
 ```
 

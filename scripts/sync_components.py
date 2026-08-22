@@ -37,7 +37,7 @@ MCP_PACKAGES = {
     "federal-register": {"distribution": "federal-register-mcp", "version": "1.0.3"},
     "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.3"},
     "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.4"},
-    "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.6"},
+    "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.7"},
     "regulations-gov": {"distribution": "regulationsgov-mcp", "version": "1.0.3"},
     "usaspending": {"distribution": "usaspending-gov-mcp", "version": "1.0.3"},
 }

@@ -22,13 +22,13 @@ PLUGIN_NAMES = (
     "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
-    "pre-award-agent": "1.0.0-rc.3",
-    "other-transaction-agent": "1.0.0-rc.3",
-    "govcon-growth-agent": "1.0.0-rc.2",
-    "market-research-agent": "1.0.0-rc.3",
+    "pre-award-agent": "1.0.0-rc.4",
+    "other-transaction-agent": "1.0.0-rc.4",
+    "govcon-growth-agent": "1.0.0-rc.3",
+    "market-research-agent": "1.0.0-rc.4",
     "acquisition-policy-agent": "1.0.0-rc.2",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.3"
+MARKETPLACE_VERSION = "1.2.0-rc.4"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -65,7 +65,7 @@ EXPECTED_MCP_REQUIREMENTS = {
     "federal-register": "federal-register-mcp==1.0.3",
     "gsa-calc": "gsa-calc-mcp==1.0.3",
     "gsa-perdiem": "gsa-perdiem-mcp==1.0.4",
-    "sam-gov": "sam-gov-mcp==1.0.6",
+    "sam-gov": "sam-gov-mcp==1.0.7",
     "regulations-gov": "regulationsgov-mcp==1.0.3",
     "usaspending": "usaspending-gov-mcp==1.0.3",
 }
@@ -346,6 +346,106 @@ def validate_release_versions(errors: list[str]) -> None:
         errors.append("Shared MCP configurations drifted between the two packages")
 
 
+def validate_license_agreement(errors: list[str]) -> None:
+    """Every declared license must agree with the package and the repository.
+
+    Through 1.0.0-rc.3 the two agent-native orchestrator skills declared
+    Apache-2.0 inside packages whose manifests and LICENSE files were MIT.
+    Those two skills carry no components.lock entry, so no sync check covered
+    them and the contradiction shipped. This closes that gap.
+    """
+    repo_license = (REPO_ROOT / "LICENSE").read_text(encoding="utf-8").splitlines()[0].strip()
+    if repo_license != "MIT License":
+        errors.append(f"repository LICENSE header changed unexpectedly: {repo_license!r}")
+        return
+    for plugin_name in PLUGIN_NAMES:
+        plugin_root = REPO_ROOT / "plugins" / plugin_name
+        declared = {
+            "plugin.json": load_json(plugin_root / "plugin.json").get("license"),
+            ".codex-plugin/plugin.json": load_json(
+                plugin_root / ".codex-plugin" / "plugin.json"
+            ).get("license"),
+            ".claude-plugin/plugin.json": load_json(
+                plugin_root / ".claude-plugin" / "plugin.json"
+            ).get("license"),
+        }
+        for source, value in declared.items():
+            if value != "MIT":
+                errors.append(f"{plugin_name}/{source}: license must be MIT, got {value!r}")
+        package_license = (plugin_root / "LICENSE").read_text(encoding="utf-8").splitlines()[0].strip()
+        if package_license != repo_license:
+            errors.append(
+                f"{plugin_name}/LICENSE header {package_license!r} disagrees with repository {repo_license!r}"
+            )
+        for skill_root in sorted((plugin_root / "skills").iterdir()):
+            if not skill_root.is_dir():
+                continue
+            try:
+                frontmatter = parse_frontmatter(skill_root / "SKILL.md")
+            except (OSError, ValueError, yaml.YAMLError):
+                continue  # frontmatter errors are already reported by validate_skill
+            skill_license = frontmatter.get("license")
+            if skill_license is not None and skill_license != "MIT":
+                errors.append(
+                    f"{plugin_name}/skills/{skill_root.name}: SKILL.md declares license "
+                    f"{skill_license!r}, which disagrees with the package and repository MIT license"
+                )
+
+
+def validate_test_record_provenance(errors: list[str]) -> None:
+    """Shipped test records must cite the skills commit the package vendors.
+
+    A test record that names an older source commit attests to bytes the
+    package no longer ships.
+    """
+    lock = load_json(REPO_ROOT / "components.lock.json")
+    locked_commit = lock.get("sources", {}).get("skills", {}).get("commit")
+    if not isinstance(locked_commit, str) or len(locked_commit) != 40:
+        errors.append("components.lock.json: sources.skills.commit must be a full SHA")
+        return
+    commit_re = re.compile(r"federal-contracting-skills` commit `([0-9a-f]{7,40})`")
+    for plugin_name in PLUGIN_NAMES:
+        record = REPO_ROOT / "plugins" / plugin_name / "test.md"
+        if not record.is_file():
+            continue
+        for cited in commit_re.findall(record.read_text(encoding="utf-8")):
+            if not locked_commit.startswith(cited):
+                errors.append(
+                    f"{plugin_name}/test.md cites skills commit {cited}, but the package vendors "
+                    f"{locked_commit[:12]}"
+                )
+
+
+def validate_current_support_claims(errors: list[str]) -> None:
+    """Current support prose must name only the maintained clients.
+
+    Dated historical evidence is exempt: a line that records what a past
+    release did in another client stays accurate and must be preserved. Only
+    present-tense support claims are checked.
+    """
+    unmaintained = ("copilot", "deepseek")
+    claim_markers = (
+        "maintained public-preview path",
+        "maintained public preview path",
+        "supported client",
+        "installation source of truth",
+        "maintained setup path",
+    )
+    for path in sorted(REPO_ROOT.rglob("README.md")):
+        if any(part in {".git", "_skills", "_mcps"} for part in path.parts):
+            continue
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            lowered = line.lower()
+            if not any(marker in lowered for marker in claim_markers):
+                continue
+            for name in unmaintained:
+                if name in lowered:
+                    errors.append(
+                        f"{path.relative_to(REPO_ROOT)}:{number}: current support claim names "
+                        f"unmaintained client {name!r}"
+                    )
+
+
 def validate_repository_hygiene(errors: list[str]) -> None:
     for path in REPO_ROOT.rglob("*"):
         relative = path.relative_to(REPO_ROOT)
@@ -376,6 +476,9 @@ def main() -> None:
     for plugin_name in PLUGIN_NAMES:
         validate_plugin(plugin_name, schemas, errors)
     validate_release_versions(errors)
+    validate_license_agreement(errors)
+    validate_test_record_provenance(errors)
+    validate_current_support_claims(errors)
     validate_repository_hygiene(errors)
     if errors:
         print("Package validation failed:", file=sys.stderr)

@@ -1,7 +1,7 @@
 ---
 name: pre-award-workflow
 description: Coordinate scope-only, pricing-only, end-to-end SOW/PWS-to-IGCE, and revision or repricing workflows using the bundled 1102tools skills. Trigger when work spans a work statement and IGCE, needs FFP, LH/T&M, CR, or hybrid routing, carries an approved handoff into pricing, encounters a missing pricing MCP, or requests a reserved fair-and-reasonable or negotiation determination.
-license: Apache-2.0
+license: MIT
 ---
 
 # Pre-Award Workflow

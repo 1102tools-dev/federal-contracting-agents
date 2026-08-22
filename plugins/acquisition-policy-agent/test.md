@@ -11,6 +11,55 @@ Version: `1.0.0-rc.2`
 - Local stdio startup and MCP discovery reported server `acquisition-gov` version `1.0.0` with exactly the five expected tools.
 - Agent-level local-wheel startup and discovery loaded the exact four-server inventory without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 
+## Claude Code acceptance — August 22, 2026
+
+Both Claude Code surfaces were exercised against this package. Claude Code is one
+runtime distributed two ways: the Claude Desktop app bundles `claude-code`
+`2.1.237`, and the standalone CLI is a separate binary at `2.1.240`. Both
+read the same `~/.claude/plugins` cache and the same `settings.json`, and both resolved all
+five plugins and the same ten plugin MCP servers with identical pins. The
+packages this record covers were installed by the CLI binary and consumed by the
+desktop runtime, so the cross-surface path is exercised rather than assumed.
+There is no separate desktop package.
+
+- Full teardown first: all five plugins uninstalled, the marketplace removed,
+  and `~/.claude/plugins/cache/1102tools` deleted. A fresh marketplace add and
+  install of all five reported the expected versions.
+- All ten plugin MCP servers connected, each launching its pinned distribution.
+- Launch surfaces verified in five fresh noninteractive sessions with no MCP
+  calls, retrieval, or file operations. Harness: `tests/manual/menu_smoke.sh`.
+- Coexistence, install-order, plugin-only reachability, and winner promotion
+  verified. Harness: `tests/manual/coexistence.sh`, zero failures.
+
+### Shared MCP server names
+
+The five packages declare seventeen MCP servers across ten distinct names.
+Claude Code deduplicates by name and the first declarer wins, so ten register
+and ownership depends on install order. Order A (Market Research first) gave
+`sam-gov`, `usaspending`, and `tavily-web` to Market Research; order B
+(Acquisition Policy, Other Transaction, GovCon Growth first) gave them to GovCon
+Growth. Ten registered in both orders.
+
+This is namespace attribution, not capability loss. Under order B, with
+`gsa-calc` owned by Other Transaction, a Pre-Award request restricted to
+plugin-provided tools only was satisfied by the Other Transaction plugin's own
+GSA CALC+ server and returned rate data. Uninstalling the owning plugin promoted the next declarer immediately:
+`sam-gov` moved from GovCon Growth to Market Research with no loss of
+capability. Every skill matches tools by server and semantic operation rather
+than by generated prefix, which is what makes the surviving instance
+interchangeable.
+
+Duplicate-name warnings at startup are a packaging-polish item. Renaming the
+shared servers would start duplicate identical processes and duplicate remote
+initialization, so it is deliberately not done.
+
+### Package-specific results
+
+Installed and verified at `1.0.0-rc.2`.
+
+- Explicit invocation returned the exact packaged ten-item launch menu verbatim, in order, with no retrieval or MCP call. This package is unchanged in this release and its version is deliberately not bumped.
+- All four pinned servers connected and discovered their tools: Acquisition.gov 5, eCFR 13, Federal Register 8, Regulations.gov 8.
+
 ## Upstream live gate
 
 On 2026-08-22 the serialized release gate passed twice. The official RFO index, Part 10 model page, an indexed four-page NSF deviation PDF, and the FAQ each returned HTTP 200 with complete extraction. The MCP recorded source hashes and retained the rule that future hash changes require review rather than silent acceptance.

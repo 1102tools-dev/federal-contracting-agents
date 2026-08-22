@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.3`
-Evidence date: August 21, 2026
+Version: `1.0.0-rc.4`
+Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `a73d5a23b1b14fb9791dc5d4e92515e1f3a9dcb7`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `dfbf71aec5cdd0059280cfc0625000df66b2c05f`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -13,6 +13,55 @@ The bundled `market-research-workflow` runtime is synchronized from `federal-con
 - A Sonnet packaged-plugin smoke initially exposed an omitted selection question. The exact question was moved into the front-loaded core; a fresh `claude-sonnet-5` max-effort run then returned the six choices and exact question with zero web-search and web-fetch requests.
 
 No live federal API call was made.
+
+## Claude Code acceptance — August 22, 2026
+
+Both Claude Code surfaces were exercised against this package. Claude Code is one
+runtime distributed two ways: the Claude Desktop app bundles `claude-code`
+`2.1.237`, and the standalone CLI is a separate binary at `2.1.240`. Both
+read the same `~/.claude/plugins` cache and the same `settings.json`, and both resolved all
+five plugins and the same ten plugin MCP servers with identical pins. The
+packages this record covers were installed by the CLI binary and consumed by the
+desktop runtime, so the cross-surface path is exercised rather than assumed.
+There is no separate desktop package.
+
+- Full teardown first: all five plugins uninstalled, the marketplace removed,
+  and `~/.claude/plugins/cache/1102tools` deleted. A fresh marketplace add and
+  install of all five reported the expected versions.
+- All ten plugin MCP servers connected, each launching its pinned distribution.
+- Launch surfaces verified in five fresh noninteractive sessions with no MCP
+  calls, retrieval, or file operations. Harness: `tests/manual/menu_smoke.sh`.
+- Coexistence, install-order, plugin-only reachability, and winner promotion
+  verified. Harness: `tests/manual/coexistence.sh`, zero failures.
+
+### Shared MCP server names
+
+The five packages declare seventeen MCP servers across ten distinct names.
+Claude Code deduplicates by name and the first declarer wins, so ten register
+and ownership depends on install order. Order A (Market Research first) gave
+`sam-gov`, `usaspending`, and `tavily-web` to Market Research; order B
+(Acquisition Policy, Other Transaction, GovCon Growth first) gave them to GovCon
+Growth. Ten registered in both orders.
+
+This is namespace attribution, not capability loss. Under order B, with
+`gsa-calc` owned by Other Transaction, a Pre-Award request restricted to
+plugin-provided tools only was satisfied by the Other Transaction plugin's own
+GSA CALC+ server and returned rate data. Uninstalling the owning plugin promoted the next declarer immediately:
+`sam-gov` moved from GovCon Growth to Market Research with no loss of
+capability. Every skill matches tools by server and semantic operation rather
+than by generated prefix, which is what makes the surviving instance
+interchangeable.
+
+Duplicate-name warnings at startup are a packaging-polish item. Renaming the
+shared servers would start duplicate identical processes and duplicate remote
+initialization, so it is deliberately not done.
+
+### Package-specific results
+
+Installed and verified at `1.0.0-rc.4`.
+
+- Explicit invocation returned the complete six-item workflow menu and its closing selection question, with no research, retrieval, or MCP call.
+- `sam-gov` now pins `sam-gov-mcp==1.0.7`, whose missing-key guidance is host-neutral.
 
 ## `rc.3` rename and repackage evidence
 
