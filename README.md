@@ -27,6 +27,7 @@ plugins/market-research-agent/
 ├── skills/                     complete canonical skill package
 ├── .codex-plugin/              OpenAI presentation metadata
 ├── .claude-plugin/             Claude Code manifest
+├── deepseek-harness.patch.yml  DeepSeek Harness connection overlay
 ├── agents/                     Claude Code native wrapper
 └── com.github.copilot/         Copilot custom-agent wrapper
 ```
@@ -107,30 +108,35 @@ claude plugin install market-research-agent@1102tools
 claude plugin install acquisition-policy-agent@1102tools
 ```
 
-### GitHub Copilot CLI
+### DeepSeek Harness Web
+
+Clone the repository once, change to the folder where the agent should create files, and launch one package through the tested wrapper:
 
 ```bash
-copilot plugin marketplace add 1102tools-dev/federal-contracting-agents
-copilot plugin install pre-award-agent@1102tools
-copilot plugin install other-transaction-agent@1102tools
-copilot plugin install govcon-growth-agent@1102tools
-copilot plugin install market-research-agent@1102tools
-copilot plugin install acquisition-policy-agent@1102tools
+git clone https://github.com/1102tools-dev/federal-contracting-agents.git "$HOME/.dsh/1102tools-agents"
+cd "/path/to/your/work-folder"
+"$HOME/.dsh/1102tools-agents/scripts/launch_deepseek_agent.sh" pre-award-agent
 ```
+
+Replace `pre-award-agent` with any of the five plugin names. The wrapper loads only that package's skill surface and pinned MCP connections, forwards supported API keys from the launching environment, and starts `dsh web`. Add `--port 0` after the agent name if port 3080 is already in use.
+
+### Other clients
+
+The packages may work in other compatible hosts, but Codex, Claude Code, and DeepSeek Harness Web are the maintained public-preview paths. Installation and troubleshooting outside those three paths are self-supported.
 
 ## Invoke a workflow
 
 Explicit invocation is the release-critical path:
 
-| Agent | Codex | Claude Code |
-|---|---|---|
-| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
-| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
-| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
-| Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` |
-| Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
+| Agent | Codex | Claude Code | DeepSeek Harness Web |
+|---|---|---|---|
+| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` | `launch_deepseek_agent.sh pre-award-agent` |
+| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` | `launch_deepseek_agent.sh other-transaction-agent` |
+| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` | `launch_deepseek_agent.sh govcon-growth-agent` |
+| Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` | `launch_deepseek_agent.sh market-research-agent` |
+| Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` | `launch_deepseek_agent.sh acquisition-policy-agent` |
 
-In Copilot, select the installed custom agent or explicitly request the named skill. Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
+Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
 
 ## Reproducibility and synchronization
 
@@ -158,7 +164,7 @@ uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin ma
 
 The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
-Final `1.0.0` remains blocked until the documented clean Codex Desktop, Copilot CLI, VS Code/Copilot, implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
+Final `1.0.0` remains blocked until the documented clean Codex Desktop, authenticated Claude Code, and DeepSeek Harness implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)

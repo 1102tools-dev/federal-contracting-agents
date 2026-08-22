@@ -150,7 +150,17 @@ Run every release-blocking control scenario and at least one representative end-
 - Codex Desktop with GPT-5.6 Sol at xhigh reasoning
 - Claude Code CLI with Opus 5 at high effort
 - Claude Code CLI with a current Sonnet model
-- GitHub Copilot CLI using the native Agent Plugins implementation
-- VS Code/Copilot installation, discovery, and one representative end-to-end smoke workflow
+- DeepSeek Harness Web with a current supported DeepSeek model
 
 For every CLI, run both explicit orchestrator invocation and natural-language routing. Explicit invocation must pass every release-blocking case. Record any host-specific implicit-activation limitation rather than weakening the explicit contract.
+
+GitHub Copilot CLI, VS Code/Copilot, and other compatible hosts are non-blocking compatibility paths. They may be checked when practical, but they are not maintained public-preview support claims.
+
+## DeepSeek Harness smoke evidence — 2026-08-22
+
+- DeepSeek Harness `0.1.0-rc.6` composed all five agent overlays with the exact pinned MCP inventory expected by each package.
+- A clean `dsh web` launch through `scripts/launch_deepseek_agent.sh` succeeded on an ephemeral local port.
+- Vague requests reached the bundled workflow surface for all five agents. Pre-Award, Market Research, GovCon Growth, and Acquisition Policy displayed their expected menus; Other Transaction routed into its orchestrator and requested the OT kind and output mode.
+- The Pre-Award overlay made a live local MCP call and returned all 18 bundled common SOC mappings.
+- Acquisition Policy opened its ten-choice workflow menu, but the `acquisition-gov-mcp==1.0.0` dependency was unavailable from the package registry. Agency-specific RFO work remains an open release gate on every client until that package is published and the full path passes.
+- No DeepSeek Harness artifact workflow is claimed complete from this smoke run.
