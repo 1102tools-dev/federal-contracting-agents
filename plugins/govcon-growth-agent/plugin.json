@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "govcon-growth-agent",
-  "version": "1.0.0-rc.1",
-  "description": "Find and evaluate federal growth signals across opportunities, competitors, recompetes, teammates, agencies, markets, and pricing context.",
+  "version": "1.0.0-rc.2",
+  "description": "Find and evaluate federal growth signals with approved federal evidence and optional Tavily or native web research.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
   "repository": "https://github.com/1102tools-dev/federal-contracting-agents",

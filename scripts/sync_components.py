@@ -36,6 +36,25 @@ MCP_PACKAGES = {
     "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.6"},
     "usaspending": {"distribution": "usaspending-gov-mcp", "version": "1.0.3"},
 }
+EXTERNAL_MCPS = {
+    "tavily-web": {
+        "provider": "Tavily",
+        "repository": "https://github.com/tavily-ai/tavily-mcp",
+        "endpoint": "https://mcp.tavily.com/mcp/",
+        "access_mode": "keyless",
+        "expected_tools": ["tavily_extract", "tavily_search"],
+        "observed_tools": [
+            "tavily_crawl",
+            "tavily_extract",
+            "tavily_map",
+            "tavily_research",
+            "tavily_search",
+        ],
+        "prohibited_tools": ["tavily_crawl", "tavily_map", "tavily_research"],
+        "observed_tool_schema_sha256": "f28255db8e816ce522e9bd20a89b6fcf2312af41e60c3846799e9c3195e60992",
+        "verified_at": "2026-08-21",
+    }
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -138,7 +157,7 @@ def build_lock(skills_root: Path, mcp_root: Path) -> dict[str, object]:
         }
 
     return {
-        "format_version": 1,
+        "format_version": 2,
         "agent_plugins_spec": "1.0.0",
         "sources": {
             "skills": {
@@ -151,6 +170,7 @@ def build_lock(skills_root: Path, mcp_root: Path) -> dict[str, object]:
                 "packages": MCP_PACKAGES,
             },
         },
+        "external_mcps": EXTERNAL_MCPS,
         "plugins": plugins,
     }
 

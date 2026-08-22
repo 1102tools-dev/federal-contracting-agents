@@ -23,10 +23,10 @@ PLUGIN_NAMES = (
 EXPECTED_VERSIONS = {
     "pre-award-agent": "1.0.0-rc.3",
     "other-transaction-agent": "1.0.0-rc.3",
-    "govcon-growth-agent": "1.0.0-rc.1",
-    "market-research-agent": "1.0.0-rc.1",
+    "govcon-growth-agent": "1.0.0-rc.2",
+    "market-research-agent": "1.0.0-rc.2",
 }
-MARKETPLACE_VERSION = "1.1.0-rc.1"
+MARKETPLACE_VERSION = "1.1.0-rc.2"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -46,8 +46,8 @@ EXPECTED_SKILLS = {
 EXPECTED_MCPS = {
     "pre-award-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
     "other-transaction-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
-    "govcon-growth-agent": {"sam-gov", "usaspending", "gsa-calc"},
-    "market-research-agent": {"sam-gov", "usaspending"},
+    "govcon-growth-agent": {"sam-gov", "usaspending", "gsa-calc", "tavily-web"},
+    "market-research-agent": {"sam-gov", "usaspending", "tavily-web"},
 }
 EXPECTED_MCP_REQUIREMENTS = {
     "bls-oews": "bls-oews-mcp==1.0.4",
@@ -63,6 +63,17 @@ EXPECTED_PACING = {
     "sam-gov": "3",
     "usaspending": "3",
 }
+TAVILY_ENDPOINT = "https://mcp.tavily.com/mcp/"
+TAVILY_HEADERS = {"X-Tavily-Access-Mode": "keyless"}
+TAVILY_EXPECTED_TOOLS = {"tavily_search", "tavily_extract"}
+TAVILY_OBSERVED_TOOLS = {
+    "tavily_search",
+    "tavily_extract",
+    "tavily_crawl",
+    "tavily_map",
+    "tavily_research",
+}
+TAVILY_SCHEMA_SHA256 = "f28255db8e816ce522e9bd20a89b6fcf2312af41e60c3846799e9c3195e60992"
 ALLOWED_SKILL_FIELDS = {
     "name",
     "description",
@@ -146,8 +157,22 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
         if not isinstance(portable_server, dict) or not isinstance(native_server, dict):
             errors.append(f"{plugin_root.name}: MCP server {name} must be an object")
             continue
+        if name == "tavily-web":
+            if portable_server != {
+                "type": "streamable-http",
+                "url": TAVILY_ENDPOINT,
+                "headers": TAVILY_HEADERS,
+            }:
+                errors.append(f"{plugin_root.name}: Tavily portable configuration is not the approved keyless endpoint")
+            if native_server != {
+                "type": "http",
+                "url": TAVILY_ENDPOINT,
+                "headers": TAVILY_HEADERS,
+            }:
+                errors.append(f"{plugin_root.name}: Tavily Claude-native configuration is not equivalent")
+            continue
         if portable_server.get("type") != "stdio":
-            errors.append(f"{plugin_root.name}: MCP server {name} must use explicit stdio")
+            errors.append(f"{plugin_root.name}: federal MCP server {name} must use explicit stdio")
         if comparable_native(portable_server) != native_server:
             errors.append(f"{plugin_root.name}: portable/native MCP drift for {name}")
         args = portable_server.get("args", [])
@@ -248,6 +273,8 @@ def validate_plugin(plugin_name: str, schemas: dict[str, dict[str, object]], err
 
 def validate_release_versions(errors: list[str]) -> None:
     lock = load_json(REPO_ROOT / "components.lock.json")
+    if lock.get("format_version") != 2:
+        errors.append("components.lock.json: format_version must be 2")
     locked_plugins = lock.get("plugins", {})
     if not isinstance(locked_plugins, dict):
         errors.append("components.lock.json: plugins must be an object")
@@ -256,6 +283,21 @@ def validate_release_versions(errors: list[str]) -> None:
             record = locked_plugins.get(plugin_name, {})
             if not isinstance(record, dict) or record.get("version") != EXPECTED_VERSIONS[plugin_name]:
                 errors.append(f"components.lock.json: stale version for {plugin_name}")
+
+    external = lock.get("external_mcps", {})
+    expected_external = {
+        "provider": "Tavily",
+        "repository": "https://github.com/tavily-ai/tavily-mcp",
+        "endpoint": TAVILY_ENDPOINT,
+        "access_mode": "keyless",
+        "expected_tools": sorted(TAVILY_EXPECTED_TOOLS),
+        "observed_tools": sorted(TAVILY_OBSERVED_TOOLS),
+        "prohibited_tools": sorted(TAVILY_OBSERVED_TOOLS - TAVILY_EXPECTED_TOOLS),
+        "observed_tool_schema_sha256": TAVILY_SCHEMA_SHA256,
+        "verified_at": "2026-08-21",
+    }
+    if not isinstance(external, dict) or external.get("tavily-web") != expected_external:
+        errors.append("components.lock.json: Tavily external MCP evidence is missing or stale")
 
     for relative in (".claude-plugin/marketplace.json", ".github/plugin/marketplace.json"):
         marketplace = load_json(REPO_ROOT / relative)
@@ -323,7 +365,7 @@ def main() -> None:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         raise SystemExit(1)
-    print("All four Agent Plugins packages passed schema, portability, reference, pin, and hygiene checks.")
+    print("All four Agent Plugins packages passed schema, portability, reference, federal pin, Tavily, and hygiene checks.")
 
 
 if __name__ == "__main__":

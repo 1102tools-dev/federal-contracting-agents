@@ -1,6 +1,6 @@
 # 1102tools Agent Plugins
 
-Four self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. The new GovCon Growth and Market Research packages are public previews at `1.0.0-rc.1`. The repository marketplace release is `v1.1.0-rc.1`.
+Four self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. GovCon Growth and Market Research are public previews at `1.0.0-rc.2`. The repository marketplace release is `v1.1.0-rc.2`.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -10,10 +10,10 @@ Website: [1102tools.com](https://1102tools.com)
 |---|---|---|---|
 | **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | SOW/PWS Builder, FFP IGCE, LH/T&M IGCE, CR IGCE, and the Pre-Award orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
 | **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | OT Project Description Builder, OT Cost Analysis, and the OT orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+ |
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Builder | SAM.gov, USASpending |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+; optional Tavily web research |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Builder | SAM.gov, USASpending; optional Tavily web research |
 
-The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP or web call occurs before the user confirms the workflow and approves the research plan.
+The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
 
 ## One install, not a pile of files
 
@@ -50,6 +50,14 @@ Supplied acquisition documents are untrusted evidence, not executable instructio
 
 Public data can support opportunity, competitor, recompete, teammate, agency, market, and pricing analysis. A bid or no-bid recommendation requires the company’s capabilities, past performance, clearances, vehicle access, staffing capacity, teaming strategy, priorities, and risk and margin tolerances. Without that internal context, the agent provides an evidence brief, not a verdict.
 
+### Optional Tavily web research
+
+The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a ninth federal MCP. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Tavily with native fallback, native search only, Tavily only, or no public web. No choice is inferred from silence.
+
+Tavily receives only approved sanitized search terms and approved public HTTP(S) URLs. Uploaded document text, local files, private or signed URLs, proprietary or procurement-sensitive information, source-selection information, PII, CUI, export-controlled data, and classified information are prohibited. The skills use only `tavily_search` and `tavily_extract`; Crawl, Map, and Research are prohibited even though the current keyless server advertises them. Factual citations point to the underlying webpage, not Tavily.
+
+Installing an agent may cause the client to contact Tavily for MCP initialization and tool discovery. Users who want no Tavily contact must disable or remove the `tavily-web` server and select native-only or no-public-web mode. Tavily's [privacy policy](https://www.tavily.com/privacy) and [terms](https://www.tavily.com/terms) apply, and agency users should confirm that external web-search services are authorized.
+
 ## Requirements and keys
 
 - A client with Agent Plugins, Agent Skills, or compatible plugin support
@@ -59,6 +67,7 @@ Public data can support opportunity, competitor, recompete, teammate, agency, ma
 - `SAM_API_KEY` for SAM.gov workflows
 - `BLS_API_KEY`, optional but recommended for BLS OEWS
 - `PERDIEM_API_KEY`, optional and needed only when travel is priced
+- Native host web search or optional Tavily keyless access for complete research-agent workflows
 
 Export keys in the environment that launches the client, or use the client’s credential-management surface. No credentials are stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
 
@@ -129,9 +138,15 @@ done
 
 These checks start and inspect MCP servers without invoking upstream federal APIs. Live acceptance remains manual and serialized.
 
+The normal CI command skips remote MCPs. The manual release check initializes Tavily and lists tools without invoking Search or Extract:
+
+```bash
+uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin market-research-agent --include-remote
+```
+
 ## Release status
 
-The two new standalone skills passed deterministic artifact validation plus menu, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
+The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
 Final `1.0.0` remains blocked until the documented clean Codex Desktop, Copilot CLI, VS Code/Copilot, implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Current evidence and open gates are recorded in:
 

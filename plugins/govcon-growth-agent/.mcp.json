@@ -14,6 +14,11 @@
       "command": "uvx",
       "args": ["--from", "gsa-calc-mcp==1.0.3", "gsa-calc-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    },
+    "tavily-web": {
+      "type": "http",
+      "url": "https://mcp.tavily.com/mcp/",
+      "headers": {"X-Tavily-Access-Mode": "keyless"}
     }
   }
 }

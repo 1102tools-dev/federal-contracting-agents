@@ -1,10 +1,10 @@
 {
-  "format_version": 1,
+  "format_version": 2,
   "agent_plugins_spec": "1.0.0",
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "9075e967c6cb0c0e8bdabf1f5879bbc4805c0aeb"
+      "commit": "6337508992730f9d670c7e69eebf4174f287eb31"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -31,6 +31,32 @@
           "version": "1.0.3"
         }
       }
+    }
+  },
+  "external_mcps": {
+    "tavily-web": {
+      "provider": "Tavily",
+      "repository": "https://github.com/tavily-ai/tavily-mcp",
+      "endpoint": "https://mcp.tavily.com/mcp/",
+      "access_mode": "keyless",
+      "expected_tools": [
+        "tavily_extract",
+        "tavily_search"
+      ],
+      "observed_tools": [
+        "tavily_crawl",
+        "tavily_extract",
+        "tavily_map",
+        "tavily_research",
+        "tavily_search"
+      ],
+      "prohibited_tools": [
+        "tavily_crawl",
+        "tavily_map",
+        "tavily_research"
+      ],
+      "observed_tool_schema_sha256": "f28255db8e816ce522e9bd20a89b6fcf2312af41e60c3846799e9c3195e60992",
+      "verified_at": "2026-08-21"
     }
   },
   "plugins": {
@@ -124,50 +150,52 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "d3f7b73eda8d1ef793be5f9ec8ad914226e1cfe9c870dc282dcdb07b35c6f743",
+            "SKILL.md": "68f6af7e75a9a630d19fe45a7374e3d780cbd8528fa14d20020614214cc7be1f",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "ea4aa434387948da3812ec122ebc97382abf366b6b999316188d17e602bfbb95",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
-            "references/evidence-contract.md": "d6fb11447bbe36b0492524d1b653b60b80a195c6aee9dabaeaeeba18a273b00d",
+            "references/evidence-contract.md": "41e61297bb2635fc2d709183843f13bf79602c8a552c963b350aaace8c8d2bea",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
             "references/launch-menu-and-question-blocks.md": "77d27421e4af039937f79ffceb8eec96333e8ece5c548fe67d2f8dfa5a9ab572",
             "references/market-and-agency-intelligence.md": "1c7e5b9ba834f91cbfe06b9806f4f4b81f68730241b1568e187941a4fc787f42",
             "references/opportunity-intelligence.md": "8f8f8743b23c7c07ad29c22d24ae50ba2416516c1db160ca60ab0598bf18adeb",
             "references/pricing-context.md": "c46eea842c138beeffbb7e201272525e6dcfd84d18aeafbd7b9f5b441556c165",
             "references/recompete-radar.md": "46bf6db6cfcefa52b327831fb4d94447c3769b3fb7f90ea88bbf962ad4340b49",
-            "references/runtime-adaptation.md": "51068e91319b90ecffffe2851a017d5b0f2a748bdb646e8a9617648f6d29d4b5",
+            "references/runtime-adaptation.md": "7be436b790db796d7d1d1b97c7338c871d532237fb272c425ad92066d709f586",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
+            "references/web-provider-policy.md": "b6f37efaec1a255e7c69e185ad7f5b957db2ad2d5ebe94c0a86f4db81b717861",
             "scripts/build_growth_brief.py": "9cf3a3761d6d68b4c829417165d9a93a175a1491d10e965cf3a0af198f0f28d5",
             "scripts/validate_growth_brief.py": "6171f628a9aa11fd0cca2c208504c049c512e890a2e4ce128f7f6d335135d115",
-            "scripts/validate_research_record.py": "a3cba1406db44b90f82c3320fbb729b6fee061beb2c75232ed86586ecbadba0f"
+            "scripts/validate_research_record.py": "58f09959632d960244e09e18178c75280a7edccc7461d9ec36032ca44839a06e"
           }
         }
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "skills": {
         "market-research-builder": {
           "files": {
-            "SKILL.md": "1af6ebae67e7940e680af1477f67be9906b7fea2350217aa05543db283d40c3e",
+            "SKILL.md": "1a0bd4cf8fa1b09996b3d2cbb263e7330dc08df4e7b2c36810ffce60f677590f",
             "agents/openai.yaml": "5ccd5cf5f7814c2dcd07e1df32b964050123f78d52cf43fb0a44f3618b441c9e",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "356868fc5c4d33091cd7e13a3e0b3016ce5290de677d5cc286d50e39b8b3cc2c",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
-            "references/evidence-contract.md": "d6fb11447bbe36b0492524d1b653b60b80a195c6aee9dabaeaeeba18a273b00d",
+            "references/evidence-contract.md": "41e61297bb2635fc2d709183843f13bf79602c8a552c963b350aaace8c8d2bea",
             "references/federal-data-operations.md": "b7554132dfad2872e4a617b9c0155d1bcc7899ac8d1260c91b4b8fa9f587d58b",
             "references/launch-menu-and-question-blocks.md": "88a2ad4765b181787498f85b19c7e88cdc142683df7f2d7af56808b89da61123",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
-            "references/runtime-adaptation.md": "a199790bb48cd91f2ae9cd9d16f2827e52440ee42f2dd1bbef731a7d2ea2bced",
+            "references/runtime-adaptation.md": "da3c0c4119a0afe239e7e46852378b2894032c50a96aca4bca0063932511205c",
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
-            "references/web-research-method.md": "72d28ec72fd60c3c9347df1382ddfbbeaefdceec1a75b839d2730356faad73d5",
+            "references/web-provider-policy.md": "b6f37efaec1a255e7c69e185ad7f5b957db2ad2d5ebe94c0a86f4db81b717861",
+            "references/web-research-method.md": "a06b7eafce92b0be3b24cd518c4dbe81b456aed301bc90c70c2b61caa9e362d6",
             "scripts/build_market_research_report.py": "ce04b0cb3648e24b39504f215e192f564065d88998ca21e8144df190c6377482",
             "scripts/validate_market_research_report.py": "ce034fa3940eef69777aadbb5da59fbfa912960d41308923cb74b27e62c032d2",
-            "scripts/validate_research_record.py": "a3cba1406db44b90f82c3320fbb729b6fee061beb2c75232ed86586ecbadba0f"
+            "scripts/validate_research_record.py": "58f09959632d960244e09e18178c75280a7edccc7461d9ec36032ca44839a06e"
           }
         }
       }

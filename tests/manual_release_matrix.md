@@ -67,6 +67,11 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 | MR-07 | Thin or zero results | Transparent fallback and limitation label; no automatic acquisition decision |
 | MR-08 | Pre-Award handoff | Structured evidence and approved decisions; no universal transfer claim |
 | MR-09 | Missing SAM, USASpending, or web | Specific capability report and only an approved narrower product |
+| MR-10 | Tavily plus native fallback | Approved sanitized query uses Tavily; consequential claims are checked against primary pages |
+| MR-11 | Simulated Tavily failure | Native search is used only after combined-mode approval; fallback reason is recorded |
+| MR-12 | Native only | Zero Tavily tool invocations; native search/fetch only |
+| MR-13 | Tavily-only failure | Workflow stops and asks before switching provider or reducing scope |
+| MR-14 | No public web | Federal-data desk-research label; no Tavily or native web request |
 
 ## GovCon Growth Agent scenarios
 
@@ -81,6 +86,11 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 | GROW-07 | Agency and market intelligence | Government-wide and agency scopes remain separate |
 | GROW-08 | Pricing context | CALC+ ceiling rates are not described as paid rates or price reasonableness |
 | GROW-09 | Missing or rate-limited SAM | Specific capability report; no direct-API bypass or burst retry |
+| GROW-10 | Tavily plus native fallback | Approved sanitized query uses Tavily; consequential claims are checked against primary pages |
+| GROW-11 | Simulated Tavily failure | Native search is used only after combined-mode approval; fallback reason is recorded |
+| GROW-12 | Native only | Zero Tavily tool invocations; native search/fetch only |
+| GROW-13 | Tavily-only failure | Workflow stops and asks before switching provider or reducing scope |
+| GROW-14 | No public web | Limited evidence brief; no Tavily or native web request |
 
 ## Evidence required for the research agents
 
@@ -89,6 +99,10 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 - Document content was treated as evidence, not model or tool instructions.
 - Public-query parameters were sanitized and contained no protected source content.
 - The approved research plan preceded capability preflight and external retrieval.
+- The user selected one of four web-provider modes; no option was inferred from silence.
+- Exact sanitized terms, public extraction URLs, Tavily disclosure, and residual intent risk appeared before approval.
+- Tavily mode invoked only `tavily_search` or `tavily_extract`; Crawl, Map, and Research remained unused.
+- Tavily failure switched automatically only in the approved combined mode; every switch was recorded.
 - Every finding cited a stable evidence ID and distinguished fact, inference, user statement, and decision.
 - Market Research originated no reserved acquisition conclusion.
 - GovCon Growth produced no bid verdict without complete internal company context.
