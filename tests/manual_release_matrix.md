@@ -228,3 +228,45 @@ five plugins, the marketplace, and the plugin cache.
 Still open for final `1.0.0`: natural-language routing in clean sessions,
 authenticated multi-turn live workflows, and client-generated artifact
 validation across both maintained clients. These remain release gates.
+
+## Live keyed end-to-end run — 2026-08-22
+
+Pre-Award `1.0.0-rc.4`, PRE-06 (PWS to FFP) plus PRE-15 (zero travel), run in
+Claude Code with live BLS OEWS, GSA CALC+, and GSA Per Diem credentials supplied
+through the launching environment. Scenario: FDA Tier 2 application support,
+12-month base, contractor site, no travel, contract type directed as FFP by the
+user. Both artifacts were produced in a single uninterrupted run.
+
+| Artifact | Result |
+|---|---|
+| PWS `.docx` | 16 pages, 13 Heading 1 sections, 7 tables |
+| IGCE `.xlsx` | 7 sheets, 90 live formula cells, base-period total $469,210.33 |
+
+Validators reported by the run: `validate_docx.py --document-type pws` pass;
+six separation fault-injection cases all correctly rejected; LibreOffice render
+audit pass across all 16 pages after the workflow itself corrected two orphaned
+table-row fragments; `recompute_expected_values.py` pass; `validate_workbook.py`
+formula-structure pass.
+
+Independently verified afterward rather than accepted from the run's own report:
+
+- The `.docx` package was opened directly and confirmed to contain 13 Heading 1
+  sections and 7 tables.
+- The separation rule was re-checked against the extracted document body. No
+  FTE, SOC code, CLIN, dollar amount, wrap-rate, or fully-burdened-rate text
+  appears anywhere in the PWS. Those belong only in the chat handoff and the
+  workbook, and they stayed there.
+- The workbook was recalculated through LibreOffice from the delivered file.
+  The grand total resolved to $469,210.33, matching the figure the run reported.
+
+Boundary behavior worth recording: the user directed the contract type, and the
+workflow priced FFP without re-deriving it. It reported CALC+ positioning as
+positional statements only and left the fair-and-reasonable determination to the
+Contracting Officer. It priced the directed 2.0 FTE exactly as given while
+separately flagging that continuous 8x5 coverage implies 1.1064 FTE per seat, so
+the directed basis carries a coverage risk. It raised that as a program-office
+observation instead of silently changing the input.
+
+This closes the artifact-generation gate for Pre-Award on Claude Code. The
+equivalent live runs for the other four agents, and the same run on Codex,
+remain open.
