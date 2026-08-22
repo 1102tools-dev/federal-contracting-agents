@@ -18,6 +18,8 @@ EXPECTED_TOOLS = {
     "bls-oews": {"detect_latest_year", "get_wage_data", "list_common_soc_codes"},
     "gsa-calc": {"keyword_search"},
     "gsa-perdiem": {"lookup_city_perdiem", "get_mie_breakdown"},
+    "sam-gov": {"search_opportunities", "search_entities", "search_contract_awards"},
+    "usaspending": {"search_awards", "spending_over_time", "search_recipients"},
 }
 
 
@@ -25,7 +27,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--plugin",
-        choices=("pre-award-agent", "other-transaction-agent"),
+        choices=(
+            "pre-award-agent",
+            "other-transaction-agent",
+            "govcon-growth-agent",
+            "market-research-agent",
+        ),
         default="pre-award-agent",
     )
     return parser.parse_args()

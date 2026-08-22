@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "sam-gov": {
+      "command": "uvx",
+      "args": ["--from", "sam-gov-mcp==1.0.6", "sam-gov-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    },
+    "usaspending": {
+      "command": "uvx",
+      "args": ["--from", "usaspending-gov-mcp==1.0.3", "usaspending-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    },
+    "gsa-calc": {
+      "command": "uvx",
+      "args": ["--from", "gsa-calc-mcp==1.0.3", "gsa-calc-mcp"],
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
+    }
+  }
+}

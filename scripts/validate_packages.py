@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the two self-contained 1102tools Agent Plugins packages."""
+"""Validate the four self-contained 1102tools Agent Plugins packages."""
 
 from __future__ import annotations
 
@@ -14,8 +14,19 @@ import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("pre-award-agent", "other-transaction-agent")
-EXPECTED_VERSION = "1.0.0-rc.3"
+PLUGIN_NAMES = (
+    "pre-award-agent",
+    "other-transaction-agent",
+    "govcon-growth-agent",
+    "market-research-agent",
+)
+EXPECTED_VERSIONS = {
+    "pre-award-agent": "1.0.0-rc.3",
+    "other-transaction-agent": "1.0.0-rc.3",
+    "govcon-growth-agent": "1.0.0-rc.1",
+    "market-research-agent": "1.0.0-rc.1",
+}
+MARKETPLACE_VERSION = "1.1.0-rc.1"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -29,14 +40,29 @@ EXPECTED_SKILLS = {
         "ot-project-description-builder",
         "ot-cost-analysis",
     },
+    "govcon-growth-agent": {"govcon-growth-workflow"},
+    "market-research-agent": {"market-research-builder"},
 }
-EXPECTED_MCPS = {"bls-oews", "gsa-calc", "gsa-perdiem"}
+EXPECTED_MCPS = {
+    "pre-award-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
+    "other-transaction-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
+    "govcon-growth-agent": {"sam-gov", "usaspending", "gsa-calc"},
+    "market-research-agent": {"sam-gov", "usaspending"},
+}
 EXPECTED_MCP_REQUIREMENTS = {
     "bls-oews": "bls-oews-mcp==1.0.4",
     "gsa-calc": "gsa-calc-mcp==1.0.3",
     "gsa-perdiem": "gsa-perdiem-mcp==1.0.4",
+    "sam-gov": "sam-gov-mcp==1.0.6",
+    "usaspending": "usaspending-gov-mcp==1.0.3",
 }
-EXPECTED_PACING = {"bls-oews": "3", "gsa-calc": "3", "gsa-perdiem": "4"}
+EXPECTED_PACING = {
+    "bls-oews": "3",
+    "gsa-calc": "3",
+    "gsa-perdiem": "4",
+    "sam-gov": "3",
+    "usaspending": "3",
+}
 ALLOWED_SKILL_FIELDS = {
     "name",
     "description",
@@ -107,13 +133,14 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
     native = load_json(plugin_root / ".mcp.json")
     portable_servers = portable.get("mcpServers")
     native_servers = native.get("mcpServers")
-    if not isinstance(portable_servers, dict) or set(portable_servers) != EXPECTED_MCPS:
-        errors.append(f"{plugin_root.name}: portable MCP surface must be exactly {sorted(EXPECTED_MCPS)}")
+    expected_mcps = EXPECTED_MCPS[plugin_root.name]
+    if not isinstance(portable_servers, dict) or set(portable_servers) != expected_mcps:
+        errors.append(f"{plugin_root.name}: portable MCP surface must be exactly {sorted(expected_mcps)}")
         return
-    if not isinstance(native_servers, dict) or set(native_servers) != EXPECTED_MCPS:
-        errors.append(f"{plugin_root.name}: native MCP surface must be exactly {sorted(EXPECTED_MCPS)}")
+    if not isinstance(native_servers, dict) or set(native_servers) != expected_mcps:
+        errors.append(f"{plugin_root.name}: native MCP surface must be exactly {sorted(expected_mcps)}")
         return
-    for name in sorted(EXPECTED_MCPS):
+    for name in sorted(expected_mcps):
         portable_server = portable_servers[name]
         native_server = native_servers[name]
         if not isinstance(portable_server, dict) or not isinstance(native_server, dict):
@@ -183,13 +210,14 @@ def validate_plugin(plugin_name: str, schemas: dict[str, dict[str, object]], err
         jsonschema.Draft202012Validator(schemas["mcp"]).validate(mcp)
     except jsonschema.ValidationError as exc:
         errors.append(f"{plugin_name}: Agent Plugins schema error: {exc.message}")
-    if portable.get("name") != plugin_name or portable.get("version") != EXPECTED_VERSION:
+    expected_version = EXPECTED_VERSIONS[plugin_name]
+    if portable.get("name") != plugin_name or portable.get("version") != expected_version:
         errors.append(f"{plugin_name}: portable identity/version mismatch")
     codex_manifest = load_json(plugin_root / ".codex-plugin" / "plugin.json")
     claude_manifest = load_json(plugin_root / ".claude-plugin" / "plugin.json")
-    if codex_manifest.get("name") != plugin_name or codex_manifest.get("version") != EXPECTED_VERSION:
+    if codex_manifest.get("name") != plugin_name or codex_manifest.get("version") != expected_version:
         errors.append(f"{plugin_name}: Codex identity/version mismatch")
-    if claude_manifest.get("name") != plugin_name or claude_manifest.get("version") != EXPECTED_VERSION:
+    if claude_manifest.get("name") != plugin_name or claude_manifest.get("version") != expected_version:
         errors.append(f"{plugin_name}: Claude identity/version mismatch")
     default_prompt = codex_manifest.get("interface", {}).get("defaultPrompt", "")
     if not isinstance(default_prompt, str) or len(default_prompt) > 128:
@@ -226,13 +254,13 @@ def validate_release_versions(errors: list[str]) -> None:
     else:
         for plugin_name in PLUGIN_NAMES:
             record = locked_plugins.get(plugin_name, {})
-            if not isinstance(record, dict) or record.get("version") != EXPECTED_VERSION:
+            if not isinstance(record, dict) or record.get("version") != EXPECTED_VERSIONS[plugin_name]:
                 errors.append(f"components.lock.json: stale version for {plugin_name}")
 
     for relative in (".claude-plugin/marketplace.json", ".github/plugin/marketplace.json"):
         marketplace = load_json(REPO_ROOT / relative)
         metadata = marketplace.get("metadata", {})
-        if not isinstance(metadata, dict) or metadata.get("version") != EXPECTED_VERSION:
+        if not isinstance(metadata, dict) or metadata.get("version") != MARKETPLACE_VERSION:
             errors.append(f"{relative}: marketplace metadata version mismatch")
         entries = marketplace.get("plugins", [])
         if not isinstance(entries, list):
@@ -244,8 +272,14 @@ def validate_release_versions(errors: list[str]) -> None:
             if isinstance(entry, dict)
         }
         for plugin_name in PLUGIN_NAMES:
-            if versions.get(plugin_name) != EXPECTED_VERSION:
+            if versions.get(plugin_name) != EXPECTED_VERSIONS[plugin_name]:
                 errors.append(f"{relative}: stale version for {plugin_name}")
+
+    codex_marketplace = load_json(REPO_ROOT / ".agents" / "plugins" / "marketplace.json")
+    entries = codex_marketplace.get("plugins", [])
+    names = {entry.get("name") for entry in entries if isinstance(entry, dict)}
+    if names != set(PLUGIN_NAMES):
+        errors.append(".agents/plugins/marketplace.json: plugin catalog mismatch")
 
     pre_mcp = load_json(REPO_ROOT / "plugins" / "pre-award-agent" / "mcp.json")
     ot_mcp = load_json(REPO_ROOT / "plugins" / "other-transaction-agent" / "mcp.json")
@@ -289,7 +323,7 @@ def main() -> None:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         raise SystemExit(1)
-    print("Both Agent Plugins packages passed schema, portability, reference, pin, and hygiene checks.")
+    print("All four Agent Plugins packages passed schema, portability, reference, pin, and hygiene checks.")
 
 
 if __name__ == "__main__":

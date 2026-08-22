@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "market-research-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Conduct staged federal acquisition market research and produce evidence-backed FAR Part 10 findings or a validated report.",
+  "author": {"name": "1102tools", "url": "https://1102tools.com"},
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "MIT",
+  "keywords": ["federal-contracting", "market-research", "far-part-10", "acquisition"],
+  "extensions": {
+    "com.openai.codex": {"manifest": ".codex-plugin/plugin.json"},
+    "com.anthropic.claude-code": {"manifest": ".claude-plugin/plugin.json"},
+    "com.github.copilot": {"agents": "com.github.copilot/agents"}
+  }
+}

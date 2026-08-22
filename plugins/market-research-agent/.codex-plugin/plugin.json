@@ -1,0 +1,23 @@
+{
+  "name": "market-research-agent",
+  "version": "1.0.0-rc.1",
+  "description": "Build evidence-backed federal acquisition market research through a staged FAR Part 10 workflow.",
+  "author": {"name": "1102tools", "url": "https://1102tools.com"},
+  "homepage": "https://1102tools.com",
+  "repository": "https://github.com/1102tools-dev/federal-contracting-agents",
+  "license": "MIT",
+  "keywords": ["federal-contracting", "market-research", "far-part-10"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Market Research Agent",
+    "shortDescription": "Build evidence-backed FAR Part 10 research",
+    "longDescription": "Begins with a workflow menu and separate acquisition-document intake, then gathers traceable federal and web evidence without originating reserved acquisition decisions.",
+    "developerName": "1102tools",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://1102tools.com",
+    "brandColor": "#5CB8E6",
+    "defaultPrompt": "Use $market-research-builder to begin. Show the complete workflow menu before any research."
+  }
+}

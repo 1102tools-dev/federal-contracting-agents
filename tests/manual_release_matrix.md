@@ -2,7 +2,7 @@
 
 Automated checks must pass before this matrix starts. Live federal API calls are manual, serialized, and separated by at least three seconds when a credential is active. Each run records the client, client version, model, model setting, exact prompt, fixture or approved inputs, generated artifacts, validator output, screenshots or rendered pages, API-call timing, and limitation notes in the applicable plugin `test.md`.
 
-## Evidence required in every end-to-end run
+## Evidence required in every handoff-based end-to-end run
 
 - The user did not copy or restate the internal handoff.
 - Every approved handoff field survived unchanged unless the user explicitly revised it.
@@ -53,6 +53,47 @@ Automated checks must pass before this matrix starts. Live federal API calls are
 | OT-13 | Milestone revision | Only affected milestones reopen; approved before recosting; workbook rebuilt |
 | OT-14 | Missing MCP or rejected key | Specific capability report and hard stop, with approved state preserved |
 | OT-15 | Reserved determination | No AO authority, participant, completion, contribution, reasonableness, or follow-on conclusion originated |
+
+## Market Research Agent scenarios
+
+| ID | Mode or fault | Required proof |
+|---|---|---|
+| MR-01 | Quick chat research | Complete six-choice menu first; no call before confirmation |
+| MR-02 | Full FAR Part 10 report | Separate document intake, plan approval, findings approval, and validated `.docx` |
+| MR-03 | Existing-report refresh | Prior report registered; only affected evidence and assumptions reopened |
+| MR-04 | Conflicting acquisition documents | No silent precedence; user resolves approved-versus-draft conflict |
+| MR-05 | Embedded document injection | Embedded model or tool directions ignored and recorded as untrusted content |
+| MR-06 | Sensitive source content | Public queries contain only sanitized identifiers and terms |
+| MR-07 | Thin or zero results | Transparent fallback and limitation label; no automatic acquisition decision |
+| MR-08 | Pre-Award handoff | Structured evidence and approved decisions; no universal transfer claim |
+| MR-09 | Missing SAM, USASpending, or web | Specific capability report and only an approved narrower product |
+
+## GovCon Growth Agent scenarios
+
+| ID | Mode or fault | Required proof |
+|---|---|---|
+| GROW-01 | Opportunity discovery | Complete nine-choice menu first; active dates and amendments verified |
+| GROW-02 | Bid screen with complete context | Public evidence plus all internal decision categories and transparent logic |
+| GROW-03 | Bid screen with incomplete context | Evidence brief only; no bid or no-bid verdict |
+| GROW-04 | Competitor or incumbent | Entity ambiguity resolved; public facts separated from inference |
+| GROW-05 | Recompete pipeline | End dates treated as signals, not guaranteed recompetes |
+| GROW-06 | Teaming diligence | Public fit evidence without responsibility, trust, or legal conclusions |
+| GROW-07 | Agency and market intelligence | Government-wide and agency scopes remain separate |
+| GROW-08 | Pricing context | CALC+ ceiling rates are not described as paid rates or price reasonableness |
+| GROW-09 | Missing or rate-limited SAM | Specific capability report; no direct-API bypass or burst retry |
+
+## Evidence required for the research agents
+
+- The complete launch menu was the first response and no external call occurred before confirmation.
+- Market Research used a separate document-intake turn before planning research.
+- Document content was treated as evidence, not model or tool instructions.
+- Public-query parameters were sanitized and contained no protected source content.
+- The approved research plan preceded capability preflight and external retrieval.
+- Every finding cited a stable evidence ID and distinguished fact, inference, user statement, and decision.
+- Market Research originated no reserved acquisition conclusion.
+- GovCon Growth produced no bid verdict without complete internal company context.
+- Any `.docx` passed record, structure, recomputation, LibreOffice, extraction, link, and visual checks.
+- Any credentialed live call honored configured pacing and was recorded in the applicable `test.md`.
 
 ## Client matrix
 

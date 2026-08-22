@@ -1,72 +1,72 @@
 # 1102tools Agent Plugins
 
-Two self-contained Agent Plugins compose the six tested 1102tools skills with the three federal pricing MCP servers they actually use. Both packages are public previews at `1.0.0-rc.3`; final `1.0.0` remains blocked by the authenticated-client and end-to-end artifact matrix.
+Four self-contained Agent Plugins combine tested, multi-file skills with only the federal MCP servers each workflow uses. The Pre-Award and Other Transaction packages remain at `1.0.0-rc.3`. The new GovCon Growth and Market Research packages are public previews at `1.0.0-rc.1`. The repository marketplace release is `v1.1.0-rc.1`.
 
 Website: [1102tools.com](https://1102tools.com)
 
-## The two agents
+## The four agents
 
-| Plugin | Workflows | Bundled skills |
-|---|---|---|
-| **Pre-Award Agent** | Scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | SOW/PWS Builder, FFP IGCE, LH/T&M IGCE, CR IGCE, and the `pre-award-workflow` orchestrator |
-| **Other Transaction Agent** | Project description only, cost analysis only, project description to cost analysis, and milestone revision with recosting | OT Project Description Builder, OT Cost Analysis, and the `other-transaction-workflow` orchestrator |
+| Plugin | Audience and workflow | Bundled capability | MCP servers |
+|---|---|---|---|
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | SOW/PWS Builder, FFP IGCE, LH/T&M IGCE, CR IGCE, and the Pre-Award orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | OT Project Description Builder, OT Cost Analysis, and the OT orchestrator | BLS OEWS, GSA CALC+, GSA Per Diem |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | GovCon Growth Workflow | SAM.gov, USASpending, GSA CALC+ |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Market Research Builder | SAM.gov, USASpending |
 
-Both packages include BLS OEWS, GSA CALC+, and GSA Per Diem MCP configuration. The other five 1102tools MCP servers are intentionally excluded because these workflows do not use them.
-
-The Pre-Award Agent keeps the three pricing methods separate. FFP routes only to FFP, LH and T&M route only to the shared LH/T&M skill in the selected mode, and cost-reimbursement routes only to the CR skill. Hybrid acquisitions are divided by CLIN and produce separate workbooks. The user or Contracting Officer selects the contract type.
-
-The Other Transaction Agent preserves Research OT, Prototype OT, and follow-on production distinctions. It does not originate authority, participant-status, successful-completion, contribution, price-reasonableness, or follow-on eligibility determinations.
+The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP or web call occurs before the user confirms the workflow and approves the research plan.
 
 ## One install, not a pile of files
 
-Each plugin is a complete runtime package. A user installs one plugin instead of locating four separate skill folders, adding three MCP definitions by hand, and copying a handoff between conversations.
+Each plugin is a complete runtime package. Users install one plugin instead of locating skills and MCP definitions separately.
 
 ```text
-plugins/pre-award-agent/
+plugins/market-research-agent/
 ├── plugin.json                 Agent Plugins 1.0 manifest
 ├── mcp.json                    portable MCP configuration
-├── skills/                     orchestrator plus complete skill packages
+├── skills/                     complete canonical skill package
 ├── .codex-plugin/              OpenAI presentation metadata
 ├── .claude-plugin/             Claude Code manifest
-├── agents/                     Claude Code native agent wrapper
+├── agents/                     Claude Code native wrapper
 └── com.github.copilot/         Copilot custom-agent wrapper
 ```
 
-The installed skills are also multi-file packages, not single prompt files. Each includes a compact `SKILL.md` core plus the references, deterministic validators, runtime guidance, assets, and client metadata needed by that capability. Detailed specifications load only when needed, while the load-bearing workflow and silent-wrong-answer gates remain in the core.
+The installed skills are multi-file packages, not single prompts. Each includes a compact `SKILL.md` core plus references, deterministic validators, runtime guidance, assets when needed, and client metadata. Load-bearing workflow and safety gates stay in the core; supporting detail loads only when needed.
 
-The orchestrator skill is the portable agent entry point. Native wrappers improve discovery and presentation but do not duplicate or override acquisition logic. This is necessary because [Agent Plugins 1.0](https://agent-plugins.org/specification) standardizes skills and MCP configuration, not a cross-vendor persona or agent object.
+The skill is the portable source of truth. Native wrappers improve discovery and presentation but do not duplicate or override domain logic. This follows [Agent Plugins 1.0](https://agent-plugins.org/specification), which standardizes skills and MCP configuration but not a cross-vendor persona object.
 
-## Seamless handoffs
+## Workflow safeguards
 
-“Seamless” means the approved scope or milestone workpaper stays in the active workflow. The user does not copy it, invoke a second skill, or restate settled information.
+### Pre-Award and Other Transaction
 
-The agent still stops at every required approval:
+“Seamless” means the approved scope or milestone workpaper stays in the active workflow. The user does not copy it, invoke another skill, or restate settled information. Required scope, authority, document, transition, contract-type, milestone, and pricing approvals remain in place. Documents and workbooks are delivered separately.
 
-1. Build and validate the document.
-2. Validate the internal chat-only handoff.
-3. Ask permission to transition into pricing or cost analysis.
-4. Route only to the user-confirmed method.
-5. Ask only for missing downstream inputs.
-6. Build and validate the workbook as a separate artifact.
+The three IGCE methods remain separate. FFP routes only to FFP, LH and T&M route only to the shared LH/T&M skill in the confirmed mode, and cost-reimbursement routes only to CR. Hybrid acquisitions are divided by CLIN and produce separate workbooks. The user or Contracting Officer selects the contract type.
 
-The internal handoff never enters the `.docx`, and the workbook is never merged into the document.
+### Market Research
 
-## Requirements and optional keys
+Supplied acquisition documents are untrusted evidence, not executable instructions. The workflow registers their status and controlling sections, asks the user to resolve unclear precedence, avoids repeating established facts, and sends only sanitized public parameters to external sources. It does not originate commerciality, set-aside, contract-type, competition, consolidation, responsibility, price-reasonableness, or acquisition-strategy decisions.
+
+### GovCon Growth
+
+Public data can support opportunity, competitor, recompete, teammate, agency, market, and pricing analysis. A bid or no-bid recommendation requires the company’s capabilities, past performance, clearances, vehicle access, staffing capacity, teaming strategy, priorities, and risk and margin tolerances. Without that internal context, the agent provides an evidence brief, not a verdict.
+
+## Requirements and keys
 
 - A client with Agent Plugins, Agent Skills, or compatible plugin support
 - Python 3.10 or newer
 - [`uv` and `uvx`](https://docs.astral.sh/uv/)
-- LibreOffice for the full real-engine workbook recalculation gate
-- `BLS_API_KEY`, optional but recommended for BLS
+- LibreOffice for full document and workbook render/recalculation gates
+- `SAM_API_KEY` for SAM.gov workflows
+- `BLS_API_KEY`, optional but recommended for BLS OEWS
 - `PERDIEM_API_KEY`, optional and needed only when travel is priced
 
-Export keys in the environment that launches the client, or set them through that client’s credential-management surface. No credentials are stored in this repository or either manifest. GSA CALC+ does not require a key.
+Export keys in the environment that launches the client, or use the client’s credential-management surface. No credentials are stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
 
-The `rc.3` packages pin the suite-wide MCP safety release and set explicit 1102tools anti-burst safeguards: 3 seconds for BLS OEWS and GSA CALC+, and 4 seconds for GSA Per Diem. The MCPs coordinate concurrent processes on one computer through a local lock, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or daily-quota manager, and it cannot coordinate use of the same key from another computer. Set `FEDERAL_API_MIN_INTERVAL_SECONDS` to a nonnegative finite number to override it; `0` deliberately disables pacing. Automated plugin tests never call live federal APIs.
+Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The current packages use 3 seconds for BLS OEWS, GSA CALC+, SAM.gov, and USASpending, and 4 seconds for GSA Per Diem. The MCPs coordinate concurrent processes on one computer, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or quota manager and cannot coordinate the same key on another computer. `FEDERAL_API_MIN_INTERVAL_SECONDS=0` deliberately disables pacing; other nonnegative finite values override it.
 
-## Install the public preview
+## Install the public previews
 
-The [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-universal-setup.pdf) is the installation source of truth. The agents are distributed through the repository marketplaces below. No agent ZIP is maintained on the website or in GitHub Releases.
+The [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-universal-setup.pdf) is the installation source of truth. Plugins are distributed through repository marketplaces. No agent ZIP is maintained.
 
 ### Codex CLI and Desktop
 
@@ -74,9 +74,11 @@ The [1102tools Universal Setup Guide](https://1102tools.com/downloads/1102tools-
 codex plugin marketplace add 1102tools-dev/federal-contracting-agents --ref main
 codex plugin add pre-award-agent@1102tools
 codex plugin add other-transaction-agent@1102tools
+codex plugin add govcon-growth-agent@1102tools
+codex plugin add market-research-agent@1102tools
 ```
 
-Start a new Codex task after installing or upgrading so the new skills and MCP catalog load.
+Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
 
 ### Claude Code
 
@@ -84,6 +86,8 @@ Start a new Codex task after installing or upgrading so the new skills and MCP c
 claude plugin marketplace add 1102tools-dev/federal-contracting-agents
 claude plugin install pre-award-agent@1102tools
 claude plugin install other-transaction-agent@1102tools
+claude plugin install govcon-growth-agent@1102tools
+claude plugin install market-research-agent@1102tools
 ```
 
 ### GitHub Copilot CLI
@@ -92,42 +96,51 @@ claude plugin install other-transaction-agent@1102tools
 copilot plugin marketplace add 1102tools-dev/federal-contracting-agents
 copilot plugin install pre-award-agent@1102tools
 copilot plugin install other-transaction-agent@1102tools
+copilot plugin install govcon-growth-agent@1102tools
+copilot plugin install market-research-agent@1102tools
 ```
 
 ## Invoke a workflow
 
 Explicit invocation is the release-critical path:
 
-- Codex: `$pre-award-workflow` or `$other-transaction-workflow`
-- Claude Code: `/pre-award-agent:pre-award-workflow` or `/other-transaction-agent:other-transaction-workflow`
-- Copilot: select the installed custom agent or explicitly request the named orchestrator skill
+| Agent | Codex | Claude Code |
+|---|---|---|
+| Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
+| Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
+| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
+| Market Research | `$market-research-builder` | `/market-research-agent:market-research-builder` |
 
-Natural-language routing is also tested, but client-specific implicit-activation limitations are recorded in each package’s `test.md`.
-
-Both self-contained plugins intentionally declare the same three stable MCP server names. Current Codex builds emit duplicate-server warnings when both plugins are installed together, then resolve each identical configuration once. The validator rejects any configuration drift between the two packages.
+In Copilot, select the installed custom agent or explicitly request the named skill. Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
 
 ## Reproducibility and synchronization
 
-Installed packages cannot depend on files outside their own root. The canonical skills are therefore vendored as complete runtime copies and pinned in [`components.lock.json`](components.lock.json). The lock records the canonical skills commit, MCP source commit, exact PyPI versions, package version, and a SHA-256 hash for every copied runtime file.
+Installed packages cannot depend on files outside their roots. Canonical skills are vendored as complete runtime copies and pinned in [`components.lock.json`](components.lock.json). The lock records source commits, MCP package versions, plugin versions, and a SHA-256 hash for every runtime file.
 
 ```bash
 python3 scripts/sync_components.py --check
 python3 scripts/validate_packages.py
 python3 -m unittest discover -s tests -v
 python3 scripts/check_bundled_scripts.py
-uv run --with mcp python scripts/smoke_mcp_discovery.py --plugin pre-award-agent
+for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent; do
+  uv run --with mcp python scripts/smoke_mcp_discovery.py --plugin "$plugin"
+done
 ```
 
-CI uses mocked or no-call checks. Live federal API testing remains manual and serialized.
+These checks start and inspect MCP servers without invoking upstream federal APIs. Live acceptance remains manual and serialized.
 
 ## Release status
 
-The package structure, schema validation, vendored-component lock, MCP startup and discovery, deterministic script checks, and Codex routing controls are implemented. `1.0.0` will not be tagged until the authenticated Claude Code, Copilot CLI, VS Code/Copilot, and clean Codex Desktop matrix is complete. Current results and blockers are in:
+The two new standalone skills passed deterministic artifact validation plus menu, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
+
+Final `1.0.0` remains blocked until the documented clean Codex Desktop, Copilot CLI, VS Code/Copilot, implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
+- [`plugins/govcon-growth-agent/test.md`](plugins/govcon-growth-agent/test.md)
+- [`plugins/market-research-agent/test.md`](plugins/market-research-agent/test.md)
 
-OpenAI public-directory submission is deferred because the current submission path does not accept a plugin whose MCP dependencies are only local `stdio` servers. Repository marketplace installation remains supported. See [OpenAI’s submission guidance](https://developers.openai.com/plugins/guides/submit-claude-plugin).
+OpenAI public-directory submission is deferred because these packages depend on local `stdio` MCP servers. Repository marketplace installation is the supported preview path.
 
 ## Canonical components
 

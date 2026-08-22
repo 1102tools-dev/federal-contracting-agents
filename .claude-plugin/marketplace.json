@@ -4,8 +4,8 @@
     "name": "1102tools"
   },
   "metadata": {
-    "description": "Federal pre-award and Other Transaction workflow plugins",
-    "version": "1.0.0-rc.3"
+    "description": "Four federal acquisition and GovCon workflow plugins",
+    "version": "1.1.0-rc.1"
   },
   "plugins": [
     {
@@ -19,6 +19,18 @@
       "source": "./plugins/other-transaction-agent",
       "description": "Build an OT project description and carry its approved milestones into cost analysis.",
       "version": "1.0.0-rc.3"
+    },
+    {
+      "name": "govcon-growth-agent",
+      "source": "./plugins/govcon-growth-agent",
+      "description": "Find, evaluate, and research federal growth opportunities with evidence-backed capture intelligence.",
+      "version": "1.0.0-rc.1"
+    },
+    {
+      "name": "market-research-agent",
+      "source": "./plugins/market-research-agent",
+      "description": "Conduct acquisition market research from supplied documents, federal data, and approved evidence plans.",
+      "version": "1.0.0-rc.1"
     }
   ]
 }

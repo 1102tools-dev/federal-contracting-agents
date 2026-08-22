@@ -25,12 +25,16 @@ PLUGIN_SKILLS = {
         "ot-project-description-builder",
         "ot-cost-analysis",
     ],
+    "govcon-growth-agent": ["govcon-growth-workflow"],
+    "market-research-agent": ["market-research-builder"],
 }
 RUNTIME_DIRS = ("agents", "references", "scripts", "assets")
 MCP_PACKAGES = {
     "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.4"},
     "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.3"},
     "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.4"},
+    "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.6"},
+    "usaspending": {"distribution": "usaspending-gov-mcp", "version": "1.0.3"},
 }
 
 
