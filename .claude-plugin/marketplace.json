@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.2"
+    "version": "1.2.0-rc.3"
   },
   "plugins": [
     {
@@ -36,7 +36,7 @@
       "name": "acquisition-policy-agent",
       "source": "./plugins/acquisition-policy-agent",
       "description": "Trace acquisition-policy status and impacts through codified text, rulemakings, dockets, and posted deviations.",
-      "version": "1.0.0-rc.1"
+      "version": "1.0.0-rc.2"
     }
   ]
 }

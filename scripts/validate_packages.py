@@ -26,9 +26,9 @@ EXPECTED_VERSIONS = {
     "other-transaction-agent": "1.0.0-rc.3",
     "govcon-growth-agent": "1.0.0-rc.2",
     "market-research-agent": "1.0.0-rc.3",
-    "acquisition-policy-agent": "1.0.0-rc.1",
+    "acquisition-policy-agent": "1.0.0-rc.2",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.2"
+MARKETPLACE_VERSION = "1.2.0-rc.3"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",

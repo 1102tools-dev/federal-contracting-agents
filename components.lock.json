@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "5d1f85d6893c1e0e2747598212562409eaff6428"
+      "commit": "dfbf71aec5cdd0059280cfc0625000df66b2c05f"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -217,7 +217,7 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {

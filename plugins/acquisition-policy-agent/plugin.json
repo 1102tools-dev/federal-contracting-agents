@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "acquisition-policy-agent",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Research federal acquisition policy status, changes, rulemakings, and public comments with source-specific evidence.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -14,4 +14,3 @@
     "com.github.copilot": {"agents": "com.github.copilot/agents"}
   }
 }
-

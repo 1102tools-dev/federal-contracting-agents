@@ -1,6 +1,6 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.0-rc.1`
+Version: `1.0.0-rc.2`
 
 ## Passed before packaging
 
@@ -13,13 +13,15 @@ Version: `1.0.0-rc.1`
 
 ## Upstream live gate
 
-On 2026-08-21 the official RFO index was reachable and parsed, including the current Part 10 index entry and its posted-deviation links. At the same check, the linked model-part, agency-PDF, and FAQ routes timed out at the Acquisition.gov CDN before returning response headers. The MCP returned a bounded source failure and did not fabricate results. Repeat the serialized live gate before release.
+On 2026-08-22 the serialized release gate passed twice. The official RFO index, Part 10 model page, an indexed four-page NSF deviation PDF, and the FAQ each returned HTTP 200 with complete extraction. The MCP recorded source hashes and retained the rule that future hash changes require review rather than silent acceptance.
+
+## Published-package and clean-install gate
+
+The immutable MCP source commit `3f9376a406a2af17e5810d81f319d81efe34417e` installed into an isolated `uvx` environment directly from GitHub and exposed exactly five tools without invoking an upstream tool. Release workflow `32561799836` then passed shared safety checks, all nine package test-and-build jobs, trusted publication, and release creation. A fresh `uvx` environment installed `acquisition-gov-mcp==1.0.0` from PyPI and discovered all four policy-agent servers without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 
 ## Open agent release gates
 
-- Publish and independently install `acquisition-gov-mcp==1.0.0` from PyPI.
-- Repeat exact startup and tool discovery from a clean install using the published Acquisition.gov package; the local-wheel preflight is green.
-- Run explicit and implicit routing cases in clean Codex CLI/Desktop, Claude Code, Copilot CLI, and VS Code/Copilot.
+- Run explicit and implicit routing cases in clean Codex CLI/Desktop and Claude Code.
 - Complete an agency RFO status analysis, rulemaking/comment workflow, public-comment analysis, and validated impact brief with live sources.
 - Record the complete client and artifact matrix below before removing `rc`.
 

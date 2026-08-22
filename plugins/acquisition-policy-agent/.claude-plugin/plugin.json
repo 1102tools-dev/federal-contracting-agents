@@ -1,6 +1,6 @@
 {
   "name": "acquisition-policy-agent",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Trace federal acquisition policy status and impacts through primary published sources.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -10,4 +10,3 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json"
 }
-

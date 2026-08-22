@@ -1,6 +1,6 @@
 # Acquisition Policy Agent
 
-Version `1.0.0-rc.1`
+Version `1.0.0-rc.2`
 
 The Acquisition Policy Agent combines one host-neutral workflow with four source-specific federal MCP servers:
 
@@ -24,4 +24,3 @@ The package sets three-second pacing for eCFR, Federal Register, and Acquisition
 This agent reports what published sources document. It does not provide legal advice, decide procurement-specific applicability, select clauses, perform market research, analyze opportunities, build IGCEs, or perform grants or cooperative-agreement work. RFO model text is not labeled operative without an agency deviation.
 
 See [test.md](test.md) for passed deterministic checks and open release gates.
-

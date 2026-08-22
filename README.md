@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.3`; GovCon Growth is at `1.0.0-rc.2`; and Acquisition Policy is a gated `1.0.0-rc.1` preview that is not currently offered as an installable supported path. The repository marketplace release is `v1.2.0-rc.2`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.3`; GovCon Growth and Acquisition Policy are at `1.0.0-rc.2`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.3`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -13,7 +13,7 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 | **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.3` |
 | **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.2` |
 | **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.3` |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Gated preview `1.0.0-rc.1`; not an installable supported path |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.2` |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
 
@@ -83,8 +83,6 @@ Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The 
 
 The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex and Claude Code. Packages are distributed through repository marketplaces. No agent ZIP is maintained.
 
-Acquisition Policy is intentionally excluded from the install commands below. Its source remains visible for review, but installation support waits for its Acquisition.gov dependency and clean release checks.
-
 ### Codex CLI and Desktop
 
 ```bash
@@ -93,6 +91,7 @@ codex plugin add market-research-agent@1102tools
 codex plugin add pre-award-agent@1102tools
 codex plugin add govcon-growth-agent@1102tools
 codex plugin add other-transaction-agent@1102tools
+codex plugin add acquisition-policy-agent@1102tools
 ```
 
 Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
@@ -105,6 +104,7 @@ claude plugin install market-research-agent@1102tools
 claude plugin install pre-award-agent@1102tools
 claude plugin install govcon-growth-agent@1102tools
 claude plugin install other-transaction-agent@1102tools
+claude plugin install acquisition-policy-agent@1102tools
 ```
 
 ### Other clients
@@ -121,10 +121,9 @@ Explicit invocation is the release-critical path:
 | Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
 | GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
+| Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
 Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
-
-The Acquisition Policy invocation contract is documented in its source and testing record, but it is not part of the supported invocation table until the release gate closes.
 
 ## Reproducibility and synchronization
 
@@ -152,7 +151,7 @@ uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin ma
 
 The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
-Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Acquisition Policy also remains gated on a clean installation of the published Acquisition.gov MCP and a repeated green live check of linked RFO source pages. Current evidence and open gates are recorded in:
+Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
@@ -160,7 +159,7 @@ Final `1.0.0` remains blocked until the documented clean Codex Desktop and authe
 - [`plugins/market-research-agent/test.md`](plugins/market-research-agent/test.md)
 - [`plugins/acquisition-policy-agent/test.md`](plugins/acquisition-policy-agent/test.md)
 
-OpenAI public-directory submission is deferred because these packages depend on local `stdio` MCP servers. Repository marketplace installation is the supported preview path.
+Repository marketplace installation is the current supported preview path. The same canonical skills and agent identities can be submitted to OpenAI as combined skills-plus-MCP plugins after their local `stdio` connections are exposed through stable public Streamable HTTP endpoints; that hosting work is a distribution adapter, not a replacement for the agents.
 
 ## Canonical components
 

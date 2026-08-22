@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: 5d1f85d6893c1e0e2747598212562409eaff6428
+          ref: dfbf71aec5cdd0059280cfc0625000df66b2c05f
           path: _skills
 
       - name: Check out locked MCP source
@@ -55,6 +55,6 @@ jobs:
 
       - name: Start pinned MCP servers and discover tools without API calls
         run: |
-          for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent; do
+          for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent acquisition-policy-agent; do
             uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin "$plugin"
           done
