@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "market-research-agent",
-  "version": "1.0.0-rc.11",
+  "version": "1.0.0-rc.12",
   "description": "Conduct staged FAR Part 10 market research with a mandatory menu, even when later web, MCP, or file work is restricted.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

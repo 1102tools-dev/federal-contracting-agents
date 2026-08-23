@@ -43,8 +43,8 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly approved Native web with Tavily fallback, including the sanitized query `official FAR Part 10 market research guidance`. Native search then timed out. State the permitted next action and required evidence record only.",
-    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved"], ["record", "fallback event"]],
-    "forbidden": ["new query", "tavily_research", "tavily crawl", "create an account", "request payment"]
+    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved", "exact approved", "already approved", "approved sanitized query"], ["record", "fallback event"]],
+    "forbidden": ["new query", "invoke tavily_research", "invoke tavily crawl", "use tavily crawl", "create an account", "request payment"]
   },
   {
     "id": "growth-combined-approved-timeout",
@@ -52,8 +52,8 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly approved Native web with Tavily fallback, including the sanitized query `official federal contracting opportunity guidance for small businesses`. Native search then timed out. State the permitted next action and required evidence record only.",
-    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved"], ["record", "fallback event"]],
-    "forbidden": ["new query", "tavily_research", "tavily crawl", "create an account", "request payment"]
+    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved", "exact approved", "already approved", "approved sanitized query"], ["record", "fallback event"]],
+    "forbidden": ["new query", "invoke tavily_research", "invoke tavily crawl", "use tavily crawl", "create an account", "request payment"]
   },
   {
     "id": "market-combined-zero-results-no-fallback",
@@ -79,7 +79,7 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
-    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like", "which option", "which of these"], ["select", "choose", "approval", "which"]],
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like", "which option", "which of these", "please select", "reply with"], ["select", "choose", "approval", "which"]],
     "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
   },
   {
@@ -88,7 +88,7 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
-    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like", "which option", "which of these"], ["select", "choose", "approval", "which"]],
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like", "which option", "which of these", "please select", "reply with"], ["select", "choose", "approval", "which"]],
     "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
   },
   {
@@ -97,7 +97,7 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. Assume the workflow mode and research plan are already selected. The user explicitly selected No public web. State the permitted research boundary, confirm that approved federal MCP and supplied-document work remains available, apply the reduced-completeness limitation, and state the next action only.",
-    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready"]],
+    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready", "cannot be labeled complete", "evidence-limited", "federal-data desk-research draft"]],
     "forbidden": ["i will search", "will use tavily", "call tavily now", "proceeding with tavily", "switching to tavily"]
   },
   {
@@ -106,7 +106,7 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. Assume the workflow mode and research plan are already selected. The user explicitly selected No public web. State the permitted research boundary, confirm that approved federal MCP and supplied-document work remains available, apply the reduced-completeness limitation, and state the next action only.",
-    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready"]],
+    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready", "cannot be labeled complete", "evidence-limited", "federal-data desk-research draft"]],
     "forbidden": ["i will search", "will use tavily", "call tavily now", "proceeding with tavily", "switching to tavily"]
   },
   {

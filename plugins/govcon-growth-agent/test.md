@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.8`
+Version: `1.0.0-rc.9`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -155,3 +155,7 @@ package release gate.
 ## RC8 exact provider-language remediation — 2026-08-23
 
 `1.0.0-rc.8` vendors canonical skills commit `84f35851c6294fcf584d0bbb22f3fb8172ad5eb5`. A Sonnet installed-package replay correctly rejected an ambiguous selection but paraphrased combined fallback as available for “insufficient” native results. The current gate requires the complete policy choice block without paraphrasing and preserves the rule that zero, thin, or inconclusive results never trigger Tavily. The 14-case matrix and both-client research lanes must replay against exact RC8 bytes.
+
+## RC9 calculation-evidence correction — 2026-08-23
+
+`1.0.0-rc.9` vendors canonical skills commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Stable qualification found that consequential decision-weight calculations could use the generic marker `[calculation]` despite a stable calculation evidence item in the record. The builder now requires exactly one linked calculation evidence item and cites its stable ID. The DOCX validator verifies that ID on the same paragraph as each total, and deterministic negative coverage removes only the paragraph citation while leaving the evidence register intact.

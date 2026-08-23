@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "govcon-growth-agent",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0-rc.9",
   "description": "Begin with the complete nine-choice menu, then research federal growth signals with approved federal evidence and optional native or Tavily web research.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

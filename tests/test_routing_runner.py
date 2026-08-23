@@ -16,6 +16,21 @@ SPEC.loader.exec_module(RUNNER)
 
 
 class RoutingRunnerTests(unittest.TestCase):
+    def test_explicit_prompt_preserves_read_only_skill_activation_and_prior_state(self):
+        scenario = {
+            "plugin": "market-research-agent",
+            "orchestrator": "market-research-workflow",
+            "invocation": "explicit",
+            "prompt": "Assume the provider gate is active. No calls.",
+        }
+        codex_prompt = RUNNER.prompt_for("codex", scenario)
+        claude_prompt = RUNNER.prompt_for("claude", scenario)
+        self.assertTrue(codex_prompt.startswith("$market-research-workflow"))
+        for prompt in (codex_prompt, claude_prompt):
+            self.assertIn("read-only access", prompt)
+            self.assertIn("prior conversation state", prompt)
+            self.assertIn("apply after that read-only skill activation", prompt)
+
     def test_provider_matrix_has_complete_cross_agent_coverage(self) -> None:
         scenarios = json.loads(
             (REPO_ROOT / "tests" / "provider_scenarios.json").read_text(encoding="utf-8")

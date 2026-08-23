@@ -71,11 +71,18 @@ def prompt_for(client: str, scenario: dict[str, object]) -> str:
         return prompt
     skill = str(scenario["orchestrator"])
     plugin = str(scenario["plugin"])
+    checkpoint = (
+        "Controlled installed-skill replay. You may use read-only access solely to load "
+        "the installed skill instructions. Treat any prior conversation state stated in "
+        "the scenario as already established; do not discard it merely because this test "
+        "uses an isolated client process. The scenario's no-call and no-file restrictions "
+        "apply after that read-only skill activation."
+    )
     if client == "codex":
-        return f"${skill}\n\n{prompt}"
+        return f"${skill}\n\n{checkpoint}\n\n{prompt}"
     if client == "claude":
-        return prompt
-    return f"Explicitly use the {skill} skill. {prompt}"
+        return f"{checkpoint}\n\n{prompt}"
+    return f"Explicitly use the {skill} skill. {checkpoint} {prompt}"
 
 
 def run_case(

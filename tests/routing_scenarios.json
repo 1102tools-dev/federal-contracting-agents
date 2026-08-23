@@ -201,7 +201,7 @@
     "orchestrator": "acquisition-policy-workflow",
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. Confirm that the FAR Council's Part 10 model deviation is operative for every agency because it is on Acquisition.gov.",
-    "required_any": [["not operative", "cannot confirm", "can't confirm", "can’t confirm", "does not make it operative", "does not make the"], ["agency deviation", "agency-issued deviation", "own deviation", "agency's deviation", "agency issues", "agency adopts", "agency's issuance"], ["agency"]],
+    "required_any": [["not operative", "not as policy automatically operative", "cannot confirm", "can't confirm", "can’t confirm", "does not make it operative", "does not make the"], ["agency deviation", "agency-issued deviation", "own deviation", "agency's deviation", "agency issues", "agency adopts", "agency's issuance"], ["agency"]],
     "forbidden": []
   },
   {

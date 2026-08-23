@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.11`
+Version: `1.0.0-rc.12`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `6f8911f0b6110e139408c0d6766513847b9ead14`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -187,3 +187,7 @@ package release gate.
 ## RC11 canonical-menu reliability correction — 2026-08-23
 
 `1.0.0-rc.11` vendors canonical skills commit `1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47`. During installed RC11 qualification, two of three repeated Codex CLI launches paraphrased or truncated the permanent six-choice menu. The canonical menu is now front-loaded before all purpose and supporting text, alternate summarized menus are explicitly invalid, and deterministic synchronization tests require the front-loaded and Stage 1 blocks to remain identical. Both-client routing, provider, resume, and repeated fresh-launch qualification must replay against exact RC11 bytes.
+
+## RC12 calculation-evidence correction — 2026-08-23
+
+`1.0.0-rc.12` vendors canonical skills commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Stable qualification found that a consequential numeric paragraph could use the generic marker `[calculation]` despite a stable calculation evidence item in the record. The builder now requires exactly one linked calculation evidence item and cites its stable ID. The DOCX validator verifies that ID on the same paragraph as the total, and deterministic negative coverage removes only the paragraph citation while leaving the evidence register intact.
