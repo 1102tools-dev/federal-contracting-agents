@@ -270,3 +270,34 @@ observation instead of silently changing the input.
 This closes the artifact-generation gate for Pre-Award on Claude Code. The
 equivalent live runs for the other four agents, and the same run on Codex,
 remain open.
+
+## RC5 stabilization closure — 2026-08-22
+
+The statement immediately above records the earlier `rc.4` checkpoint. The
+coordinated RC5 pass subsequently closed the four P1 regressions that motivated
+this release: shared MCP pacing, the bundled USAspending acquisition profile,
+Market Research approval ambiguity, and Acquisition Policy conflict handling.
+It also closed the GovCon source-call timestamp and OT dynamic-TOC corrections.
+
+The replayable evidence inventory is
+[`manual/rc5_closure_ledger.json`](manual/rc5_closure_ledger.json). It records
+the exact package and MCP versions, client binaries, selected prompts,
+approval-boundary replays, tool counts, representative artifact hashes,
+validator results, retrieval-timing proof, and limitations. Release-blocking
+explicit cases passed in Codex and Claude Code. A five-agent explicit-routing
+sample also passed through Claude Desktop's embedded Code binary. Opus critical
+replays ran with fast mode on; Sonnet supplied an independent standard-speed
+lane.
+
+One natural-language Market Research activation initially bypassed the launch
+menu and passed on an immediate clean-session replay. As required by the client
+matrix, this is recorded as host-session activation variability; it does not
+weaken the explicit native invocation contract. A concurrent LibreOffice
+collision was isolated to the test environment, and serialized spreadsheet
+recalculation passed.
+
+All five representative artifact families passed their applicable structure,
+evidence, formula, independent-recomputation, spreadsheet-engine, extraction,
+link, and visual gates. This supports the five public release candidates. It
+does not close every scenario in this manual matrix or authorize final
+`1.0.0`; the complete authenticated multi-turn matrix remains open.

@@ -2,24 +2,23 @@
   "mcpServers": {
     "ecfr": {
       "command": "uvx",
-      "args": ["--from", "ecfr-mcp==1.0.4", "ecfr-mcp"],
+      "args": ["--from", "ecfr-mcp==1.0.5", "ecfr-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "federal-register": {
       "command": "uvx",
-      "args": ["--from", "federal-register-mcp==1.0.3", "federal-register-mcp"],
+      "args": ["--from", "federal-register-mcp==1.0.4", "federal-register-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "regulations-gov": {
       "command": "uvx",
-      "args": ["--from", "regulationsgov-mcp==1.0.3", "regulationsgov-mcp"],
+      "args": ["--from", "regulationsgov-mcp==1.0.4", "regulationsgov-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4"}
     },
     "acquisition-gov": {
       "command": "uvx",
-      "args": ["--from", "acquisition-gov-mcp==1.0.0", "acquisition-gov-mcp"],
+      "args": ["--from", "acquisition-gov-mcp==1.0.1", "acquisition-gov-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     }
   }
 }
-

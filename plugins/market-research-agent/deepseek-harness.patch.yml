@@ -5,7 +5,7 @@
         serverName: sam-gov
         transport: stdio
         command: uvx
-        args: ['--from', 'sam-gov-mcp==1.0.6', 'sam-gov-mcp']
+        args: ['--from', 'sam-gov-mcp==1.0.8', 'sam-gov-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
           SAM_API_KEY: !!js "process.env.SAM_API_KEY ?? ''"
@@ -15,9 +15,10 @@
         serverName: usaspending
         transport: stdio
         command: uvx
-        args: ['--from', 'usaspending-gov-mcp==1.0.3', 'usaspending-mcp']
+        args: ['--from', 'usaspending-gov-mcp==1.0.4', 'usaspending-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
+          USASPENDING_TOOL_PROFILE: acquisition-agent
     - id: mcp-tavily-web
       name: '@deepseek-ai/dsh-mcp-client'
       config:

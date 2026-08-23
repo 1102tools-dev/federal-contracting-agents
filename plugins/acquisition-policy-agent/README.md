@@ -1,13 +1,13 @@
 # Acquisition Policy Agent
 
-Version `1.0.0-rc.2`
+Version `1.0.0-rc.3`
 
 The Acquisition Policy Agent combines one host-neutral workflow with four source-specific federal MCP servers:
 
-- eCFR `1.0.4` for the codified baseline and version comparisons;
-- Federal Register `1.0.3` for proposed and final rules, effective dates, notices, and rulemaking history;
-- Regulations.gov `1.0.3` for docket confirmation and public-comment evidence;
-- Acquisition.gov `1.0.0` for RFO model text, approved guidance, and agency deviations posted to the official index.
+- eCFR `1.0.5` for the codified baseline and version comparisons;
+- Federal Register `1.0.4` for proposed and final rules, effective dates, notices, and rulemaking history;
+- Regulations.gov `1.0.4` for docket confirmation and public-comment evidence;
+- Acquisition.gov `1.0.1` for RFO model text, approved guidance, and agency deviations posted to the official index.
 
 Use `$acquisition-policy-workflow` in Codex or `/acquisition-policy-agent:acquisition-policy-workflow` in Claude Code (in the Claude Desktop app or the CLI). These are the maintained public-preview paths; other compatible clients are self-supported. A vague request produces the complete ten-choice workflow menu; a clear request routes directly and asks only for missing framing.
 

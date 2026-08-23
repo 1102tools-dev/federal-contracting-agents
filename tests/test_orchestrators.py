@@ -97,7 +97,7 @@ class OrchestratorContractTests(unittest.TestCase):
             / "launch-menu-and-framing.md"
         ).read_text(encoding="utf-8")
         for required in (
-            "An unambiguous request may enter its matching mode directly",
+            "An unambiguous request enters its matching mode directly",
             "FAR Council model deviation text is not operative for an agency",
             "Never describe a proposed rule, withdrawn rule, or not-yet-effective final rule as current",
             "Public comments are stakeholder evidence, not authority or a representative survey",
@@ -121,15 +121,15 @@ class OrchestratorContractTests(unittest.TestCase):
             set(servers),
             {"ecfr", "federal-register", "regulations-gov", "acquisition-gov"},
         )
-        self.assertEqual(servers["ecfr"]["args"][1], "ecfr-mcp==1.0.4")
+        self.assertEqual(servers["ecfr"]["args"][1], "ecfr-mcp==1.0.5")
         self.assertEqual(
-            servers["federal-register"]["args"][1], "federal-register-mcp==1.0.3"
+            servers["federal-register"]["args"][1], "federal-register-mcp==1.0.4"
         )
         self.assertEqual(
-            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.3"
+            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.4"
         )
         self.assertEqual(
-            servers["acquisition-gov"]["args"][1], "acquisition-gov-mcp==1.0.0"
+            servers["acquisition-gov"]["args"][1], "acquisition-gov-mcp==1.0.1"
         )
         self.assertEqual(servers["regulations-gov"]["env"]["FEDERAL_API_MIN_INTERVAL_SECONDS"], "4")
         self.assertNotIn("REGULATIONS_GOV_API_KEY", str(manifest))

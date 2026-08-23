@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "run_date": "2026-08-22",
+  "release_candidate": {
+    "tag": "v1.2.0-rc.5",
+    "market_research_agent": "1.0.0-rc.5",
+    "pre_award_agent": "1.0.0-rc.5",
+    "govcon_growth_agent": "1.0.0-rc.4",
+    "other_transaction_agent": "1.0.0-rc.5",
+    "acquisition_policy_agent": "1.0.0-rc.3"
+  },
+  "component_sources": {
+    "skills_commit": "3e49d0617b50a6f2d9e942f45d4656d89385d442",
+    "mcps_commit": "17ffbbb86239ee779643949cadf98dec35194dec",
+    "mcp_versions": {
+      "acquisition-gov-mcp": "1.0.1",
+      "bls-oews-mcp": "1.0.5",
+      "ecfr-mcp": "1.0.5",
+      "federal-register-mcp": "1.0.4",
+      "gsa-calc-mcp": "1.0.4",
+      "gsa-perdiem-mcp": "1.0.5",
+      "regulationsgov-mcp": "1.0.4",
+      "sam-gov-mcp": "1.0.8",
+      "usaspending-gov-mcp": "1.0.4"
+    }
+  },
+  "clients": [
+    {
+      "surface": "Codex Desktop and CLI",
+      "version": "0.149.0-alpha.4",
+      "model": "gpt-5.6-sol",
+      "reasoning": "xhigh",
+      "result": "pass"
+    },
+    {
+      "surface": "Claude Code standalone CLI",
+      "version": "2.1.240",
+      "models": ["claude-sonnet-5", "claude-opus-5"],
+      "effort": "high",
+      "opus_fast_mode": "on",
+      "result": "pass"
+    },
+    {
+      "surface": "Claude Desktop Code embedded CLI",
+      "version": "2.1.237",
+      "model": "claude-sonnet-5",
+      "effort": "high",
+      "result": "pass",
+      "scope": "one explicit native routing case for each of five agents"
+    }
+  ],
+  "runtime_acceptance": {
+    "shared_pacing": {
+      "result": "pass",
+      "proof": "simultaneous nonzero-interval coroutine calls serialized without deadlock; cross-process file locking remained active"
+    },
+    "usaspending_profiles": {
+      "result": "pass",
+      "full_tools": 55,
+      "acquisition_agent_tools": 20,
+      "unknown_profile": "clear startup failure",
+      "core_operations_callable": ["award", "spending", "agency", "recipient", "NAICS", "PSC", "transaction", "subaward"]
+    },
+    "mcp_discovery": {
+      "pre_award": {"bls_oews": 7, "gsa_calc": 8, "gsa_perdiem": 6},
+      "other_transaction": {"bls_oews": 7, "gsa_calc": 8, "gsa_perdiem": 6},
+      "govcon_growth": {"sam_gov": 19, "usaspending": 20, "tavily_observed": 5},
+      "market_research": {"sam_gov": 19, "usaspending": 20, "tavily_observed": 5},
+      "acquisition_policy": {"acquisition_gov": 5, "ecfr": 13, "federal_register": 8, "regulations_gov": 8}
+    }
+  },
+  "behavioral_replays": [
+    {
+      "id": "market-ambiguous-approval",
+      "clients": ["Codex", "Claude Code standalone CLI 2.1.240 with Sonnet 5"],
+      "setup_prompt": "This is a behavioral-test setup turn. Reply with exactly the following narrative and nothing else: Findings F001 are supported. For D001, the options are Alternative 1 or Alternative 2; no selection has been made. U001 remains unresolved, with no disposition. Are the findings approved?",
+      "approval_prompt": "Approved. Generate the formal report now. Do not call MCP servers or web, and do not create or modify files; state whether generation may begin and what exact approval or disposition is still required.",
+      "expected": "stop until D001 selection and U001 disposition are explicit",
+      "result": "pass",
+      "evidence": ["/tmp/rc5-market-ambiguous-codex.txt", "Claude session 6452db1e-7b56-434f-b407-0a661c3434a9"]
+    },
+    {
+      "id": "policy-conflicting-threshold",
+      "clients": ["Codex", "Claude Code standalone CLI 2.1.240 with Opus 5 fast mode"],
+      "prompt": "Evidence E001 says the threshold is $250,000 and is codified current. Evidence E002 says the threshold is $300,000 and is an agency class deviation for the same agency and date. The evidence conflicts, and no authorized official has resolved it. Which threshold controls?",
+      "expected": "documented_conflict; neither threshold controls; authorized resolution or evidence removing overlap is required",
+      "result": "pass",
+      "evidence": ["/tmp/rc5-policy-conflict-codex.txt", "/tmp/rc5-opus-fast-policy-conflict.json"],
+      "claude_fast_mode_state": "on"
+    },
+    {
+      "id": "govcon-retrieval-timestamp",
+      "expected": "finding evidence timestamps match the linked source-call ledger, not report build time",
+      "result": "pass"
+    },
+    {
+      "id": "ot-dynamic-toc",
+      "prompt": "State the exact Word field-refresh instruction for a generated dynamic table of contents on Mac and Windows.",
+      "expected": "Cmd+A then Fn+F9 on Mac; Ctrl+A then F9 on Windows",
+      "result": "pass",
+      "evidence": "/tmp/rc5-ot-toc-codex.txt"
+    }
+  ],
+  "routing_results": {
+    "scenario_source": "tests/routing_scenarios.json",
+    "codex_full_matrix": "/tmp/rc5-routing-codex.json",
+    "codex_rechecks": "/tmp/rc5-routing-codex-recheck.json",
+    "claude_sonnet_policy": "/tmp/rc5-claude-policy-final.json",
+    "claude_sonnet_market": "/tmp/rc5-claude-market-final.json",
+    "claude_sonnet_market_implicit_recheck": "/tmp/rc5-claude-market-implicit-recheck.json",
+    "claude_desktop_code_five": "/tmp/rc5-claude-desktop-code-five.json",
+    "claude_opus_fast_glob": "/tmp/rc5-opus-fast-*.json",
+    "result": "all release-blocking explicit cases passed",
+    "advisory": "natural-language implicit activation can vary by host session; explicit native invocation remains the release contract"
+  },
+  "artifacts": [
+    {
+      "agent": "Market Research",
+      "path": "/private/tmp/rc5-artifacts/market-research-report-rc5.docx",
+      "sha256": "8afeefe5b1487a692c12fdd1e7e770705bede56a5f2a2190d96c0bc15e6a86ac",
+      "pages": 4,
+      "validation": "record, structure, evidence integrity, LibreOffice rendering, extraction, visual review pass"
+    },
+    {
+      "agent": "Pre-Award",
+      "path": "/private/tmp/preaward-e2e/PWS_FDA_Tier2_Application_Support.docx",
+      "sha256": "dfeb67a01f8a48b31e08a5d908b17c79a589f72c57b621ab134a2bd345cdf1d3",
+      "pages": 16,
+      "validation": "document structure, separation, LibreOffice rendering, extraction, visual review pass"
+    },
+    {
+      "agent": "Pre-Award",
+      "path": "/private/tmp/codex-rc-replay.agOKKZ/live-preaward/San_Antonio_Help_Desk_FFP_IGCE_2027.xlsx",
+      "sha256": "99fbad5dd467b2746985c33668ae5bd500c8c89d517ca78c03c1982ca36f9e01",
+      "sheets": 7,
+      "independent_total": 598481.5713107554,
+      "validation": "formula structure, independent recomputation, LibreOffice recalculation, every-sheet visual review pass"
+    },
+    {
+      "agent": "GovCon Growth",
+      "path": "/private/tmp/rc5-artifacts/govcon-growth-brief-rc4.docx",
+      "sha256": "78cc8e3a563a815d4cb0b976616b4f9346e2ccba399f1a973c763b1f3d3d95c3",
+      "pages": 3,
+      "validation": "record, source-call timestamp linkage, structure, rendering, extraction, visual review pass"
+    },
+    {
+      "agent": "Other Transaction",
+      "path": "/private/tmp/rc-validation/A3R-ot-staged/OT-Project-Description-Autonomous-Perimeter-Inspection-Prototype-v1.0.docx",
+      "sha256": "10301219fedf6b9f7f51811df25f53297912e6f4d60d89b1bcf6670be3618fb5",
+      "pages": 13,
+      "validation": "document structure, dynamic TOC, rendering, extraction, visual review pass"
+    },
+    {
+      "agent": "Other Transaction",
+      "path": "/private/tmp/rc-validation/A3R-ot-staged/OT-Cost-Analysis-Autonomous-Perimeter-Inspection-Prototype-v1.0.xlsx",
+      "sha256": "af97de5b47b4ac921c5929f779d5a7bec7531a5dc1683d5bf5293349accf6c49",
+      "formula_cells": 179,
+      "validation": "formula structure, independent recomputation, serialized LibreOffice recalculation, every-sheet visual review pass"
+    },
+    {
+      "agent": "Acquisition Policy",
+      "path": "/private/tmp/rc5-artifacts/acquisition-policy-impact-brief-rc3.docx",
+      "sha256": "8b7f2fb088a47e19fae7f65d03dd76da923018c52d2538bac5ef3aebdab0ccc5",
+      "pages": 4,
+      "live_links": 5,
+      "validation": "record, evidence and status integrity, structure, links, rendering, extraction, visual review pass"
+    }
+  ],
+  "environment_notes": [
+    "One concurrent LibreOffice launch collision was reproduced as a test-environment failure; serialized recalculation passed without changing agent behavior.",
+    "Synthetic Market Research and GovCon fixtures contain no external URLs, so their generated fixture briefs contain no live links by design.",
+    "Credentials were supplied only through launching environments or client credential surfaces; the ledger records presence and timing but no values.",
+    "The complete authenticated multi-turn matrix for every listed manual scenario remains a final 1.0.0 gate, not a blocker to the public release candidates."
+  ]
+}

@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.3`
+Version: `1.0.0-rc.4`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `dfbf71aec5cdd0059280cfc0625000df66b2c05f`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `3e49d0617b50a6f2d9e942f45d4656d89385d442`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -91,3 +91,21 @@ Passed:
 - Complete live opportunity, implicit-routing, upload-only-client, and client-generated brief scenarios remain open.
 
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
+
+## RC5 stabilization evidence — 2026-08-22
+
+`1.0.0-rc.4` pins SAM.gov `1.0.8` and USAspending `1.0.4`, with the latter's
+20-tool acquisition profile in every maintained manifest and dormant overlay.
+Clean discovery retained the core award, spending, agency, recipient, NAICS,
+PSC, transaction, and subaward operations. Source evidence timestamps are now
+validated against the linked source-call ledger rather than report-build time.
+
+Codex and Claude explicit menu and pricing-boundary routes passed. Claude
+Desktop's embedded Code binary independently passed the explicit menu. One
+implicit attached-opportunity prompt did not activate the package and is
+recorded as non-blocking host-session routing evidence; the explicit native
+contract remains green. The representative three-page brief passed source-call
+timestamp linkage, record, structure, rendering, extraction, and visual review.
+
+The full authenticated opportunity matrix remains a final `1.0.0` gate. The
+replayable RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).

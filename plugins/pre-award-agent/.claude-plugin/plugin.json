@@ -1,6 +1,6 @@
 {
   "name": "pre-award-agent",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "description": "Create a SOW or PWS and carry its approved scope into the correctly routed IGCE.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

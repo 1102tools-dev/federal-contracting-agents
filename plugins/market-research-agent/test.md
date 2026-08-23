@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.4`
+Version: `1.0.0-rc.5`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `dfbf71aec5cdd0059280cfc0625000df66b2c05f`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `3e49d0617b50a6f2d9e942f45d4656d89385d442`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -99,3 +99,23 @@ Passed:
 - Full implicit-routing, upload-only-client, commercial-evidence, and client-generated report scenarios remain open.
 
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
+
+## RC5 stabilization evidence — 2026-08-22
+
+`1.0.0-rc.5` vendors Market Research record schema `1.2`. Formal generation now
+requires timestamped approvals for findings, every stable `Dnnn` acquisition
+decision, and every `Unnn` unresolved-item disposition. Legacy `1.1` records
+remain readable but must migrate before a new formal artifact is generated.
+
+Codex and Claude Code both replayed the ambiguous generic `Approved` scenario
+and stopped for the missing `D001` selection and `U001` disposition. Claude
+Sonnet passed the explicit menu, natural-language menu replay, and decision
+boundary. Claude Opus 5 in fast mode independently passed the explicit menu and
+decision boundary. The published SAM.gov `1.0.8` and USAspending `1.0.4`
+acquisition profile exposed 19 and 20 tools, including the core award,
+spending, agency, recipient, NAICS, and PSC operations.
+
+The representative four-page report passed record, evidence, structure,
+LibreOffice, extraction, and visual validation. Full authenticated coverage of
+every market-research mode remains a final `1.0.0` gate. The machine-readable
+run inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).

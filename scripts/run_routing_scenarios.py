@@ -26,6 +26,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--client", choices=tuple(DEFAULT_MODELS), required=True)
     parser.add_argument("--case", action="append", default=[], help="Case ID glob")
     parser.add_argument("--model")
+    parser.add_argument(
+        "--claude-fast",
+        action="store_true",
+        help="Opt a Claude Opus noninteractive session into fast mode",
+    )
     parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
@@ -39,11 +44,17 @@ def prompt_for(client: str, scenario: dict[str, object]) -> str:
     if client == "codex":
         return f"${skill}\n\n{prompt}"
     if client == "claude":
-        return f"Explicitly invoke /{plugin}:{skill}. {prompt}"
+        return prompt
     return f"Explicitly use the {skill} skill. {prompt}"
 
 
-def run_case(client: str, model: str, scenario: dict[str, object]) -> tuple[int, str, str]:
+def run_case(
+    client: str,
+    model: str,
+    scenario: dict[str, object],
+    *,
+    claude_fast: bool = False,
+) -> tuple[int, str, str]:
     plugin = str(scenario["plugin"])
     prompt = prompt_for(client, scenario)
     with tempfile.TemporaryDirectory() as directory:
@@ -63,9 +74,14 @@ def run_case(client: str, model: str, scenario: dict[str, object]) -> tuple[int,
             command = [
                 "claude", "-p", "--no-session-persistence",
                 "--plugin-dir", str(REPO_ROOT / "plugins" / plugin),
-                "--tools", "", "--permission-mode", "plan",
+                "--tools", "Read", "Skill",
+                "--permission-mode", "bypassPermissions",
                 "--model", model, "--effort", "high", prompt,
             ]
+            if scenario["invocation"] == "explicit":
+                command[3:3] = ["--agent", f"{plugin}:{plugin}"]
+            if claude_fast:
+                command[3:3] = ["--settings", '{"fastMode":true}']
             result = subprocess.run(command, text=True, capture_output=True, timeout=180)
             return result.returncode, result.stdout, result.stderr
         command = [
@@ -96,6 +112,10 @@ def grade(scenario: dict[str, object], output: str) -> tuple[bool, list[str]]:
 def main() -> None:
     args = parse_args()
     model = args.model or DEFAULT_MODELS[args.client]
+    if args.claude_fast and args.client != "claude":
+        raise SystemExit("--claude-fast is valid only with --client claude")
+    if args.claude_fast and "opus" not in model.lower():
+        raise SystemExit("--claude-fast requires an Opus model")
     scenarios = json.loads(SCENARIOS_PATH.read_text(encoding="utf-8"))
     patterns = args.case or ["*"]
     selected = [
@@ -107,7 +127,12 @@ def main() -> None:
         raise SystemExit("No scenarios matched")
     results: list[dict[str, object]] = []
     for scenario in selected:
-        code, output, stderr = run_case(args.client, model, scenario)
+        code, output, stderr = run_case(
+            args.client,
+            model,
+            scenario,
+            claude_fast=args.claude_fast,
+        )
         passed, failures = grade(scenario, output) if code == 0 else (False, [f"client exit {code}"])
         results.append(
             {
@@ -127,7 +152,12 @@ def main() -> None:
         print(f"{status} {scenario['id']}")
         for failure in failures:
             print(f"  {failure}")
-    payload = {"client": args.client, "model": model, "results": results}
+    payload = {
+        "client": args.client,
+        "model": model,
+        "claude_fast": args.claude_fast,
+        "results": results,
+    }
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

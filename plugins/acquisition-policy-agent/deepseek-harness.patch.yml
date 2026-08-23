@@ -5,7 +5,7 @@
         serverName: ecfr
         transport: stdio
         command: uvx
-        args: ['--from', 'ecfr-mcp==1.0.4', 'ecfr-mcp']
+        args: ['--from', 'ecfr-mcp==1.0.5', 'ecfr-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
     - id: mcp-federal-register
@@ -14,7 +14,7 @@
         serverName: federal-register
         transport: stdio
         command: uvx
-        args: ['--from', 'federal-register-mcp==1.0.3', 'federal-register-mcp']
+        args: ['--from', 'federal-register-mcp==1.0.4', 'federal-register-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
     - id: mcp-regulations-gov
@@ -23,7 +23,7 @@
         serverName: regulations-gov
         transport: stdio
         command: uvx
-        args: ['--from', 'regulationsgov-mcp==1.0.3', 'regulationsgov-mcp']
+        args: ['--from', 'regulationsgov-mcp==1.0.4', 'regulationsgov-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '4'
           REGULATIONS_GOV_API_KEY: !!js "process.env.REGULATIONS_GOV_API_KEY ?? 'DEMO_KEY'"
@@ -33,6 +33,6 @@
         serverName: acquisition-gov
         transport: stdio
         command: uvx
-        args: ['--from', 'acquisition-gov-mcp==1.0.0', 'acquisition-gov-mcp']
+        args: ['--from', 'acquisition-gov-mcp==1.0.1', 'acquisition-gov-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'

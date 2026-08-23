@@ -27,7 +27,7 @@ def load_validator():
 
 def base_record(mode: str, providers: list[str]) -> dict[str, object]:
     return {
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "skill": "market-research-workflow",
         "workflow_mode": "quick-chat",
         "question": "Synthetic offline policy test",
@@ -52,7 +52,14 @@ def base_record(mode: str, providers: list[str]) -> dict[str, object]:
         "conflicts": [],
         "unresolved_questions": [],
         "outputs": [],
-        "validation": {},
+        "validation": {
+            "findings_approved": False,
+            "findings_approved_at": "",
+            "decisions_approved": False,
+            "decisions_approved_at": "",
+            "unresolved_items_disposition_approved": False,
+            "unresolved_items_disposition_approved_at": "",
+        },
     }
 
 
@@ -118,6 +125,7 @@ class TavilyPolicyTests(unittest.TestCase):
             record = base_record("tavily_only", ["tavily"])
             record["web_research"]["providers_used"] = ["tavily"]
             record["queries"] = [{
+                "id": "Q001",
                 "provider": "tavily",
                 "operation": operation,
                 "parameters": {"query": "approved public term"},
@@ -131,6 +139,7 @@ class TavilyPolicyTests(unittest.TestCase):
         prohibited = base_record("tavily_only", ["tavily"])
         prohibited["web_research"]["providers_used"] = ["tavily"]
         prohibited["queries"] = [{
+            "id": "Q001",
             "provider": "tavily",
             "operation": "tavily_research",
             "parameters": {"query": "approved public term"},

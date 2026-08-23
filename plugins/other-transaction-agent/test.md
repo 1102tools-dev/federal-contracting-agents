@@ -2,18 +2,18 @@
 
 Date: August 21, 2026
 
-Package: `other-transaction-agent` `1.0.0-rc.4`
+Package: `other-transaction-agent` `1.0.0-rc.5`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `8b46d1b4b53965efc62bac18aeffdbdc32e7ecf6`
-- Canonical MCP commit: `8c0fb8a7aa09abc4c59f03570b183e31ff83cef6`
-- `bls-oews-mcp==1.0.4`, explicit 3-second safeguard
-- `gsa-calc-mcp==1.0.3`, explicit 3-second safeguard
-- `gsa-perdiem-mcp==1.0.4`, explicit 4-second safeguard
+- Canonical skills commit: `3e49d0617b50a6f2d9e942f45d4656d89385d442`
+- Canonical MCP commit: `602962e6f561ef557d3e9165716206684c9bdaa0`
+- `bls-oews-mcp==1.0.5`, explicit 3-second safeguard
+- `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
+- `gsa-perdiem-mcp==1.0.5`, explicit 4-second safeguard
 
 Every vendored runtime file matched its SHA-256 lock. Development-only `test.md` and `testing.md` files were not copied into installed skill folders.
 
@@ -137,3 +137,23 @@ No live federal API was called during package testing. This avoided shared-key r
 ## Release decision
 
 Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.4`.
+
+## RC5 stabilization evidence — 2026-08-22
+
+The current public preview is `1.0.0-rc.5`, pinned to BLS OEWS `1.0.5`, GSA
+CALC+ `1.0.4`, and GSA Per Diem `1.0.5`. Codex and Claude Code passed the
+authority, contribution, successful-completion/follow-on, approved milestone
+handoff, payment-structure, and missing-capability boundaries. Claude Desktop's
+embedded Code binary independently passed the explicit authority boundary, and
+Opus 5 fast mode independently passed the contribution and follow-on cases.
+
+The generated Word instructions now match the tested dynamic-TOC refresh:
+`Cmd+A`, then `Fn+F9` on Mac; `Ctrl+A`, then `F9` on Windows. The representative
+13-page project description and 179-formula cost workbook passed document and
+workbook structure, independent recomputation, serialized LibreOffice
+recalculation, extraction, and full visual review. The first simultaneous
+LibreOffice launch collided; the isolated serialized rerun passed and no agent
+behavior changed.
+
+The full authenticated OT matrix remains a final `1.0.0` gate. The replayable
+RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).

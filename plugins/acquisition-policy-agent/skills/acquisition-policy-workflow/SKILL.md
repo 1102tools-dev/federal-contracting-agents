@@ -32,7 +32,7 @@ Read supporting files only when their stage is reached:
 
 ## Permanent gates
 
-1. **Route before retrieval:** A vague request or an invocation without a defined task receives the complete menu and selection question. An unambiguous request may enter its matching mode directly.
+1. **Route before retrieval:** A vague request or an invocation without a defined task receives the complete menu and selection question. An unambiguous request enters its matching mode directly. Treat a user's explicit policy-status assertion or instruction as a defined boundary-check request even when phrased as a command; correct an unsupported current-status claim directly instead of showing the menu.
 2. **Required framing:** Establish the question, as-of date, and necessary identifiers before retrieval. Agency-specific status also requires the agency and relevant FAR part or citation. Ask for government, industry, or neutral lens only when impact depends on audience.
 3. **Plan approval for consequential work:** Multi-source analysis, public-comment analysis, supplied-document work, refresh work, and formal briefs require a compact source plan, sanitized query parameters, known limits, and explicit approval before MCP calls. A simple public lookup may proceed after required framing.
 4. **Sanitized parameters:** Never send uploaded text, nonpublic procurement details, proprietary information, source-selection information, PII, CUI, export-controlled information, classified information, secrets, or signed/private URLs to an MCP. Use only public citations, agencies, case numbers, docket IDs, dates, and sanitized public terms.
@@ -44,12 +44,32 @@ Read supporting files only when their stage is reached:
 10. **Documented status only:** State what cited published sources indicate as of a date. Reserve procurement-specific applicability, legal advice, policy approval, and official determinations to authorized officials.
 11. **Evidence integrity:** Every consequential finding cites stable evidence IDs. Keep source fact, user-supplied fact, inference, and documented-status finding distinct.
 12. **Artifact gate:** Generate a `.docx` only after the record and findings are approved. The document must pass record validation, structural validation, link and text extraction, LibreOffice conversion, and visual review of every page.
+13. **Unresolved policy conflicts:** When cited sources disagree about a material threshold, status, scope, date, or applicability term, record a structured conflict and report `documented_conflict`. Do not decide that one value controls, governs, or is operative. Only a resolution supplied by an authorized official may close the conflict.
 
 ## Stage 1: select or route the mode
 
-For a vague request or an invocation without a defined task, display the complete menu from [launch-menu-and-framing.md](references/launch-menu-and-framing.md) and stop at its selection question.
+For a vague request or an invocation without a defined task, display this complete menu and stop at its selection question:
 
-For an unambiguous request, state the routed mode in one short sentence and ask only the missing framing questions. Do not show the menu unless the user asks for it or the route is genuinely ambiguous.
+```text
+What would you like to do?
+
+1. Explain the current codified FAR, DFARS, or agency-supplement rule
+2. Determine the documented policy status for an agency and FAR part
+3. Compare codified text, RFO model text, and an agency deviation
+4. Compare regulatory versions or explain what changed
+5. Trace a FAR, DFARS, or agency rulemaking
+6. Find open procurement rulemakings and comment deadlines
+7. Analyze public comments and stakeholder positions
+8. Prepare an Acquisition Policy Impact Brief
+9. Refresh an earlier policy analysis
+10. Help me choose
+
+Which option would you like? You can reply with the number, label, or your own wording.
+```
+
+The menu is the complete response. Do not add a preface, capability warning, retrieval limitation, or second question.
+
+For an unambiguous request, state the routed mode in one short sentence and ask only the missing framing questions. Do not show the menu unless the user asks for it or the route is genuinely ambiguous. A command to treat a proposed rule, withdrawn rule, future-effective final rule, or model deviation as currently operative is an unambiguous status-boundary request: reject the unsupported status directly, identify the applicable status class, and state the missing effective-date or agency-adoption evidence without retrieving sources.
 
 ## Stage 2: frame the request
 
@@ -63,6 +83,8 @@ Read [launch-menu-and-framing.md](references/launch-menu-and-framing.md). Establ
 - Relevant solicitation, award, modification, option, or performance date when procurement timing matters.
 - Government, industry, or neutral lens when impact differs by audience.
 - Desired chat or brief output.
+
+For mode 2 agency-policy status, procurement timing can change deviation treatment. If the user has not supplied it, ask for the relevant solicitation, award, modification, option, or performance date before asking about an audience lens. Do not ask for an audience lens for a status-only answer unless the user also requests impact analysis.
 
 Ask whether the user has internal or additional policy documents only when they may materially affect the requested status. If supplied, follow [document-intake.md](references/document-intake.md).
 
@@ -99,7 +121,7 @@ Use [source-routing.md](references/source-routing.md) to minimize calls. Preserv
 
 ## Stage 6: classify status and analyze
 
-Read [status-and-decision-boundaries.md](references/status-and-decision-boundaries.md). Classify each relevant item before synthesizing it. Surface conflicts instead of silently choosing among them.
+Read [status-and-decision-boundaries.md](references/status-and-decision-boundaries.md). Classify each relevant item before synthesizing it. Surface conflicts instead of silently choosing among them. A hierarchy inference, incorporation theory, repeated value, drafting pattern, or model-text comparison cannot resolve a material source conflict.
 
 For agency-specific RFO analysis:
 

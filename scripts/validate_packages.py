@@ -22,13 +22,13 @@ PLUGIN_NAMES = (
     "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
-    "pre-award-agent": "1.0.0-rc.4",
-    "other-transaction-agent": "1.0.0-rc.4",
-    "govcon-growth-agent": "1.0.0-rc.3",
-    "market-research-agent": "1.0.0-rc.4",
-    "acquisition-policy-agent": "1.0.0-rc.2",
+    "pre-award-agent": "1.0.0-rc.5",
+    "other-transaction-agent": "1.0.0-rc.5",
+    "govcon-growth-agent": "1.0.0-rc.4",
+    "market-research-agent": "1.0.0-rc.5",
+    "acquisition-policy-agent": "1.0.0-rc.3",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.4"
+MARKETPLACE_VERSION = "1.2.0-rc.5"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -59,15 +59,15 @@ EXPECTED_MCPS = {
     },
 }
 EXPECTED_MCP_REQUIREMENTS = {
-    "acquisition-gov": "acquisition-gov-mcp==1.0.0",
-    "bls-oews": "bls-oews-mcp==1.0.4",
-    "ecfr": "ecfr-mcp==1.0.4",
-    "federal-register": "federal-register-mcp==1.0.3",
-    "gsa-calc": "gsa-calc-mcp==1.0.3",
-    "gsa-perdiem": "gsa-perdiem-mcp==1.0.4",
-    "sam-gov": "sam-gov-mcp==1.0.7",
-    "regulations-gov": "regulationsgov-mcp==1.0.3",
-    "usaspending": "usaspending-gov-mcp==1.0.3",
+    "acquisition-gov": "acquisition-gov-mcp==1.0.1",
+    "bls-oews": "bls-oews-mcp==1.0.5",
+    "ecfr": "ecfr-mcp==1.0.5",
+    "federal-register": "federal-register-mcp==1.0.4",
+    "gsa-calc": "gsa-calc-mcp==1.0.4",
+    "gsa-perdiem": "gsa-perdiem-mcp==1.0.5",
+    "sam-gov": "sam-gov-mcp==1.0.8",
+    "regulations-gov": "regulationsgov-mcp==1.0.4",
+    "usaspending": "usaspending-gov-mcp==1.0.4",
 }
 EXPECTED_PACING = {
     "acquisition-gov": "3",
@@ -212,6 +212,14 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
                 f"{plugin_root.name}: {name} must set the explicit "
                 f"{EXPECTED_PACING[name]}-second pacing safeguard"
             )
+        if name == "usaspending" and (
+            not isinstance(env, dict)
+            or env.get("USASPENDING_TOOL_PROFILE") != "acquisition-agent"
+        ):
+            errors.append(
+                f"{plugin_root.name}: usaspending must select the "
+                "acquisition-agent tool profile"
+            )
 
 
 def validate_skill(skill_root: Path, errors: list[str]) -> None:
@@ -286,6 +294,36 @@ def validate_plugin(plugin_name: str, schemas: dict[str, dict[str, object]], err
         errors.append(f"{plugin_name}: missing Copilot custom agent")
     if not claude_agent.is_file():
         errors.append(f"{plugin_name}: missing Claude Code native agent")
+    else:
+        try:
+            claude_frontmatter = parse_frontmatter(claude_agent)
+        except (OSError, ValueError, yaml.YAMLError) as exc:
+            errors.append(str(exc))
+        else:
+            expected_native_skills = {
+                f"{plugin_name}:{skill_name}"
+                for skill_name in EXPECTED_SKILLS[plugin_name]
+            }
+            actual_native_skills = claude_frontmatter.get("skills")
+            if (
+                not isinstance(actual_native_skills, list)
+                or set(actual_native_skills) != expected_native_skills
+            ):
+                errors.append(
+                    f"{plugin_name}: Claude native agent must preload scoped skills "
+                    f"{sorted(expected_native_skills)}"
+                )
+            orchestrator = f"{plugin_name}:{plugin_name.removesuffix('-agent')}-workflow"
+            if plugin_name == "other-transaction-agent":
+                orchestrator = "other-transaction-agent:other-transaction-workflow"
+            elif plugin_name == "acquisition-policy-agent":
+                orchestrator = "acquisition-policy-agent:acquisition-policy-workflow"
+            expected_initial_prompt = f"/{orchestrator}"
+            if claude_frontmatter.get("initialPrompt") != expected_initial_prompt:
+                errors.append(
+                    f"{plugin_name}: Claude native agent initialPrompt must be "
+                    f"{expected_initial_prompt!r}"
+                )
 
 
 def validate_release_versions(errors: list[str]) -> None:

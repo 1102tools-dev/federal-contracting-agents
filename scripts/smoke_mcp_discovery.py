@@ -26,7 +26,18 @@ EXPECTED_TOOLS = {
     "gsa-perdiem": {"lookup_city_perdiem", "get_mie_breakdown"},
     "sam-gov": {"search_opportunities", "search_entities", "search_contract_awards"},
     "regulations-gov": {"search_documents", "search_comments", "search_dockets"},
-    "usaspending": {"search_awards", "spending_over_time", "search_recipients"},
+    "usaspending": {
+        "search_awards",
+        "spending_over_time",
+        "spending_by_category",
+        "get_agency_overview",
+        "get_agency_awards",
+        "search_recipients",
+        "get_recipient_profile",
+        "autocomplete_naics",
+        "autocomplete_psc",
+        "search_subawards",
+    },
     "tavily-web": {"tavily_search", "tavily_extract"},
 }
 TAVILY_ENDPOINT = "https://mcp.tavily.com/mcp/"
@@ -70,6 +81,14 @@ async def discover(name: str, config: dict[str, object]) -> list[str]:
     missing = EXPECTED_TOOLS[name] - set(tools)
     if missing:
         raise RuntimeError(f"{name} is missing expected tools: {sorted(missing)}")
+    if name == "usaspending":
+        profile = config.get("env", {}).get("USASPENDING_TOOL_PROFILE")
+        if profile != "acquisition-agent":
+            raise RuntimeError("Packaged USASpending must select acquisition-agent")
+        if len(tools) != 20:
+            raise RuntimeError(
+                f"Packaged USASpending profile must expose 20 tools, got {len(tools)}"
+            )
     return tools
 
 

@@ -1,14 +1,17 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.0-rc.2`
+Version: `1.0.0-rc.3`
 
 ## Passed before packaging
 
+- The bundled `acquisition-policy-workflow` runtime is synchronized from
+  `federal-contracting-skills` commit
+  `3e49d0617b50a6f2d9e942f45d4656d89385d442`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.
 - Acquisition.gov MCP offline parsing, PDF, cursor, SSRF, redirect, size, content-type, 429, pacing, strict-schema, and build tests.
-- Local stdio startup and MCP discovery reported server `acquisition-gov` version `1.0.0` with exactly the five expected tools.
+- Local stdio startup and MCP discovery reported server `acquisition-gov` version `1.0.1` with exactly the five expected tools.
 - Agent-level local-wheel startup and discovery loaded the exact four-server inventory without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 
 ## Claude Code acceptance — August 22, 2026
@@ -57,7 +60,7 @@ initialization, so it is deliberately not done.
 
 Installed and verified at `1.0.0-rc.2`.
 
-- Explicit invocation returned the exact packaged ten-item launch menu verbatim, in order, with no retrieval or MCP call. This package is unchanged in this release and its version is deliberately not bumped.
+- Explicit invocation returned the exact packaged ten-item launch menu verbatim, in order, with no retrieval or MCP call.
 - All four pinned servers connected and discovered their tools: Acquisition.gov 5, eCFR 13, Federal Register 8, Regulations.gov 8.
 
 ## Upstream live gate
@@ -79,3 +82,24 @@ On 2026-08-22 the repository marketplace installed `acquisition-policy-agent==1.
 - Record the complete client and artifact matrix below before removing `rc`.
 
 The package remains a release candidate until every open gate passes.
+
+## RC5 stabilization evidence — 2026-08-22
+
+The current installable preview is `1.0.0-rc.3`, pinned to Acquisition.gov
+`1.0.1`, eCFR `1.0.5`, Federal Register `1.0.4`, and Regulations.gov `1.0.4`.
+Clean discovery exposed 5, 13, 8, and 8 tools respectively.
+
+Policy record schema `1.1` structures every conflict with evidence IDs, status,
+resolution source, and timestamps. Codex and Claude Code replayed the
+conflicting-threshold scenario and both returned `documented_conflict`; neither
+source was described as controlling, governing, applicable, or operative.
+Claude Sonnet passed the exact ten-item menu, direct agency-status route, model
+text boundary, and pending-rule boundary. Claude Opus 5 fast mode independently
+passed the menu and both policy-state boundaries, and its fresh conflict run
+recorded fast mode on. Claude Desktop's embedded Code binary independently
+passed the exact ten-item menu.
+
+The representative four-page impact brief passed record, evidence/status,
+structure, five-link, LibreOffice, extraction, and visual validation. The full
+live rulemaking/comment and procurement-specific status matrix remains a final
+`1.0.0` gate. The replayable RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).
