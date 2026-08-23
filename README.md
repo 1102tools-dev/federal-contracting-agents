@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research and Other Transaction are at `1.0.0-rc.7`; Pre-Award is at `1.0.0-rc.6`; GovCon Growth is at `1.0.0-rc.5`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.8`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research is at `1.0.0-rc.8`; Pre-Award and GovCon Growth are at `1.0.0-rc.6`; Other Transaction is at `1.0.0-rc.7`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.9`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -9,9 +9,9 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 
 | Agent | Audience and workflow | Current status |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.7` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.8` |
 | **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.6` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.5` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.6` |
 | **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.7` |
 | **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.4` |
 
@@ -59,7 +59,7 @@ eCFR supplies the codified baseline, not the complete agency-specific RFO answer
 
 ### Optional Tavily web research
 
-The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a federal source. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Tavily with native fallback, native search only, Tavily only, or no public web. No choice is inferred from silence.
+The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a federal source. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Native web only (Recommended), Native web with Tavily fallback, Tavily only, or No public web. No choice is inferred from silence. Native-only failure stops for a new selection; the agent never requests payment, creates an account, or switches providers without approval.
 
 Tavily receives only approved sanitized search terms and approved public HTTP(S) URLs. Uploaded document text, local files, private or signed URLs, proprietary or procurement-sensitive information, source-selection information, PII, CUI, export-controlled data, and classified information are prohibited. The skills use only `tavily_search` and `tavily_extract`; Crawl, Map, and Research are prohibited even though the current keyless server advertises them. Factual citations point to the underlying webpage, not Tavily.
 

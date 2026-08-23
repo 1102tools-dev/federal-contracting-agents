@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.5`
+Version: `1.0.0-rc.6`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `b59cc0ff0e2d391b57bf211629557c40ca8b985f`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `1fece54e03ac7465b82314150d2d9ffffd895452`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -136,3 +136,14 @@ artifact passed, while its separately controlled resume checkpoint remains an
 advisory evidence gap. No GovCon Growth P0 or P1 remains; the broader
 authenticated opportunity matrix still gates final `1.0.0`. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
+
+## RC6 native-first provider correction — 2026-08-23
+
+`1.0.0-rc.6` vendors canonical skill commit
+`1fece54e03ac7465b82314150d2d9ffffd895452`. The provider menu is now Native
+web only (Recommended), Native web with Tavily fallback, Tavily only, and No
+public web. Deterministic validation enforces native-first combined mode,
+native-to-Tavily fallback direction, explicit provider order, and read-only
+migration of retired Tavily-first records. Tavily remains bundled. Installed
+Codex and Claude behavioral qualification is recorded separately after the
+package release gate.

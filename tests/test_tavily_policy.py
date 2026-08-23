@@ -84,6 +84,8 @@ class TavilyPolicyTests(unittest.TestCase):
         self.assertEqual(policies[0], policies[1])
         text = policies[0].decode()
         for required in (
+            "1. **Native web only (Recommended):**",
+            "2. **Native web with Tavily fallback:**",
             "connection failure or timeout",
             "401 or 403",
             "429 response",
@@ -92,19 +94,34 @@ class TavilyPolicyTests(unittest.TestCase):
             "missing required operation",
             "incompatible operation schema",
             "Never invoke Tavily Crawl, Map, or Research",
+            "Never request payment, create an account, or switch providers for the user",
+            "Zero results, thin or inconclusive results",
+            "not local or private browsing",
         ):
             self.assertIn(required, text)
+        self.assertNotIn("Tavily with native fallback (Recommended)", text)
 
     def test_each_failure_class_can_be_recorded_only_in_combined_mode(self):
-        reasons = ("timeout", "401", "403", "429", "503", "malformed", "missing tool", "schema drift")
+        reasons = (
+            "capability_absent",
+            "connection_failure",
+            "timeout",
+            "authentication_failure",
+            "rate_limited",
+            "server_error",
+            "malformed_response",
+            "missing_required_operation",
+            "incompatible_operation_schema",
+            "runtime_error",
+        )
         for reason in reasons:
             with self.subTest(reason=reason):
-                record = base_record("tavily_with_native_fallback", ["tavily", "native_web"])
-                record["web_research"]["providers_used"] = ["tavily", "native_web"]
+                record = base_record("native_with_tavily_fallback", ["native_web", "tavily"])
+                record["web_research"]["providers_used"] = ["native_web", "tavily"]
                 record["web_research"]["fallback_events"] = [{
                     "timestamp": "2026-08-21T20:01:00Z",
-                    "failed_provider": "tavily",
-                    "replacement_provider": "native_web",
+                    "failed_provider": "native_web",
+                    "replacement_provider": "tavily",
                     "reason": reason,
                 }]
                 result = self.validator.validate_record(record)
@@ -119,6 +136,34 @@ class TavilyPolicyTests(unittest.TestCase):
         }]
         result = self.validator.validate_record(disallowed)
         self.assertEqual(result["status"], "fail")
+
+    def test_nonfailure_conditions_cannot_trigger_combined_fallback(self):
+        for reason in ("zero_results", "thin_results", "user_declined_permission", "content_refusal"):
+            with self.subTest(reason=reason):
+                record = base_record("native_with_tavily_fallback", ["native_web", "tavily"])
+                record["web_research"]["providers_used"] = ["native_web", "tavily"]
+                record["web_research"]["fallback_events"] = [{
+                    "timestamp": "2026-08-21T20:01:00Z",
+                    "failed_provider": "native_web",
+                    "replacement_provider": "tavily",
+                    "reason": reason,
+                }]
+                result = self.validator.validate_record(record)
+                self.assertEqual(result["status"], "fail")
+                self.assertTrue(any("approved native failure class" in failure for failure in result["failures"]))
+
+    def test_native_only_never_accepts_a_fallback_event(self):
+        record = base_record("native_only", ["native_web"])
+        record["web_research"]["providers_used"] = ["native_web"]
+        record["web_research"]["fallback_events"] = [{
+            "timestamp": "2026-08-21T20:01:00Z",
+            "failed_provider": "native_web",
+            "replacement_provider": "tavily",
+            "reason": "native capability unavailable",
+        }]
+        result = self.validator.validate_record(record)
+        self.assertEqual(result["status"], "fail")
+        self.assertTrue(any("allowed only" in failure for failure in result["failures"]))
 
     def test_only_search_and_extract_are_valid_tavily_operations(self):
         for operation in ("tavily_search", "tavily_extract"):

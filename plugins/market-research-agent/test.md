@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.7`
+Version: `1.0.0-rc.8`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `b59cc0ff0e2d391b57bf211629557c40ca8b985f`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `1fece54e03ac7465b82314150d2d9ffffd895452`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -164,3 +164,14 @@ the menu-first gate. The package wrapper and current Claude manifest repeat the
 same launch contract, and deterministic package tests reject drift. Both
 maintained Claude models and the complete cross-client routing suite must pass
 against installed `rc.7` bytes before stable qualification can close.
+
+## RC8 native-first provider correction — 2026-08-23
+
+`1.0.0-rc.8` vendors canonical skill commit
+`1fece54e03ac7465b82314150d2d9ffffd895452`. The provider menu is now Native
+web only (Recommended), Native web with Tavily fallback, Tavily only, and No
+public web. Deterministic validation enforces native-first combined mode,
+native-to-Tavily fallback direction, explicit provider order, and read-only
+migration of retired Tavily-first records. Tavily remains bundled. Installed
+Codex and Claude behavioral qualification is recorded separately after the
+package release gate.
