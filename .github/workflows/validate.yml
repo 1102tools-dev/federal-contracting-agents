@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Check out agent packages
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Check out locked skills source
         uses: actions/checkout@v6
