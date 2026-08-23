@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "round": "rc5",
+  "credential_variables": [
+    {
+      "name": "SAM_API_KEY",
+      "source": "sam-gov",
+      "missing_behavior": "reduced_scope",
+      "invalid_behavior": "one_bounded_auth_failure",
+      "valid_behavior": "one_minimal_authenticated_call"
+    },
+    {
+      "name": "BLS_API_KEY",
+      "source": "bls-oews",
+      "missing_behavior": "reduced_scope",
+      "invalid_behavior": "one_bounded_auth_failure",
+      "valid_behavior": "one_minimal_authenticated_call"
+    },
+    {
+      "name": "REGULATIONS_GOV_API_KEY",
+      "source": "regulations-gov",
+      "missing_behavior": "reduced_scope",
+      "invalid_behavior": "one_bounded_auth_failure",
+      "valid_behavior": "one_minimal_authenticated_call"
+    }
+  ],
+  "pacing": {
+    "default_min_interval_seconds": 3.0,
+    "interval_overrides_seconds": {
+      "gsa-perdiem": 4.0,
+      "regulations-gov": 4.0
+    },
+    "retry_after_is_lower_bound": true,
+    "live_calls_are_serialized": true
+  },
+  "mcp_canaries": [
+    {
+      "server": "sam-gov",
+      "distribution": "sam-gov-mcp",
+      "pinned_version": "1.0.8",
+      "operation": "list_opportunities_minimal"
+    },
+    {
+      "server": "usaspending",
+      "distribution": "usaspending-gov-mcp",
+      "pinned_version": "1.0.4",
+      "operation": "search_awards_minimal"
+    },
+    {
+      "server": "gsa-calc",
+      "distribution": "gsa-calc-mcp",
+      "pinned_version": "1.0.4",
+      "operation": "search_contracts_minimal"
+    },
+    {
+      "server": "bls-oews",
+      "distribution": "bls-oews-mcp",
+      "pinned_version": "1.0.5",
+      "operation": "list_common_soc_codes_minimal"
+    },
+    {
+      "server": "gsa-perdiem",
+      "distribution": "gsa-perdiem-mcp",
+      "pinned_version": "1.0.5",
+      "operation": "lookup_per_diem_minimal"
+    },
+    {
+      "server": "ecfr",
+      "distribution": "ecfr-mcp",
+      "pinned_version": "1.0.5",
+      "operation": "search_regulations_minimal"
+    },
+    {
+      "server": "federal-register",
+      "distribution": "federal-register-mcp",
+      "pinned_version": "1.0.4",
+      "operation": "search_documents_minimal"
+    },
+    {
+      "server": "regulations-gov",
+      "distribution": "regulationsgov-mcp",
+      "pinned_version": "1.0.4",
+      "operation": "search_dockets_minimal"
+    },
+    {
+      "server": "acquisition-gov",
+      "distribution": "acquisition-gov-mcp",
+      "pinned_version": "1.0.1",
+      "operation": "fetch_content_minimal"
+    }
+  ]
+}
