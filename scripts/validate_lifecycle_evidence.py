@@ -107,16 +107,30 @@ def stale_claim_errors(root: Path) -> list[str]:
     return errors
 
 
-def semantic_errors(ledger: dict[str, Any]) -> list[str]:
+def semantic_errors(ledger: dict[str, Any], root: Path = DEFAULT_ROOT) -> list[str]:
     errors: list[str] = []
     package_names = {item.get("name") for item in ledger.get("packages", [])}
     if package_names != set(PLUGIN_NAMES):
         errors.append(f"ledger packages must be exactly {sorted(PLUGIN_NAMES)}")
+    for item in ledger.get("packages", []):
+        name = item.get("name")
+        if name not in PLUGIN_NAMES:
+            continue
+        manifest = load_json(root / "plugins" / name / "plugin.json")
+        if item.get("target_version") != manifest.get("version"):
+            errors.append(
+                f"ledger target for {name} must match manifest version {manifest.get('version')!r}"
+            )
     lane_ids = {item.get("id") for item in ledger.get("lanes", [])}
     if lane_ids != LANE_IDS:
         errors.append(f"ledger lanes must be exactly {sorted(LANE_IDS)}")
     credential_names = {item.get("name") for item in ledger.get("credentials", [])}
-    expected_credentials = {"SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY"}
+    expected_credentials = {
+        "SAM_API_KEY",
+        "BLS_API_KEY",
+        "REGULATIONS_GOV_API_KEY",
+        "PERDIEM_API_KEY",
+    }
     if credential_names != expected_credentials:
         errors.append(f"ledger credentials must be exactly {sorted(expected_credentials)}")
     canary_servers = {item.get("server") for item in ledger.get("mcp_canaries", [])}
@@ -137,7 +151,7 @@ def validate(root: Path, ledger_path: Path, schema_path: Path) -> list[str]:
     except ValueError as exc:
         return [str(exc)]
     errors = [f"{ledger_path}: {message}" for message in schema_errors(ledger, schema)]
-    errors.extend(semantic_errors(ledger))
+    errors.extend(semantic_errors(ledger, root))
     errors.extend(stale_claim_errors(root))
     return errors
 

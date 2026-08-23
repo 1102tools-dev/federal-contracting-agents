@@ -2,7 +2,7 @@
   "mcpServers": {
     "sam-gov": {
       "command": "uvx",
-      "args": ["--from", "sam-gov-mcp==1.0.8", "sam-gov-mcp"],
+      "args": ["--from", "sam-gov-mcp==1.0.9", "sam-gov-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "usaspending": {

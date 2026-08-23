@@ -4,11 +4,11 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "3e49d0617b50a6f2d9e942f45d4656d89385d442"
+      "commit": "655800a929bfdcfef348ce19ecd941633a597b02"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "17ffbbb86239ee779643949cadf98dec35194dec",
+      "commit": "1d286d2015b8cca628f35d7b19c995b9cb5fb906",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
@@ -16,7 +16,7 @@
         },
         "bls-oews": {
           "distribution": "bls-oews-mcp",
-          "version": "1.0.5"
+          "version": "1.0.6"
         },
         "ecfr": {
           "distribution": "ecfr-mcp",
@@ -32,15 +32,15 @@
         },
         "gsa-perdiem": {
           "distribution": "gsa-perdiem-mcp",
-          "version": "1.0.5"
+          "version": "1.0.6"
         },
         "sam-gov": {
           "distribution": "sam-gov-mcp",
-          "version": "1.0.8"
+          "version": "1.0.9"
         },
         "regulations-gov": {
           "distribution": "regulationsgov-mcp",
-          "version": "1.0.4"
+          "version": "1.0.5"
         },
         "usaspending": {
           "distribution": "usaspending-gov-mcp",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.5",
+      "version": "1.0.0-rc.6",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.5",
+      "version": "1.0.0-rc.6",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -166,7 +166,7 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.4",
+      "version": "1.0.0-rc.5",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
@@ -192,23 +192,23 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.5",
+      "version": "1.0.0-rc.6",
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "31b55e53404d12dfcfed0bc478ab8edf6dc3eecf339a9ea6cce59d5971788dce",
+            "SKILL.md": "7e5ed2dff8b16e20234179d0384385b64a85245e53025010d720bad649630f0b",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
-            "references/federal-data-operations.md": "c2a208cd34c3395708ac7cf4f817fa060c128779f463796114fcddd7f78fd939",
+            "references/federal-data-operations.md": "cf8f362fb1fed702d2660a00eb5dd78e33d27fe0a774f4e62409722e6bc70bfd",
             "references/launch-menu-and-question-blocks.md": "88a2ad4765b181787498f85b19c7e88cdc142683df7f2d7af56808b89da61123",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
             "references/runtime-adaptation.md": "da3c0c4119a0afe239e7e46852378b2894032c50a96aca4bca0063932511205c",
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
             "references/web-provider-policy.md": "b6f37efaec1a255e7c69e185ad7f5b957db2ad2d5ebe94c0a86f4db81b717861",
-            "references/web-research-method.md": "a06b7eafce92b0be3b24cd518c4dbe81b456aed301bc90c70c2b61caa9e362d6",
+            "references/web-research-method.md": "04c3dc1de20f591f4aad97de78373c058e0c6e68560a20d71547414e9db2dd92",
             "scripts/build_market_research_report.py": "ae844f4d9184037b7b6c4cd74aee9b8b91c618b8ba5796388d0d0458191e5e06",
             "scripts/validate_market_research_report.py": "ce034fa3940eef69777aadbb5da59fbfa912960d41308923cb74b27e62c032d2",
             "scripts/validate_research_record.py": "fe221c4c43c8fe936887fdf02ffcf0f1d401243c2ba7e917f49b17704e35d058"
@@ -217,7 +217,7 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.0-rc.3",
+      "version": "1.0.0-rc.4",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {

@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.5`; GovCon Growth is at `1.0.0-rc.4`; Acquisition Policy is at `1.0.0-rc.3`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.5`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.6`; GovCon Growth is at `1.0.0-rc.5`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.6`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -9,11 +9,11 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 
 | Agent | Audience and workflow | Current status |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.5` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.5` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.4` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.5` |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.3` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.6` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.6` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.5` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.6` |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.4` |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
 
@@ -47,6 +47,8 @@ The three IGCE methods remain separate. FFP routes only to FFP, LH and T&M route
 
 Supplied acquisition documents are untrusted evidence, not executable instructions. The workflow registers their status and controlling sections, asks the user to resolve unclear precedence, avoids repeating established facts, and sends only sanitized public parameters to external sources. It does not originate commerciality, set-aside, contract-type, competition, consolidation, responsibility, price-reasonableness, or acquisition-strategy decisions.
 
+Plan approval covers only the exact public extraction URLs shown to the user. A URL discovered later through search results, a page, redirect, or tool output is placed in a pending register and requires explicit updated approval before retrieval.
+
 ### GovCon Growth
 
 Public data can support opportunity, competitor, recompete, teammate, agency, market, and pricing analysis. A bid or no-bid recommendation requires the company’s capabilities, past performance, clearances, vehicle access, staffing capacity, teaming strategy, priorities, and risk and margin tolerances. Without that internal context, the agent provides an evidence brief, not a verdict.
@@ -77,6 +79,8 @@ Installing an agent may cause the client to contact Tavily for MCP initializatio
 
 Export keys in the environment that launches the client, or use the client’s credential-management surface. No credentials are stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
 
+For Codex, use the maintained [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) so the shared servers retain their complete tool surfaces and receive only the allowlisted credential variable names. The file contains no credential values. CLI testing selects it with `codex --profile 1102tools-host`; Codex Desktop uses the same complete MCP tables through its user-level Codex configuration.
+
 Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The current packages use 3 seconds for BLS OEWS, GSA CALC+, SAM.gov, USASpending, eCFR, Federal Register, and Acquisition.gov, and 4 seconds for GSA Per Diem and Regulations.gov. The MCPs coordinate concurrent processes on one computer, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or quota manager and cannot coordinate the same key on another computer. `FEDERAL_API_MIN_INTERVAL_SECONDS=0` deliberately disables pacing; other nonnegative finite values override it.
 
 ## Install the public previews
@@ -95,6 +99,8 @@ codex plugin add acquisition-policy-agent@1102tools
 ```
 
 Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
+
+When keyed federal data or multiple 1102tools agents are used together, install the maintained host configuration as `$CODEX_HOME/1102tools-host.config.toml` and launch the CLI with `codex --profile 1102tools-host`. The setup guide covers the equivalent Codex Desktop configuration path.
 
 ### Claude Code (Claude Desktop app or CLI)
 

@@ -29,6 +29,12 @@ class LifecycleEvidenceTests(unittest.TestCase):
         ledger["lanes"] = ledger["lanes"][:-1]
         self.assertTrue(any("lanes must be exactly" in error for error in semantic_errors(ledger)))
 
+    def test_package_targets_match_current_manifests(self) -> None:
+        ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
+        ledger["packages"][0]["target_version"] = "1.0.0-rc.999"
+        errors = semantic_errors(ledger, REPO_ROOT)
+        self.assertTrue(any("must match manifest version" in error for error in errors))
+
     def test_stale_current_preview_claim_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

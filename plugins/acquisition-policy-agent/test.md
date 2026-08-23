@@ -1,12 +1,12 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.0-rc.3`
+Version: `1.0.0-rc.4`
 
 ## Passed before packaging
 
 - The bundled `acquisition-policy-workflow` runtime is synchronized from
   `federal-contracting-skills` commit
-  `3e49d0617b50a6f2d9e942f45d4656d89385d442`.
+  `655800a929bfdcfef348ce19ecd941633a597b02`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.
@@ -86,7 +86,7 @@ On 2026-08-22 the repository marketplace installed `acquisition-policy-agent==1.
 
 The package remains a release candidate until every open gate passes.
 
-## RC5 stabilization evidence — 2026-08-22
+## Historical RC5 stabilization evidence — before RC6 remediation
 
 Current maintained public-preview support is Codex and Claude Code (in the
 Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
@@ -111,3 +111,10 @@ The representative four-page impact brief passed record, evidence/status,
 structure, five-link, LibreOffice, extraction, and visual validation. The full
 live rulemaking/comment and procurement-specific status matrix remains a final
 `1.0.0` gate. The replayable RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).
+
+## RC6 remediation — 2026-08-22
+
+`1.0.0-rc.4` pins Regulations.gov `1.0.5`, which redacts the active credential
+from upstream response bodies, parsed payloads, request URLs, and network
+exceptions. The keyed Regulations.gov and representative impact-brief lanes
+must replay before this candidate closes.

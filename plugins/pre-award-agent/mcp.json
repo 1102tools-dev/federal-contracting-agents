@@ -4,7 +4,7 @@
     "bls-oews": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "bls-oews-mcp==1.0.5", "bls-oews-mcp"],
+      "args": ["--from", "bls-oews-mcp==1.0.6", "bls-oews-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "3"}
     },
     "gsa-calc": {
@@ -16,7 +16,7 @@
     "gsa-perdiem": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "gsa-perdiem-mcp==1.0.5", "gsa-perdiem-mcp"],
+      "args": ["--from", "gsa-perdiem-mcp==1.0.6", "gsa-perdiem-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4"}
     }
   }

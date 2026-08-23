@@ -83,6 +83,18 @@ class LifecycleRunnerTests(unittest.TestCase):
         self.assertEqual(set(AGENT_IDS), {spec.plugin_id for spec in self.specs})
         self.assertEqual({"codex", "claude"}, set(self.matrix["clients"]))
         self.assertEqual(self.matrix["safety"]["default_mode"], "dry-run")
+        self.assertTrue(
+            {"credentials", "resume", "concurrency", "drift", "long-session"}
+            <= set(self.matrix["lifecycle_lanes"])
+        )
+
+    def test_evidence_lanes_are_nonmutating_and_declarative(self) -> None:
+        for lane in ("credentials", "resume", "concurrency", "drift", "long-session"):
+            plan = build_plan(self.profile("codex"), self.matrix, lane)
+            self.assertEqual(plan.lane, lane)
+            self.assertEqual(plan.commands, [])
+            self.assertEqual(plan.targets, [])
+            self.assertIn("evidence-only", " ".join(plan.notes))
 
     def test_install_plan_is_dry_and_uses_documented_commands(self) -> None:
         plan = plan_install(self.profile("codex"), self.matrix, self.specs)
@@ -97,7 +109,10 @@ class LifecycleRunnerTests(unittest.TestCase):
 
     def test_upgrade_plan_matches_client_specific_update_paths(self) -> None:
         codex = build_plan(self.profile("codex"), self.matrix, "upgrade")
-        self.assertEqual(codex.commands[0], ("codex", "plugin", "marketplace", "add", "1102tools-dev/federal-contracting-agents", "--ref", "main"))
+        self.assertEqual(
+            codex.commands[0],
+            ("codex", "plugin", "marketplace", "upgrade", "1102tools"),
+        )
         self.assertIn("marketplace refresh/upgrade", " ".join(codex.notes))
         self.assertIn(("codex", "plugin", "remove", "market-research-agent@1102tools"), codex.commands)
         self.assertIn(("codex", "plugin", "add", "market-research-agent@1102tools"), codex.commands)
@@ -148,6 +163,19 @@ class LifecycleRunnerTests(unittest.TestCase):
         self.assertFalse(metadata["source_modified"])
         self.assertEqual(json.loads((fixture / "rc4/plugins/market-research-agent/plugin.json").read_text())["version"], "1.0.0-rc.4")
         self.assertEqual(json.loads((fixture / "rc5/plugins/market-research-agent/plugin.json").read_text())["version"], "1.0.0-rc.5")
+        for stage in ("rc4", "rc5"):
+            claude_marketplace = json.loads(
+                (fixture / stage / ".claude-plugin/marketplace.json").read_text()
+            )
+            codex_marketplace = json.loads(
+                (fixture / stage / ".agents/plugins/marketplace.json").read_text()
+            )
+            self.assertEqual(claude_marketplace["name"], "1102tools-lifecycle")
+            self.assertEqual(codex_marketplace["name"], "1102tools-lifecycle")
+            self.assertEqual(
+                codex_marketplace["interface"]["displayName"],
+                "1102tools-lifecycle",
+            )
         self.assertEqual(source_manifest.read_bytes(), before)
 
     def test_fixture_preserves_heterogeneous_historical_versions_and_exact_manifest_bytes(self) -> None:

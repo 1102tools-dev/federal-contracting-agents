@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "release_candidate": "v1.2.0-rc.5",
+  "release_candidate": "v1.2.0-rc.6",
   "repository": "1102tools-dev/federal-contracting-agents",
   "source_ref": "main",
   "clients": {
@@ -17,7 +17,7 @@
       ],
       "install_subcommand": "add",
       "remove_subcommand": "remove",
-      "marketplace_refresh": "add",
+      "marketplace_refresh": "upgrade",
       "plugin_update": "remove-add"
     },
     "claude": {
@@ -38,23 +38,23 @@
   "agents": [
     {
       "id": "market-research-agent",
-      "version": "1.0.0-rc.5"
+      "version": "1.0.0-rc.6"
     },
     {
       "id": "pre-award-agent",
-      "version": "1.0.0-rc.5"
+      "version": "1.0.0-rc.6"
     },
     {
       "id": "govcon-growth-agent",
-      "version": "1.0.0-rc.4"
-    },
-    {
-      "id": "other-transaction-agent",
       "version": "1.0.0-rc.5"
     },
     {
+      "id": "other-transaction-agent",
+      "version": "1.0.0-rc.6"
+    },
+    {
       "id": "acquisition-policy-agent",
-      "version": "1.0.0-rc.3"
+      "version": "1.0.0-rc.4"
     }
   ],
   "lifecycle_lanes": [
@@ -62,7 +62,12 @@
     "upgrade",
     "reinstall",
     "uninstall",
-    "restore"
+    "restore",
+    "credentials",
+    "resume",
+    "concurrency",
+    "drift",
+    "long-session"
   ],
   "upgrade_fixture": {
     "from": {

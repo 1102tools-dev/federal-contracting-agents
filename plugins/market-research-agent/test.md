@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.5`
+Version: `1.0.0-rc.6`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `3e49d0617b50a6f2d9e942f45d4656d89385d442`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `655800a929bfdcfef348ce19ecd941633a597b02`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -103,7 +103,7 @@ Passed:
 
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
 
-## RC5 stabilization evidence — 2026-08-22
+## Historical RC5 stabilization evidence — before RC6 remediation
 
 Current maintained public-preview support is Codex and Claude Code (in the
 Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
@@ -127,3 +127,12 @@ The representative four-page report passed record, evidence, structure,
 LibreOffice, extraction, and visual validation. Full authenticated coverage of
 every market-research mode remains a final `1.0.0` gate. The machine-readable
 run inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).
+
+## RC6 remediation — 2026-08-22
+
+`1.0.0-rc.6` pins SAM.gov `1.0.9` and vendors canonical skill commit
+`655800a929bfdcfef348ce19ecd941633a597b02`. Plan approval now allowlists only
+the exact public extraction URLs shown to the user. Newly discovered URLs are
+registered and require explicit updated approval before fetch or extraction;
+provider fallback cannot bypass the stop. The affected Claude and Codex live
+research lanes must replay this gate before the candidate closes.

@@ -22,6 +22,7 @@ from runtime_canaries import (  # noqa: E402
     MockResponse,
     SimulatedRequest,
 )
+from mcp_live_runner import CANARIES  # noqa: E402
 
 
 class RuntimeCanaryTests(unittest.TestCase):
@@ -29,6 +30,12 @@ class RuntimeCanaryTests(unittest.TestCase):
         matrix = load_matrix()
         self.assertEqual(len(matrix["mcp_canaries"]), 9)
         self.assertEqual(len({item["server"] for item in matrix["mcp_canaries"]}), 9)
+        matrix_by_server = {item["server"]: item for item in matrix["mcp_canaries"]}
+        self.assertEqual(set(matrix_by_server), set(CANARIES))
+        for server, definition in CANARIES.items():
+            self.assertEqual(
+                matrix_by_server[server]["distribution"], definition["distribution"]
+            )
 
     def test_credential_matrix_records_presence_not_values(self):
         secret = "unit-test-sam-secret-123456"
@@ -101,6 +108,35 @@ class RuntimeCanaryTests(unittest.TestCase):
         self.assertEqual(len(record["schema_hash"]), 64)
         self.assertNotIn(secret, json.dumps(record))
         self.assertFalse(record["raw_output_recorded"])
+
+    def test_live_runner_retains_call_provenance_and_timestamps(self):
+        script = (
+            "import json; print(json.dumps({'version':'1.0.1',"
+            "'tools':[{'name':'tool-a','inputSchema':{'type':'object'}}],"
+            "'response':{'results':[]},'warnings':[],'source_hashes':{},"
+            "'called_tool':'tool-a',"
+            "'source_call_started_at':'2026-08-22T12:00:00Z',"
+            "'source_call_completed_at':'2026-08-22T12:00:01Z',"
+            "'call_is_error':False}))"
+        )
+        definition = load_matrix()["mcp_canaries"][0]
+        record = run_live_mcp_canary(definition, (sys.executable, "-c", script))
+        self.assertEqual(record["status"], "pass")
+        self.assertEqual(record["called_tool"], "tool-a")
+        self.assertEqual(record["source_call_started_at"], "2026-08-22T12:00:00Z")
+        self.assertEqual(record["source_call_completed_at"], "2026-08-22T12:00:01Z")
+
+    def test_live_runner_classifies_mcp_tool_error(self):
+        script = (
+            "import json; print(json.dumps({'version':'1.0.1',"
+            "'tools':[{'name':'tool-a','inputSchema':{'type':'object'}}],"
+            "'response':{},'warnings':[],'source_hashes':{},"
+            "'called_tool':'tool-a','call_is_error':True}))"
+        )
+        definition = load_matrix()["mcp_canaries"][0]
+        record = run_live_mcp_canary(definition, (sys.executable, "-c", script))
+        self.assertEqual(record["status"], "fail")
+        self.assertEqual(record["failure_class"], "mcp_tool_error")
 
     def test_live_runner_protocol_error_does_not_echo_output(self):
         secret = "runner-secret-value-456789"

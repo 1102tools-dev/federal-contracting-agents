@@ -17,6 +17,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -41,6 +42,18 @@ AGENT_IDS = (
     "govcon-growth-agent",
     "other-transaction-agent",
     "acquisition-policy-agent",
+)
+MARKETPLACE_MANIFESTS = (
+    ".claude-plugin/marketplace.json",
+    ".agents/plugins/marketplace.json",
+    ".github/plugin/marketplace.json",
+)
+EVIDENCE_LANES = (
+    "credentials",
+    "resume",
+    "concurrency",
+    "drift",
+    "long-session",
 )
 
 HISTORICAL_TAGS = {
@@ -349,7 +362,7 @@ def plan_upgrade(profile: ClientProfile, matrix: Mapping[str, Any], specs: Itera
         # Codex has no separate plugin-update operation: refresh the
         # marketplace and replace each installed package explicitly.
         plan.notes.append("Codex marketplace refresh/upgrade precedes remove/add replacement")
-        plan.commands.append(_base_commands(profile, matrix))
+        plan.commands.append(("codex", "plugin", "marketplace", "upgrade", profile.marketplace))
         for spec in specs:
             qualified = f"{spec.plugin_id}@{profile.marketplace}"
             plan.commands.append(("codex", "plugin", "remove", qualified))
@@ -385,8 +398,38 @@ def plan_restore(profile: ClientProfile, matrix: Mapping[str, Any], specs: Itera
     return plan
 
 
+def plan_evidence_lane(
+    profile: ClientProfile,
+    _matrix: Mapping[str, Any],
+    specs: Iterable[AgentSpec],
+    lane: str,
+) -> Plan:
+    """Describe a non-mutating evidence lane driven by its dedicated runner.
+
+    These lanes intentionally contain no client-management commands. They use
+    the installed packages and write only to the operator-supplied validation
+    directory through ``runtime_canaries.py`` or ``client_session_runner.py``.
+    """
+
+    if lane not in EVIDENCE_LANES:
+        raise LifecycleSafetyError(f"unsupported evidence lane: {lane}")
+    runner = "runtime_canaries.py" if lane in {"credentials", "concurrency", "drift"} else "client_session_runner.py"
+    return Plan(
+        profile,
+        tuple(specs),
+        lane=lane,
+        notes=[
+            f"evidence-only lane; execute through tests/lifecycle/{runner}",
+            "no marketplace, plugin, or client-configuration mutation",
+            "raw evidence belongs outside the repository; commit only sanitized summaries and replay inputs",
+        ],
+    )
+
+
 def build_plan(profile: ClientProfile, matrix: Mapping[str, Any], lane: str) -> Plan:
     specs = agent_specs(matrix)
+    if lane in EVIDENCE_LANES:
+        return plan_evidence_lane(profile, matrix, specs, lane)
     planners = {
         "install": plan_install,
         "upgrade": plan_upgrade,
@@ -461,6 +504,7 @@ def prepare_upgrade_fixture(
     from_tag: str = HISTORICAL_TAGS["rc4"],
     to_tag: str = HISTORICAL_TAGS["rc5"],
     historical: Mapping[str, Any] | None = None,
+    marketplace_alias: str = "1102tools-lifecycle",
 ) -> dict[str, Any]:
     """Export authentic historical rc4/rc5 package bytes into a fixture.
 
@@ -500,6 +544,9 @@ def prepare_upgrade_fixture(
         stage_root = fixture_root / stage
         stage_root.mkdir(parents=True, mode=0o700)
         _extract_archive_safely(archive, stage_root)
+        marketplace_manifests = _alias_marketplace_manifests(
+            stage_root, marketplace_alias
+        )
         packages: dict[str, Any] = {}
         for spec in spec_list:
             package_root = stage_root / "plugins" / spec.plugin_id
@@ -522,6 +569,8 @@ def prepare_upgrade_fixture(
             "tag": tag,
             "commit": commit,
             "packages": packages,
+            "marketplace_alias": marketplace_alias,
+            "marketplace_manifests": marketplace_manifests,
         }
     metadata = {
         "fixture_root": str(fixture_root),
@@ -551,6 +600,7 @@ def _git_text(source_root: Path, *args: str) -> str:
 
 def _git_archive(source_root: Path, tag: str, specs: Sequence[AgentSpec]) -> bytes:
     paths = [f"plugins/{spec.plugin_id}" for spec in specs]
+    paths.extend(MARKETPLACE_MANIFESTS)
     try:
         completed = subprocess.run(
             ["git", "-C", str(source_root), "archive", "--format=tar", tag, "--", *paths],
@@ -561,6 +611,34 @@ def _git_archive(source_root: Path, tag: str, specs: Sequence[AgentSpec]) -> byt
     except (OSError, subprocess.CalledProcessError) as exc:
         raise LifecycleSafetyError(f"git archive failed for historical tag {tag!r}") from exc
     return completed.stdout
+
+
+def _alias_marketplace_manifests(stage_root: Path, alias: str) -> list[dict[str, Any]]:
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{2,63}", alias):
+        raise LifecycleSafetyError(f"invalid disposable marketplace alias: {alias!r}")
+    records: list[dict[str, Any]] = []
+    for relative in MARKETPLACE_MANIFESTS:
+        path = stage_root / relative
+        if not path.is_file():
+            raise LifecycleSafetyError(f"historical fixture lacks marketplace manifest {relative}")
+        original_sha256 = _sha256(path)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if data.get("name") != "1102tools":
+            raise LifecycleSafetyError(f"unexpected marketplace name in {relative}")
+        data["name"] = alias
+        if relative == ".agents/plugins/marketplace.json":
+            interface = data.setdefault("interface", {})
+            interface["displayName"] = alias
+        path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+        records.append(
+            {
+                "path": relative,
+                "source_sha256": original_sha256,
+                "fixture_sha256": _sha256(path),
+                "name": alias,
+            }
+        )
+    return records
 
 
 def _extract_archive_safely(archive: bytes, destination: Path) -> None:
@@ -630,7 +708,11 @@ def ledger_for_plan(
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--client", choices=("codex", "claude"), required=True)
-    parser.add_argument("--lane", choices=("install", "upgrade", "reinstall", "uninstall", "restore"), default="install")
+    parser.add_argument(
+        "--lane",
+        choices=("install", "upgrade", "reinstall", "uninstall", "restore", *EVIDENCE_LANES),
+        default="install",
+    )
     parser.add_argument("--home", type=Path, default=Path.home(), help="explicit user-home root; execute requires a temporary root")
     parser.add_argument("--matrix", type=Path, default=DEFAULT_MATRIX)
     parser.add_argument("--output", type=Path)

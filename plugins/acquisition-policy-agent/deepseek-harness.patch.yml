@@ -23,7 +23,7 @@
         serverName: regulations-gov
         transport: stdio
         command: uvx
-        args: ['--from', 'regulationsgov-mcp==1.0.4', 'regulationsgov-mcp']
+        args: ['--from', 'regulationsgov-mcp==1.0.5', 'regulationsgov-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '4'
           REGULATIONS_GOV_API_KEY: !!js "process.env.REGULATIONS_GOV_API_KEY ?? 'DEMO_KEY'"

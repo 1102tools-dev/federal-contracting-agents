@@ -1,6 +1,6 @@
 # Acquisition Policy Agent
 
-Version `1.0.0-rc.3`
+Version `1.0.0-rc.4`
 
 The Acquisition Policy Agent combines one host-neutral workflow with four source-specific federal MCP servers:
 

@@ -56,6 +56,29 @@ Runner stdout and stderr are captured, never echoed, and only sanitized
 fields enter the ledger. Exact-value redaction assertions prevent credential
 values from surviving in evidence.
 
+`mcp_live_runner.py` is the maintained runner for the nine published stdio
+packages. Invoke it through a dependency-isolated command, for example
+`uv run --with mcp -- python tests/lifecycle/mcp_live_runner.py`; it calls one
+bounded read-only operation per server and reports no environment values.
+
+## Codex shared-server host profile
+
+Codex does not merge partial host MCP declarations with same-named plugin
+declarations. Generate the complete credential-safe profile in an isolated
+`CODEX_HOME`, then select it explicitly for lifecycle turns:
+
+```sh
+python3 tests/lifecycle/codex_host_profile.py \
+  --output "$CODEX_HOME/1102tools-host.config.toml"
+codex --profile 1102tools-host
+```
+
+The profile repeats the complete launcher definitions for the shared servers
+that need stable tool exposure or user credentials. It uses `env_vars` to
+allowlist credential variable names; it never stores credential values.
+`client_session_runner.py --codex-profile 1102tools-host` exercises this exact
+path in disposable client homes.
+
 The nine federal MCP canaries are SAM.gov, USAspending, GSA CALC+, BLS OEWS,
 GSA Per Diem, eCFR, Federal Register, Regulations.gov, and Acquisition.gov.
 Tavily is a separate keyless web connector and is not counted in this lane.

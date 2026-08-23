@@ -34,6 +34,7 @@ from typing import Any, Iterable, Mapping, Sequence
 HERE = Path(__file__).resolve().parent
 DEFAULT_MATRIX = HERE / "canary_matrix.json"
 DEFAULT_CREDENTIALS = ("SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY")
+REDACTION_CREDENTIALS = DEFAULT_CREDENTIALS + ("PERDIEM_API_KEY",)
 REDACTED = "[REDACTED]"
 _SECRET_KEY_RE = re.compile(r"(?i)(?:api[_-]?key|token|password|secret|authorization)")
 _ASSIGNMENT_RE = re.compile(
@@ -390,6 +391,7 @@ def run_live_mcp_canary(
         definition, raw_tool_names, sha256_json(schemas), source_hashes
     )
     drift_failed = drift_classification.startswith("p1_")
+    call_failed = bool(result.get("call_is_error"))
     record = {
         "server": definition["server"],
         "distribution": definition["distribution"],
@@ -401,11 +403,15 @@ def run_live_mcp_canary(
         "normalized_response_shape": normalized_shape(response),
         "warnings": redactor.redact(result.get("warnings", [])),
         "source_hashes": redactor.redact(source_hashes),
+        "called_tool": redactor.redact(result.get("called_tool")),
+        "source_call_started_at": result.get("source_call_started_at"),
+        "source_call_completed_at": result.get("source_call_completed_at"),
         "drift_classification": drift_classification,
         "drift_note": drift_note,
         "captured_at": utc_now(),
         "duration_seconds": round(time.monotonic() - started, 6),
-        "status": "fail" if drift_failed else "pass",
+        "status": "fail" if drift_failed or call_failed else "pass",
+        "failure_class": "mcp_tool_error" if call_failed else None,
         "raw_output_recorded": False,
     }
     assert_exact_values_redacted(record, secrets)
@@ -447,7 +453,7 @@ def run_offline(matrix: Mapping[str, Any]) -> dict[str, Any]:
 def run_live(matrix: Mapping[str, Any], runner_command: Sequence[str], timeout_seconds: float) -> dict[str, Any]:
     # Values are used only to redact an external runner response in memory;
     # credential-presence metadata remains boolean-only in the ledger.
-    secrets = tuple(value for name in DEFAULT_CREDENTIALS if (value := os.environ.get(name)))
+    secrets = tuple(value for name in REDACTION_CREDENTIALS if (value := os.environ.get(name)))
     result = run_offline(matrix)
     result["mode"] = "live"
     result["mcp_canaries"] = [

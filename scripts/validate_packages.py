@@ -22,13 +22,13 @@ PLUGIN_NAMES = (
     "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
-    "pre-award-agent": "1.0.0-rc.5",
-    "other-transaction-agent": "1.0.0-rc.5",
-    "govcon-growth-agent": "1.0.0-rc.4",
-    "market-research-agent": "1.0.0-rc.5",
-    "acquisition-policy-agent": "1.0.0-rc.3",
+    "pre-award-agent": "1.0.0-rc.6",
+    "other-transaction-agent": "1.0.0-rc.6",
+    "govcon-growth-agent": "1.0.0-rc.5",
+    "market-research-agent": "1.0.0-rc.6",
+    "acquisition-policy-agent": "1.0.0-rc.4",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.5"
+MARKETPLACE_VERSION = "1.2.0-rc.6"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -60,13 +60,13 @@ EXPECTED_MCPS = {
 }
 EXPECTED_MCP_REQUIREMENTS = {
     "acquisition-gov": "acquisition-gov-mcp==1.0.1",
-    "bls-oews": "bls-oews-mcp==1.0.5",
+    "bls-oews": "bls-oews-mcp==1.0.6",
     "ecfr": "ecfr-mcp==1.0.5",
     "federal-register": "federal-register-mcp==1.0.4",
     "gsa-calc": "gsa-calc-mcp==1.0.4",
-    "gsa-perdiem": "gsa-perdiem-mcp==1.0.5",
-    "sam-gov": "sam-gov-mcp==1.0.8",
-    "regulations-gov": "regulationsgov-mcp==1.0.4",
+    "gsa-perdiem": "gsa-perdiem-mcp==1.0.6",
+    "sam-gov": "sam-gov-mcp==1.0.9",
+    "regulations-gov": "regulationsgov-mcp==1.0.5",
     "usaspending": "usaspending-gov-mcp==1.0.4",
 }
 EXPECTED_PACING = {

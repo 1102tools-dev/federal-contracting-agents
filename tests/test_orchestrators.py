@@ -126,7 +126,7 @@ class OrchestratorContractTests(unittest.TestCase):
             servers["federal-register"]["args"][1], "federal-register-mcp==1.0.4"
         )
         self.assertEqual(
-            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.4"
+            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.5"
         )
         self.assertEqual(
             servers["acquisition-gov"]["args"][1], "acquisition-gov-mcp==1.0.1"

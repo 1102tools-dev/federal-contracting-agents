@@ -27,6 +27,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--case", action="append", default=[], help="Case ID glob")
     parser.add_argument("--model")
     parser.add_argument(
+        "--claude-installed-root",
+        type=Path,
+        help="test installed Claude package bytes below this marketplace cache root",
+    )
+    parser.add_argument(
         "--claude-fast",
         action="store_true",
         help="Opt a Claude Opus noninteractive session into fast mode",
@@ -54,6 +59,7 @@ def run_case(
     scenario: dict[str, object],
     *,
     claude_fast: bool = False,
+    claude_installed_root: Path | None = None,
 ) -> tuple[int, str, str]:
     plugin = str(scenario["plugin"])
     prompt = prompt_for(client, scenario)
@@ -71,9 +77,19 @@ def run_case(
             text = output.read_text(encoding="utf-8") if output.exists() else result.stdout
             return result.returncode, text, result.stderr
         if client == "claude":
+            plugin_dir = REPO_ROOT / "plugins" / plugin
+            if claude_installed_root is not None:
+                candidates = sorted(
+                    path
+                    for path in (claude_installed_root.expanduser() / plugin).glob("*")
+                    if path.is_dir() and (path / "plugin.json").is_file()
+                )
+                if len(candidates) != 1:
+                    return 2, "", "installed Claude plugin version could not be resolved uniquely"
+                plugin_dir = candidates[0]
             command = [
                 "claude", "-p", "--no-session-persistence",
-                "--plugin-dir", str(REPO_ROOT / "plugins" / plugin),
+                "--plugin-dir", str(plugin_dir),
                 "--tools", "Read", "Skill",
                 "--permission-mode", "bypassPermissions",
                 "--model", model, "--effort", "high", prompt,
@@ -132,6 +148,7 @@ def main() -> None:
             model,
             scenario,
             claude_fast=args.claude_fast,
+            claude_installed_root=args.claude_installed_root,
         )
         passed, failures = grade(scenario, output) if code == 0 else (False, [f"client exit {code}"])
         results.append(

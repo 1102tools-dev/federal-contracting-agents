@@ -2,18 +2,18 @@
 
 Date: August 21, 2026
 
-Package: `pre-award-agent` `1.0.0-rc.5`
+Package: `pre-award-agent` `1.0.0-rc.6`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `3e49d0617b50a6f2d9e942f45d4656d89385d442`
-- Canonical MCP commit: `602962e6f561ef557d3e9165716206684c9bdaa0`
-- `bls-oews-mcp==1.0.5`, explicit 3-second safeguard
+- Canonical skills commit: `655800a929bfdcfef348ce19ecd941633a597b02`
+- Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
+- `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
-- `gsa-perdiem-mcp==1.0.5`, explicit 4-second safeguard
+- `gsa-perdiem-mcp==1.0.6`, explicit 4-second safeguard
 
 Every vendored runtime file matched its SHA-256 lock. Development-only `test.md` and `testing.md` files were not copied into installed skill folders.
 
@@ -146,7 +146,7 @@ No live federal API was called during package testing. This avoided shared-key r
 
 Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.4`.
 
-## RC5 stabilization evidence — 2026-08-22
+## Historical RC5 stabilization evidence — before RC6 remediation
 
 Current maintained public-preview support is Codex and Claude Code (in the
 Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
@@ -169,3 +169,11 @@ recomputed workbook total was `$598,481.5713107554`.
 
 The remaining manual modes continue to gate final `1.0.0`. The replayable RC5
 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).
+
+## RC6 remediation — 2026-08-22
+
+`1.0.0-rc.6` pins BLS OEWS `1.0.6` and GSA Per Diem `1.0.6`. Both MCPs now
+redact active credentials from upstream response bodies, parsed payloads, and
+network exceptions before any error or tool result can reach a client. The
+credential and representative artifact lanes must replay against the published
+patches before this candidate closes.

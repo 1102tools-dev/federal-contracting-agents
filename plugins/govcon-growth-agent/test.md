@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.4`
+Version: `1.0.0-rc.5`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `3e49d0617b50a6f2d9e942f45d4656d89385d442`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `655800a929bfdcfef348ce19ecd941633a597b02`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -95,7 +95,7 @@ Passed:
 
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
 
-## RC5 stabilization evidence — 2026-08-22
+## Historical RC5 stabilization evidence — before RC6 remediation
 
 Current maintained public-preview support is Codex and Claude Code (in the
 Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
@@ -117,3 +117,10 @@ timestamp linkage, record, structure, rendering, extraction, and visual review.
 
 The full authenticated opportunity matrix remains a final `1.0.0` gate. The
 replayable RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../../tests/manual/rc5_closure_ledger.json).
+
+## RC6 remediation — 2026-08-22
+
+`1.0.0-rc.5` pins SAM.gov `1.0.9`. The server redacts the active credential
+from upstream bodies, payloads, URLs, and network exceptions and no longer
+echoes a malformed key prefix. The Codex host-profile and authenticated
+opportunity lanes must replay before this candidate closes.

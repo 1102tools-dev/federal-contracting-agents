@@ -3,7 +3,7 @@
   "schema_version": "1.0",
   "ledger_id": "rc5-lifecycle-2026-08-22",
   "run_date": "2026-08-22",
-  "release_candidate": "v1.2.0-rc.5",
+  "release_candidate": "v1.2.0-rc.6",
   "status": "pending",
   "repository": {
     "source": "1102tools-dev/federal-contracting-agents",
@@ -14,14 +14,14 @@
     "raw_evidence_root": "/Users/jamesjenrette/Documents/1102tools validation/RC5 Lifecycle 2026-08-22",
     "commit_policy": "Commit sanitized summaries, hashes, and replay inputs only; retain raw transcripts and artifacts outside Git.",
     "exact_credentials_retained": false,
-    "secret_fields": ["SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY"]
+    "secret_fields": ["SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY", "PERDIEM_API_KEY"]
   },
   "packages": [
-    {"name": "market-research-agent", "target_version": "1.0.0-rc.5", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
-    {"name": "pre-award-agent", "target_version": "1.0.0-rc.5", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
+    {"name": "market-research-agent", "target_version": "1.0.0-rc.6", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
+    {"name": "pre-award-agent", "target_version": "1.0.0-rc.6", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
     {"name": "govcon-growth-agent", "target_version": "1.0.0-rc.5", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
-    {"name": "other-transaction-agent", "target_version": "1.0.0-rc.5", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
-    {"name": "acquisition-policy-agent", "target_version": "1.0.0-rc.5", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"}
+    {"name": "other-transaction-agent", "target_version": "1.0.0-rc.6", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"},
+    {"name": "acquisition-policy-agent", "target_version": "1.0.0-rc.4", "observed_before": null, "observed_after": null, "marketplace_source": null, "result": "pending"}
   ],
   "clients": [
     {"surface": "Codex CLI", "binary_version": null, "model": "GPT-5.6 Sol", "effort": "xhigh", "fast_mode": null, "marketplace_source": null, "before_versions": {}, "after_versions": {}, "session_ids": [], "result": "pending"},
@@ -52,7 +52,8 @@
   "credentials": [
     {"name": "SAM_API_KEY", "states": [{"state": "missing", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "invalid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "valid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "rate_limited", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}]},
     {"name": "BLS_API_KEY", "states": [{"state": "missing", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "invalid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "valid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "rate_limited", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}]},
-    {"name": "REGULATIONS_GOV_API_KEY", "states": [{"state": "missing", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "invalid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "valid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "rate_limited", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}]}
+    {"name": "REGULATIONS_GOV_API_KEY", "states": [{"state": "missing", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "invalid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "valid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "rate_limited", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}]},
+    {"name": "PERDIEM_API_KEY", "states": [{"state": "missing", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "invalid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "valid", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}, {"state": "rate_limited", "credential_present": null, "auth_failure_class": null, "retry_after_seconds": null, "result": "pending", "evidence_refs": []}]}
   ],
   "artifacts": [
     {"artifact_id": "market-research-codex", "agent": "Market Research", "client_surface": "Codex", "exact_prompt": null, "approval_refs": [], "session_ids": [], "path": null, "sha256": null, "validators": {"record": "pending", "structure": "pending", "evidence": "pending", "links": "pending", "recalculation": "pending", "independent_recomputation": "pending", "zip_integrity": "pending"}, "visual_review": "pending", "result": "pending"},
