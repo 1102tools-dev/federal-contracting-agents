@@ -2,7 +2,7 @@
 
 Date: August 21, 2026
 
-Package: `pre-award-agent` `1.0.0-rc.7`
+Package: `pre-award-agent` `1.0.0-rc.8`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
@@ -196,3 +196,9 @@ still gate final `1.0.0`. Evidence:
 ## RC7 boundary and host-artifact hardening — 2026-08-23
 
 `1.0.0-rc.7` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The orchestrator makes the fixed FFP Option A/Option B response an explicit release invariant and rejects a shorter refusal or a later promise to write the determination. Spreadsheet runtime adaptation now follows a governing host artifact workflow and fails early into a structured specification when the supported workbook path is absent; it never guesses dependency paths or calls the fallback a workbook. Cross-client routing and host-degradation replay remain required.
+
+## RC8 T&M material-handling validator correction — 2026-08-23
+
+`1.0.0-rc.8` vendors canonical skills commit `3149c79cec32cee4c4a24ada79b18668e9b7b7c8`. Stable qualification proved that the rc7 T&M validator could accept an undisclosed 7% material-handling formula even though the workflow requires zero unless the user supplies an accounting or solicitation basis. The delivered seven-sheet Claude workbook was correct and used numeric zero; the defect was validator coverage.
+
+The vendored validator now rejects every nonzero or formula-driven material-handling cell unless the validation sidecar names the exact cell and value or formula and records a non-empty user-supplied basis. Deterministic zero, undisclosed-percentage, and disclosed-basis regressions pass. The preserved Claude workbook passes the corrected validator after LibreOffice recalculation and cached-value audit.

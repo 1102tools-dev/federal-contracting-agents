@@ -26,7 +26,7 @@ class LifecycleEvidenceTests(unittest.TestCase):
         self.assertFalse(any(item["severity"] == "P0" for item in ledger["defects"]))
         self.assertEqual(
             [item["id"] for item in ledger["defects"] if item["severity"] == "P1"],
-            ["P1-OT-CACHED-ERROR-AUDIT"],
+            ["P1-OT-CACHED-ERROR-AUDIT", "P1-PREAWARD-TM-HANDLING-AUDIT"],
         )
 
     def test_semantic_contract_requires_all_lifecycle_lanes(self) -> None:

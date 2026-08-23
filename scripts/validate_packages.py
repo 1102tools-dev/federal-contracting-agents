@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from urllib.parse import unquote
@@ -22,13 +24,13 @@ PLUGIN_NAMES = (
     "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
-    "pre-award-agent": "1.0.0-rc.7",
+    "pre-award-agent": "1.0.0-rc.8",
     "other-transaction-agent": "1.0.0-rc.8",
     "govcon-growth-agent": "1.0.0-rc.9",
     "market-research-agent": "1.0.0-rc.12",
     "acquisition-policy-agent": "1.0.0-rc.4",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.13"
+MARKETPLACE_VERSION = "1.2.0-rc.14"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -431,16 +433,26 @@ def validate_license_agreement(errors: list[str]) -> None:
 
 
 def validate_test_record_provenance(errors: list[str]) -> None:
-    """Shipped test records must cite the skills commit the package vendors.
+    """Verify cited skills commits resolve to the exact vendored runtime bytes.
 
-    A test record that names an older source commit attests to bytes the
-    package no longer ships.
+    An unaffected package may accurately cite an older canonical commit after
+    the suite-wide skills lock advances for another package. The citation is
+    valid only when every locked runtime file for that package is byte-identical
+    at the cited commit.
     """
     lock = load_json(REPO_ROOT / "components.lock.json")
     locked_commit = lock.get("sources", {}).get("skills", {}).get("commit")
     if not isinstance(locked_commit, str) or len(locked_commit) != 40:
         errors.append("components.lock.json: sources.skills.commit must be a full SHA")
         return
+    skills_checkout = next(
+        (
+            candidate
+            for candidate in (REPO_ROOT / "_skills", REPO_ROOT.parent / "federal-contracting-skills")
+            if (candidate / ".git").exists()
+        ),
+        None,
+    )
     commit_re = re.compile(r"federal-contracting-skills` commit `([0-9a-f]{7,40})`")
     for plugin_name in PLUGIN_NAMES:
         record = REPO_ROOT / "plugins" / plugin_name / "test.md"
@@ -449,10 +461,34 @@ def validate_test_record_provenance(errors: list[str]) -> None:
         text = record.read_text(encoding="utf-8")
         current_record = re.split(r"(?m)^## RC\d+\b", text, maxsplit=1)[0]
         for cited in commit_re.findall(current_record):
-            if not locked_commit.startswith(cited):
+            if locked_commit.startswith(cited):
+                continue
+            if skills_checkout is None:
                 errors.append(
-                    f"{plugin_name}/test.md cites skills commit {cited}, but the package vendors "
-                    f"{locked_commit[:12]}"
+                    f"{plugin_name}/test.md cites prior skills commit {cited}, but no canonical "
+                    "skills checkout is available to verify byte equivalence"
+                )
+                continue
+            plugin_lock = lock.get("plugins", {}).get(plugin_name, {})
+            mismatches: list[str] = []
+            for skill_name, skill_record in plugin_lock.get("skills", {}).items():
+                for relative, expected_hash in skill_record.get("files", {}).items():
+                    source_path = f"skills/{skill_name}/{relative}"
+                    completed = subprocess.run(
+                        ["git", "-C", str(skills_checkout), "show", f"{cited}:{source_path}"],
+                        capture_output=True,
+                        check=False,
+                    )
+                    if completed.returncode != 0:
+                        mismatches.append(f"{source_path} is unavailable")
+                        continue
+                    actual_hash = hashlib.sha256(completed.stdout).hexdigest()
+                    if actual_hash != expected_hash:
+                        mismatches.append(source_path)
+            if mismatches:
+                errors.append(
+                    f"{plugin_name}/test.md cites skills commit {cited}, but that commit differs "
+                    f"from the vendored bytes at {', '.join(mismatches[:3])}"
                 )
 
 

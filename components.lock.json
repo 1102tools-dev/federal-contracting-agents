@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "6f8911f0b6110e139408c0d6766513847b9ead14"
+      "commit": "3149c79cec32cee4c4a24ada79b18668e9b7b7c8"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.7",
+      "version": "1.0.0-rc.8",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -111,11 +111,11 @@
             "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
             "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
-            "references/validation-gates.md": "726c429f371f36a5e2bd8fa435ac2a13cb34aba468535ae036557534667f810a",
-            "references/workbook-specification.md": "b4b7a470e3e90ceb3d35657b7e44ba54c01b587e50c9333af6921db4dd3b8f6a",
+            "references/validation-gates.md": "575c8343f0737fafea854f8e13ae662caee93083e81b3d3baa6fb5b1be6d9c0f",
+            "references/workbook-specification.md": "3fcb49aabadc3cadc558c5ca1c233c22ae40c5be977013cda1c0721ff77ed71c",
             "references/wrap-rate-presets.md": "340b5a6f8458be4da567921fa8830f713fff2616635f4c72f04a9693e79d65e1",
             "scripts/recompute_expected_values.py": "bbfb40352eb6c5a309dcf6945eddcdb5a48df79c616ac90c16ef5074c709f3df",
-            "scripts/validate_workbook.py": "3438850d80422f2fa26c4dd9c6db8e0be18a738d830a673c863351ac7d7d0923"
+            "scripts/validate_workbook.py": "bf65262b5b91a8a579a11cf23968fb0955db5ec7bc3380ee0b8c6186c7ef218c"
           }
         },
         "igce-builder-cr": {

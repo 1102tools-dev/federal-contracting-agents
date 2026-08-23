@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.13"
+    "version": "1.2.0-rc.14"
   },
   "plugins": [
     {
       "name": "pre-award-agent",
       "source": "./plugins/pre-award-agent",
       "description": "Build a SOW or PWS and carry its approved scope into the correctly routed IGCE.",
-      "version": "1.0.0-rc.7"
+      "version": "1.0.0-rc.8"
     },
     {
       "name": "other-transaction-agent",

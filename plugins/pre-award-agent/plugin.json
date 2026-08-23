@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "pre-award-agent",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0-rc.8",
   "description": "Create a federal SOW or PWS and carry its approved scope into the correct IGCE workflow; reserved price determinations always use the controlled Option A/Option B boundary.",
   "author": {
     "name": "1102tools",
