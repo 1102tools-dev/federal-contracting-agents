@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "3149c79cec32cee4c4a24ada79b18668e9b7b7c8"
+      "commit": "3cfca7adffd6f45ae84f9f60d8530e740b363de1"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -166,13 +166,13 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.9",
+      "version": "1.0.0-rc.10",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
             "SKILL.md": "3d266cca6636d7e8eacecec709b410e39257e218d32339ae1dd3b25ac7625e02",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
-            "references/brief-specification.md": "ea4aa434387948da3812ec122ebc97382abf366b6b999316188d17e602bfbb95",
+            "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
@@ -184,7 +184,7 @@
             "references/runtime-adaptation.md": "8a55589a7175a7eebc8ee17aff947b82c9276a1403c7f29465439e92017b2173",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
-            "scripts/build_growth_brief.py": "1bfc814e898de44c620aeeeaf2740d2a79d60d3bee2e51873abba8fe4f271021",
+            "scripts/build_growth_brief.py": "25aee3cbf246b01ddcac6c03d8749e30a3c6de749c1900f1fa2d7a453dcd9031",
             "scripts/validate_growth_brief.py": "fbcf48b92863c86da7d85cfb7c32072435bca1d10a67bf09173e372730a5eff6",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }

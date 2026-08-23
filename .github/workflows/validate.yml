@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: 3149c79cec32cee4c4a24ada79b18668e9b7b7c8
+          ref: 3cfca7adffd6f45ae84f9f60d8530e740b363de1
           fetch-depth: 0
           path: _skills
 

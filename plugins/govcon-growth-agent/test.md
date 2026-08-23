@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.9`
+Version: `1.0.0-rc.10`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `3cfca7adffd6f45ae84f9f60d8530e740b363de1`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -159,3 +159,7 @@ package release gate.
 ## RC9 calculation-evidence correction — 2026-08-23
 
 `1.0.0-rc.9` vendors canonical skills commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Stable qualification found that consequential decision-weight calculations could use the generic marker `[calculation]` despite a stable calculation evidence item in the record. The builder now requires exactly one linked calculation evidence item and cites its stable ID. The DOCX validator verifies that ID on the same paragraph as each total, and deterministic negative coverage removes only the paragraph citation while leaving the evidence register intact.
+
+## RC10 LibreOffice evidence-table pagination correction — 2026-08-23
+
+`1.0.0-rc.10` vendors canonical skills commit `3cfca7adffd6f45ae84f9f60d8530e740b363de1`. A long qualification brief reproduced a clipped repeated Evidence Register header on a later LibreOffice-rendered page. The builder now keeps that long table's header on its first page only while preserving repeating headers for the other tables. Deterministic OOXML coverage rejects reintroducing the repeated header, and the preserved nine-page brief passed record validation, brief validation, LibreOffice PDF conversion, citation checks, and page-by-page visual review without clipping.

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.14"
+    "version": "1.2.0-rc.15"
   },
   "plugins": [
     {
@@ -24,7 +24,7 @@
       "name": "govcon-growth-agent",
       "source": "./plugins/govcon-growth-agent",
       "description": "Find, evaluate, and research federal growth opportunities with evidence-backed capture intelligence.",
-      "version": "1.0.0-rc.9"
+      "version": "1.0.0-rc.10"
     },
     {
       "name": "market-research-agent",
