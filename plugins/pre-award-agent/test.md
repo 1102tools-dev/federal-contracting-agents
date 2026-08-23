@@ -181,12 +181,14 @@ patches before this candidate closes.
 ## RC5 lifecycle hardening replay — 2026-08-23
 
 The current `1.0.0-rc.6` Codex lane produced and validated a PWS plus FFP IGCE.
-The workbook passed formula structure, independent recomputation, serialized
-LibreOffice recalculation, ZIP integrity, and every-sheet visual review. The
-Claude lane produced a valid PWS but could not complete its cost-reimbursement
-workbook because the external test credential or quota did not provide usable
-BLS capability. It stopped without fabricating rates or an artifact. This is an
-external P2 test-environment blocker, not a Pre-Award product defect. No P0 or
-P1 remains; the Claude pricing rerun, complete Codex resume proof, and remaining
-manual modes still gate final `1.0.0`. Evidence:
+The Claude retry used a protected valid BLS v2 credential and produced the
+approved PWS plus a seven-sheet CPFF Term IGCE for 14,920 hours and a
+`$3,446,455.87` independently recomputed total estimated price. The workbook
+passed canonical validation, independent recomputation, serialized LibreOffice
+recalculation, a workbook-wide cached-error audit, ZIP integrity, fault
+injection, and inspection of all 13 rendered pages. The existing CR validator
+caught a double-counted labor subtotal before delivery; the corrected workbook
+passed every layer. No credential value was displayed or retained. No P0 or P1
+Pre-Award defect remains; complete Codex resume proof and remaining manual modes
+still gate final `1.0.0`. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

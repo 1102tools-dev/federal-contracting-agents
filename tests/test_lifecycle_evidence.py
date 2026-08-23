@@ -17,13 +17,17 @@ SCHEMA = REPO_ROOT / "tests" / "manual" / "rc5_lifecycle_ledger.schema.json"
 
 
 class LifecycleEvidenceTests(unittest.TestCase):
-    def test_rc5_ledger_is_schema_valid_and_records_advisories(self) -> None:
+    def test_rc5_ledger_is_schema_valid_and_records_known_open_p1(self) -> None:
         errors = validate(REPO_ROOT, LEDGER, SCHEMA)
         self.assertEqual(errors, [])
         ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
         self.assertEqual(ledger["status"], "advisory")
         self.assertFalse(any(item["result"] == "pending" for item in ledger["artifacts"]))
-        self.assertFalse(any(item["severity"] in {"P0", "P1"} for item in ledger["defects"]))
+        self.assertFalse(any(item["severity"] == "P0" for item in ledger["defects"]))
+        self.assertEqual(
+            [item["id"] for item in ledger["defects"] if item["severity"] == "P1"],
+            ["P1-OT-CACHED-ERROR-AUDIT"],
+        )
 
     def test_semantic_contract_requires_all_lifecycle_lanes(self) -> None:
         ledger = json.loads(LEDGER.read_text(encoding="utf-8"))

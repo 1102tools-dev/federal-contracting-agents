@@ -181,15 +181,21 @@ closes.
 ## RC5 lifecycle hardening replay — 2026-08-23
 
 The current `1.0.0-rc.6` Codex Desktop lane produced an 11-page project
-description and a seven-sheet, 375-formula cost-analysis workbook. Canonical
-validation, independent recomputation, serialized LibreOffice recalculation,
-ZIP integrity, and full visual review passed. Live preflight used BLS 2025
-Austin MSA, CALC+ positioning, and a disclosed FY2026 Per Diem fallback because
-FY2027 was unavailable; the workbook marks that source for refresh. The nested
-isolated Codex CLI lacked its spreadsheet-authoring runtime, but the maintained
-Desktop surface completed the artifact, so that is an environment advisory.
-The Claude project description passed, while its pricing workbook remains
-externally BLS credential/quota-blocked and stopped without invented values.
-No OT P0 or P1 remains; that Claude workbook and remaining manual modes still
-gate final `1.0.0`. Evidence:
+description and a seven-sheet, 375-formula cost-analysis workbook. The Claude
+retry used protected BLS v2 capability and produced the preserved project
+description plus a seven-sheet, 431-formula cost workbook. Live preflight used
+BLS 2025 Austin MSA, CALC+ positioning, and a disclosed FY2026 Per Diem fallback
+because FY2027 was unavailable. The delivered Claude workbook passed canonical
+validation, independent recomputation, serialized LibreOffice recalculation, a
+separate workbook-wide cached-error scan, ZIP integrity, and inspection of all
+16 rendered pages. No credential value was displayed or retained.
+
+One P1 validator-coverage defect remains. Before repair, the canonical OT
+validator passed after LibreOffice recalculation while formula errors remained
+in cached cells outside its mapped comparison set; the separate global scan and
+render review found them. The delivered workbook was corrected and all layers
+reran clean, but the shipped OT validator must gain the workbook-wide
+cached-error audit already used by the three IGCE validators, plus a regression,
+before this lane closes. The nested isolated Codex CLI spreadsheet-runtime issue
+remains an environment advisory. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
