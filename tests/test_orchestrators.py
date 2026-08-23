@@ -57,6 +57,8 @@ class OrchestratorContractTests(unittest.TestCase):
         text = self.text("market-research-agent", "market-research-workflow")
         for required in (
             "The entire first-turn response consists only of the complete six-choice menu",
+            "Restrictions do not suppress activation",
+            "still triggers this skill",
             "1. Conduct quick market research and show the findings in chat",
             "5. Prepare market-research findings for the Pre-Award Agent",
             "6. Help me choose",
@@ -68,6 +70,16 @@ class OrchestratorContractTests(unittest.TestCase):
             "Never invoke Tavily Crawl, Map, or Research",
         ):
             self.assertIn(required, text)
+
+        wrapper = (
+            REPO_ROOT
+            / "plugins"
+            / "market-research-agent"
+            / "agents"
+            / "market-research-agent.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("still requires skill activation and the complete menu", wrapper)
+        self.assertIn("restrictions apply only to later stages", wrapper)
 
     def test_govcon_growth_menu_and_bid_boundary_are_hard_gates(self) -> None:
         text = self.text("govcon-growth-agent", "govcon-growth-workflow")

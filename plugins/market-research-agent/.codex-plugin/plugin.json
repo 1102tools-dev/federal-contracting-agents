@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "description": "Build evidence-backed federal acquisition market research through a staged FAR Part 10 workflow.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -12,7 +12,7 @@
   "interface": {
     "displayName": "Market Research Agent",
     "shortDescription": "Build evidence-backed FAR Part 10 research",
-    "longDescription": "Begins with a workflow menu and separate acquisition-document intake, then gathers traceable federal and web evidence without originating reserved acquisition decisions.",
+    "longDescription": "Begins with a workflow menu even when later web, MCP, or file work is restricted, then gathers traceable evidence without originating reserved acquisition decisions.",
     "developerName": "1102tools",
     "category": "Productivity",
     "capabilities": ["Interactive", "Write"],

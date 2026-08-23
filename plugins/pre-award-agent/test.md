@@ -9,7 +9,7 @@ Status: release candidate; not approved for a `1.0.0` tag
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `c1260bb7f7104cacb731f3c3c2a483af67b16c8d`
+- Canonical skills commit: `b59cc0ff0e2d391b57bf211629557c40ca8b985f`
 - Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
 - `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard

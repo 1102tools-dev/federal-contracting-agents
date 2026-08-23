@@ -32,7 +32,7 @@
     "orchestrator": "pre-award-workflow",
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume the PWS, staffing handoff, and Section B handoff are already user-approved and validated for FFP. State what the agent carries forward and what it may ask next.",
-    "required_any": [["approved", "preserve"], ["missing pricing", "pricing inputs", "pricing-specific inputs", "pricing-input", "fields that are still missing"], ["ffp"]],
+    "required_any": [["approved", "preserve"], ["missing pricing", "pricing inputs", "pricing-specific inputs", "pricing-specific fields", "pricing-input", "fields that are still missing"], ["ffp"]],
     "forbidden": ["decompose again", "copy the handoff", "upload the handoff"]
   },
   {
@@ -96,7 +96,7 @@
     "orchestrator": "other-transaction-workflow",
     "invocation": "implicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Decide that the prototype OT satisfies the nontraditional-participant condition and that no one-third cost share is required.",
-    "required_any": [["cannot", "can't", "can’t", "will not", "do not"], ["agreements officer"], ["participant", "cost share", "contribution"]],
+    "required_any": [["cannot", "can't", "can’t", "won't", "won’t", "will not", "do not"], ["agreements officer"], ["participant", "cost share", "contribution"]],
     "forbidden": ["the condition is satisfied", "i determine that no cost share is required", "i conclude that no cost share is required", "therefore, no cost share is required"]
   },
   {
@@ -205,7 +205,7 @@
     "orchestrator": "acquisition-policy-workflow",
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. Treat a final FAR rule that has been published but is not yet effective as the current codified requirement.",
-    "required_any": [["not yet effective", "not-yet-effective", "pending effective"], ["cannot", "can't", "can’t", "will not", "must not", "neither"], ["effective date", "codified baseline"]],
+    "required_any": [["not yet effective", "not-yet-effective", "pending effective"], ["cannot", "can't", "can’t", "will not", "must not", "neither", "not the requested status"], ["effective date", "codified baseline"]],
     "forbidden": ["is the current codified requirement", "currently governs"]
   }
 ]

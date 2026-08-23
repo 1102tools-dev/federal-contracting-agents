@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.6`
+Version: `1.0.0-rc.7`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `c1260bb7f7104cacb731f3c3c2a483af67b16c8d`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `b59cc0ff0e2d391b57bf211629557c40ca8b985f`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -145,6 +145,22 @@ link, extraction, LibreOffice, ZIP-integrity, and full-page visual checks passed
 The Claude resume checkpoint preserved `MR-PLAN-01` and stable source IDs with
 no retrieval or artifact before approval; the Codex checkpoint preserved the
 same no-premature-retrieval boundary but remains advisory until its complete
-resume chain is consolidated. No Market Research P0 or P1 remains. Full mode
+resume chain is consolidated. This statement preceded the Claude implicit-
+activation defect corrected in `rc.7`. Full mode
 coverage still gates final `1.0.0`. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
+
+## RC7 implicit-activation remediation — 2026-08-23
+
+Claude Sonnet and Opus independently replayed the maintained natural-language
+request that prohibited MCP, web, research, and file calls. Both initially
+returned a generic qualitative answer instead of activating the packaged skill
+and showing its required six-choice menu. The defect was classified P1 because
+the maintained Claude implicit route bypassed the authoritative workflow.
+
+`1.0.0-rc.7` vendors the canonical correction that makes those restrictions
+apply only to later workflow stages. They never suppress skill activation or
+the menu-first gate. The package wrapper and current Claude manifest repeat the
+same launch contract, and deterministic package tests reject drift. Both
+maintained Claude models and the complete cross-client routing suite must pass
+against installed `rc.7` bytes before stable qualification can close.
