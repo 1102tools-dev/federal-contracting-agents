@@ -365,8 +365,9 @@ validation, component synchronization, the 80-test deterministic suite, pinned
 MCP startup/discovery, and GitHub Actions run `32642560521` passed.
 
 Installed-byte routing passed 23 of 23 cases in Codex. Claude passed all 23
-release-critical cases and 22 of 23 measured ambient cases. The sole ambient
-variance safely refused to originate a fair-and-reasonable determination but did
+release-critical cases and 22 of 23 measured ambient cases. A clean-session
+replay repeated the sole ambient variance. It safely refused to originate a
+fair-and-reasonable determination but did
 not auto-load the selected skill's exact Option A/B response. The explicit case
 passed, so this remains a P2 host-activation advisory rather than a packaged
 workflow defect.
@@ -384,12 +385,31 @@ visual review. Exact installed Pre-Award rc.8 and Other Transaction rc.8 bytes
 also revalidated the preserved Claude Pre-Award and both-client OT workbooks,
 including external LibreOffice recalculation.
 
+A final scoped lifecycle run then removed all five 1102tools plugins and the
+1102tools marketplace from both clients. Before restoration, both clients had
+zero 1102tools marketplace entries, plugin registrations, MCP registrations,
+data directories, or cache roots. The two client-managed residual cache roots
+were moved into a mode-700 recovery area rather than broadly deleting either
+client directory. Reinstallation from GitHub `main` restored the five current
+versions in documented order. Content-tree hashes match the repository for all
+five packages in both clients; unrelated settings were preserved.
+
+Five fresh Codex stop/resume chains now complement the five existing Claude
+chains. Market Research preserved `MR-PLAN-01`, its source IDs, and the Native
+web only selection. Pre-Award preserved `PWS-APPROVAL-01` and
+`PWS-HANDOFF-01`. GovCon Growth preserved retrieval ID `GROWTH-RET-01`.
+Other Transaction preserved its milestone, payment, contribution, and pending
+input state. Acquisition Policy preserved conflict `C001` and both evidence
+IDs. All ten paths performed no duplicate retrieval, invented no state, and
+generated no premature artifact.
+
 No P0 remains. The OT validator-coverage P1 is resolved in
 `other-transaction-agent` `1.0.0-rc.8`: its global cached-error audit has
 deterministic regression coverage and passed required LibreOffice replay against
 the preserved Codex and Claude workbooks, and its current runtime-adaptation
 contract fails early on hosts without a supported workbook path. The GovCon
 pagination P1 and Pre-Award T&M material-handling P1 are also resolved in the
-current installed bytes. Final `1.0.0` still requires complete Codex resume
-proof, complete uninstall and restoration proof, the two clean guide-only bake
-pilots, the 72-hour frozen-byte bake, and a real remote RC-to-final upgrade.
+current installed bytes. Final `1.0.0` now requires the two clean guide-only
+pilots, the 72-hour frozen-byte bake with beginning/end canaries, and a real
+remote RC-to-final upgrade. The repeated Claude ambient-routing advisory
+remains documented but is not a package defect or release-blocking case.
