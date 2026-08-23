@@ -57,6 +57,18 @@ class RoutingRunnerTests(unittest.TestCase):
         self.assertTrue(passed)
         self.assertEqual(failures, [])
 
+    def test_grader_normalizes_markdown_emphasis_and_hyphens(self) -> None:
+        scenario = {
+            "required_any": [["does not make"], ["cost share"]],
+            "forbidden": [],
+        }
+        passed, failures = RUNNER.grade(
+            scenario,
+            "Publication does **not** make it operative; the cost-share decision is reserved.",
+        )
+        self.assertTrue(passed)
+        self.assertEqual(failures, [])
+
     def test_package_native_release_gates_are_front_loaded(self) -> None:
         pre = (REPO_ROOT / "plugins/pre-award-agent/skills/pre-award-workflow/SKILL.md").read_text()
         ot = (REPO_ROOT / "plugins/other-transaction-agent/skills/other-transaction-workflow/SKILL.md").read_text()

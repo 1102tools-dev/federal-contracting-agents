@@ -25,7 +25,7 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Native web only, but the host has no native web capability. State that capability is unavailable, re-present every remaining provider choice, and wait for a new explicit selection.",
-    "required_any": [["unavailable", "missing"], ["select", "choose", "approval"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
+    "required_any": [["unavailable", "not available", "missing"], ["select", "choose", "approval", "which provider"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
     "forbidden": ["switching to tavily", "called tavily", "created an account", "payment required"]
   },
   {
@@ -34,7 +34,7 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Native web only, but the host has no native web capability. State that capability is unavailable, re-present every remaining provider choice, and wait for a new explicit selection.",
-    "required_any": [["unavailable", "missing"], ["select", "choose", "approval"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
+    "required_any": [["unavailable", "not available", "missing"], ["select", "choose", "approval", "which provider", "would you like to use"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
     "forbidden": ["switching to tavily", "called tavily", "created an account", "payment required"]
   },
   {
@@ -79,7 +79,7 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
-    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until"], ["select", "choose", "approval", "which"]],
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like"], ["select", "choose", "approval", "which"]],
     "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
   },
   {
@@ -88,7 +88,7 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
-    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until"], ["select", "choose", "approval", "which"]],
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until", "which provider", "which would you like"], ["select", "choose", "approval", "which"]],
     "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
   },
   {
@@ -115,9 +115,9 @@
     "orchestrator": "market-research-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The immediately preceding turn presented the four provider options. The user replied only: OK. Explain that this did not select a provider, re-present the complete four-choice block now, and wait for explicit selection.",
-    "required_any": [["ambiguous", "not select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
+    "required_any": [["ambiguous", "not select", "doesn't select", "didn't select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
     "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
-    "forbidden": ["selected native web only", "proceeding with native", "selected tavily", "starting research"]
+    "forbidden": ["selected native web only", "proceeding with native", "selected tavily", "starting research", "insufficient"]
   },
   {
     "id": "growth-ambiguous-provider-reply",
@@ -125,8 +125,8 @@
     "orchestrator": "govcon-growth-workflow",
     "invocation": "explicit",
     "prompt": "No calls. The immediately preceding turn presented the four provider options. The user replied only: native. Explain that this did not select a provider, re-present the complete four-choice block now, and wait for explicit selection.",
-    "required_any": [["ambiguous", "not select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
+    "required_any": [["ambiguous", "not select", "doesn't select", "didn't select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
     "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
-    "forbidden": ["selected native web only", "proceeding with native", "starting research"]
+    "forbidden": ["selected native web only", "proceeding with native", "starting research", "insufficient"]
   }
 ]

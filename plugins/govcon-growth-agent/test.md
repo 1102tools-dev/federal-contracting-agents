@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.7`
+Version: `1.0.0-rc.8`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `84f35851c6294fcf584d0bbb22f3fb8172ad5eb5`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -150,4 +150,8 @@ package release gate.
 
 ## RC7 provider and menu hardening — 2026-08-23
 
-`1.0.0-rc.7` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The provider gate now rejects ambiguous replies, preserves federal MCP and supplied-document research in No public web mode, and excludes account creation or payment as a Tavily recovery path. A specific opportunity or attached bid-screen request is also explicitly prohibited from bypassing the complete nine-choice first-turn menu. The complete 14-case provider matrix and both-client research lanes must replay against exact installed RC7 bytes.
+`1.0.0-rc.7` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The provider gate rejects ambiguous replies, preserves federal MCP and supplied-document research in No public web mode, and excludes account creation or payment as a Tavily recovery path. A specific opportunity or attached bid-screen request is also explicitly prohibited from bypassing the complete nine-choice first-turn menu.
+
+## RC8 exact provider-language remediation — 2026-08-23
+
+`1.0.0-rc.8` vendors canonical skills commit `84f35851c6294fcf584d0bbb22f3fb8172ad5eb5`. A Sonnet installed-package replay correctly rejected an ambiguous selection but paraphrased combined fallback as available for “insufficient” native results. The current gate requires the complete policy choice block without paraphrasing and preserves the rule that zero, thin, or inconclusive results never trigger Tavily. The 14-case matrix and both-client research lanes must replay against exact RC8 bytes.

@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "d49ad2051cc7053794b5f5c5a986b4824ff315bf"
+      "commit": "84f35851c6294fcf584d0bbb22f3fb8172ad5eb5"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -166,11 +166,11 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.7",
+      "version": "1.0.0-rc.8",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "f44973e370881d237446885b38813dbf3b90ef14671c06dfef08dea15aa66d10",
+            "SKILL.md": "3d266cca6636d7e8eacecec709b410e39257e218d32339ae1dd3b25ac7625e02",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "ea4aa434387948da3812ec122ebc97382abf366b6b999316188d17e602bfbb95",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
@@ -192,11 +192,11 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.9",
+      "version": "1.0.0-rc.10",
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "556734553e50c0adb1545dc18d3c2a5072e00bd308c602c680b5fdc956c0fa28",
+            "SKILL.md": "49b399c9c9631773fcd08ee0f2bfabdb2e54c78de7c871849a2e654ef9a77957",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",

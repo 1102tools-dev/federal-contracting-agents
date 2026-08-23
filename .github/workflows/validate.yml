@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: d49ad2051cc7053794b5f5c5a986b4824ff315bf
+          ref: 84f35851c6294fcf584d0bbb22f3fb8172ad5eb5
           path: _skills
 
       - name: Check out locked MCP source
