@@ -56,7 +56,9 @@ class OrchestratorContractTests(unittest.TestCase):
     def test_market_research_menu_and_document_intake_are_hard_gates(self) -> None:
         text = self.text("market-research-agent", "market-research-workflow")
         for required in (
-            "The entire first-turn response consists only of the complete six-choice menu",
+            "The entire first-turn response consists only of the exact complete six-choice block",
+            "Do not summarize it, rename options, omit an option",
+            "summarized, renamed, reordered, condensed, or incomplete menu is invalid",
             "Restrictions do not suppress activation",
             "still triggers this skill",
             "1. Conduct quick market research and show the findings in chat",
@@ -70,6 +72,7 @@ class OrchestratorContractTests(unittest.TestCase):
             "Never invoke Tavily Crawl, Map, or Research",
         ):
             self.assertIn(required, text)
+        self.assertLess(text.index("## Mandatory first response"), text.index("## Purpose"))
 
         wrapper = (
             REPO_ROOT

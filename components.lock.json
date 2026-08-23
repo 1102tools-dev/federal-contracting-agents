@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "84f35851c6294fcf584d0bbb22f3fb8172ad5eb5"
+      "commit": "1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -192,11 +192,11 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.10",
+      "version": "1.0.0-rc.11",
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "49b399c9c9631773fcd08ee0f2bfabdb2e54c78de7c871849a2e654ef9a77957",
+            "SKILL.md": "66901f5306cccc66bcdd17bc028266a62f18faa2e8bc311e7dc6385391dc3dad",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",

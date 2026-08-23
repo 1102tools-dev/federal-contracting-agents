@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.10`
+Version: `1.0.0-rc.11`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `84f35851c6294fcf584d0bbb22f3fb8172ad5eb5`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -183,3 +183,7 @@ package release gate.
 ## RC10 exact provider-language remediation — 2026-08-23
 
 `1.0.0-rc.10` vendors canonical skills commit `84f35851c6294fcf584d0bbb22f3fb8172ad5eb5`. A Sonnet installed-package replay correctly rejected an ambiguous selection but paraphrased combined fallback as available for “insufficient” native results. The current gate requires the complete policy choice block without paraphrasing and preserves the rule that zero, thin, or inconclusive results never trigger Tavily. The 14-case matrix and both-client research lanes must replay against exact RC10 bytes.
+
+## RC11 canonical-menu reliability correction — 2026-08-23
+
+`1.0.0-rc.11` vendors canonical skills commit `1c2b7cbb8b07468f1f0c4fc196a2e1221d6a7d47`. During installed RC11 qualification, two of three repeated Codex CLI launches paraphrased or truncated the permanent six-choice menu. The canonical menu is now front-loaded before all purpose and supporting text, alternate summarized menus are explicitly invalid, and deterministic synchronization tests require the front-loaded and Stage 1 blocks to remain identical. Both-client routing, provider, resume, and repeated fresh-launch qualification must replay against exact RC11 bytes.

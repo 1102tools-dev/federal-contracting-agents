@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.0-rc.10",
+  "version": "1.0.0-rc.11",
   "description": "Build staged FAR Part 10 research; web, MCP, or file restrictions never suppress the required workflow menu.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
