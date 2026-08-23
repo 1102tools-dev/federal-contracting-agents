@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "round": "rc5",
+  "round": "rc6",
   "credential_variables": [
     {
       "name": "SAM_API_KEY",
@@ -37,7 +37,7 @@
     {
       "server": "sam-gov",
       "distribution": "sam-gov-mcp",
-      "pinned_version": "1.0.8",
+      "pinned_version": "1.0.9",
       "operation": "list_opportunities_minimal"
     },
     {
@@ -55,13 +55,13 @@
     {
       "server": "bls-oews",
       "distribution": "bls-oews-mcp",
-      "pinned_version": "1.0.5",
+      "pinned_version": "1.0.6",
       "operation": "list_common_soc_codes_minimal"
     },
     {
       "server": "gsa-perdiem",
       "distribution": "gsa-perdiem-mcp",
-      "pinned_version": "1.0.5",
+      "pinned_version": "1.0.6",
       "operation": "lookup_per_diem_minimal"
     },
     {
@@ -79,7 +79,7 @@
     {
       "server": "regulations-gov",
       "distribution": "regulationsgov-mcp",
-      "pinned_version": "1.0.4",
+      "pinned_version": "1.0.5",
       "operation": "search_dockets_minimal"
     },
     {

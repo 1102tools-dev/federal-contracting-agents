@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from runtime_canaries import (  # noqa: E402
     REDACTED,
@@ -23,6 +24,7 @@ from runtime_canaries import (  # noqa: E402
     SimulatedRequest,
 )
 from mcp_live_runner import CANARIES  # noqa: E402
+from scripts.validate_packages import EXPECTED_MCP_REQUIREMENTS  # noqa: E402
 
 
 class RuntimeCanaryTests(unittest.TestCase):
@@ -35,6 +37,10 @@ class RuntimeCanaryTests(unittest.TestCase):
         for server, definition in CANARIES.items():
             self.assertEqual(
                 matrix_by_server[server]["distribution"], definition["distribution"]
+            )
+            self.assertEqual(
+                matrix_by_server[server]["pinned_version"],
+                EXPECTED_MCP_REQUIREMENTS[server].rsplit("==", 1)[1],
             )
 
     def test_credential_matrix_records_presence_not_values(self):
