@@ -32,6 +32,10 @@ python3 tests/lifecycle/lifecycle_runner.py \
   --fixture-root /tmp/1102tools-rc5-fixture
 ```
 
+The fixture contains only disposable `rc4/`, `rc5/`, and metadata files.
+`fixture.json` records each tag, resolved commit, per-file hashes, and package
+tree hashes so the transition can be audited without rewriting manifests.
+
 ## Credential, pacing, and upstream canaries
 
 `runtime_canaries.py` is an offline-first harness for the credential,

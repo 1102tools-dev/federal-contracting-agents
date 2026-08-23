@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,6 +23,9 @@ try:  # Supports both ``unittest discover -s tests`` and direct invocation.
         prepare_upgrade_fixture,
         remove_scoped_targets,
         scoped_backup_metadata,
+        HISTORICAL_TAGS,
+        HISTORICAL_VERSIONS,
+        _tree_sha256,
     )
 except ImportError:  # pragma: no cover - direct discovery fallback
     from lifecycle_runner import (
@@ -40,6 +44,9 @@ except ImportError:  # pragma: no cover - direct discovery fallback
         prepare_upgrade_fixture,
         remove_scoped_targets,
         scoped_backup_metadata,
+        HISTORICAL_TAGS,
+        HISTORICAL_VERSIONS,
+        _tree_sha256,
     )
 
 
@@ -90,6 +97,8 @@ class LifecycleRunnerTests(unittest.TestCase):
 
     def test_upgrade_plan_matches_client_specific_update_paths(self) -> None:
         codex = build_plan(self.profile("codex"), self.matrix, "upgrade")
+        self.assertEqual(codex.commands[0], ("codex", "plugin", "marketplace", "add", "1102tools-dev/federal-contracting-agents", "--ref", "main"))
+        self.assertIn("marketplace refresh/upgrade", " ".join(codex.notes))
         self.assertIn(("codex", "plugin", "remove", "market-research-agent@1102tools"), codex.commands)
         self.assertIn(("codex", "plugin", "add", "market-research-agent@1102tools"), codex.commands)
 
@@ -133,11 +142,40 @@ class LifecycleRunnerTests(unittest.TestCase):
         fixture = Path(self.temp.name) / "fixture"
         source_manifest = Path(__file__).parents[2] / "plugins" / "market-research-agent" / "plugin.json"
         before = source_manifest.read_bytes()
-        metadata = prepare_upgrade_fixture(Path(__file__).parents[2], fixture, self.specs)
+        metadata = prepare_upgrade_fixture(
+            Path(__file__).parents[2], fixture, self.specs, historical=self.matrix["upgrade_fixture"]
+        )
         self.assertFalse(metadata["source_modified"])
         self.assertEqual(json.loads((fixture / "rc4/plugins/market-research-agent/plugin.json").read_text())["version"], "1.0.0-rc.4")
         self.assertEqual(json.loads((fixture / "rc5/plugins/market-research-agent/plugin.json").read_text())["version"], "1.0.0-rc.5")
         self.assertEqual(source_manifest.read_bytes(), before)
+
+    def test_fixture_preserves_heterogeneous_historical_versions_and_exact_manifest_bytes(self) -> None:
+        fixture = Path(self.temp.name) / "fixture-heterogeneous"
+        source = Path(__file__).parents[2]
+        metadata = prepare_upgrade_fixture(source, fixture, self.specs, historical=self.matrix["upgrade_fixture"])
+        for stage, tag in HISTORICAL_TAGS.items():
+            metadata_stage = metadata["from"] if stage == "rc4" else metadata["to"]
+            self.assertEqual(metadata_stage["tag"], tag)
+            expected = HISTORICAL_VERSIONS[stage]
+            actual = {}
+            for plugin_id in AGENT_IDS:
+                manifest_path = fixture / stage / "plugins" / plugin_id / "plugin.json"
+                actual[plugin_id] = json.loads(manifest_path.read_text(encoding="utf-8"))["version"]
+                git_manifest = subprocess.run(
+                    ["git", "-C", str(source), "show", f"{tag}:plugins/{plugin_id}/plugin.json"],
+                    stdout=subprocess.PIPE,
+                    check=True,
+                ).stdout
+                self.assertEqual(manifest_path.read_bytes(), git_manifest)
+                package_meta = metadata_stage["packages"][plugin_id]
+                self.assertEqual(package_meta["tree_sha256"], _tree_sha256(manifest_path.parent))
+            self.assertEqual(actual, expected)
+
+        self.assertNotEqual(
+            metadata["from"]["packages"]["market-research-agent"]["tree_sha256"],
+            metadata["to"]["packages"]["market-research-agent"]["tree_sha256"],
+        )
 
     def test_fixture_rejects_nonempty_or_in_repo_target(self) -> None:
         nonempty = Path(self.temp.name) / "nonempty"

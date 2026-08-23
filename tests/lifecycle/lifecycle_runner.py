@@ -20,7 +20,7 @@ import os
 import shutil
 import subprocess
 import sys
-import tempfile
+import tarfile
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -42,6 +42,27 @@ AGENT_IDS = (
     "other-transaction-agent",
     "acquisition-policy-agent",
 )
+
+HISTORICAL_TAGS = {
+    "rc4": "v1.2.0-rc.4",
+    "rc5": "v1.2.0-rc.5",
+}
+HISTORICAL_VERSIONS = {
+    "rc4": {
+        "market-research-agent": "1.0.0-rc.4",
+        "pre-award-agent": "1.0.0-rc.4",
+        "govcon-growth-agent": "1.0.0-rc.3",
+        "other-transaction-agent": "1.0.0-rc.4",
+        "acquisition-policy-agent": "1.0.0-rc.2",
+    },
+    "rc5": {
+        "market-research-agent": "1.0.0-rc.5",
+        "pre-award-agent": "1.0.0-rc.5",
+        "govcon-growth-agent": "1.0.0-rc.4",
+        "other-transaction-agent": "1.0.0-rc.5",
+        "acquisition-policy-agent": "1.0.0-rc.3",
+    },
+}
 
 
 class LifecycleSafetyError(ValueError):
@@ -327,6 +348,7 @@ def plan_upgrade(profile: ClientProfile, matrix: Mapping[str, Any], specs: Itera
     else:
         # Codex has no separate plugin-update operation: refresh the
         # marketplace and replace each installed package explicitly.
+        plan.notes.append("Codex marketplace refresh/upgrade precedes remove/add replacement")
         plan.commands.append(_base_commands(profile, matrix))
         for spec in specs:
             qualified = f"{spec.plugin_id}@{profile.marketplace}"
@@ -436,10 +458,17 @@ def prepare_upgrade_fixture(
     fixture_root: Path,
     specs: Iterable[AgentSpec],
     *,
-    from_version: str = "1.0.0-rc.4",
-    to_version: str = "1.0.0-rc.5",
+    from_tag: str = HISTORICAL_TAGS["rc4"],
+    to_tag: str = HISTORICAL_TAGS["rc5"],
+    historical: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Create a disposable rc4/rc5 fixture without changing shipped packages."""
+    """Export authentic historical rc4/rc5 package bytes into a fixture.
+
+    The release tags intentionally contain heterogeneous agent versions.  We
+    export each tag with ``git archive`` instead of copying current packages
+    and rewriting manifests; this makes an upgrade test exercise the actual
+    historical bytes and metadata.
+    """
 
     source_root = source_root.resolve()
     fixture_root = fixture_root.expanduser().resolve()
@@ -451,27 +480,122 @@ def prepare_upgrade_fixture(
     else:
         fixture_root.mkdir(parents=True, mode=0o700)
     spec_list = tuple(specs)
-    for stage, version in (("rc4", from_version), ("rc5", to_version)):
+    fixture_definition = historical or {
+        "from": {"marketplace_tag": from_tag, "versions": HISTORICAL_VERSIONS["rc4"]},
+        "to": {"marketplace_tag": to_tag, "versions": HISTORICAL_VERSIONS["rc5"]},
+    }
+    stages = (
+        ("rc4", str(fixture_definition["from"]["marketplace_tag"])),
+        ("rc5", str(fixture_definition["to"]["marketplace_tag"])),
+    )
+    historical_hashes: dict[str, Any] = {}
+    for stage, tag in stages:
+        commit = _git_text(source_root, "rev-parse", f"{tag}^{{commit}}")
+        definition_key = "from" if stage == "rc4" else "to"
+        definition = fixture_definition.get(definition_key)
+        expected_versions = definition.get("versions") if isinstance(definition, Mapping) else None
+        if not isinstance(expected_versions, Mapping):
+            raise LifecycleSafetyError(f"no expected heterogeneous versions for fixture stage {stage!r}")
+        archive = _git_archive(source_root, tag, spec_list)
+        stage_root = fixture_root / stage
+        stage_root.mkdir(parents=True, mode=0o700)
+        _extract_archive_safely(archive, stage_root)
+        packages: dict[str, Any] = {}
         for spec in spec_list:
-            source = source_root / "plugins" / spec.plugin_id
-            if not source.is_dir():
-                raise LifecycleSafetyError(f"package source missing: {source}")
-            destination = fixture_root / stage / "plugins" / spec.plugin_id
-            shutil.copytree(source, destination)
-            manifest = destination / "plugin.json"
+            package_root = stage_root / "plugins" / spec.plugin_id
+            if not package_root.is_dir():
+                raise LifecycleSafetyError(f"historical tag {tag} lacks package {spec.plugin_id}")
+            manifest = package_root / "plugin.json"
             data = json.loads(manifest.read_text(encoding="utf-8"))
-            data["version"] = version
-            manifest.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+            actual_version = data.get("version")
+            expected_version = expected_versions.get(spec.plugin_id)
+            if actual_version != expected_version:
+                raise LifecycleSafetyError(
+                    f"historical tag {tag} has {spec.plugin_id} version {actual_version!r}; expected {expected_version!r}"
+                )
+            packages[spec.plugin_id] = {
+                "version": actual_version,
+                "tree_sha256": _tree_sha256(package_root),
+                "files": _tree_file_hashes(package_root),
+            }
+        historical_hashes[stage] = {
+            "tag": tag,
+            "commit": commit,
+            "packages": packages,
+        }
     metadata = {
         "fixture_root": str(fixture_root),
         "source_root": str(source_root),
-        "from": {"label": "rc4", "version": from_version},
-        "to": {"label": "rc5", "version": to_version},
+        "from": historical_hashes["rc4"],
+        "to": historical_hashes["rc5"],
         "agents": [spec.plugin_id for spec in spec_list],
         "source_modified": False,
     }
     (fixture_root / "fixture.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     return metadata
+
+
+def _git_text(source_root: Path, *args: str) -> str:
+    try:
+        completed = subprocess.run(
+            ["git", "-C", str(source_root), *args],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise LifecycleSafetyError(f"git lookup failed for historical fixture: {' '.join(args)}") from exc
+    return completed.stdout.strip()
+
+
+def _git_archive(source_root: Path, tag: str, specs: Sequence[AgentSpec]) -> bytes:
+    paths = [f"plugins/{spec.plugin_id}" for spec in specs]
+    try:
+        completed = subprocess.run(
+            ["git", "-C", str(source_root), "archive", "--format=tar", tag, "--", *paths],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise LifecycleSafetyError(f"git archive failed for historical tag {tag!r}") from exc
+    return completed.stdout
+
+
+def _extract_archive_safely(archive: bytes, destination: Path) -> None:
+    import io
+
+    with tarfile.open(fileobj=io.BytesIO(archive), mode="r:") as stream:
+        resolved_destination = destination.resolve()
+        for member in stream.getmembers():
+            target = (destination / member.name).resolve()
+            if target != resolved_destination and resolved_destination not in target.parents:
+                raise LifecycleSafetyError(f"historical archive escapes fixture root: {member.name!r}")
+            if member.issym() or member.islnk():
+                raise LifecycleSafetyError(f"historical archive contains unsupported link: {member.name!r}")
+        stream.extractall(destination)
+
+
+def _tree_file_hashes(root: Path) -> list[dict[str, Any]]:
+    files: list[dict[str, Any]] = []
+    for path in sorted(path for path in root.rglob("*") if path.is_file() and not path.is_symlink()):
+        files.append({
+            "path": str(path.relative_to(root)),
+            "size": path.stat().st_size,
+            "sha256": _sha256(path),
+        })
+    return files
+
+
+def _tree_sha256(root: Path) -> str:
+    digest = hashlib.sha256()
+    for item in _tree_file_hashes(root):
+        digest.update(item["path"].encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(item["sha256"].encode("ascii"))
+        digest.update(b"\n")
+    return digest.hexdigest()
 
 
 def ledger_for_plan(
@@ -522,7 +646,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         profile = ClientProfile(args.client, args.home)
         ledger = ledger_for_plan(profile, matrix, args.lane, execute=args.execute)
         if args.fixture_root:
-            metadata = prepare_upgrade_fixture(REPO_ROOT, args.fixture_root, agent_specs(matrix))
+            metadata = prepare_upgrade_fixture(
+                REPO_ROOT,
+                args.fixture_root,
+                agent_specs(matrix),
+                historical=matrix.get("upgrade_fixture"),
+            )
             ledger["upgrade_fixture"] = metadata
         rendered = json.dumps(ledger, indent=2) + "\n"
         if args.output:

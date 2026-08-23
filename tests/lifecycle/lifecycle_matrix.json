@@ -64,6 +64,28 @@
     "uninstall",
     "restore"
   ],
+  "upgrade_fixture": {
+    "from": {
+      "marketplace_tag": "v1.2.0-rc.4",
+      "versions": {
+        "market-research-agent": "1.0.0-rc.4",
+        "pre-award-agent": "1.0.0-rc.4",
+        "govcon-growth-agent": "1.0.0-rc.3",
+        "other-transaction-agent": "1.0.0-rc.4",
+        "acquisition-policy-agent": "1.0.0-rc.2"
+      }
+    },
+    "to": {
+      "marketplace_tag": "v1.2.0-rc.5",
+      "versions": {
+        "market-research-agent": "1.0.0-rc.5",
+        "pre-award-agent": "1.0.0-rc.5",
+        "govcon-growth-agent": "1.0.0-rc.4",
+        "other-transaction-agent": "1.0.0-rc.5",
+        "acquisition-policy-agent": "1.0.0-rc.3"
+      }
+    }
+  },
   "safety": {
     "default_mode": "dry-run",
     "execution_requires_explicit_flag": true,
