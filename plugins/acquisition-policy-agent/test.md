@@ -118,3 +118,16 @@ live rulemaking/comment and procurement-specific status matrix remains a final
 from upstream response bodies, parsed payloads, request URLs, and network
 exceptions. The keyed Regulations.gov and representative impact-brief lanes
 must replay before this candidate closes.
+
+## RC5 lifecycle hardening replay — 2026-08-23
+
+Current `1.0.0-rc.4` Codex and Claude lanes each produced a validated
+Acquisition Policy impact brief. Both preserved the unresolved-conflict boundary
+without naming a disputed source as controlling, governing, applicable, or
+operative. Record, status, evidence, structure, links, extraction,
+LibreOffice, ZIP-integrity, and visual checks passed. The Claude resume
+checkpoint also preserved the unresolved conflict without inventing a finding
+or artifact; the complete Codex resume chain remains advisory. No Acquisition
+Policy P0 or P1 remains. The broader live rulemaking/comment matrix still gates
+final `1.0.0`. Evidence:
+[`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

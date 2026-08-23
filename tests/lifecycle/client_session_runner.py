@@ -14,8 +14,11 @@ import argparse
 import hashlib
 import json
 import os
+import queue
+import signal
 import subprocess
 import sys
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -50,6 +53,8 @@ def load_credentials(path: Path | None) -> dict[str, str]:
         if isinstance(item, Mapping):
             for key, value in item.items():
                 if key in KNOWN_CREDENTIALS and isinstance(value, str) and value:
+                    if len(value) < 4:
+                        raise ValueError(f"{key} credential value is too short for safe redaction")
                     found[key] = value
                 visit(value)
         elif isinstance(item, list):
@@ -114,7 +119,8 @@ def claude_command(args: argparse.Namespace, prompt: str) -> list[str]:
         "--settings",
         '{"fastMode":true}',
         "--output-format",
-        "json",
+        "stream-json",
+        "--verbose",
         "--permission-mode",
         "bypassPermissions",
     ])
@@ -170,17 +176,200 @@ def apply_client_home(
 
 
 def parse_claude(stdout: str) -> tuple[str | None, str, dict[str, Any]]:
-    payload = json.loads(stdout)
-    usage = payload.get("modelUsage") or {}
+    payloads: list[Mapping[str, Any]] = []
+    try:
+        parsed = json.loads(stdout)
+        if isinstance(parsed, Mapping):
+            payloads.append(parsed)
+    except json.JSONDecodeError:
+        for line in stdout.splitlines():
+            try:
+                parsed = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(parsed, Mapping):
+                payloads.append(parsed)
+    if not payloads:
+        raise ValueError("Claude emitted no parseable JSON events")
+    result_payload = next(
+        (item for item in reversed(payloads) if item.get("type") == "result"),
+        None,
+    )
+    if result_payload is None and len(payloads) == 1 and "result" in payloads[0]:
+        result_payload = payloads[0]
+    if result_payload is None:
+        raise ValueError("Claude stream ended without a final result event")
+    if result_payload.get("is_error") is True:
+        raise ValueError("Claude final result reported an error")
+    session_id = next(
+        (
+            str(item["session_id"])
+            for item in reversed(payloads)
+            if isinstance(item.get("session_id"), str) and item.get("session_id")
+        ),
+        None,
+    )
+    usage = result_payload.get("modelUsage") or {}
+    event_types = [str(item.get("type")) for item in payloads if item.get("type")]
     summary = {
         "model_usage": sorted(usage),
-        "num_turns": payload.get("num_turns"),
-        "duration_api_ms": payload.get("duration_api_ms"),
-        "is_error": payload.get("is_error"),
-        "fast_mode_state": payload.get("fast_mode_state"),
-        "fast_mode_disabled_reason": payload.get("fast_mode_disabled_reason"),
+        "num_turns": result_payload.get("num_turns"),
+        "duration_api_ms": result_payload.get("duration_api_ms"),
+        "is_error": result_payload.get("is_error"),
+        "fast_mode_state": result_payload.get("fast_mode_state"),
+        "fast_mode_disabled_reason": result_payload.get("fast_mode_disabled_reason"),
+        "event_count": len(event_types),
+        "event_types": sorted(set(event_types)),
     }
-    return payload.get("session_id"), str(payload.get("result") or ""), summary
+    return session_id, str(result_payload.get("result") or ""), summary
+
+
+def run_claude_streaming(
+    command: Sequence[str],
+    *,
+    cwd: Path,
+    environment: Mapping[str, str],
+    timeout: float,
+    warning_after: float,
+    heartbeat_interval: float,
+    drain_timeout: float,
+    termination_grace: float,
+    secrets: Sequence[str],
+    stdout_path: Path,
+    stderr_path: Path,
+    progress_path: Path,
+) -> tuple[subprocess.CompletedProcess[str], bool]:
+    """Stream credential-safe Claude evidence and emit content-free heartbeats."""
+
+    process = subprocess.Popen(
+        list(command),
+        cwd=cwd,
+        env=dict(environment),
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        bufsize=1,
+        start_new_session=True,
+    )
+    events: queue.Queue[tuple[str, str | None]] = queue.Queue()
+
+    def pump(name: str, stream: Any) -> None:
+        try:
+            for line in iter(stream.readline, ""):
+                events.put((name, line))
+        finally:
+            stream.close()
+            events.put((name, None))
+
+    assert process.stdout is not None and process.stderr is not None
+    threads = (
+        threading.Thread(target=pump, args=("stdout", process.stdout), daemon=True),
+        threading.Thread(target=pump, args=("stderr", process.stderr), daemon=True),
+    )
+    for thread in threads:
+        thread.start()
+
+    started = time.monotonic()
+    next_heartbeat = started + heartbeat_interval
+    closed: set[str] = set()
+    stdout_parts: list[str] = []
+    stderr_parts: list[str] = []
+    last_event_type: str | None = None
+    timed_out = False
+    leader_exited_at: float | None = None
+
+    def terminate_process_group() -> None:
+        try:
+            os.killpg(process.pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+        if termination_grace > 0:
+            time.sleep(termination_grace)
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+        try:
+            process.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=10)
+
+    with stdout_path.open("w", encoding="utf-8") as stdout_file, stderr_path.open(
+        "w", encoding="utf-8"
+    ) as stderr_file, progress_path.open("w", encoding="utf-8") as progress_file:
+        while len(closed) < 2 or process.poll() is None:
+            try:
+                source, raw = events.get(timeout=0.25)
+            except queue.Empty:
+                source = ""
+                raw = None
+            if source:
+                if raw is None:
+                    closed.add(source)
+                else:
+                    safe = redact_text(raw, secrets)
+                    target = stdout_file if source == "stdout" else stderr_file
+                    parts = stdout_parts if source == "stdout" else stderr_parts
+                    target.write(safe)
+                    target.flush()
+                    parts.append(safe)
+                    if source == "stdout":
+                        try:
+                            parsed = json.loads(safe)
+                        except json.JSONDecodeError:
+                            parsed = None
+                        if isinstance(parsed, Mapping) and parsed.get("type"):
+                            last_event_type = str(parsed["type"])
+            now = time.monotonic()
+            elapsed = now - started
+            if process.poll() is not None and leader_exited_at is None:
+                leader_exited_at = now
+            if now >= next_heartbeat:
+                progress_file.write(
+                    json.dumps(
+                        {
+                            "at": utc_now(),
+                            "elapsed_seconds": round(elapsed, 3),
+                            "last_event_type": last_event_type,
+                            "process_running": process.poll() is None,
+                            "warning_threshold_reached": elapsed >= warning_after,
+                        },
+                        sort_keys=True,
+                    )
+                    + "\n"
+                )
+                progress_file.flush()
+                next_heartbeat = now + heartbeat_interval
+            if process.poll() is None and elapsed >= timeout:
+                timed_out = True
+                terminate_process_group()
+                break
+            if (
+                leader_exited_at is not None
+                and len(closed) < 2
+                and now - leader_exited_at >= drain_timeout
+            ):
+                timed_out = True
+                terminate_process_group()
+                break
+        for thread in threads:
+            thread.join(timeout=2)
+        if any(thread.is_alive() for thread in threads):
+            timed_out = True
+            terminate_process_group()
+    if process.returncode is None:
+        try:
+            process.wait(timeout=0)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            terminate_process_group()
+    return subprocess.CompletedProcess(
+        list(command),
+        124 if timed_out else int(process.returncode if process.returncode is not None else 125),
+        "".join(stdout_parts),
+        "".join(stderr_parts),
+    ), timed_out
 
 
 def parse_codex(stdout: str) -> tuple[str | None, str, dict[str, Any]]:
@@ -239,6 +428,10 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--codex-profile")
     result.add_argument("--codex-config", action="append", default=[])
     result.add_argument("--timeout", type=float, default=1800)
+    result.add_argument("--warning-after", type=float, default=600)
+    result.add_argument("--heartbeat-interval", type=float, default=30)
+    result.add_argument("--stream-drain-timeout", type=float, default=5)
+    result.add_argument("--termination-grace", type=float, default=2)
     return result
 
 
@@ -251,29 +444,46 @@ def main(argv: Sequence[str] | None = None) -> int:
     presence = apply_credential_state(environment, credentials, args.credential_state)
     isolated_client_home = apply_client_home(environment, args.client, args.client_home)
     command = claude_command(args, prompt) if args.client == "claude" else codex_command(args, prompt)
+    stem = f"turn{args.turn}"
+    secrets = tuple(credentials.values())
     started_at = utc_now()
     started = time.monotonic()
-    try:
-        completed = subprocess.run(
+    if args.client == "claude":
+        completed, timed_out = run_claude_streaming(
             command,
             cwd=args.workdir,
-            env=environment,
-            text=True,
-            capture_output=True,
+            environment=environment,
             timeout=args.timeout,
-            check=False,
+            warning_after=args.warning_after,
+            heartbeat_interval=args.heartbeat_interval,
+            drain_timeout=args.stream_drain_timeout,
+            termination_grace=args.termination_grace,
+            secrets=secrets,
+            stdout_path=args.workdir / f"{stem}.stdout",
+            stderr_path=args.workdir / f"{stem}.stderr",
+            progress_path=args.workdir / f"{stem}.progress.jsonl",
         )
-        timed_out = False
-    except subprocess.TimeoutExpired as exc:
-        completed = subprocess.CompletedProcess(command, 124, exc.stdout or "", exc.stderr or "")
-        timed_out = True
+    else:
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=args.workdir,
+                env=environment,
+                text=True,
+                capture_output=True,
+                timeout=args.timeout,
+                check=False,
+            )
+            timed_out = False
+        except subprocess.TimeoutExpired as exc:
+            completed = subprocess.CompletedProcess(command, 124, exc.stdout or "", exc.stderr or "")
+            timed_out = True
     elapsed = round(time.monotonic() - started, 6)
-    secrets = tuple(credentials.values())
     safe_stdout = redact_text(str(completed.stdout or ""), secrets)
     safe_stderr = redact_text(str(completed.stderr or ""), secrets)
-    stem = f"turn{args.turn}"
-    (args.workdir / f"{stem}.stdout").write_text(safe_stdout, encoding="utf-8")
-    (args.workdir / f"{stem}.stderr").write_text(safe_stderr, encoding="utf-8")
+    if args.client != "claude":
+        (args.workdir / f"{stem}.stdout").write_text(safe_stdout, encoding="utf-8")
+        (args.workdir / f"{stem}.stderr").write_text(safe_stderr, encoding="utf-8")
     session_id: str | None = None
     response = ""
     client_meta: dict[str, Any] = {}
@@ -312,12 +522,23 @@ def main(argv: Sequence[str] | None = None) -> int:
         "stderr_sha256": sha256_bytes(safe_stderr.encode("utf-8")),
         "response_sha256": sha256_bytes(response.encode("utf-8")),
         "parse_error": parse_error,
+        "timeout_seconds": args.timeout,
+        "warning_after_seconds": args.warning_after,
+        "heartbeat_interval_seconds": args.heartbeat_interval,
+        "stream_drain_timeout_seconds": args.stream_drain_timeout if args.client == "claude" else None,
+        "termination_grace_seconds": args.termination_grace if args.client == "claude" else None,
+        "progress_path": f"{stem}.progress.jsonl" if args.client == "claude" else None,
+        "progress_sha256": (
+            sha256_bytes((args.workdir / f"{stem}.progress.jsonl").read_bytes())
+            if args.client == "claude" and (args.workdir / f"{stem}.progress.jsonl").exists()
+            else None
+        ),
         **client_meta,
     }
     rendered = json.dumps(meta, indent=2, sort_keys=True) + "\n"
     (args.workdir / f"{stem}.meta.json").write_text(rendered, encoding="utf-8")
     sys.stdout.write(rendered)
-    return 0 if completed.returncode == 0 and parse_error is None else 1
+    return 0 if completed.returncode == 0 and not timed_out and parse_error is None else 1
 
 
 if __name__ == "__main__":

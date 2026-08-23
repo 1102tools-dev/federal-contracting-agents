@@ -177,3 +177,16 @@ redact active credentials from upstream response bodies, parsed payloads, and
 network exceptions before any error or tool result can reach a client. The
 credential and representative artifact lanes must replay against the published
 patches before this candidate closes.
+
+## RC5 lifecycle hardening replay — 2026-08-23
+
+The current `1.0.0-rc.6` Codex lane produced and validated a PWS plus FFP IGCE.
+The workbook passed formula structure, independent recomputation, serialized
+LibreOffice recalculation, ZIP integrity, and every-sheet visual review. The
+Claude lane produced a valid PWS but could not complete its cost-reimbursement
+workbook because the external test credential or quota did not provide usable
+BLS capability. It stopped without fabricating rates or an artifact. This is an
+external P2 test-environment blocker, not a Pre-Award product defect. No P0 or
+P1 remains; the Claude pricing rerun, complete Codex resume proof, and remaining
+manual modes still gate final `1.0.0`. Evidence:
+[`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

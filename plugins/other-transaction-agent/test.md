@@ -177,3 +177,19 @@ active credentials from upstream-controlled errors and payloads before client
 display. The interrupted mixed-milestone Claude lane and the credential and
 spreadsheet gates must replay against these patches before this candidate
 closes.
+
+## RC5 lifecycle hardening replay — 2026-08-23
+
+The current `1.0.0-rc.6` Codex Desktop lane produced an 11-page project
+description and a seven-sheet, 375-formula cost-analysis workbook. Canonical
+validation, independent recomputation, serialized LibreOffice recalculation,
+ZIP integrity, and full visual review passed. Live preflight used BLS 2025
+Austin MSA, CALC+ positioning, and a disclosed FY2026 Per Diem fallback because
+FY2027 was unavailable; the workbook marks that source for refresh. The nested
+isolated Codex CLI lacked its spreadsheet-authoring runtime, but the maintained
+Desktop surface completed the artifact, so that is an environment advisory.
+The Claude project description passed, while its pricing workbook remains
+externally BLS credential/quota-blocked and stopped without invented values.
+No OT P0 or P1 remains; that Claude workbook and remaining manual modes still
+gate final `1.0.0`. Evidence:
+[`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

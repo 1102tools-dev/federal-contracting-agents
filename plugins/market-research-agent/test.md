@@ -136,3 +136,15 @@ the exact public extraction URLs shown to the user. Newly discovered URLs are
 registered and require explicit updated approval before fetch or extraction;
 provider fallback cannot bypass the stop. The affected Claude and Codex live
 research lanes must replay this gate before the candidate closes.
+
+## RC5 lifecycle hardening replay — 2026-08-23
+
+Both maintained client families produced current `1.0.0-rc.6` Market Research
+DOCX artifacts after the RC6 remediation. Record, approval, evidence, structure,
+link, extraction, LibreOffice, ZIP-integrity, and full-page visual checks passed.
+The Claude resume checkpoint preserved `MR-PLAN-01` and stable source IDs with
+no retrieval or artifact before approval; the Codex checkpoint preserved the
+same no-premature-retrieval boundary but remains advisory until its complete
+resume chain is consolidated. No Market Research P0 or P1 remains. Full mode
+coverage still gates final `1.0.0`. Evidence:
+[`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

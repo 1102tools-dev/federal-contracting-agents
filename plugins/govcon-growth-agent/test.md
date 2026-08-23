@@ -124,3 +124,15 @@ replayable RC5 inventory is [`../../tests/manual/rc5_closure_ledger.json`](../..
 from upstream bodies, payloads, URLs, and network exceptions and no longer
 echoes a malformed key prefix. The Codex host-profile and authenticated
 opportunity lanes must replay before this candidate closes.
+
+## RC5 lifecycle hardening replay — 2026-08-23
+
+Current `1.0.0-rc.5` Codex and Claude lanes each produced a GovCon Growth
+brief. Source-call timestamp linkage, record, evidence, structure, links,
+extraction, LibreOffice, ZIP-integrity, and visual checks passed. The Claude
+resume checkpoint preserved prior retrieval IDs and limitations without a
+duplicate call, bid decision, or premature artifact. The Codex long-session
+artifact passed, while its separately controlled resume checkpoint remains an
+advisory evidence gap. No GovCon Growth P0 or P1 remains; the broader
+authenticated opportunity matrix still gates final `1.0.0`. Evidence:
+[`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).

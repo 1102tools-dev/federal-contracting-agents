@@ -301,3 +301,56 @@ evidence, formula, independent-recomputation, spreadsheet-engine, extraction,
 link, and visual gates. This supports the five public release candidates. It
 does not close every scenario in this manual matrix or authorize final
 `1.0.0`; the complete authenticated multi-turn matrix remains open.
+
+## RC5 lifecycle hardening evidence — 2026-08-23
+
+The follow-on lifecycle round tested the installed release candidates rather
+than changing their shipped workflow bytes. Its sanitized, replayable record is
+[`manual/rc5_lifecycle_ledger.json`](manual/rc5_lifecycle_ledger.json); raw
+transcripts and generated artifacts remain outside Git in the protected
+validation directory named by that ledger.
+
+Fresh scoped installation and restoration passed for both maintained client
+families. Same-version reinstall was idempotent, individual owner removal kept
+shared MCP capabilities reachable through the next declaration, and all five
+current package versions were restored from the GitHub marketplace. The
+historical upgrade fixture passed its byte-transition checks. Complete-uninstall
+proof remains advisory because the captured post-cleanup inventories still
+contained 1102tools declarations; no broad client directory was deleted to
+manufacture a clean result.
+
+The shared-key concurrency canary serialized two SAM.gov callers at the
+configured three-second interval without deadlock or burst behavior. All nine
+published MCP distributions passed the live normalized-shape and tool-inventory
+canary. Missing, invalid, protected-valid, and captured/mock rate-limit paths
+were exercised without retaining a credential value. The credential lane stays
+advisory because the live BLS test credential or quota did not support the two
+remaining Claude pricing workbooks.
+
+| Principal lane | Current result |
+|---|---|
+| Market Research — Codex | Pass: validated DOCX |
+| Market Research — Claude | Pass: validated DOCX |
+| Pre-Award — Codex | Pass: validated PWS and IGCE workbook |
+| Pre-Award — Claude | Partial: PWS passed; pricing workbook externally BLS-blocked |
+| GovCon Growth — Codex | Pass: validated brief |
+| GovCon Growth — Claude | Pass: validated brief |
+| Other Transaction — Codex | Pass: validated project description and 375-formula workbook |
+| Other Transaction — Claude | Partial: project description passed; pricing workbook externally BLS-blocked |
+| Acquisition Policy — Codex | Pass: validated impact brief |
+| Acquisition Policy — Claude | Pass: validated impact brief |
+
+This is eight of ten complete principal lanes. The nested isolated Codex CLI
+could not expose the spreadsheet-authoring runtime, but the maintained Codex
+Desktop surface completed and validated the OT workbook; that is retained as a
+test-environment advisory, not a product defect. All five Claude resume
+checkpoints preserved approvals and stopped without duplicate retrieval or
+premature artifacts. The Codex checkpoint evidence is directionally sound but
+not yet consolidated into ten complete cross-client resume chains. The Sonnet
+23-case routing replay is likewise retained as advisory evidence rather than a
+claimed final gate.
+
+No unresolved P0 or P1 product defect remains. These results support continued
+advertising of the five public previews. Final `1.0.0` still requires the two
+externally blocked Claude pricing lanes, complete Codex resume proof, a real
+remote RC-to-final upgrade, and the remaining authenticated manual scenarios.
