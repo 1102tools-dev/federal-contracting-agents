@@ -33,8 +33,13 @@ from typing import Any, Iterable, Mapping, Sequence
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_MATRIX = HERE / "canary_matrix.json"
-DEFAULT_CREDENTIALS = ("SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY")
-REDACTION_CREDENTIALS = DEFAULT_CREDENTIALS + ("PERDIEM_API_KEY",)
+DEFAULT_CREDENTIALS = (
+    "SAM_API_KEY",
+    "BLS_API_KEY",
+    "REGULATIONS_GOV_API_KEY",
+    "PERDIEM_API_KEY",
+)
+REDACTION_CREDENTIALS = DEFAULT_CREDENTIALS
 REDACTED = "[REDACTED]"
 _SECRET_KEY_RE = re.compile(r"(?i)(?:api[_-]?key|token|password|secret|authorization)")
 _ASSIGNMENT_RE = re.compile(
