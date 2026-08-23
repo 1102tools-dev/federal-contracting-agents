@@ -116,13 +116,13 @@ def claude_command(args: argparse.Namespace, prompt: str) -> list[str]:
         args.model or "opus",
         "--effort",
         args.effort,
-        "--settings",
-        '{"fastMode":true}',
+    ])
+    if getattr(args, "claude_fast_mode", False):
+        command.extend(("--settings", '{"fastMode":true}'))
+    command.extend([
         "--output-format",
         "stream-json",
         "--verbose",
-        "--permission-mode",
-        "bypassPermissions",
     ])
     if args.session_id:
         command.extend(("--resume", args.session_id))
@@ -142,7 +142,8 @@ def codex_command(args: argparse.Namespace, prompt: str) -> list[str]:
         "--json",
         "--model",
         args.model or "gpt-5.6-sol",
-        "--dangerously-bypass-approvals-and-sandbox",
+        "--sandbox",
+        "read-only",
         "--skip-git-repo-check",
     ]
     if args.session_id:
@@ -168,9 +169,15 @@ def apply_client_home(
     if not client_dir.is_dir():
         raise ValueError("isolated client directory does not exist")
     environment["HOME"] = str(resolved)
+    environment["XDG_CONFIG_HOME"] = str(resolved / ".config")
+    environment["XDG_CACHE_HOME"] = str(resolved / ".cache")
+    environment["XDG_DATA_HOME"] = str(resolved / ".local" / "share")
+    environment["XDG_STATE_HOME"] = str(resolved / ".local" / "state")
     if client == "codex":
+        environment.pop("CLAUDE_CONFIG_DIR", None)
         environment["CODEX_HOME"] = str(client_dir)
     else:
+        environment.pop("CODEX_HOME", None)
         environment["CLAUDE_CONFIG_DIR"] = str(client_dir)
     return True
 
@@ -421,6 +428,11 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--mcp-config", type=Path)
     result.add_argument("--model")
     result.add_argument("--effort", default="high")
+    result.add_argument(
+        "--claude-fast-mode",
+        action="store_true",
+        help="opt a Claude turn into fast mode; default is off",
+    )
     result.add_argument("--codex-binary", type=Path, default=DEFAULT_CODEX)
     result.add_argument("--claude-binary", type=Path, default=DEFAULT_CLAUDE)
     result.add_argument("--claude-agent")
@@ -510,7 +522,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         "resumed_session_id": args.session_id,
         "model_requested": args.model or ("opus" if args.client == "claude" else "gpt-5.6-sol"),
         "effort_requested": args.effort,
-        "fast_mode_requested": args.client == "claude",
+        "fast_mode_requested": bool(
+            args.client == "claude" and getattr(args, "claude_fast_mode", False)
+        ),
+        "fast_mode_effective": (
+            client_meta.get("fast_mode_state") if args.client == "claude" else None
+        ),
         "credential_state": args.credential_state,
         "credential_presence": presence,
         "credential_values_recorded": False,

@@ -44,6 +44,7 @@ class ClientSessionRunnerTests(unittest.TestCase):
             codex_binary=Path("/bin/codex"),
             model=None,
             effort="high",
+            claude_fast_mode=False,
             session_id=session_id,
             mcp_config=Path("/tmp/package/.mcp.json") if client == "claude" else None,
             claude_agent=None,
@@ -51,16 +52,23 @@ class ClientSessionRunnerTests(unittest.TestCase):
             codex_config=[],
         )
 
-    def test_claude_command_requests_fast_opus_and_explicit_resume(self) -> None:
+    def test_claude_command_defaults_non_fast_opus_and_explicit_resume(self) -> None:
         command = claude_command(self.args("claude", "session-1"), "continue")
         self.assertIn("opus", command)
         self.assertIn("high", command)
-        self.assertIn('{"fastMode":true}', command)
+        self.assertNotIn('{"fastMode":true}', command)
+        self.assertNotIn("--permission-mode", command)
         self.assertIn("stream-json", command)
         self.assertIn("--verbose", command)
         self.assertIn("--strict-mcp-config", command)
         resume_index = command.index("--resume")
         self.assertEqual(command[resume_index : resume_index + 2], ["--resume", "session-1"])
+
+    def test_claude_command_fast_mode_is_opt_in(self) -> None:
+        args = self.args("claude", "session-1")
+        args.claude_fast_mode = True
+        command = claude_command(args, "continue")
+        self.assertIn('{"fastMode":true}', command)
 
     def test_claude_command_accepts_explicit_installed_agent(self) -> None:
         args = self.args("claude")
@@ -84,6 +92,9 @@ class ClientSessionRunnerTests(unittest.TestCase):
         )
         self.assertIn("thread-1", command)
         self.assertIn("gpt-5.6-sol", command)
+        self.assertIn("--sandbox", command)
+        self.assertIn("read-only", command)
+        self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", command)
 
     def test_codex_command_accepts_explicit_config_override(self) -> None:
         args = self.args("codex")
@@ -125,6 +136,11 @@ class ClientSessionRunnerTests(unittest.TestCase):
             self.assertTrue(apply_client_home(environment, "codex", root))
             self.assertEqual(environment["HOME"], str(root.resolve()))
             self.assertEqual(environment["CODEX_HOME"], str((root / ".codex").resolve()))
+            resolved = root.resolve()
+            self.assertEqual(environment["XDG_CONFIG_HOME"], str(resolved / ".config"))
+            self.assertEqual(environment["XDG_CACHE_HOME"], str(resolved / ".cache"))
+            self.assertEqual(environment["XDG_DATA_HOME"], str(resolved / ".local" / "share"))
+            self.assertEqual(environment["XDG_STATE_HOME"], str(resolved / ".local" / "state"))
 
     def test_credentials_are_loaded_and_never_rendered(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
