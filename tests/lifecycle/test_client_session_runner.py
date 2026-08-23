@@ -70,6 +70,13 @@ class ClientSessionRunnerTests(unittest.TestCase):
         command = claude_command(args, "continue")
         self.assertIn('{"fastMode":true}', command)
 
+    def test_claude_command_passes_allowed_tools_restriction(self) -> None:
+        args = self.args("claude")
+        args.claude_allowed_tools = "Skill,Read,Glob,Grep,LS,TodoWrite"
+        command = claude_command(args, "verify")
+        index = command.index("--allowed-tools")
+        self.assertEqual(command[index + 1], "Skill,Read,Glob,Grep,LS,TodoWrite")
+
     def test_claude_command_accepts_explicit_installed_agent(self) -> None:
         args = self.args("claude")
         args.claude_agent = "market-research-agent:market-research-agent"

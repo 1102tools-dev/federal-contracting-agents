@@ -119,6 +119,8 @@ def claude_command(args: argparse.Namespace, prompt: str) -> list[str]:
     ])
     if getattr(args, "claude_fast_mode", False):
         command.extend(("--settings", '{"fastMode":true}'))
+    if getattr(args, "claude_allowed_tools", None):
+        command.extend(("--allowed-tools", str(args.claude_allowed_tools)))
     command.extend([
         "--output-format",
         "stream-json",
@@ -432,6 +434,10 @@ def parser() -> argparse.ArgumentParser:
         "--claude-fast-mode",
         action="store_true",
         help="opt a Claude turn into fast mode; default is off",
+    )
+    result.add_argument(
+        "--claude-allowed-tools",
+        help="restrict a Claude turn to this tool list (passed to --allowed-tools)",
     )
     result.add_argument("--codex-binary", type=Path, default=DEFAULT_CODEX)
     result.add_argument("--claude-binary", type=Path, default=DEFAULT_CLAUDE)
