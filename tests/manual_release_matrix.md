@@ -350,8 +350,10 @@ changes. All
 five Claude resume checkpoints preserved approvals and stopped without
 duplicate retrieval or premature artifacts. The Codex checkpoint evidence is
 directionally sound but not yet consolidated into ten complete cross-client
-resume chains. The Sonnet 23-case routing replay is likewise retained as
-advisory evidence rather than a claimed final gate.
+resume chains. The 23-case matrix retains ambient, unselected prompts as
+measured host-routing evidence. Release blocking applies to the explicit
+installed-agent cases; the package cannot force a host to activate an installed
+skill before the user selects it.
 
 No P0 remains. The OT validator-coverage P1 is resolved in
 `other-transaction-agent` `1.0.0-rc.8`: its global cached-error audit has

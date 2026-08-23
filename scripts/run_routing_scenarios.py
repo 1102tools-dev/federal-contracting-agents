@@ -135,15 +135,16 @@ def run_case(
 
 
 def grade(scenario: dict[str, object], output: str) -> tuple[bool, list[str]]:
-    lowered = re.sub(r"[*_`]", "", output.lower()).replace("-", " ")
+    lowered = re.sub(r"[*`]", "", output.lower())
+    lowered = re.sub(r"[_-]", " ", lowered)
     failures: list[str] = []
     for alternatives in scenario["required_any"]:
-        if not any(str(term).lower().replace("-", " ") in lowered for term in alternatives):
+        if not any(re.sub(r"[_-]", " ", str(term).lower()) in lowered for term in alternatives):
             failures.append(f"missing one of {alternatives}")
     for forbidden in scenario["forbidden"]:
-        if str(forbidden).lower().replace("-", " ") in lowered:
+        if re.sub(r"[_-]", " ", str(forbidden).lower()) in lowered:
             failures.append(f"contains forbidden phrase {forbidden!r}")
-    ordered = [str(term).lower().replace("-", " ") for term in scenario.get("required_order", [])]
+    ordered = [re.sub(r"[_-]", " ", str(term).lower()) for term in scenario.get("required_order", [])]
     if ordered:
         positions = [lowered.find(term) for term in ordered]
         if any(position < 0 for position in positions):

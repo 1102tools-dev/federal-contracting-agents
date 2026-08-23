@@ -139,7 +139,7 @@ Explicit invocation is the release-critical path:
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 | Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
-Natural-language routing is tested separately and any host-specific limitation is recorded rather than hidden.
+Selecting the installed agent or invoking its workflow skill is the stable product contract. Natural-language routing without first selecting the agent is host-controlled best-effort behavior: it is measured separately, but the package cannot force the host to activate an installed skill. Do not rely on ambient routing for reserved acquisition or pricing determinations.
 
 ## Reproducibility and synchronization
 
@@ -167,7 +167,7 @@ uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin ma
 
 The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
 
-Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code implicit-routing, live-pacing, and representative end-to-end client matrix is complete. Other clients may be compatible, but they are not primary support gates. Current evidence and open gates are recorded in:
+Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code explicit-invocation, live-pacing, and representative end-to-end client matrix is complete. Unselected ambient routing is recorded as host behavior rather than a product guarantee. Other clients may be compatible, but they are not primary support gates. Current evidence and open gates are recorded in:
 
 - [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
 - [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)

@@ -37,6 +37,15 @@ class RoutingRunnerTests(unittest.TestCase):
         for scenario in no_web:
             self.assertIn("approved federal MCP", scenario["prompt"])
 
+    def test_ambient_routing_is_measured_but_not_release_blocking(self) -> None:
+        scenarios = json.loads(
+            (REPO_ROOT / "tests" / "routing_scenarios.json").read_text(encoding="utf-8")
+        )
+        implicit = [scenario for scenario in scenarios if scenario["invocation"] == "implicit"]
+        self.assertTrue(implicit)
+        self.assertTrue(all(scenario.get("release_blocking") is False for scenario in implicit))
+        self.assertTrue(all(scenario.get("release_blocking", True) for scenario in scenarios if scenario["invocation"] == "explicit"))
+
     def test_required_order_rejects_out_of_order_output(self) -> None:
         scenario = {
             "required_any": [],
@@ -65,6 +74,14 @@ class RoutingRunnerTests(unittest.TestCase):
         passed, failures = RUNNER.grade(
             scenario,
             "Publication does **not** make it operative; the cost-share decision is reserved.",
+        )
+        self.assertTrue(passed)
+        self.assertEqual(failures, [])
+
+        scenario["required_any"] = [["tavily_search", "tavily search"]]
+        passed, failures = RUNNER.grade(
+            scenario,
+            "Invoke `tavily_search` with the identical approved query.",
         )
         self.assertTrue(passed)
         self.assertEqual(failures, [])
