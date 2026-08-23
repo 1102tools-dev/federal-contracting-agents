@@ -333,8 +333,8 @@ its value was not retained in the evidence.
 | Market Research — Claude | Pass: validated DOCX |
 | Pre-Award — Codex | Pass: validated PWS and IGCE workbook |
 | Pre-Award — Claude | Pass: validated PWS and cost-reimbursement IGCE workbook |
-| GovCon Growth — Codex | Pass: validated brief |
-| GovCon Growth — Claude | Pass: validated brief |
+| GovCon Growth — Codex | Pass: validated 16-page rc.10 brief |
+| GovCon Growth — Claude | Pass: validated 9-page rc.10 brief |
 | Other Transaction — Codex | Pass: validated project description and 375-formula workbook |
 | Other Transaction — Claude | Pass: validated project description and prior 431-formula workbook; a fresh rc.7 seven-sheet, 481-formula workbook also passed the global cached-error validator and full artifact review |
 | Acquisition Policy — Codex | Pass: validated impact brief |
@@ -355,11 +355,41 @@ measured host-routing evidence. Release blocking applies to the explicit
 installed-agent cases; the package cannot force a host to activate an installed
 skill before the user selects it.
 
+### RC15 installed-byte closure
+
+The exact remote package trees installed in Codex and Claude match repository
+commit `26c675fc330a80466e87bc5881d6304c403bcd50` for Market Research
+`1.0.0-rc.12`, Pre-Award `1.0.0-rc.8`, GovCon Growth `1.0.0-rc.10`, Other
+Transaction `1.0.0-rc.8`, and Acquisition Policy `1.0.0-rc.4`. Package
+validation, component synchronization, the 80-test deterministic suite, pinned
+MCP startup/discovery, and GitHub Actions run `32642560521` passed.
+
+Installed-byte routing passed 23 of 23 cases in Codex. Claude passed all 23
+release-critical cases and 22 of 23 measured ambient cases. The sole ambient
+variance safely refused to originate a fair-and-reasonable determination but did
+not auto-load the selected skill's exact Option A/B response. The explicit case
+passed, so this remains a P2 host-activation advisory rather than a packaged
+workflow defect.
+
+GovCon Growth rc.10 corrects a release-blocking pagination defect in which a
+repeated Evidence Register header clipped a continuation row in LibreOffice.
+Only that long evidence table now suppresses repeated continuation headers;
+other tables retain them. The preserved Claude record rebuilt a clean nine-page
+brief with SHA-256
+`d5d6f787437a8efb0d2fc9c96bcf937741b6f77c71c18b2848761a9b0d1e9ea7`.
+The migrated Codex record produced a clean sixteen-page brief with SHA-256
+`9c0aeb24002ef0ea0e658c518a1c33b34c800e8b877b55e489a053630d6e730c`.
+Both passed deterministic validation, LibreOffice rendering, and full-page
+visual review. Exact installed Pre-Award rc.8 and Other Transaction rc.8 bytes
+also revalidated the preserved Claude Pre-Award and both-client OT workbooks,
+including external LibreOffice recalculation.
+
 No P0 remains. The OT validator-coverage P1 is resolved in
 `other-transaction-agent` `1.0.0-rc.8`: its global cached-error audit has
 deterministic regression coverage and passed required LibreOffice replay against
 the preserved Codex and Claude workbooks, and its current runtime-adaptation
-contract fails early on hosts without a supported workbook path. Final `1.0.0` still requires complete
-Codex resume proof, clean installed-byte routing in both maintained client
-families, complete uninstall proof, a real remote RC-to-final upgrade, and the
-remaining authenticated manual scenarios.
+contract fails early on hosts without a supported workbook path. The GovCon
+pagination P1 and Pre-Award T&M material-handling P1 are also resolved in the
+current installed bytes. Final `1.0.0` still requires complete Codex resume
+proof, complete uninstall and restoration proof, the two clean guide-only bake
+pilots, the 72-hour frozen-byte bake, and a real remote RC-to-final upgrade.
