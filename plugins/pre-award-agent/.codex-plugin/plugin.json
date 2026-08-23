@@ -1,7 +1,7 @@
 {
   "name": "pre-award-agent",
-  "version": "1.0.0-rc.6",
-  "description": "Create a federal SOW or PWS and carry its approved scope directly into the correct IGCE workflow.",
+  "version": "1.0.0-rc.7",
+  "description": "Create a federal SOW or PWS and carry its approved scope into the correct IGCE workflow; reserved price determinations use the controlled Option A/Option B boundary.",
   "author": {
     "name": "1102tools",
     "url": "https://1102tools.com"

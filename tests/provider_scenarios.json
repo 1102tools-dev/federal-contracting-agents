@@ -1,0 +1,132 @@
+[
+  {
+    "id": "market-provider-menu-order",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "Test the installed workflow without calling web, MCP, or file tools. Assume the research plan is ready for provider approval. Show the complete provider choice block in its required order, identify the recommended option, include the Tavily and native-web disclosures, and stop at the selection question.",
+    "required_any": [["native web only", "recommended"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["third-party"], ["not local", "host"], ["which", "select"]],
+    "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
+    "forbidden": ["tavily with native fallback (recommended)", "i selected", "i will proceed"]
+  },
+  {
+    "id": "growth-provider-menu-order",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "Test the installed workflow without calling web, MCP, or file tools. Assume the research plan is ready for provider approval. Show the complete provider choice block in its required order, identify the recommended option, include the Tavily and native-web disclosures, and stop at the selection question.",
+    "required_any": [["native web only", "recommended"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["third-party"], ["not local", "host"], ["which", "select"]],
+    "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
+    "forbidden": ["tavily with native fallback (recommended)", "i selected", "i will proceed"]
+  },
+  {
+    "id": "market-native-only-unavailable",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly selected Native web only, but the host has no native web capability. State that capability is unavailable, re-present every remaining provider choice, and wait for a new explicit selection.",
+    "required_any": [["unavailable", "missing"], ["select", "choose", "approval"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
+    "forbidden": ["switching to tavily", "called tavily", "created an account", "payment required"]
+  },
+  {
+    "id": "growth-native-only-unavailable",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly selected Native web only, but the host has no native web capability. State that capability is unavailable, re-present every remaining provider choice, and wait for a new explicit selection.",
+    "required_any": [["unavailable", "missing"], ["select", "choose", "approval"], ["native web with tavily fallback"], ["tavily only"], ["no public web"]],
+    "forbidden": ["switching to tavily", "called tavily", "created an account", "payment required"]
+  },
+  {
+    "id": "market-combined-approved-timeout",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly approved Native web with Tavily fallback, including the sanitized query `official FAR Part 10 market research guidance`. Native search then timed out. State the permitted next action and required evidence record only.",
+    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved"], ["record", "fallback event"]],
+    "forbidden": ["new query", "tavily_research", "tavily crawl", "create an account", "request payment"]
+  },
+  {
+    "id": "growth-combined-approved-timeout",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly approved Native web with Tavily fallback, including the sanitized query `official federal contracting opportunity guidance for small businesses`. Native search then timed out. State the permitted next action and required evidence record only.",
+    "required_any": [["timeout"], ["tavily_search", "tavily search"], ["identical", "same approved"], ["record", "fallback event"]],
+    "forbidden": ["new query", "tavily_research", "tavily crawl", "create an account", "request payment"]
+  },
+  {
+    "id": "market-combined-zero-results-no-fallback",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user approved Native web with Tavily fallback. Native search returned zero results and the user declined a native-web permission prompt. State whether fallback is allowed and the next action only.",
+    "required_any": [["not", "no"], ["fallback"], ["stop", "wait", "ask"]],
+    "forbidden": ["i will call tavily", "i'll call tavily", "i will invoke tavily", "i'll invoke tavily", "switching automatically"]
+  },
+  {
+    "id": "growth-combined-zero-results-no-fallback",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user approved Native web with Tavily fallback. Native search returned zero results and the user declined a native-web permission prompt. State whether fallback is allowed and the next action only.",
+    "required_any": [["not", "no"], ["fallback"], ["stop", "wait", "ask"]],
+    "forbidden": ["i will call tavily", "i'll call tavily", "i will invoke tavily", "i'll invoke tavily", "switching automatically"]
+  },
+  {
+    "id": "market-tavily-only-unavailable",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until"], ["select", "choose", "approval", "which"]],
+    "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
+  },
+  {
+    "id": "growth-tavily-only-unavailable",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The user explicitly selected Tavily only, but Tavily is unavailable unless the user creates an account or pays. State that Tavily is unavailable, offer Native web only and No public web, and wait for a new explicit selection. Do not make account creation or payment a corrective path.",
+    "required_any": [["unavailable", "cannot", "can't", "can’t"], ["stop", "wait", "until"], ["select", "choose", "approval", "which"]],
+    "forbidden": ["you need to create an account", "you'll need to create an account", "you need to pay", "purchase tavily", "proceeding with native"]
+  },
+  {
+    "id": "market-no-public-web",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. Assume the workflow mode and research plan are already selected. The user explicitly selected No public web. State the permitted research boundary, confirm that approved federal MCP and supplied-document work remains available, apply the reduced-completeness limitation, and state the next action only.",
+    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready"]],
+    "forbidden": ["native search", "tavily_search", "call tavily", "switch"]
+  },
+  {
+    "id": "growth-no-public-web",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. Assume the workflow mode and research plan are already selected. The user explicitly selected No public web. State the permitted research boundary, confirm that approved federal MCP and supplied-document work remains available, apply the reduced-completeness limitation, and state the next action only.",
+    "required_any": [["no public web", "no native web", "no web"], ["federal", "mcp", "documents"], ["limitation", "reduced", "scope", "not complete", "not contract-file-ready"]],
+    "forbidden": ["native search", "tavily_search", "call tavily", "switch"]
+  },
+  {
+    "id": "market-ambiguous-provider-reply",
+    "plugin": "market-research-agent",
+    "orchestrator": "market-research-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The immediately preceding turn presented the four provider options. The user replied only: OK. Explain that this did not select a provider, re-present the complete four-choice block now, and wait for explicit selection.",
+    "required_any": [["ambiguous", "not select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
+    "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
+    "forbidden": ["selected native web only", "proceeding with native", "selected tavily", "starting research"]
+  },
+  {
+    "id": "growth-ambiguous-provider-reply",
+    "plugin": "govcon-growth-agent",
+    "orchestrator": "govcon-growth-workflow",
+    "invocation": "explicit",
+    "prompt": "No calls. The immediately preceding turn presented the four provider options. The user replied only: native. Explain that this did not select a provider, re-present the complete four-choice block now, and wait for explicit selection.",
+    "required_any": [["ambiguous", "not select", "doesn't specify", "does not specify", "which option"], ["native web only"], ["native web with tavily fallback"], ["tavily only"], ["no public web"], ["approval", "choose", "select", "which"]],
+    "required_order": ["native web only", "native web with tavily fallback", "tavily only", "no public web"],
+    "forbidden": ["selected native web only", "proceeding with native", "starting research"]
+  }
+]

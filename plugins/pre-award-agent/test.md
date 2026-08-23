@@ -2,14 +2,14 @@
 
 Date: August 21, 2026
 
-Package: `pre-award-agent` `1.0.0-rc.6`
+Package: `pre-award-agent` `1.0.0-rc.7`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `b59cc0ff0e2d391b57bf211629557c40ca8b985f`
+- Canonical skills commit: `d49ad2051cc7053794b5f5c5a986b4824ff315bf`
 - Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
 - `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
@@ -192,3 +192,7 @@ passed every layer. No credential value was displayed or retained. No P0 or P1
 Pre-Award defect remains; complete Codex resume proof and remaining manual modes
 still gate final `1.0.0`. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
+
+## RC7 boundary and host-artifact hardening — 2026-08-23
+
+`1.0.0-rc.7` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The orchestrator makes the fixed FFP Option A/Option B response an explicit release invariant and rejects a shorter refusal or a later promise to write the determination. Spreadsheet runtime adaptation now follows a governing host artifact workflow and fails early into a structured specification when the supported workbook path is absent; it never guesses dependency paths or calls the fallback a workbook. Cross-client routing and host-degradation replay remain required.

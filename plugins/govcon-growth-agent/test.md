@@ -1,11 +1,11 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.6`
+Version: `1.0.0-rc.7`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `1fece54e03ac7465b82314150d2d9ffffd895452`. Its canonical `test.md` records:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -147,3 +147,7 @@ native-to-Tavily fallback direction, explicit provider order, and read-only
 migration of retired Tavily-first records. Tavily remains bundled. Installed
 Codex and Claude behavioral qualification is recorded separately after the
 package release gate.
+
+## RC7 provider and menu hardening — 2026-08-23
+
+`1.0.0-rc.7` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The provider gate now rejects ambiguous replies, preserves federal MCP and supplied-document research in No public web mode, and excludes account creation or payment as a Tavily recovery path. A specific opportunity or attached bid-screen request is also explicitly prohibited from bypassing the complete nine-choice first-turn menu. The complete 14-case provider matrix and both-client research lanes must replay against exact installed RC7 bytes.

@@ -10,6 +10,10 @@ Coordinate the bundled skills. Do not replace their OT logic, artifact specifica
 
 Runtime requirements: the bundled OT Project Description and OT Cost Analysis skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
+## Artifact-mode preflight
+
+Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the cost skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
+
 ## Required-capability hard stop
 
 Apply this before mode selection or any remaining cost analysis when the request states that a required pricing capability is missing, unauthenticated, unavailable, or schema-incompatible.

@@ -336,14 +336,17 @@ its value was not retained in the evidence.
 | GovCon Growth — Codex | Pass: validated brief |
 | GovCon Growth — Claude | Pass: validated brief |
 | Other Transaction — Codex | Pass: validated project description and 375-formula workbook |
-| Other Transaction — Claude | Pass: validated project description and 431-formula workbook; rc.7 global cached-error validator replay passed |
+| Other Transaction — Claude | Pass: validated project description and prior 431-formula workbook; a fresh rc.7 seven-sheet, 481-formula workbook also passed the global cached-error validator and full artifact review |
 | Acquisition Policy — Codex | Pass: validated impact brief |
 | Acquisition Policy — Claude | Pass: validated impact brief |
 
 All ten principal lanes now have generated and validated artifact evidence. The
-nested isolated Codex CLI could not expose the spreadsheet-authoring runtime,
-but the maintained Codex Desktop surface completed and validated the OT
-workbook; that remains a test-environment advisory, not a product defect. All
+normal Codex CLI `0.149.0-alpha.4` surface did not expose the supported
+spreadsheet dependency loader. It correctly produced no workbook rather than
+bypassing the host's governing spreadsheet instructions. Codex Desktop and
+Claude remain full-workbook surfaces; Codex CLI is qualified for chat, research,
+routing, DOCX, and structured workbook specifications until that host capability
+changes. All
 five Claude resume checkpoints preserved approvals and stopped without
 duplicate retrieval or premature artifacts. The Codex checkpoint evidence is
 directionally sound but not yet consolidated into ten complete cross-client
@@ -351,9 +354,10 @@ resume chains. The Sonnet 23-case routing replay is likewise retained as
 advisory evidence rather than a claimed final gate.
 
 No P0 remains. The OT validator-coverage P1 is resolved in
-`other-transaction-agent` `1.0.0-rc.7`: its global cached-error audit has
+`other-transaction-agent` `1.0.0-rc.8`: its global cached-error audit has
 deterministic regression coverage and passed required LibreOffice replay against
-the preserved Codex and Claude workbooks. Final `1.0.0` still requires complete
+the preserved Codex and Claude workbooks, and its current runtime-adaptation
+contract fails early on hosts without a supported workbook path. Final `1.0.0` still requires complete
 Codex resume proof, clean installed-byte routing in both maintained client
 families, complete uninstall proof, a real remote RC-to-final upgrade, and the
 remaining authenticated manual scenarios.

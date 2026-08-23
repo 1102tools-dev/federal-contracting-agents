@@ -2,14 +2,14 @@
 
 Date: August 21, 2026
 
-Package: `other-transaction-agent` `1.0.0-rc.7`
+Package: `other-transaction-agent` `1.0.0-rc.8`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `b59cc0ff0e2d391b57bf211629557c40ca8b985f`
+- Canonical skills commit: `d49ad2051cc7053794b5f5c5a986b4824ff315bf`
 - Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
 - `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
@@ -214,3 +214,7 @@ preserved Codex seven-sheet, 375-formula workbook and Claude seven-sheet,
 recomputations, ZIP checks, and visual reviews remain unchanged. This resolves
 `P1-OT-CACHED-ERROR-AUDIT`; the remaining lifecycle, routing, resume, upgrade,
 and stable-release gates remain open.
+
+## RC8 host-artifact hardening — 2026-08-23
+
+`1.0.0-rc.8` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. A normal Codex CLI workbook run on `0.149.0-alpha.4` exposed no supported spreadsheet dependency loader and correctly produced no workbook. The orchestrator and cost skill now disclose artifact mode before artifact-specific approval, follow governing host hard stops, and allow only a structured JSON plus Markdown/CSV fallback on a surface without workbook support. Codex Desktop and Claude remain the full-workbook acceptance lanes.

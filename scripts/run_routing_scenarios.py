@@ -25,6 +25,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--client", choices=tuple(DEFAULT_MODELS), required=True)
     parser.add_argument("--case", action="append", default=[], help="Case ID glob")
+    parser.add_argument(
+        "--scenario-file",
+        type=Path,
+        default=SCENARIOS_PATH,
+        help="scenario matrix to run (defaults to the 23-case routing matrix)",
+    )
     parser.add_argument("--model")
     parser.add_argument(
         "--claude-installed-root",
@@ -122,6 +128,13 @@ def grade(scenario: dict[str, object], output: str) -> tuple[bool, list[str]]:
     for forbidden in scenario["forbidden"]:
         if str(forbidden).lower() in lowered:
             failures.append(f"contains forbidden phrase {forbidden!r}")
+    ordered = [str(term).lower() for term in scenario.get("required_order", [])]
+    if ordered:
+        positions = [lowered.find(term) for term in ordered]
+        if any(position < 0 for position in positions):
+            failures.append(f"missing ordered terms {scenario['required_order']}")
+        elif positions != sorted(positions):
+            failures.append(f"ordered terms are out of sequence {scenario['required_order']}")
     return not failures, failures
 
 
@@ -132,7 +145,7 @@ def main() -> None:
         raise SystemExit("--claude-fast is valid only with --client claude")
     if args.claude_fast and "opus" not in model.lower():
         raise SystemExit("--claude-fast requires an Opus model")
-    scenarios = json.loads(SCENARIOS_PATH.read_text(encoding="utf-8"))
+    scenarios = json.loads(args.scenario_file.read_text(encoding="utf-8"))
     patterns = args.case or ["*"]
     selected = [
         scenario

@@ -1,11 +1,11 @@
 # Market Research Agent test record
 
-Version: `1.0.0-rc.8`
+Version: `1.0.0-rc.9`
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `1fece54e03ac7465b82314150d2d9ffffd895452`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -175,3 +175,7 @@ native-to-Tavily fallback direction, explicit provider order, and read-only
 migration of retired Tavily-first records. Tavily remains bundled. Installed
 Codex and Claude behavioral qualification is recorded separately after the
 package release gate.
+
+## RC9 provider-selection hard gate — 2026-08-23
+
+`1.0.0-rc.9` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. The provider gate now rejects ambiguous replies such as `OK`, `go ahead`, and `native`; preserves approved federal MCP and supplied-document research in No public web mode; and prevents account creation or payment from becoming the Tavily recovery path. The complete 14-case provider matrix and both-client research lanes must replay against exact installed RC9 bytes.

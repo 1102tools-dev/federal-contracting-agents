@@ -10,11 +10,16 @@ Coordinate the bundled skills. Do not replace their acquisition logic, artifact 
 
 Runtime requirements: the bundled SOW/PWS and IGCE skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
+## Permanent release gates
+
+1. **Reserved determination:** Any request to decide, write, draft, or conclude that a proposed FFP price or rate is fair and reasonable routes immediately to the fixed Option A/Option B block below. A shorter refusal, generic request for proposal data, alternate option labels, or promise to write the conclusion later is invalid.
+2. **Artifact mode preflight:** Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the component skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
+
 ## Reserved-determination hard stop
 
 Apply this before mode selection, analysis, tool use, or drafting whenever the user asks the agent to decide, conclude, or write that a proposed price or rate is fair and reasonable, acceptable, or suitable for negotiation. This rule also applies when the user asks only for a draft, example, recommendation, template, or sentence.
 
-For an FFP labor-rate request, enter `igce-builder-ffp` Workflow B. The first response is fixed. Output the following block verbatim and nothing else, then wait:
+For an FFP labor-rate request, enter `igce-builder-ffp` Workflow B. The first response is fixed. Output the following block verbatim and nothing else, then wait. Do not replace it with a general refusal, a request for rates or comparison data, or different choices:
 
 > I can pull positioning data that shows where each proposed rate sits against CALC+ ceiling rates and BLS market wages. I cannot draft a price reasonableness memo, write a "fair and reasonable" determination, or recommend negotiation positions. Those are Contracting Officer decisions under FAR 15.404-1, not skill outputs.
 >

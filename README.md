@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research is at `1.0.0-rc.8`; Pre-Award and GovCon Growth are at `1.0.0-rc.6`; Other Transaction is at `1.0.0-rc.7`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.9`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research is at `1.0.0-rc.9`; Pre-Award and GovCon Growth are at `1.0.0-rc.7`; Other Transaction is at `1.0.0-rc.8`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.10`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -9,10 +9,10 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 
 | Agent | Audience and workflow | Current status |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.8` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.6` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.6` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.7` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.9` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.7` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.7` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.8` |
 | **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.4` |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
@@ -116,6 +116,16 @@ claude plugin install acquisition-policy-agent@1102tools
 ### Other clients
 
 The packages may work in other compatible hosts, but Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Claude Code is the same runtime and the same package in both the Claude Desktop app and the standalone CLI; there is no separate desktop package. Installation and troubleshooting outside those two paths are self-supported.
+
+### Artifact support by maintained surface
+
+| Surface | Supported result |
+|---|---|
+| Codex Desktop | Full chat, research, DOCX, and XLSX workflows when the required host artifact tools are available |
+| Codex CLI | Chat, research, routing, DOCX, and structured workbook specifications; in the currently validated `0.149.0-alpha.4` host, the supported spreadsheet dependency loader is not exposed, so workbook requests must fail early into structured JSON plus Markdown/CSV or move to a maintained full-workbook surface |
+| Claude Code in Claude Desktop or standalone CLI | Full chat, research, DOCX, and XLSX workflows when the required host artifact tools are available |
+
+This distinction is host capability behavior, not a weaker validation standard. An unavailable workbook path may never be replaced by guessed dependency paths or reported as a completed `.xlsx`.
 
 ## Invoke a workflow
 

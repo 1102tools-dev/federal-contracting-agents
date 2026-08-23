@@ -5,32 +5,32 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.9"
+    "version": "1.2.0-rc.10"
   },
   "plugins": [
     {
       "name": "pre-award-agent",
       "source": "./plugins/pre-award-agent",
       "description": "Build a SOW or PWS and carry its approved scope into the correctly routed IGCE.",
-      "version": "1.0.0-rc.6"
+      "version": "1.0.0-rc.7"
     },
     {
       "name": "other-transaction-agent",
       "source": "./plugins/other-transaction-agent",
       "description": "Build an OT project description and carry its approved milestones into cost analysis.",
-      "version": "1.0.0-rc.7"
+      "version": "1.0.0-rc.8"
     },
     {
       "name": "govcon-growth-agent",
       "source": "./plugins/govcon-growth-agent",
       "description": "Find, evaluate, and research federal growth opportunities with evidence-backed capture intelligence.",
-      "version": "1.0.0-rc.6"
+      "version": "1.0.0-rc.7"
     },
     {
       "name": "market-research-agent",
       "source": "./plugins/market-research-agent",
       "description": "Conduct acquisition market research from supplied documents, federal data, and approved evidence plans.",
-      "version": "1.0.0-rc.8"
+      "version": "1.0.0-rc.9"
     },
     {
       "name": "acquisition-policy-agent",
