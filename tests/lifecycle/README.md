@@ -1,51 +1,62 @@
-# RC5 runtime canaries
+# RC5 lifecycle test infrastructure
 
-`runtime_canaries.py` is a dependency-free, offline-first harness for the RC5
-credential, pacing/concurrency, and upstream-drift lanes. It is test
-infrastructure only and is outside every shipped plugin directory.
+Everything in this directory is test-only and lives outside the shipped
+plugin directories.
 
-Run the safe default and its unit tests from the repository root:
+## Installation and upgrade harness
+
+`lifecycle_runner.py` drives the declarative Codex and Claude install,
+upgrade, reinstall, uninstall, coexistence, and restoration matrix. Its
+default mode is a sanitized dry-run:
+
+```sh
+python3 tests/lifecycle/lifecycle_runner.py \
+  --client codex --lane upgrade --home /tmp/1102tools-fake-home
+```
+
+The runner emits command plans, scoped inventory metadata, and
+credential-presence booleans; it never records command output or
+configuration contents. `--execute` is intentionally restricted to an
+explicit temporary home. It redirects client configuration into that home,
+rejects the real user home, and only permits removal of resolved 1102tools
+cache and marketplace roots. Real-profile lifecycle tests must be performed
+as separately reviewed, serialized release-captain commands.
+
+The historical transition fixture exports authentic package bytes from the
+`v1.2.0-rc.4` and `v1.2.0-rc.5` Git tags. The fixture root must be empty,
+outside the repository, and disposable:
+
+```sh
+python3 tests/lifecycle/lifecycle_runner.py \
+  --client claude --lane upgrade --home /tmp/1102tools-fake-home \
+  --fixture-root /tmp/1102tools-rc5-fixture
+```
+
+## Credential, pacing, and upstream canaries
+
+`runtime_canaries.py` is an offline-first harness for the credential,
+pacing/concurrency, and upstream-drift lanes:
 
 ```sh
 python3 tests/lifecycle/runtime_canaries.py --output /tmp/rc5-runtime-ledger.json
 python3 -m unittest discover -s tests/lifecycle -p 'test_*.py'
 ```
 
-The default mode makes no network calls, starts no MCP, reads credential
-values only as presence booleans, and marks all nine MCP entries as
-`dry-run`/`live_gate_required`.
+The default makes no network calls, starts no MCP, reads credentials only as
+presence booleans, and marks all nine MCP entries as requiring a live gate.
 
-## Live runner contract
+Live operation requires `--live --runner`. The release-captain-selected
+runner must use MCP protocol calls and return a JSON object containing
+`version`, `tools`, `response`, and optional `warnings` and `source_hashes`.
+Runner stdout and stderr are captured, never echoed, and only sanitized
+fields enter the ledger. Exact-value redaction assertions prevent credential
+values from surviving in evidence.
 
-Live operation is deliberately gated behind `--live --runner`. The runner is
-an external MCP-aware client/connector chosen by the release captain; this
-harness does not call a provider API or bypass the configured MCP. It invokes
-the runner once per matrix entry with a JSON descriptor on stdin:
+The nine federal MCP canaries are SAM.gov, USAspending, GSA CALC+, BLS OEWS,
+GSA Per Diem, eCFR, Federal Register, Regulations.gov, and Acquisition.gov.
+Tavily is a separate keyless web connector and is not counted in this lane.
 
-```json
-{
-  "operation": "mcp_canary",
-  "server": "sam-gov",
-  "distribution": "sam-gov-mcp",
-  "pinned_version": "1.0.8",
-  "requested_operation": "list_opportunities_minimal"
-}
-```
-
-The runner must return one JSON object on stdout containing `version`, a
-`tools` list (each tool has `name` and `inputSchema` or `schema`), `response`,
-and optional `warnings` and `source_hashes`. Runner stdout/stderr is captured,
-never echoed, and only sanitized fields are recorded. Raw output is always
-marked `raw_output_recorded: false`. Credential values are never written to
-the ledger; exact-value redaction assertions cover runner output and the
-result ledger.
-
-The nine matrix entries are the federal MCP distributions in the current
-plugin manifests: SAM.gov, USASpending, GSA CALC+, BLS OEWS, GSA Per Diem,
-eCFR, Federal Register, Regulations.gov, and Acquisition.gov. Tavily is a
-separate keyless web connector and is not counted in this federal MCP lane.
-
-The pacing canary uses a captured local 429 with `Retry-After: 5` and a virtual
-shared-key scheduler. It sleeps zero seconds, makes no provider call, and
-checks that calls are serialized from request completion with the larger of
-the configured interval and `Retry-After`.
+The pacing canary uses a captured local 429 with `Retry-After: 5` and a
+virtual shared-key scheduler. It sleeps zero seconds, makes no provider call,
+and checks serialization from request completion using the larger of the
+configured interval and `Retry-After`.

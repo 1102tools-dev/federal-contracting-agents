@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "release_candidate": "v1.2.0-rc.5",
+  "repository": "1102tools-dev/federal-contracting-agents",
+  "source_ref": "main",
+  "clients": {
+    "codex": {
+      "marketplace": "1102tools",
+      "marketplace_add": [
+        "codex",
+        "plugin",
+        "marketplace",
+        "add",
+        "1102tools-dev/federal-contracting-agents",
+        "--ref",
+        "main"
+      ],
+      "install_subcommand": "add",
+      "remove_subcommand": "remove",
+      "marketplace_refresh": "add",
+      "plugin_update": "remove-add"
+    },
+    "claude": {
+      "marketplace": "1102tools",
+      "marketplace_add": [
+        "claude",
+        "plugin",
+        "marketplace",
+        "add",
+        "1102tools-dev/federal-contracting-agents"
+      ],
+      "install_subcommand": "install",
+      "remove_subcommand": "uninstall",
+      "marketplace_refresh": "update",
+      "plugin_update": "update"
+    }
+  },
+  "agents": [
+    {
+      "id": "market-research-agent",
+      "version": "1.0.0-rc.5"
+    },
+    {
+      "id": "pre-award-agent",
+      "version": "1.0.0-rc.5"
+    },
+    {
+      "id": "govcon-growth-agent",
+      "version": "1.0.0-rc.4"
+    },
+    {
+      "id": "other-transaction-agent",
+      "version": "1.0.0-rc.5"
+    },
+    {
+      "id": "acquisition-policy-agent",
+      "version": "1.0.0-rc.3"
+    }
+  ],
+  "lifecycle_lanes": [
+    "install",
+    "upgrade",
+    "reinstall",
+    "uninstall",
+    "restore"
+  ],
+  "safety": {
+    "default_mode": "dry-run",
+    "execution_requires_explicit_flag": true,
+    "never_remove": [
+      "~/.claude",
+      "~/.codex"
+    ],
+    "credential_fields": [
+      "SAM_API_KEY",
+      "BLS_API_KEY",
+      "REGULATIONS_GOV_API_KEY",
+      "PERDIEM_API_KEY"
+    ]
+  }
+}
