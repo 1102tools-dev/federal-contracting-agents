@@ -21,6 +21,24 @@ DEFAULT_MODELS = {
 }
 
 
+def resolve_claude_installed_plugin(installed_root: Path, plugin: str) -> Path:
+    expected_version = json.loads(
+        (REPO_ROOT / "plugins" / plugin / "plugin.json").read_text(encoding="utf-8")
+    )["version"]
+    candidates = sorted(
+        path
+        for path in (installed_root.expanduser() / plugin).glob("*")
+        if path.is_dir()
+        and path.name == expected_version
+        and (path / "plugin.json").is_file()
+    )
+    if len(candidates) != 1:
+        raise ValueError(
+            f"installed Claude plugin version {expected_version} could not be resolved uniquely"
+        )
+    return candidates[0]
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--client", choices=tuple(DEFAULT_MODELS), required=True)
@@ -85,14 +103,10 @@ def run_case(
         if client == "claude":
             plugin_dir = REPO_ROOT / "plugins" / plugin
             if claude_installed_root is not None:
-                candidates = sorted(
-                    path
-                    for path in (claude_installed_root.expanduser() / plugin).glob("*")
-                    if path.is_dir() and (path / "plugin.json").is_file()
-                )
-                if len(candidates) != 1:
-                    return 2, "", "installed Claude plugin version could not be resolved uniquely"
-                plugin_dir = candidates[0]
+                try:
+                    plugin_dir = resolve_claude_installed_plugin(claude_installed_root, plugin)
+                except ValueError as exc:
+                    return 2, "", str(exc)
             command = [
                 "claude", "-p", "--no-session-persistence",
                 "--plugin-dir", str(plugin_dir),

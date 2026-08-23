@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -78,6 +79,24 @@ class RoutingRunnerTests(unittest.TestCase):
                 self.assertIn("hard stop", text.lower())
                 self.assertIn("structured JSON", text)
                 self.assertIn("Do not label the fallback as a completed workbook", text)
+
+    def test_claude_resolver_selects_current_manifest_version_among_old_caches(self) -> None:
+        plugin = "market-research-agent"
+        version = json.loads(
+            (REPO_ROOT / "plugins" / plugin / "plugin.json").read_text()
+        )["version"]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            old = root / plugin / "1.0.0-rc.1"
+            current = root / plugin / version
+            old.mkdir(parents=True)
+            current.mkdir(parents=True)
+            (old / "plugin.json").write_text("{}")
+            (current / "plugin.json").write_text("{}")
+            self.assertEqual(
+                RUNNER.resolve_claude_installed_plugin(root, plugin),
+                current,
+            )
 
 
 if __name__ == "__main__":
