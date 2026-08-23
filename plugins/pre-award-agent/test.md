@@ -59,7 +59,10 @@ Duplicate-name warnings at startup are a packaging-polish item. Renaming the
 shared servers would start duplicate identical processes and duplicate remote
 initialization, so it is deliberately not done.
 
-### Package-specific results
+### Historical package-specific checkpoint (rc.4)
+
+The checkpoint below predates the RC5 stabilization section. It is retained as
+dated evidence and is not the current package-preview declaration.
 
 Installed and verified at `1.0.0-rc.4`.
 
@@ -115,7 +118,11 @@ The byte-identical canonical component packages carry their own August 21 record
 
 Those component records are evidence for the locked skill implementations, not proof that every multi-skill agent path has been rerun.
 
-## Client installation and blockers
+## Historical client installation and blockers (before RC5 stabilization)
+
+The compatibility entries below are historical checkpoint evidence. Copilot
+CLI and VS Code/Copilot are not maintained public-preview support gates; current
+maintained support is Codex and Claude Code as stated in the RC5 section below.
 
 | Surface | Result |
 |---|---|
@@ -135,11 +142,16 @@ The full manual scenarios `PRE-01` through `PRE-16` in [`tests/manual_release_ma
 
 No live federal API was called during package testing. This avoided shared-key risk, but means live keyed startup, authentication failure, provider rate-limit behavior, and call-timestamp evidence still require the serialized manual release run.
 
-## Release decision
+## Historical release decision (before RC5 stabilization)
 
 Static packaging and the available Codex control tests pass. The authenticated cross-client and end-to-end artifact matrix is incomplete, so `1.0.0` is blocked. The public preview is `1.0.0-rc.4`.
 
 ## RC5 stabilization evidence — 2026-08-22
+
+Current maintained public-preview support is Codex and Claude Code (in the
+Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
+in the historical checkpoint above are compatibility observations, not current
+support gates.
 
 The current public preview is `1.0.0-rc.5`, pinned to BLS OEWS `1.0.5`, GSA
 CALC+ `1.0.4`, and GSA Per Diem `1.0.5`. The repaired shared pacing runtime

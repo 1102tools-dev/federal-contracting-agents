@@ -56,7 +56,10 @@ Duplicate-name warnings at startup are a packaging-polish item. Renaming the
 shared servers would start duplicate identical processes and duplicate remote
 initialization, so it is deliberately not done.
 
-### Package-specific results
+### Historical package-specific checkpoint (rc.3)
+
+The checkpoint below predates the RC5 stabilization section. It is retained as
+dated evidence and is not the current package-preview declaration.
 
 Installed and verified at `1.0.0-rc.3`.
 
@@ -75,14 +78,14 @@ Passed:
 - One approved, non-sensitive Tavily search for `official federal contracting opportunity guidance for small businesses`, restricted to `sba.gov` and `sam.gov`, completed in keyless mode without error. It returned three SBA pages. The equivalent native-only run verified the underlying SBA pages and cited those pages rather than Tavily.
 - Clean isolated installation and `1.0.0-rc.2` inventory passed in Codex CLI, Claude Code, and GitHub Copilot CLI `1.0.80`. Claude resolved one skill, one native agent, and the expected SAM.gov, USASpending, GSA CALC+, and Tavily servers.
 
-## Installed-client behavior
+## Historical installed-client behavior (before RC5 stabilization)
 
 - Codex session `01a0275d-84ae-73e0-b887-417cf93ba220` used the installed plugin, showed the complete menu, performed mode-specific intake, displayed the complete provider approval, and honored `Native search only`. It made exactly one approved SBA search, followed only approved SBA pages, cited the underlying pages, and made zero Tavily and zero federal MCP calls.
 - Claude Opus 5 Max loaded the packaged plugin and returned the complete recommended menu with zero web-search and web-fetch requests.
 - Claude Sonnet 5 Max passed the corrected exact-question regression with zero web-search and web-fetch requests.
 - When both research agents are installed, Codex `0.149.0-alpha.4` warns that their intentionally shared semantic MCP names collide and selects one identical definition. The workflows remained functional, but the warning is retained as a preview limitation.
 
-## Open release-candidate gates
+## Historical open release-candidate gates (before RC5 stabilization)
 
 - Codex Desktop has not been independently rerun after `rc.2`.
 - The VS Code CLI is not installed on this machine, so VS Code/Copilot installation remains open.
@@ -93,6 +96,11 @@ Passed:
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
 
 ## RC5 stabilization evidence — 2026-08-22
+
+Current maintained public-preview support is Codex and Claude Code (in the
+Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
+elsewhere in this record are historical compatibility observations, not current
+support gates.
 
 `1.0.0-rc.4` pins SAM.gov `1.0.8` and USAspending `1.0.4`, with the latter's
 20-tool acquisition profile in every maintained manifest and dormant overlay.

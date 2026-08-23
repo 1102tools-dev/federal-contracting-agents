@@ -44,6 +44,9 @@ jobs:
       - name: Validate schemas, references, pins, and package hygiene
         run: python scripts/validate_packages.py
 
+      - name: Validate sanitized RC5 lifecycle ledger and current evidence wording
+        run: python scripts/validate_lifecycle_evidence.py
+
       - name: Reject vendored component drift
         run: python scripts/sync_components.py --check --skills-root _skills --mcp-root _mcps
 

@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://1102tools.com/schemas/rc5-lifecycle-ledger-1.0.json",
+  "title": "1102tools RC5 lifecycle evidence ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "ledger_id",
+    "run_date",
+    "release_candidate",
+    "status",
+    "repository",
+    "sanitization",
+    "packages",
+    "clients",
+    "lanes",
+    "mcp_canaries",
+    "credentials",
+    "artifacts",
+    "routing_replay",
+    "defects"
+  ],
+  "properties": {
+    "$schema": {"type": "string", "format": "uri-reference"},
+    "schema_version": {"const": "1.0"},
+    "ledger_id": {"type": "string", "minLength": 1},
+    "run_date": {"type": "string", "format": "date"},
+    "release_candidate": {"type": "string", "minLength": 1},
+    "status": {"$ref": "#/$defs/status"},
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "base_commit", "working_tree"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "base_commit": {"type": ["string", "null"]},
+        "working_tree": {"type": "string", "enum": ["clean", "dirty", "unverified", "pending"]}
+      }
+    },
+    "sanitization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_evidence_root", "commit_policy", "exact_credentials_retained", "secret_fields"],
+      "properties": {
+        "raw_evidence_root": {"type": "string", "minLength": 1},
+        "commit_policy": {"type": "string", "minLength": 1},
+        "exact_credentials_retained": {"const": false},
+        "secret_fields": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "packages": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "target_version", "observed_before", "observed_after", "marketplace_source", "result"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "target_version": {"type": "string", "minLength": 1},
+          "observed_before": {"type": ["string", "null"]},
+          "observed_after": {"type": ["string", "null"]},
+          "marketplace_source": {"type": ["string", "null"]},
+          "result": {"$ref": "#/$defs/status"}
+        }
+      }
+    },
+    "clients": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["surface", "binary_version", "model", "effort", "fast_mode", "marketplace_source", "before_versions", "after_versions", "session_ids", "result"],
+        "properties": {
+          "surface": {"type": "string", "minLength": 1},
+          "binary_version": {"type": ["string", "null"]},
+          "model": {"type": ["string", "null"]},
+          "effort": {"type": ["string", "null"]},
+          "fast_mode": {"type": ["string", "null"]},
+          "marketplace_source": {"type": ["string", "null"]},
+          "before_versions": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+          "after_versions": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+          "session_ids": {"type": "array", "items": {"type": "string"}},
+          "result": {"$ref": "#/$defs/status"}
+        }
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 7,
+      "items": {"$ref": "#/$defs/lane"}
+    },
+    "mcp_canaries": {
+      "type": "array",
+      "minItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["server", "distribution", "package_version", "tool_names", "schema_sha256", "normalized_response_shape", "source_call_timestamps", "pacing_seconds", "warnings", "source_hash", "result"],
+        "properties": {
+          "server": {"type": "string", "minLength": 1},
+          "distribution": {"type": ["string", "null"]},
+          "package_version": {"type": ["string", "null"]},
+          "tool_names": {"type": "array", "items": {"type": "string"}},
+          "schema_sha256": {"type": ["string", "null"]},
+          "normalized_response_shape": {"type": ["object", "null"]},
+          "source_call_timestamps": {"type": "array", "items": {"type": "string"}},
+          "pacing_seconds": {"type": "array", "items": {"type": "number", "minimum": 0}},
+          "warnings": {"type": "array", "items": {"type": "string"}},
+          "source_hash": {"type": ["string", "null"]},
+          "result": {"$ref": "#/$defs/status"}
+        }
+      }
+    },
+    "credentials": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "states"],
+        "properties": {
+          "name": {"type": "string", "enum": ["SAM_API_KEY", "BLS_API_KEY", "REGULATIONS_GOV_API_KEY"]},
+          "states": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["state", "credential_present", "auth_failure_class", "retry_after_seconds", "result", "evidence_refs"],
+              "properties": {
+                "state": {"type": "string", "enum": ["missing", "invalid", "valid", "rate_limited"]},
+                "credential_present": {"type": ["boolean", "null"]},
+                "auth_failure_class": {"type": ["string", "null"]},
+                "retry_after_seconds": {"type": ["number", "null"], "minimum": 0},
+                "result": {"$ref": "#/$defs/status"},
+                "evidence_refs": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_id", "agent", "client_surface", "exact_prompt", "approval_refs", "session_ids", "path", "sha256", "validators", "visual_review", "result"],
+        "properties": {
+          "artifact_id": {"type": "string", "minLength": 1},
+          "agent": {"type": "string", "minLength": 1},
+          "client_surface": {"type": "string", "minLength": 1},
+          "exact_prompt": {"type": ["string", "null"]},
+          "approval_refs": {"type": "array", "items": {"type": "string"}},
+          "session_ids": {"type": "array", "items": {"type": "string"}},
+          "path": {"type": ["string", "null"]},
+          "sha256": {"type": ["string", "null"]},
+          "validators": {"$ref": "#/$defs/validator_map"},
+          "visual_review": {"$ref": "#/$defs/status"},
+          "result": {"$ref": "#/$defs/status"}
+        }
+      }
+    },
+    "routing_replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_source", "scenario_count", "result", "resume_checkpoints", "resume_result"],
+      "properties": {
+        "scenario_source": {"type": "string", "minLength": 1},
+        "scenario_count": {"const": 23},
+        "result": {"$ref": "#/$defs/status"},
+        "resume_checkpoints": {"const": 5},
+        "resume_result": {"$ref": "#/$defs/status"}
+      }
+    },
+    "defects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "lane", "reproduction", "disposition"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "severity": {"type": "string", "enum": ["P0", "P1", "P2", "P3"]},
+          "lane": {"type": "string", "minLength": 1},
+          "reproduction": {"type": "string", "minLength": 1},
+          "disposition": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "status": {"type": "string", "enum": ["pending", "pass", "fail", "blocked", "advisory", "not_run"]},
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "result", "exact_prompt", "approvals", "session_ids", "resume_points", "outcome", "evidence_refs"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "result": {"$ref": "#/$defs/status"},
+        "exact_prompt": {"type": ["string", "null"]},
+        "approvals": {"type": "array", "items": {"type": "string"}},
+        "session_ids": {"type": "array", "items": {"type": "string"}},
+        "resume_points": {"type": "array", "items": {"type": "string"}},
+        "outcome": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "result", "cases", "notes"],
+      "properties": {
+        "id": {"type": "string", "enum": ["install", "upgrade", "credentials", "resume", "concurrency", "drift", "long-session"]},
+        "result": {"$ref": "#/$defs/status"},
+        "cases": {"type": "array", "items": {"$ref": "#/$defs/case"}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "validator_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record", "structure", "evidence", "links", "recalculation", "independent_recomputation", "zip_integrity"],
+      "properties": {
+        "record": {"$ref": "#/$defs/status"},
+        "structure": {"$ref": "#/$defs/status"},
+        "evidence": {"$ref": "#/$defs/status"},
+        "links": {"$ref": "#/$defs/status"},
+        "recalculation": {"$ref": "#/$defs/status"},
+        "independent_recomputation": {"$ref": "#/$defs/status"},
+        "zip_integrity": {"$ref": "#/$defs/status"}
+      }
+    }
+  }
+}

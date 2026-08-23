@@ -56,7 +56,10 @@ Duplicate-name warnings at startup are a packaging-polish item. Renaming the
 shared servers would start duplicate identical processes and duplicate remote
 initialization, so it is deliberately not done.
 
-### Package-specific results
+### Historical package-specific checkpoint (rc.4)
+
+The checkpoint below predates the RC5 stabilization section. It is retained as
+dated evidence and is not the current package-preview declaration.
 
 Installed and verified at `1.0.0-rc.4`.
 
@@ -82,14 +85,14 @@ Passed:
 - One approved, non-sensitive Market Research Tavily search was sent for `official FAR Part 10 market research guidance`, restricted to `acquisition.gov`. Tavily returned a `CallToolResult`; the local evidence formatter then used the wrong Python attribute name and failed before retaining the response text. No repeat query was made. The equivalent native-only run independently verified the underlying Acquisition.gov pages.
 - Clean isolated installation and `1.0.0-rc.2` inventory passed in Codex CLI, Claude Code, and GitHub Copilot CLI `1.0.80`. Claude resolved one skill, one native agent, and the expected SAM.gov, USASpending, and Tavily servers. This remains historical behavioral evidence; the naming-only `rc.3` package requires a fresh clean-install check before final release.
 
-## Installed-client behavior
+## Historical installed-client behavior (before RC5 stabilization)
 
 - Codex session `01a0275a-09cc-7a70-b8a1-dbdefa9b8309` used the installed plugin, showed the menu, stopped for document intake, displayed the complete provider approval, and honored `Native search only`. It made exactly one approved Acquisition.gov search, fetched the approved official pages, cited the underlying FAR pages, and made zero Tavily and zero federal MCP calls.
 - Claude Opus 5 Max loaded the packaged plugin and returned the complete recommended menu with zero web-search and web-fetch requests.
 - Claude Sonnet 5 Max passed the corrected exact-question regression with zero web-search and web-fetch requests.
 - When both research agents are installed, Codex `0.149.0-alpha.4` warns that their intentionally shared semantic MCP names collide and selects one identical definition. The workflows remained functional, but the warning is retained as a preview limitation.
 
-## Open release-candidate gates
+## Historical open release-candidate gates (before RC5 stabilization)
 
 - Codex Desktop has not been independently rerun after `rc.2`.
 - The VS Code CLI is not installed on this machine, so VS Code/Copilot installation remains open.
@@ -101,6 +104,11 @@ Passed:
 These gaps block final `1.0.0`; they do not block this repository-marketplace release candidate.
 
 ## RC5 stabilization evidence — 2026-08-22
+
+Current maintained public-preview support is Codex and Claude Code (in the
+Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
+elsewhere in this record are historical compatibility observations, not current
+support gates.
 
 `1.0.0-rc.5` vendors Market Research record schema `1.2`. Formal generation now
 requires timestamped approvals for findings, every stable `Dnnn` acquisition

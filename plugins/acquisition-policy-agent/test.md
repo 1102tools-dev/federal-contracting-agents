@@ -56,7 +56,10 @@ Duplicate-name warnings at startup are a packaging-polish item. Renaming the
 shared servers would start duplicate identical processes and duplicate remote
 initialization, so it is deliberately not done.
 
-### Package-specific results
+### Historical package-specific checkpoint (rc.2)
+
+The checkpoint below predates the RC5 stabilization section. It is retained as
+dated evidence and is not the current package-preview declaration.
 
 Installed and verified at `1.0.0-rc.2`.
 
@@ -71,11 +74,11 @@ On 2026-08-22 the serialized release gate passed twice. The official RFO index, 
 
 The immutable MCP source commit `3f9376a406a2af17e5810d81f319d81efe34417e` installed into an isolated `uvx` environment directly from GitHub and exposed exactly five tools without invoking an upstream tool. Release workflow `32561799836` then passed shared safety checks, all nine package test-and-build jobs, trusted publication, and release creation. A fresh `uvx` environment installed `acquisition-gov-mcp==1.0.0` from PyPI and discovered all four policy-agent servers without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 
-## Client installation and explicit routing
+## Historical client installation and explicit routing (before RC5 stabilization)
 
 On 2026-08-22 the repository marketplace installed `acquisition-policy-agent==1.0.0-rc.2` successfully in Codex CLI and Claude Code. Fresh noninteractive sessions invoked the workflow explicitly and returned the exact ten-item launch menu without external retrieval or MCP calls. The Codex check read the packaged launch-menu reference as required; forbidding all local file operations prevents progressive-disclosure references from loading and is not a valid workflow invocation.
 
-## Open agent release gates
+## Historical open agent release gates (before RC5 stabilization)
 
 - Run implicit routing cases in clean Codex CLI/Desktop and Claude Code.
 - Complete an agency RFO status analysis, rulemaking/comment workflow, public-comment analysis, and validated impact brief with live sources.
@@ -84,6 +87,11 @@ On 2026-08-22 the repository marketplace installed `acquisition-policy-agent==1.
 The package remains a release candidate until every open gate passes.
 
 ## RC5 stabilization evidence — 2026-08-22
+
+Current maintained public-preview support is Codex and Claude Code (in the
+Claude Desktop app or standalone CLI). Copilot CLI and VS Code/Copilot entries
+in the historical checkpoint above are compatibility observations, not current
+support gates.
 
 The current installable preview is `1.0.0-rc.3`, pinned to Acquisition.gov
 `1.0.1`, eCFR `1.0.5`, Federal Register `1.0.4`, and Regulations.gov `1.0.4`.
