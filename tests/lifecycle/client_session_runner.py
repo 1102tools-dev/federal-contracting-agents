@@ -129,6 +129,7 @@ def codex_command(args: argparse.Namespace, prompt: str) -> list[str]:
     prefix = [str(args.codex_binary)]
     if getattr(args, "codex_profile", None):
         prefix.extend(("--profile", str(args.codex_profile)))
+    prefix.extend(("-c", f'model_reasoning_effort="{args.effort}"'))
     for override in getattr(args, "codex_config", ()):
         prefix.extend(("-c", str(override)))
     common = [

@@ -69,7 +69,10 @@ class ClientSessionRunnerTests(unittest.TestCase):
 
     def test_codex_command_uses_explicit_thread_resume(self) -> None:
         command = codex_command(self.args("codex", "thread-1"), "continue")
-        self.assertEqual(command[:3], ["/bin/codex", "exec", "resume"])
+        self.assertEqual(
+            command[:5],
+            ["/bin/codex", "-c", 'model_reasoning_effort="high"', "exec", "resume"],
+        )
         self.assertIn("thread-1", command)
         self.assertIn("gpt-5.6-sol", command)
 
@@ -78,8 +81,15 @@ class ClientSessionRunnerTests(unittest.TestCase):
         args.codex_config = ["shell_environment_policy.inherit=all"]
         command = codex_command(args, "verify")
         self.assertEqual(
-            command[:4],
-            ["/bin/codex", "-c", "shell_environment_policy.inherit=all", "exec"],
+            command[:6],
+            [
+                "/bin/codex",
+                "-c",
+                'model_reasoning_effort="high"',
+                "-c",
+                "shell_environment_policy.inherit=all",
+                "exec",
+            ],
         )
 
     def test_codex_command_selects_host_profile_before_exec(self) -> None:
@@ -87,8 +97,15 @@ class ClientSessionRunnerTests(unittest.TestCase):
         args.codex_profile = "1102tools-host"
         command = codex_command(args, "verify")
         self.assertEqual(
-            command[:4],
-            ["/bin/codex", "--profile", "1102tools-host", "exec"],
+            command[:6],
+            [
+                "/bin/codex",
+                "--profile",
+                "1102tools-host",
+                "-c",
+                'model_reasoning_effort="high"',
+                "exec",
+            ],
         )
 
     def test_isolated_client_home_sets_codex_paths(self) -> None:
