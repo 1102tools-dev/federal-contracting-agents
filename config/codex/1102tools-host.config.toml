@@ -40,4 +40,4 @@ args = ["--from", "gsa-perdiem-mcp==1.0.6", "gsa-perdiem-mcp"]
 env_vars = ["PERDIEM_API_KEY"]
 
 [mcp_servers."gsa-perdiem".env]
-FEDERAL_API_MIN_INTERVAL_SECONDS = "3"
+FEDERAL_API_MIN_INTERVAL_SECONDS = "4"

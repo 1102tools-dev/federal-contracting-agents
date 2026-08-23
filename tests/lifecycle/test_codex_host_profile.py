@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -33,6 +34,29 @@ class CodexHostProfileTests(unittest.TestCase):
         tracked = repo_root / "config" / "codex" / "1102tools-host.config.toml"
         self.assertTrue(tracked.is_file())
         self.assertEqual(tracked.read_text(encoding="utf-8"), render_profile())
+
+    def test_profile_launchers_match_every_shipped_owner(self) -> None:
+        repo_root = Path(__file__).resolve().parents[2]
+        manifests = tuple((repo_root / "plugins").glob("*/.mcp.json"))
+        for name, package, executable, interval, _env_vars, extra_env in SERVER_CONFIG:
+            owners = []
+            for manifest in manifests:
+                declaration = json.loads(manifest.read_text(encoding="utf-8"))[
+                    "mcpServers"
+                ].get(name)
+                if declaration is not None:
+                    owners.append((manifest, declaration))
+            self.assertTrue(owners, f"{name} has no shipped owner")
+            expected = {
+                "command": "uvx",
+                "args": ["--from", package, executable],
+                "env": {
+                    "FEDERAL_API_MIN_INTERVAL_SECONDS": interval,
+                    **dict(extra_env),
+                },
+            }
+            for manifest, declaration in owners:
+                self.assertEqual(declaration, expected, str(manifest))
 
     def test_profile_is_complete_parseable_and_contains_no_values(self) -> None:
         text = render_profile()

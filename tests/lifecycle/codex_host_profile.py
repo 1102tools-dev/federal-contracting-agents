@@ -59,7 +59,7 @@ SERVER_CONFIG = (
         "gsa-perdiem",
         "gsa-perdiem-mcp==1.0.6",
         "gsa-perdiem-mcp",
-        "3",
+        "4",
         ("PERDIEM_API_KEY",),
         (),
     ),

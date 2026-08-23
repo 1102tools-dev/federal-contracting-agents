@@ -101,8 +101,10 @@ def redact_text(value: str, secrets: Sequence[str]) -> str:
 
 
 def claude_command(args: argparse.Namespace, prompt: str) -> list[str]:
-    command = [
-        str(args.claude_binary),
+    command = [str(args.claude_binary)]
+    if getattr(args, "claude_agent", None):
+        command.extend(("--agent", str(args.claude_agent)))
+    command.extend([
         "-p",
         prompt,
         "--model",
@@ -115,7 +117,7 @@ def claude_command(args: argparse.Namespace, prompt: str) -> list[str]:
         "json",
         "--permission-mode",
         "bypassPermissions",
-    ]
+    ])
     if args.session_id:
         command.extend(("--resume", args.session_id))
     if args.mcp_config:
@@ -231,6 +233,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--effort", default="high")
     result.add_argument("--codex-binary", type=Path, default=DEFAULT_CODEX)
     result.add_argument("--claude-binary", type=Path, default=DEFAULT_CLAUDE)
+    result.add_argument("--claude-agent")
     result.add_argument("--client-home", type=Path)
     result.add_argument("--codex-profile")
     result.add_argument("--codex-config", action="append", default=[])
@@ -302,6 +305,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "credential_values_recorded": False,
         "isolated_client_home": isolated_client_home,
         "codex_profile": args.codex_profile if args.client == "codex" else None,
+        "claude_agent": args.claude_agent if args.client == "claude" else None,
         "prompt_sha256": sha256_bytes(prompt.encode("utf-8")),
         "stdout_sha256": sha256_bytes(safe_stdout.encode("utf-8")),
         "stderr_sha256": sha256_bytes(safe_stderr.encode("utf-8")),

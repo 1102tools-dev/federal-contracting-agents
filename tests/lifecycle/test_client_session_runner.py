@@ -39,6 +39,7 @@ class ClientSessionRunnerTests(unittest.TestCase):
             effort="high",
             session_id=session_id,
             mcp_config=Path("/tmp/package/.mcp.json") if client == "claude" else None,
+            claude_agent=None,
             codex_profile=None,
             codex_config=[],
         )
@@ -51,6 +52,20 @@ class ClientSessionRunnerTests(unittest.TestCase):
         self.assertIn("--strict-mcp-config", command)
         resume_index = command.index("--resume")
         self.assertEqual(command[resume_index : resume_index + 2], ["--resume", "session-1"])
+
+    def test_claude_command_accepts_explicit_installed_agent(self) -> None:
+        args = self.args("claude")
+        args.claude_agent = "market-research-agent:market-research-agent"
+        command = claude_command(args, "verify")
+        self.assertEqual(
+            command[:4],
+            [
+                "/bin/claude",
+                "--agent",
+                "market-research-agent:market-research-agent",
+                "-p",
+            ],
+        )
 
     def test_codex_command_uses_explicit_thread_resume(self) -> None:
         command = codex_command(self.args("codex", "thread-1"), "continue")
