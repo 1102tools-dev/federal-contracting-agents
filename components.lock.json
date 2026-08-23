@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "655800a929bfdcfef348ce19ecd941633a597b02"
+      "commit": "c1260bb7f7104cacb731f3c3c2a483af67b16c8d"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.6",
+      "version": "1.0.0-rc.7",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -151,16 +151,16 @@
         },
         "ot-cost-analysis": {
           "files": {
-            "SKILL.md": "162a42106d0fb1cb5eb5efaf82cc169ef3afd52fcd4d772436967aae729b545c",
+            "SKILL.md": "2754bc444eb4e6b9e0e8d61dc0baf6479924091491b5f04f8536f102dffaad4a",
             "agents/openai.yaml": "96b4376fce31e81038a4806df129389424d05950432f388e4bdd681bec658ce3",
             "references/authority-and-cost-sharing.md": "9ef3bcd4c493fba4452da2d9c0f9030eb7648a336854aabdf27f9f566452f4fa",
             "references/data-source-operations.md": "d011471cb2cd1a41b4ea10bc0ce994f61d921079a974983daa5fd43399d7e82a",
             "references/labor-and-costing-methods.md": "535b0ad4944a118c7325bb7401b3eba672d2323d7f69d9bc2189693caf0f8247",
             "references/runtime-adaptation.md": "0c602fe93beac5e36a9a16a2c9ff942d06900a916866dfb107ac03c944491a36",
-            "references/validation-gates.md": "ae5bc253c776348063f4debd6a9273f558ee85316d14803d024e83139094031b",
+            "references/validation-gates.md": "7c2296777ffc715e3f04ce2f739df6eada0c031c5917e93ace2edd722bce46fb",
             "references/workbook-specification.md": "eaaf01ce69a4f13a6805f5703c8f91b67e2cdb7c9d202c3efc113f2e229fe787",
             "scripts/recompute_expected_values.py": "a818480ab4e7b3dd95f4251475721ccf0925ddbd4dcb5347b11115d0c5ad293b",
-            "scripts/validate_workbook.py": "5a7cace1fd6325c5c8da3b064c244c2fd1e2da81b822d01aa94dfe174862407a"
+            "scripts/validate_workbook.py": "77a800169528c188f26c4fa2ef3b0155fa28bbe64fd67f17c84ebd50cf5d12d4"
           }
         }
       }

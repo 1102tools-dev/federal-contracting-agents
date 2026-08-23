@@ -23,12 +23,12 @@ PLUGIN_NAMES = (
 )
 EXPECTED_VERSIONS = {
     "pre-award-agent": "1.0.0-rc.6",
-    "other-transaction-agent": "1.0.0-rc.6",
+    "other-transaction-agent": "1.0.0-rc.7",
     "govcon-growth-agent": "1.0.0-rc.5",
     "market-research-agent": "1.0.0-rc.6",
     "acquisition-policy-agent": "1.0.0-rc.4",
 }
-MARKETPLACE_VERSION = "1.2.0-rc.6"
+MARKETPLACE_VERSION = "1.2.0-rc.7"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -446,7 +446,9 @@ def validate_test_record_provenance(errors: list[str]) -> None:
         record = REPO_ROOT / "plugins" / plugin_name / "test.md"
         if not record.is_file():
             continue
-        for cited in commit_re.findall(record.read_text(encoding="utf-8")):
+        text = record.read_text(encoding="utf-8")
+        current_record = re.split(r"(?m)^## RC\d+\b", text, maxsplit=1)[0]
+        for cited in commit_re.findall(current_record):
             if not locked_commit.startswith(cited):
                 errors.append(
                     f"{plugin_name}/test.md cites skills commit {cited}, but the package vendors "

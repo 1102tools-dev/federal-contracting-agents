@@ -17,7 +17,7 @@ SCHEMA = REPO_ROOT / "tests" / "manual" / "rc5_lifecycle_ledger.schema.json"
 
 
 class LifecycleEvidenceTests(unittest.TestCase):
-    def test_rc5_ledger_is_schema_valid_and_records_known_open_p1(self) -> None:
+    def test_rc5_ledger_is_schema_valid_and_preserves_p1_history(self) -> None:
         errors = validate(REPO_ROOT, LEDGER, SCHEMA)
         self.assertEqual(errors, [])
         ledger = json.loads(LEDGER.read_text(encoding="utf-8"))

@@ -336,7 +336,7 @@ its value was not retained in the evidence.
 | GovCon Growth — Codex | Pass: validated brief |
 | GovCon Growth — Claude | Pass: validated brief |
 | Other Transaction — Codex | Pass: validated project description and 375-formula workbook |
-| Other Transaction — Claude | Pass: validated project description and 431-formula workbook; validator-coverage P1 remains open |
+| Other Transaction — Claude | Pass: validated project description and 431-formula workbook; rc.7 global cached-error validator replay passed |
 | Acquisition Policy — Codex | Pass: validated impact brief |
 | Acquisition Policy — Claude | Pass: validated impact brief |
 
@@ -350,11 +350,10 @@ directionally sound but not yet consolidated into ten complete cross-client
 resume chains. The Sonnet 23-case routing replay is likewise retained as
 advisory evidence rather than a claimed final gate.
 
-No P0 remains. One P1 validator-coverage defect remains: the canonical OT
-validator passed a recalculated workbook before a separate workbook-wide cached
-value audit found formula errors outside the validator's mapped comparison set.
-The delivered workbook was repaired and passed all validation and visual gates,
-but the shipped validator must gain the global cached-error audit and a
-regression before the OT lane closes. Final `1.0.0` also still requires complete
-Codex resume proof, a real remote RC-to-final upgrade, and the remaining
-authenticated manual scenarios.
+No P0 remains. The OT validator-coverage P1 is resolved in
+`other-transaction-agent` `1.0.0-rc.7`: its global cached-error audit has
+deterministic regression coverage and passed required LibreOffice replay against
+the preserved Codex and Claude workbooks. Final `1.0.0` still requires complete
+Codex resume proof, clean installed-byte routing in both maintained client
+families, complete uninstall proof, a real remote RC-to-final upgrade, and the
+remaining authenticated manual scenarios.

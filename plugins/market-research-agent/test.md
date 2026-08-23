@@ -5,7 +5,7 @@ Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `655800a929bfdcfef348ce19ecd941633a597b02`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `c1260bb7f7104cacb731f3c3c2a483af67b16c8d`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.

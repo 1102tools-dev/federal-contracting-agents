@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "release_candidate": "v1.2.0-rc.6",
+  "release_candidate": "v1.2.0-rc.7",
   "repository": "1102tools-dev/federal-contracting-agents",
   "source_ref": "main",
   "clients": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "other-transaction-agent",
-      "version": "1.0.0-rc.6"
+      "version": "1.0.0-rc.7"
     },
     {
       "id": "acquisition-policy-agent",

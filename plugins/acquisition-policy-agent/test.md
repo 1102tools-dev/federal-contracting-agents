@@ -6,7 +6,7 @@ Version: `1.0.0-rc.4`
 
 - The bundled `acquisition-policy-workflow` runtime is synchronized from
   `federal-contracting-skills` commit
-  `655800a929bfdcfef348ce19ecd941633a597b02`.
+  `c1260bb7f7104cacb731f3c3c2a483af67b16c8d`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.

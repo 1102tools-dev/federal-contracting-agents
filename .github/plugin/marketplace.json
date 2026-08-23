@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.0-rc.6"
+    "version": "1.2.0-rc.7"
   },
   "plugins": [
     {
@@ -17,7 +17,7 @@
     {
       "name": "other-transaction-agent",
       "description": "Build an OT project description and carry its approved milestones into cost analysis.",
-      "version": "1.0.0-rc.6",
+      "version": "1.0.0-rc.7",
       "source": "./plugins/other-transaction-agent"
     },
     {

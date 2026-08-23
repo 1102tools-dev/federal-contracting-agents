@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research, Pre-Award, and Other Transaction are at `1.0.0-rc.6`; GovCon Growth is at `1.0.0-rc.5`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.6`.
+Choose one federal acquisition job and install one self-contained agent package. Market Research and Pre-Award are at `1.0.0-rc.6`; GovCon Growth is at `1.0.0-rc.5`; Other Transaction is at `1.0.0-rc.7`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.7`.
 
 Website: [1102tools.com](https://1102tools.com)
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
@@ -12,7 +12,7 @@ Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-a
 | **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.6` |
 | **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.6` |
 | **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.5` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.6` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.7` |
 | **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.4` |
 
 The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.

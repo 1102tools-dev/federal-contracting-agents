@@ -2,14 +2,14 @@
 
 Date: August 21, 2026
 
-Package: `other-transaction-agent` `1.0.0-rc.6`
+Package: `other-transaction-agent` `1.0.0-rc.7`
 
 Status: release candidate; not approved for a `1.0.0` tag
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `655800a929bfdcfef348ce19ecd941633a597b02`
+- Canonical skills commit: `c1260bb7f7104cacb731f3c3c2a483af67b16c8d`
 - Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
 - `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
@@ -190,12 +190,27 @@ validation, independent recomputation, serialized LibreOffice recalculation, a
 separate workbook-wide cached-error scan, ZIP integrity, and inspection of all
 16 rendered pages. No credential value was displayed or retained.
 
-One P1 validator-coverage defect remains. Before repair, the canonical OT
-validator passed after LibreOffice recalculation while formula errors remained
-in cached cells outside its mapped comparison set; the separate global scan and
-render review found them. The delivered workbook was corrected and all layers
-reran clean, but the shipped OT validator must gain the workbook-wide
-cached-error audit already used by the three IGCE validators, plus a regression,
-before this lane closes. The nested isolated Codex CLI spreadsheet-runtime issue
-remains an environment advisory. Evidence:
+This replay exposed one P1 validator-coverage defect. Before repair, the
+canonical OT validator passed after LibreOffice recalculation while formula
+errors remained in cached cells outside its mapped comparison set; the separate
+global scan and render review found them. The delivered workbook was corrected
+and all layers reran clean. The validator defect was subsequently resolved in
+RC7 below. The nested isolated Codex CLI spreadsheet-runtime issue remains an
+environment advisory. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
+
+## RC7 cached-error validator remediation — 2026-08-23
+
+`1.0.0-rc.7` vendors canonical skills commit
+`c1260bb7f7104cacb731f3c3c2a483af67b16c8d`. The OT validator now scans every
+cell in every recalculated worksheet for cached spreadsheet errors before it
+accepts mapped expected values. Three deterministic regressions cover the
+workbook-wide audit, the previously missed unmapped `#VALUE!` case, and a clean
+control workbook.
+
+The vendored validator then passed required LibreOffice replay against the
+preserved Codex seven-sheet, 375-formula workbook and Claude seven-sheet,
+431-formula workbook. Their previously recorded hashes, independent
+recomputations, ZIP checks, and visual reviews remain unchanged. This resolves
+`P1-OT-CACHED-ERROR-AUDIT`; the remaining lifecycle, routing, resume, upgrade,
+and stable-release gates remain open.
