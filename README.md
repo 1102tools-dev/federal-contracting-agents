@@ -165,6 +165,8 @@ for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market
 done
 uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py \
   --host-profile config/codex/1102tools-host.config.toml --keyless-status
+bash tests/manual/menu_smoke.sh
+bash tests/manual/codex_menu_smoke.sh
 ```
 
 These commands initialize and inspect pinned MCP servers without calling upstream federal APIs. The host-profile lane proves the all-five union and runs each keyed server's local keyless status check. Live acceptance is bounded, serialized, and recorded separately. Tavily discovery is an opt-in manual check and invokes no Search or Extract operation.
