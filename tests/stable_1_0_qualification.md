@@ -59,6 +59,8 @@ After the untagged stable commit passed GitHub Actions:
 - Fresh isolated Codex and Claude configurations each installed the marketplace and all five stable packages directly from GitHub `main`; all twelve install commands returned success.
 - The ten clean-installed package trees were also byte-equal to the repository package trees.
 - Unrelated Codex and Claude settings remained byte-identical across the real upgrade.
+- One explicit installed-byte smoke per agent passed in Codex Sol and Claude Sonnet, ten of ten total, with no network or artifact call.
+- A post-promotion bounded live canary passed for all nine pinned federal MCPs, including the keyed SAM.gov, BLS OEWS, GSA Per Diem, and Regulations.gov sources; the sanitized ledger retained no credential value.
 
 The first isolated Codex attempt exposed a P2 harness defect: an empty test home
 did not yet contain the explicitly configured `.codex` directory. The client

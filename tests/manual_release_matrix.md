@@ -30,7 +30,9 @@ trees. A test-only empty-home initialization defect caused the first isolated
 Codex harness attempt to fail before installation; the runner was corrected to
 create only its mode-`0700` client configuration root, regression coverage was
 added, and the attempt of record passed. This was not a packaged workflow
-defect.
+defect. Ten of ten explicit installed-byte workflow smokes then passed across
+Codex and Claude, and all nine bounded post-promotion live MCP canaries passed
+with credential redaction intact.
 
 ## Evidence required in every handoff-based end-to-end run
 
