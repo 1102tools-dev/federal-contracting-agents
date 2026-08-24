@@ -17,6 +17,7 @@ try:  # Supports both ``unittest discover -s tests`` and direct invocation.
         assert_same_version_reinstall,
         build_plan,
         capture_inventory,
+        execute_plan,
         load_matrix,
         plan_install,
         plan_uninstall,
@@ -38,6 +39,7 @@ except ImportError:  # pragma: no cover - direct discovery fallback
         assert_same_version_reinstall,
         build_plan,
         capture_inventory,
+        execute_plan,
         load_matrix,
         plan_install,
         plan_uninstall,
@@ -138,6 +140,14 @@ class LifecycleRunnerTests(unittest.TestCase):
         self.assertEqual(len(results), 6)
         self.assertEqual(runner.calls[0][0:4], ("claude", "plugin", "marketplace", "add"))
         self.assertTrue(all("1102tools" in " ".join(call) or "federal-contracting-agents" in " ".join(call) for call in runner.calls))
+
+    def test_execute_creates_only_the_scoped_client_config_root(self) -> None:
+        profile = self.profile("codex")
+        self.assertFalse(profile.client_dir.exists())
+        plan = build_plan(profile, self.matrix, "install")
+        execute_plan(plan, FakeRunner())
+        self.assertTrue(profile.client_dir.is_dir())
+        self.assertEqual(profile.client_dir.stat().st_mode & 0o777, 0o700)
 
     def test_inventory_records_metadata_not_configuration_contents(self) -> None:
         profile = self.profile("claude")

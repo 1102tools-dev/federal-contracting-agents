@@ -447,6 +447,11 @@ def execute_plan(plan: Plan, runner: CommandRunner | None = None, *, cwd: Path |
     """Execute client commands after the caller has opted into mutation."""
 
     plan.client.assert_safe_execution_home()
+    # Both maintained CLIs require their explicit config root to exist. A fresh
+    # temporary HOME is intentionally empty, so create only that scoped client
+    # directory before launching any client command.
+    plan.client.client_dir.mkdir(parents=True, mode=0o700, exist_ok=True)
+    plan.client.client_dir.chmod(0o700)
     command_runner = runner or SubprocessRunner(plan.client)
     return [command_runner.run(command, cwd=cwd) for command in plan.commands]
 
