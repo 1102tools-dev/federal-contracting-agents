@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "658108e2c59b591f617c89b4c38e1822a6429bd7"
+      "commit": "93a0e26201fdc257044ec7e5f021a88ca4e0edc1"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
