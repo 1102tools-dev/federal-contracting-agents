@@ -1,7 +1,7 @@
 {
   "name": "other-transaction-agent",
-  "version": "1.0.0",
-  "description": "Create an OT project description and carry its approved milestones directly into cost analysis.",
+  "version": "1.0.1",
+  "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build OT scope and cost analysis.",
   "author": {
     "name": "1102tools",
     "url": "https://1102tools.com"
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Other Transaction Agent",
     "shortDescription": "Build an OT project description and cost analysis",
-    "longDescription": "Coordinates project-description-only, cost-only, and end-to-end Other Transaction workflows. It preserves approved milestone handoffs, supports research, prototype, and follow-on production paths, and keeps scope artifacts separate from Government cost workpapers.",
+    "longDescription": "Reports limited BLS and Per Diem fallback before coordinating project-description-only, cost-only, and end-to-end Other Transaction workflows. It preserves approved milestone handoffs and keeps scope artifacts separate from cost workpapers.",
     "developerName": "1102tools",
     "category": "Productivity",
     "capabilities": [
@@ -29,6 +29,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $other-transaction-workflow to build an OT project description and carry its approved milestones into cost analysis."
+    "defaultPrompt": "Use $other-transaction-workflow. Check BLS and Per Diem first; disclose keyless limits before routing."
   }
 }

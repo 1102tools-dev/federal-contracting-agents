@@ -1,20 +1,20 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. All five 1102tools agents are stable at `1.0.0`. They are installed from the GitHub-hosted 1102tools marketplace. The marketplace catalog itself is version `1.2.0`; that catalog version is separate from the agent package versions.
+Choose one federal acquisition job and install one self-contained agent package. All five 1102tools agents are stable at `1.0.1`. They are installed from the GitHub-hosted 1102tools marketplace. The marketplace catalog itself is version `1.2.1`; that catalog version is separate from the agent package versions.
 
 Website: [1102tools.com](https://1102tools.com)
 
-Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
+Setup: [visible HTML instructions](https://1102tools.com/setup) · [downloadable PDF](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
 
 ## The five agents
 
 | Agent | Audience and supported work | Version |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | `1.0.0` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, hybrid routing, and revision with repricing | `1.0.0` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | `1.0.0` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | `1.0.0` |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | `1.0.0` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | `1.0.1` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, hybrid routing, and revision with repricing | `1.0.1` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | `1.0.1` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | `1.0.1` |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | `1.0.1` |
 
 Each plugin vendors its complete canonical skills, deterministic validators, runtime guidance, and pinned MCP configuration. Users install one agent instead of assembling skills and server definitions separately.
 
@@ -31,18 +31,33 @@ No agent ZIP is maintained. Standalone skills and MCP servers remain available a
 
 ## Requirements and credentials
 
+No 1102tools account is required; some federal providers require a free account or API key. Every new agent invocation performs local, presence-only readiness checks before its workflow choices or routed response. The checks never display, transmit, log, or validate the credential value.
+
+| Agent | Credential state without user keys | Startup behavior |
+|---|---|---|
+| Market Research | `SAM_API_KEY` required for SAM.gov operations | Says the key is not configured before the menu; blocks only SAM-dependent work and permits an explicitly approved keyless scope |
+| GovCon Growth | `SAM_API_KEY` required for SAM.gov operations | Same hard SAM gate; never labels a missing key as a SAM.gov outage |
+| Pre-Award | `BLS_API_KEY` recommended; `PERDIEM_API_KEY` relevant when travel is priced | Warns that BLS v1 is limited to 25 requests/day and 10 years/query and Per Diem `DEMO_KEY` to about 10 requests/hour; permits bounded work |
+| Other Transaction | `BLS_API_KEY` recommended; `PERDIEM_API_KEY` relevant when travel is priced | Same limited-fallback warning; project-description-only work remains available |
+| Acquisition Policy | `REGULATIONS_GOV_API_KEY` recommended | Warns that Regulations.gov uses a shared `DEMO_KEY` limited to about 10 requests/hour; permits bounded work |
+
+USASpending, GSA CALC+, eCFR, Federal Register, and Acquisition.gov require no user key.
+
 - Codex Desktop or Codex CLI, or Claude Code in Claude Desktop or its standalone CLI
 - Python 3.10 or newer
 - [`uv` and `uvx`](https://docs.astral.sh/uv/)
 - LibreOffice for full document rendering and workbook recalculation gates
-- `SAM_API_KEY` for SAM.gov workflows
-- `BLS_API_KEY`, optional but recommended for BLS OEWS
-- `PERDIEM_API_KEY`, optional and needed only when travel is priced
-- `REGULATIONS_GOV_API_KEY` for full Regulations.gov access; its `DEMO_KEY` fallback is limited
+- `SAM_API_KEY` for SAM.gov workflows — obtain and manage it through [SAM.gov Help](https://sam.gov/help)
+- `BLS_API_KEY`, optional but recommended for BLS OEWS — [BLS registration](https://data.bls.gov/registrationEngine/)
+- `PERDIEM_API_KEY`, optional and relevant when travel is priced — [api.data.gov signup](https://api.data.gov/signup/)
+- `REGULATIONS_GOV_API_KEY`, optional but recommended for Regulations.gov — [api.data.gov signup](https://api.data.gov/signup/)
 
-Export credentials in the environment that launches the client or use its credential surface. Credentials are not stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
+Configure credentials outside chat in the environment that launches the client or in its credential surface, then fully restart the client and rerun the workflow. Never paste a key into a conversation. Credentials are not stored in this repository or its manifests.
 
-For Codex, use the maintained [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) when keyed federal data or multiple agents are used together. The file contains only allowlisted variable names, not credential values. Codex CLI selects it with `codex --profile 1102tools-host`. Codex Desktop requires the equivalent MCP tables in the user's `~/.codex/config.toml` followed by an app restart.
+For Codex, the maintained [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) is required when multiple 1102tools agents are installed together. It owns the canonical definitions for all nine federal MCP servers, preventing shared server names from resolving to stale or incomplete definitions. The file contains only allowlisted credential variable names, never values.
+
+- Codex CLI: save the file as `~/.codex/1102tools-host.config.toml`, then launch with `codex --profile 1102tools-host`.
+- Codex Desktop: merge the complete `mcp_servers` tables from that file into `~/.codex/config.toml`, replacing any older 1102tools tables with the same names, then fully quit and reopen Codex. Codex Desktop and CLI share the base config; the named CLI profile is an extra layer used only when selected.
 
 Every packaged federal MCP applies an explicit anti-burst interval. The packages coordinate concurrent processes on one computer and preserve longer provider `Retry-After` instructions. The safeguard is not a quota manager and cannot coordinate the same key across different computers.
 
@@ -59,7 +74,7 @@ codex plugin add other-transaction-agent@1102tools
 codex plugin add acquisition-policy-agent@1102tools
 ```
 
-Start a new Codex task after installation so the refreshed skills and MCP catalog load.
+Install the complete [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) as described above, then start a new Codex task so the refreshed skills and MCP catalog load.
 
 ### Claude Code in Claude Desktop or CLI
 
@@ -148,9 +163,11 @@ python3 scripts/check_bundled_scripts.py
 for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent acquisition-policy-agent; do
   uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin "$plugin"
 done
+uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py \
+  --host-profile config/codex/1102tools-host.config.toml --keyless-status
 ```
 
-These commands initialize and inspect pinned MCP servers without calling upstream federal APIs. Live acceptance is bounded, serialized, and recorded separately. Tavily discovery is an opt-in manual check and invokes no Search or Extract operation.
+These commands initialize and inspect pinned MCP servers without calling upstream federal APIs. The host-profile lane proves the all-five union and runs each keyed server's local keyless status check. Live acceptance is bounded, serialized, and recorded separately. Tavily discovery is an opt-in manual check and invokes no Search or Extract operation.
 
 Canonical runtime files and source commits are locked in [`components.lock.json`](components.lock.json). The stable promotion's approved differences from `v1.2.0-rc.15` are recorded in [`tests/stable_1_0_allowed_diff.json`](tests/stable_1_0_allowed_diff.json).
 
@@ -160,4 +177,4 @@ Canonical runtime files and source commits are locked in [`components.lock.json`
 - Compatible feature: affected agent `1.1.0`
 - Breaking workflow or package change: affected agent `2.0.0`
 
-Free, open source, and no signup required.
+Free and open source. No 1102tools account is required; some federal providers require a free account or API key.

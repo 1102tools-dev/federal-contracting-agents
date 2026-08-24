@@ -56,7 +56,9 @@ class OrchestratorContractTests(unittest.TestCase):
     def test_market_research_menu_and_document_intake_are_hard_gates(self) -> None:
         text = self.text("market-research-agent", "market-research-workflow")
         for required in (
-            "The entire first-turn response consists only of the exact complete six-choice block",
+            "local presence-only SAM.gov `get_access_status` call",
+            "SAM_API_KEY is not configured",
+            "Data access readiness",
             "Do not summarize it, rename options, omit an option",
             "summarized, renamed, reordered, condensed, or incomplete menu is invalid",
             "Restrictions do not suppress activation",
@@ -81,13 +83,15 @@ class OrchestratorContractTests(unittest.TestCase):
             / "agents"
             / "market-research-agent.md"
         ).read_text(encoding="utf-8")
-        self.assertIn("still requires skill activation and the complete menu", wrapper)
+        self.assertIn("still requires skill activation, the readiness check, and the complete menu", wrapper)
         self.assertIn("restrictions apply only to later stages", wrapper)
 
     def test_govcon_growth_menu_and_bid_boundary_are_hard_gates(self) -> None:
         text = self.text("govcon-growth-agent", "govcon-growth-workflow")
         for required in (
-            "The entire first-turn response consists only of the complete nine-choice menu",
+            "local presence-only SAM.gov `get_access_status` call",
+            "SAM_API_KEY is not configured",
+            "Data access readiness",
             "1. Find federal opportunities",
             "7. Check pricing or labor-rate context",
             "9. Help me choose",
@@ -99,6 +103,44 @@ class OrchestratorContractTests(unittest.TestCase):
             "CALC+ is required only for pricing context",
         ):
             self.assertIn(required, text)
+
+    def test_all_orchestrators_front_load_presence_only_readiness(self) -> None:
+        checks = {
+            ("pre-award-agent", "pre-award-workflow"): (
+                "bls-oews.get_access_status",
+                "gsa-perdiem.get_access_status",
+                "BLS_API_KEY is not configured",
+                "PERDIEM_API_KEY is not configured",
+            ),
+            ("other-transaction-agent", "other-transaction-workflow"): (
+                "bls-oews.get_access_status",
+                "gsa-perdiem.get_access_status",
+                "BLS_API_KEY is not configured",
+                "PERDIEM_API_KEY is not configured",
+            ),
+            ("market-research-agent", "market-research-workflow"): (
+                "sam-gov",
+                "get_access_status",
+                "SAM_API_KEY is not configured",
+            ),
+            ("govcon-growth-agent", "govcon-growth-workflow"): (
+                "sam-gov",
+                "get_access_status",
+                "SAM_API_KEY is not configured",
+            ),
+            ("acquisition-policy-agent", "acquisition-policy-workflow"): (
+                "regulations-gov",
+                "get_access_status",
+                "REGULATIONS_GOV_API_KEY is not configured",
+            ),
+        }
+        for (plugin, skill), required_strings in checks.items():
+            text = self.text(plugin, skill)
+            with self.subTest(plugin=plugin):
+                self.assertIn("presence-only", text)
+                self.assertIn("https://1102tools.com/setup#credentials", text)
+                for required in required_strings:
+                    self.assertIn(required, text)
 
     def test_acquisition_policy_status_and_source_gates_are_preserved(self) -> None:
         text = self.text("acquisition-policy-agent", "acquisition-policy-workflow")
@@ -141,7 +183,7 @@ class OrchestratorContractTests(unittest.TestCase):
             servers["federal-register"]["args"][1], "federal-register-mcp==1.0.4"
         )
         self.assertEqual(
-            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.5"
+            servers["regulations-gov"]["args"][1], "regulationsgov-mcp==1.0.7"
         )
         self.assertEqual(
             servers["acquisition-gov"]["args"][1], "acquisition-gov-mcp==1.0.1"

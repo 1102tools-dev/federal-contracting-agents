@@ -10,6 +10,31 @@ Coordinate the bundled skills. Do not replace their acquisition logic, artifact 
 
 Runtime requirements: the bundled SOW/PWS and IGCE skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
+## Startup data-access readiness
+
+On every new invocation, before mode selection, reserved-determination routing,
+or any other user-visible response, call `bls-oews.get_access_status` and
+`gsa-perdiem.get_access_status`. These are local, presence-only checks. Never
+display, request, or transmit credential values.
+
+Show a `Data access readiness` block before continuing whenever either status
+is limited or unavailable:
+
+- BLS `limited_fallback`: `BLS_API_KEY is not configured. BLS v1 remains
+  available at 25 requests per day and 10 years per query.`
+- Per Diem `limited_fallback`: `PERDIEM_API_KEY is not configured. Travel
+  pricing will use the shared DEMO_KEY fallback, limited to approximately 10
+  requests per hour.`
+- missing status operation: identify the exact server and say its MCP package
+  or the shared `1102tools-host` profile is outdated or incomplete. Scope-only
+  work remains available, but pricing readiness is not verified.
+
+End the block with `Setup: https://1102tools.com/setup#credentials`. For
+`configured_unverified`, remain quiet and never claim the key is valid. The two
+status calls are the only tools permitted before a fixed reserved-determination
+boundary. A later 401/403 is a rejected credential; 429 is rate limiting.
+Neither is an upstream outage. Do not retry automatically.
+
 ## Permanent release gates
 
 1. **Reserved determination:** Any request to decide, write, draft, or conclude that a proposed FFP price or rate is fair and reasonable routes immediately to the fixed Option A/Option B block below. A shorter refusal, generic request for proposal data, alternate option labels, or promise to write the conclusion later is invalid.
@@ -17,7 +42,11 @@ Runtime requirements: the bundled SOW/PWS and IGCE skills, Python 3.10+, `uvx`, 
 
 ## Reserved-determination hard stop
 
-Apply this before mode selection, analysis, tool use, or drafting whenever the user asks the agent to decide, conclude, or write that a proposed price or rate is fair and reasonable, acceptable, or suitable for negotiation. This rule also applies when the user asks only for a draft, example, recommendation, template, or sentence.
+Apply this after the mandatory startup readiness calls and before mode selection,
+analysis, any other tool use, or drafting whenever the user asks the agent to
+decide, conclude, or write that a proposed price or rate is fair and reasonable,
+acceptable, or suitable for negotiation. This rule also applies when the user
+asks only for a draft, example, recommendation, template, or sentence.
 
 For an FFP labor-rate request, enter `igce-builder-ffp` Workflow B. The first response is fixed. Output the following block verbatim and nothing else, then wait. Do not replace it with a general refusal, a request for rates or comparison data, or different choices:
 
@@ -93,14 +122,15 @@ Ask the user to approve the routing table, end at the question, and wait. Each p
 
 Delay preflight until the selected pricing workflow first needs external data.
 
-1. Inspect available MCP operations by stable server name, operation purpose, and input schema. Do not rely on a generated host prefix.
-2. Labor pricing requires both:
+1. Reuse the startup access statuses. If either status operation was missing, stop pricing as an outdated or incomplete MCP/host-profile installation. If BLS is in `limited_fallback`, confirm the planned workload fits 25 requests per day and 10 years per query. When travel is in scope and Per Diem is in `limited_fallback`, confirm the plan fits approximately 10 requests per hour.
+2. Inspect available MCP operations by stable server name, operation purpose, and input schema. Do not rely on a generated host prefix.
+3. Labor pricing requires both:
    - `bls-oews` with the operations required by the routed skill, including latest-vintage detection and wage retrieval;
    - `gsa-calc` with CALC+ labor-category discovery and ceiling-rate retrieval.
-3. Require `gsa-perdiem` only when travel is in scope.
-4. Test only the capabilities the active workflow will use. Follow the component skill's preflight sequence.
-5. For credentialed BLS or Per Diem requests, preserve at least three seconds between upstream calls. Do not expose credentials.
-6. If an operation is missing, unauthenticated, unavailable, or schema-incompatible, stop and identify the server, operation, failure class, and corrective action. Stop means make no further pricing calculation, substitution, comparison, or artifact finalization, even if another source remains available. Preserve all approved work so the user can resume after repair.
+4. Require `gsa-perdiem` only when travel is in scope.
+5. Test only the capabilities the active workflow will use. Follow the component skill's preflight sequence.
+6. For credentialed BLS or Per Diem requests, preserve at least three seconds between upstream calls. Do not expose credentials.
+7. If an operation is missing, unauthenticated, unavailable, rate-limited, outdated/incomplete, or schema-incompatible, stop and identify the server, operation, failure class, and corrective action. Stop means make no further pricing calculation, substitution, comparison, or artifact finalization, even if another source remains available. Preserve all approved work so the user can resume after repair.
 
 **HARD STOP:** After a required MCP capability fails, do not call another pricing MCP, continue a supported portion of the analysis, or suggest an alternate public source. Resume only after the failed capability is restored or the governing component skill accepts user-provided authoritative data through its documented path.
 

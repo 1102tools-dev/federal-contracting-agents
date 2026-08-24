@@ -70,6 +70,16 @@ class CodexHostProfileTests(unittest.TestCase):
         for name in KNOWN_CREDENTIALS:
             self.assertNotIn(f'{name} = "', text)
 
+    def test_profile_covers_union_of_all_shipped_federal_servers(self) -> None:
+        repo_root = Path(__file__).resolve().parents[2]
+        shipped = set()
+        for manifest in (repo_root / "plugins").glob("*/.mcp.json"):
+            servers = json.loads(manifest.read_text(encoding="utf-8"))["mcpServers"]
+            shipped.update(name for name in servers if name != "tavily-web")
+        configured = {item[0] for item in SERVER_CONFIG}
+        self.assertEqual(configured, shipped)
+        self.assertEqual(len(configured), 9)
+
     def test_write_then_check_round_trip(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "1102tools-host.config.toml"
@@ -78,7 +88,7 @@ class CodexHostProfileTests(unittest.TestCase):
 
     def test_partial_host_override_is_rejected(self) -> None:
         text = render_profile().replace(
-            'args = ["--from", "sam-gov-mcp==1.0.9", "sam-gov-mcp"]\n',
+            'args = ["--from", "sam-gov-mcp==1.0.11", "sam-gov-mcp"]\n',
             "",
             1,
         )

@@ -32,13 +32,13 @@ PLUGIN_SKILLS = {
 RUNTIME_DIRS = ("agents", "references", "scripts", "assets")
 MCP_PACKAGES = {
     "acquisition-gov": {"distribution": "acquisition-gov-mcp", "version": "1.0.1"},
-    "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.6"},
+    "bls-oews": {"distribution": "bls-oews-mcp", "version": "1.0.8"},
     "ecfr": {"distribution": "ecfr-mcp", "version": "1.0.5"},
     "federal-register": {"distribution": "federal-register-mcp", "version": "1.0.4"},
     "gsa-calc": {"distribution": "gsa-calc-mcp", "version": "1.0.4"},
-    "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.6"},
-    "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.9"},
-    "regulations-gov": {"distribution": "regulationsgov-mcp", "version": "1.0.5"},
+    "gsa-perdiem": {"distribution": "gsa-perdiem-mcp", "version": "1.0.8"},
+    "sam-gov": {"distribution": "sam-gov-mcp", "version": "1.0.11"},
+    "regulations-gov": {"distribution": "regulationsgov-mcp", "version": "1.0.7"},
     "usaspending": {"distribution": "usaspending-gov-mcp", "version": "1.0.4"},
 }
 EXTERNAL_MCPS = {

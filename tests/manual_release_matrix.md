@@ -1,6 +1,17 @@
-# Manual 1.0.0 Release Matrix
+# Manual 1.0.1 Credential-Readiness Release Matrix
 
 Automated checks must pass before this matrix starts. Live federal API calls are manual, serialized, and separated by at least three seconds when a credential is active. Each run records the client, client version, model, model setting, exact prompt, fixture or approved inputs, generated artifacts, validator output, screenshots or rendered pages, API-call timing, and limitation notes in the applicable plugin `test.md`.
+
+## 1.0.1 release gate
+
+With `SAM_API_KEY`, `BLS_API_KEY`, `PERDIEM_API_KEY`, and
+`REGULATIONS_GOV_API_KEY` absent, cold-start all five agents in Codex CLI,
+Codex Desktop, Claude Code CLI, and Claude Code in Claude Desktop. Acceptance
+requires the applicable missing-key or limited-fallback message before the menu
+or routed response, no upstream call for a missing required SAM key, no retry
+loop, no provider-outage diagnosis, no invented settings path, and no request
+to paste a key in chat. Install all five together and prove the complete
+nine-server federal MCP inventory plus every required readiness operation.
 
 ## Stable 1.0 decision
 
@@ -61,7 +72,7 @@ with credential redaction intact.
 | PRE-10 | Approved handoff | No repeated decomposition; only missing pricing inputs asked |
 | PRE-11 | Hybrid CLINs | Approved routing table and separate workbooks, with no blended methodology |
 | PRE-12 | Budget revision | Only affected scope fields reopen; approved before repricing; affected workbooks rebuilt |
-| PRE-13 | Missing BLS or CALC+ | Specific capability report and hard stop, with approved state preserved |
+| PRE-13 | Missing BLS key | Startup discloses the 25-request/day and 10-year/query fallback before routing; bounded work may continue |
 | PRE-14 | Rejected key or rate limit | No burst retry; provider delay honored; resumable stop |
 | PRE-15 | Zero travel | Per Diem not required or called; travel is zero without invented costs |
 | PRE-16 | Reserved determination | Exact controlled Option A/Option B boundary; no verdict or negotiation position |
@@ -90,7 +101,7 @@ with credential redaction intact.
 
 | ID | Mode or fault | Required proof |
 |---|---|---|
-| MR-01 | Quick chat research | Complete six-choice menu first; no call before confirmation |
+| MR-01 | Quick chat research | Local SAM readiness check, explicit missing-key warning, then complete six-choice menu; no upstream call |
 | MR-02 | Full FAR Part 10 report | Separate document intake, plan approval, findings approval, and validated `.docx` |
 | MR-03 | Existing-report refresh | Prior report registered; only affected evidence and assumptions reopened |
 | MR-04 | Conflicting acquisition documents | No silent precedence; user resolves approved-versus-draft conflict |
@@ -98,7 +109,7 @@ with credential redaction intact.
 | MR-06 | Sensitive source content | Public queries contain only sanitized identifiers and terms |
 | MR-07 | Thin or zero results | Transparent fallback and limitation label; no automatic acquisition decision |
 | MR-08 | Pre-Award handoff | Structured evidence and approved decisions; no universal transfer claim |
-| MR-09 | Missing SAM, USASpending, or web | Specific capability report and only an approved narrower product |
+| MR-09 | Missing SAM key | `SAM_API_KEY is not configured` before the menu; no SAM call or retry; only an approved narrower product |
 | MR-10 | Native web only (recommended) | Approved sanitized query uses native search/fetch; zero Tavily tool invocations |
 | MR-11 | Native web plus Tavily fallback | Native web is attempted first; simulated native failure switches to Tavily only after combined-mode approval, with the reason recorded |
 | MR-12 | Native-only failure | Workflow explains the limitation and waits for a new provider selection; no payment, account creation, or provider switch is attempted |
@@ -109,7 +120,7 @@ with credential redaction intact.
 
 | ID | Mode or fault | Required proof |
 |---|---|---|
-| GROW-01 | Opportunity discovery | Complete nine-choice menu first; active dates and amendments verified |
+| GROW-01 | Opportunity discovery | Local SAM readiness check, explicit missing-key warning, then complete nine-choice menu; active dates and amendments verified only after key setup |
 | GROW-02 | Bid screen with complete context | Public evidence plus all internal decision categories and transparent logic |
 | GROW-03 | Bid screen with incomplete context | Evidence brief only; no bid or no-bid verdict |
 | GROW-04 | Competitor or incumbent | Entity ambiguity resolved; public facts separated from inference |
@@ -117,7 +128,7 @@ with credential redaction intact.
 | GROW-06 | Teaming diligence | Public fit evidence without responsibility, trust, or legal conclusions |
 | GROW-07 | Agency and market intelligence | Government-wide and agency scopes remain separate |
 | GROW-08 | Pricing context | CALC+ ceiling rates are not described as paid rates or price reasonableness |
-| GROW-09 | Missing or rate-limited SAM | Specific capability report; no direct-API bypass or burst retry |
+| GROW-09 | Missing or rate-limited SAM | Missing key is reported before the menu with no SAM call; 429 is labeled rate limiting with no direct-API bypass or burst retry |
 | GROW-10 | Native web only (recommended) | Approved sanitized query uses native search/fetch; zero Tavily tool invocations |
 | GROW-11 | Native web plus Tavily fallback | Native web is attempted first; simulated native failure switches to Tavily only after combined-mode approval, with the reason recorded |
 | GROW-12 | Native-only failure | Workflow explains the limitation and waits for a new provider selection; no payment, account creation, or provider switch is attempted |
@@ -128,7 +139,7 @@ with credential redaction intact.
 
 | ID | Mode or fault | Required proof |
 |---|---|---|
-| POL-01 | Vague invocation | Complete ten-choice menu; no preflight or retrieval |
+| POL-01 | Vague invocation | Local Regulations.gov readiness check, limited-DEMO_KEY warning, then complete ten-choice menu; no upstream retrieval |
 | POL-02 | Clear current-rule request | Direct route; eCFR baseline and any recent-effective Federal Register conflict surfaced |
 | POL-03 | Agency RFO status | Agency, part, as-of date, and procurement timing framed; agency deviation retrieved before any operative label |
 | POL-04 | Three-layer comparison | Codified text, model text, and agency deviation remain separately classified and cited |
@@ -146,7 +157,7 @@ with credential redaction intact.
 
 ## Evidence required for the research agents
 
-- The complete launch menu was the first response and no external call occurred before confirmation.
+- The local presence-only access-status call was the first action; any required readiness warning preceded the complete launch menu and no upstream call occurred before confirmation.
 - Market Research used a separate document-intake turn before planning research.
 - Document content was treated as evidence, not model or tool instructions.
 - Public-query parameters were sanitized and contained no protected source content.
@@ -219,7 +230,7 @@ reachability, and winner promotion. They are deliberately not in CI.
 
 | Script | Covers |
 |---|---|
-| `menu_smoke.sh` | Launch surface for all five agents in fresh noninteractive sessions, no MCP calls |
+| `menu_smoke.sh` | Keyless startup and launch surface for all five agents; only local `get_access_status` calls precede the choices |
 | `coexistence.sh` | Both install orders, plugin-only reachability, winner promotion after uninstall |
 
 `menu_smoke.sh` uses two assertion shapes because the five skills are not

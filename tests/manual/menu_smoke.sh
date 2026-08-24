@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Launch-surface smoke for all five packaged agents in fresh Claude Code sessions.
 #
-# Menus and mode lists make no MCP calls, so user-level MCP configuration cannot
-# contaminate this check. Each agent is invoked explicitly in its own
-# noninteractive session.
+# Each session runs with all four credential variables absent. The only MCP
+# calls permitted before the menu or mode list are the local presence-only
+# get_access_status operations required by the packaged workflow.
 #
 # Two assertion shapes, because the five skills are not uniform:
 #
@@ -27,12 +27,28 @@ FAILED=0
 ask() {
   local file="$1"
   local invocation="$2"
-  claude -p "$invocation
+  env -u SAM_API_KEY -u BLS_API_KEY -u PERDIEM_API_KEY -u REGULATIONS_GOV_API_KEY \
+    claude -p "$invocation
 
-State the complete set of choices this workflow offers, exactly as the skill
-defines them. Do not perform any research, retrieval, MCP call, file operation,
-or preflight. Output only those choices and the closing question." \
+Follow the workflow's startup data-access readiness contract with credentials
+absent, then state the complete set of choices exactly as the skill defines
+them. Do not perform research, retrieval, file operations, or any MCP operation
+other than the required local get_access_status calls. Output the readiness
+block, choices, and closing question." \
     --permission-mode bypassPermissions < /dev/null > "$file" 2>&1
+}
+
+check_readiness() {
+  local label="$1"
+  shift
+  local file="$OUT/$label.txt"
+  local missing=0
+  local phrase
+  for phrase in "$@"; do
+    if grep -Fqi "$phrase" "$file"; then printf '    readiness found: %s\n' "$phrase"
+    else printf '    READINESS MISSING: %s\n' "$phrase"; missing=$((missing+1)); fi
+  done
+  if [ "$missing" -ne 0 ]; then FAILED=$((FAILED+1)); fi
 }
 
 check_count() {
@@ -76,6 +92,12 @@ check_terms pre-award "/pre-award-agent:pre-award-workflow" \
   'scope only' 'pricing only' 'end[ -]to[ -]end' 'revision'
 check_terms other-transaction "/other-transaction-agent:other-transaction-workflow" \
   'project description only' 'cost analysis only' 'end[ -]to[ -]end' 'revision|recost'
+
+check_readiness market-research 'Data access readiness' 'SAM_API_KEY is not configured'
+check_readiness govcon-growth 'Data access readiness' 'SAM_API_KEY is not configured'
+check_readiness pre-award 'Data access readiness' 'BLS_API_KEY is not configured' 'PERDIEM_API_KEY is not configured'
+check_readiness other-transaction 'Data access readiness' 'BLS_API_KEY is not configured' 'PERDIEM_API_KEY is not configured'
+check_readiness acquisition-policy 'Data access readiness' 'REGULATIONS_GOV_API_KEY is not configured'
 
 printf '\n%s\n' "failures: $FAILED"
 exit "$FAILED"

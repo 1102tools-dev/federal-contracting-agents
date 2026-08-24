@@ -56,7 +56,8 @@ def validate() -> list[str]:
     runtime_path = record["runtime_change"]["path"]
     allowed.add(runtime_path)
 
-    changed = git("diff", "--name-only", base_tag, "--", "plugins")
+    target = record["target"]
+    changed = git("diff", "--name-only", base_tag, target, "--", "plugins")
     if changed.returncode != 0:
         errors.append(changed.stderr.strip())
         return errors
@@ -73,14 +74,18 @@ def validate() -> list[str]:
     if before.stdout.count(old_text) != 1:
         errors.append(f"base runtime file must contain exactly one approved old URL, found {before.stdout.count(old_text)}")
     expected = before.stdout.replace(old_text, new_text)
-    actual = (ROOT / runtime_path).read_text(encoding="utf-8")
+    target_file = git("show", f"{target}:{runtime_path}")
+    if target_file.returncode != 0:
+        errors.append(f"cannot read target runtime file {runtime_path}")
+        return errors
+    actual = target_file.stdout
     if actual != expected:
         errors.append("approved runtime file differs by more than the one source URL")
 
     for plugin in PLUGIN_NAMES:
         for relative in ("mcp.json", ".mcp.json"):
             path = f"plugins/{plugin}/{relative}"
-            comparison = git("diff", "--quiet", base_tag, "--", path)
+            comparison = git("diff", "--quiet", base_tag, target, "--", path)
             if comparison.returncode != 0:
                 errors.append(f"MCP manifest changed unexpectedly: {path}")
     return errors

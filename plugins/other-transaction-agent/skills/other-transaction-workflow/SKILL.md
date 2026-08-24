@@ -10,6 +10,30 @@ Coordinate the bundled skills. Do not replace their OT logic, artifact specifica
 
 Runtime requirements: the bundled OT Project Description and OT Cost Analysis skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
+## Startup data-access readiness
+
+On every new invocation, before mode selection or any other user-visible
+response, call `bls-oews.get_access_status` and
+`gsa-perdiem.get_access_status`. These are local, presence-only checks. Never
+display, request, or transmit credential values.
+
+Show a `Data access readiness` block before continuing whenever either status
+is limited or unavailable:
+
+- BLS `limited_fallback`: `BLS_API_KEY is not configured. BLS v1 remains
+  available at 25 requests per day and 10 years per query.`
+- Per Diem `limited_fallback`: `PERDIEM_API_KEY is not configured. Travel
+  pricing will use the shared DEMO_KEY fallback, limited to approximately 10
+  requests per hour.`
+- missing status operation: identify the server and say its MCP package or the
+  shared `1102tools-host` profile is outdated or incomplete. Project-description
+  work remains available, but cost-analysis readiness is not verified.
+
+End the block with `Setup: https://1102tools.com/setup#credentials`. For
+`configured_unverified`, remain quiet and never claim the key is valid. A later
+401/403 is a rejected credential; 429 is rate limiting. Neither is an upstream
+outage. Do not retry automatically.
+
 ## Artifact-mode preflight
 
 Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the cost skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
@@ -68,14 +92,15 @@ Infer the mode from the request. If more than one mode is plausible and the diff
 
 Delay preflight until OT Cost Analysis first needs external data.
 
-1. Inspect available MCP operations by stable server name, operation purpose, and input schema. Do not rely on a generated host prefix.
-2. Labor pricing requires both:
+1. Reuse the startup access statuses. If either status operation was missing, stop cost analysis as an outdated or incomplete MCP/host-profile installation. If BLS is in `limited_fallback`, confirm the planned workload fits 25 requests per day and 10 years per query. When travel is in scope and Per Diem is in `limited_fallback`, confirm the plan fits approximately 10 requests per hour.
+2. Inspect available MCP operations by stable server name, operation purpose, and input schema. Do not rely on a generated host prefix.
+3. Labor pricing requires both:
    - `bls-oews` with latest-vintage detection and wage retrieval;
    - `gsa-calc` with CALC+ labor-category discovery and ceiling-rate retrieval.
-3. Require `gsa-perdiem` only when travel is in scope.
-4. Test only the capabilities the active workflow will use. Follow the cost skill's preflight sequence.
-5. For credentialed BLS or Per Diem requests, preserve at least three seconds between upstream calls. Do not expose credentials.
-6. If an operation is missing, unauthenticated, unavailable, or schema-incompatible, stop and identify the server, operation, failure class, and corrective action. Stop means make no further costing calculation, substitution, comparison, or artifact finalization, even if another source remains available. Preserve all approved work so the user can resume after repair.
+4. Require `gsa-perdiem` only when travel is in scope.
+5. Test only the capabilities the active workflow will use. Follow the cost skill's preflight sequence.
+6. For credentialed BLS or Per Diem requests, preserve at least three seconds between upstream calls. Do not expose credentials.
+7. If an operation is missing, unauthenticated, unavailable, rate-limited, outdated/incomplete, or schema-incompatible, stop and identify the server, operation, failure class, and corrective action. Stop means make no further costing calculation, substitution, comparison, or artifact finalization, even if another source remains available. Preserve all approved work so the user can resume after repair.
 
 **HARD STOP:** After a required MCP capability fails, do not call another pricing MCP, continue a supported portion of the analysis, or suggest an alternate public source. Resume only after the failed capability is restored or the `ot-cost-analysis` skill accepts user-provided authoritative data through its documented path.
 

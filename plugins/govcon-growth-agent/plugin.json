@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "govcon-growth-agent",
-  "version": "1.0.0",
-  "description": "Begin with the complete nine-choice menu, then research federal growth signals with approved federal evidence and optional native or Tavily web research.",
+  "version": "1.0.1",
+  "description": "Run a SAM_API_KEY readiness check, then research federal growth signals; SAM-dependent work stops clearly when the key is absent.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
   "repository": "https://github.com/1102tools-dev/federal-contracting-agents",

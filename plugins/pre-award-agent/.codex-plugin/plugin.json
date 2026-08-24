@@ -1,7 +1,7 @@
 {
   "name": "pre-award-agent",
-  "version": "1.0.0",
-  "description": "Create a federal SOW or PWS and carry its approved scope into the correct IGCE workflow; reserved price determinations use the controlled Option A/Option B boundary.",
+  "version": "1.0.1",
+  "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build a SOW/PWS and IGCE.",
   "author": {
     "name": "1102tools",
     "url": "https://1102tools.com"
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Pre-Award Agent",
     "shortDescription": "Build a SOW or PWS and the matching IGCE",
-    "longDescription": "Coordinates scope-only, pricing-only, and end-to-end federal pre-award workflows. It preserves approved handoffs, routes FFP, LH/T&M, and cost-reimbursement work to separate pricing methods, and keeps the contract document separate from the Government estimate.",
+    "longDescription": "Reports limited BLS and Per Diem fallback before coordinating scope-only, pricing-only, and end-to-end federal pre-award workflows. It preserves approved handoffs and keeps the contract document separate from the Government estimate.",
     "developerName": "1102tools",
     "category": "Productivity",
     "capabilities": [
@@ -30,6 +30,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $pre-award-workflow to build a SOW or PWS and carry its approved handoff into the correctly routed IGCE."
+    "defaultPrompt": "Use $pre-award-workflow. Check BLS and Per Diem first; disclose keyless limits before routing."
   }
 }

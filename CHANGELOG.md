@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.1 — Credential-readiness correction
+
+All five agents advance to `1.0.1`.
+
+Agent `1.0.0` has a known missing-key diagnostic limitation: its MCP host can
+collapse a credential failure into a generic tool-execution error, which a
+client may then mischaracterize as a provider or server outage. Upgrade every
+installed agent and the complete shared Codex host profile before relying on
+credential diagnostics.
+
+- Every new workflow invocation performs a local, presence-only access check before its menu or routed response.
+- Market Research and GovCon Growth state that `SAM_API_KEY` is not configured and block only SAM-dependent work.
+- Pre-Award and Other Transaction disclose the bounded BLS and GSA Per Diem keyless fallbacks.
+- Acquisition Policy discloses the bounded Regulations.gov `DEMO_KEY` fallback.
+- Missing keys are never retried, attributed to a provider outage, or requested in chat.
+- The complete Codex `1102tools-host` profile now owns all nine federal MCP definitions used by the five-agent installation, with credential names allowlisted through `env_vars` and no credential values stored.
+- SAM.gov `1.0.11`, BLS OEWS `1.0.8`, GSA Per Diem `1.0.8`, and Regulations.gov `1.0.7` expose `get_access_status` and actionable sanitized MCP errors.
+
 ## v1.2.0 — Stable release
 
 The repository marketplace promotes all five agent packages to stable `1.0.0`:

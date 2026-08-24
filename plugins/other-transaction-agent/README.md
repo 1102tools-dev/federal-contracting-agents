@@ -1,6 +1,8 @@
 # Other Transaction Agent
 
-Stable release `1.0.0`.
+Stable release `1.0.1`.
+
+Every new invocation first performs local, presence-only readiness checks for BLS OEWS and GSA Per Diem. With no `BLS_API_KEY`, BLS remains available through its limited v1 fallback: 25 requests per day and 10 years per query. With no `PERDIEM_API_KEY`, Per Diem uses the shared `DEMO_KEY`, limited to approximately 10 requests per hour. The agent discloses those limits before its workflow choices, never requests a key in chat, and links to [credential setup](https://1102tools.com/setup#credentials). Project-description-only work and keyless GSA CALC+ remain available.
 
 The Other Transaction Agent creates an OT project description and carries its approved milestones into an auditable cost analysis without manual handoff copying.
 
@@ -34,7 +36,7 @@ The milestone handoff is an internal chat workpaper and never enters either arti
 
 The agent does not originate Agreements Officer authority, participant-status, successful-completion, contribution, price-reasonableness, or follow-on eligibility determinations. Missing required pricing capabilities stop cost analysis; the agent does not improvise a public API substitute.
 
-Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is required only when travel is in scope.
+Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is used only when travel is in scope. Missing optional keys limit the affected source; they do not silently disable the agent.
 
 ## Invocation
 

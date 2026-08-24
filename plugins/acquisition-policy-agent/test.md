@@ -1,6 +1,6 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.0`
+Version: `1.0.1`
 
 ## Stable 1.0 qualification
 
@@ -16,7 +16,7 @@ unresolved P0 or P1 defect remained at promotion.
 
 - The bundled `acquisition-policy-workflow` runtime is synchronized from
   `federal-contracting-skills` commit
-  `b59cc0ff0e2d391b57bf211629557c40ca8b985f`.
+  `658108e2c59b591f617c89b4c38e1822a6429bd7`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.

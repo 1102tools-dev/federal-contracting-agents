@@ -2,10 +2,10 @@
 """Render and validate the credential-safe Codex host profile for 1102tools.
 
 Codex plugin MCP declarations intentionally do not contain user credential
-values.  Codex also does not merge a partial host declaration into a plugin
-declaration with the same server name.  This profile therefore repeats the
-complete launcher definition for the affected shared servers and allowlists
-credential variable names with ``env_vars``.  Values remain in the launching
+values. Codex also does not merge a partial host declaration into a plugin
+declaration with the same server name. This profile therefore owns the complete
+nine-server federal MCP inventory used across all five agents and allowlists
+credential variable names with ``env_vars``. Values remain in the launching
 environment and are never written to the profile.
 """
 
@@ -25,7 +25,7 @@ PROFILE_NAME = "1102tools-host"
 SERVER_CONFIG = (
     (
         "sam-gov",
-        "sam-gov-mcp==1.0.9",
+        "sam-gov-mcp==1.0.11",
         "sam-gov-mcp",
         "3",
         ("SAM_API_KEY",),
@@ -41,26 +41,58 @@ SERVER_CONFIG = (
     ),
     (
         "bls-oews",
-        "bls-oews-mcp==1.0.6",
+        "bls-oews-mcp==1.0.8",
         "bls-oews-mcp",
         "3",
         ("BLS_API_KEY",),
         (),
     ),
     (
+        "gsa-calc",
+        "gsa-calc-mcp==1.0.4",
+        "gsa-calc-mcp",
+        "3",
+        (),
+        (),
+    ),
+    (
+        "gsa-perdiem",
+        "gsa-perdiem-mcp==1.0.8",
+        "gsa-perdiem-mcp",
+        "4",
+        ("PERDIEM_API_KEY",),
+        (),
+    ),
+    (
+        "ecfr",
+        "ecfr-mcp==1.0.5",
+        "ecfr-mcp",
+        "3",
+        (),
+        (),
+    ),
+    (
+        "federal-register",
+        "federal-register-mcp==1.0.4",
+        "federal-register-mcp",
+        "3",
+        (),
+        (),
+    ),
+    (
         "regulations-gov",
-        "regulationsgov-mcp==1.0.5",
+        "regulationsgov-mcp==1.0.7",
         "regulationsgov-mcp",
         "4",
         ("REGULATIONS_GOV_API_KEY",),
         (),
     ),
     (
-        "gsa-perdiem",
-        "gsa-perdiem-mcp==1.0.6",
-        "gsa-perdiem-mcp",
-        "4",
-        ("PERDIEM_API_KEY",),
+        "acquisition-gov",
+        "acquisition-gov-mcp==1.0.1",
+        "acquisition-gov-mcp",
+        "3",
+        (),
         (),
     ),
 )

@@ -73,9 +73,11 @@ python3 tests/lifecycle/codex_host_profile.py \
 codex --profile 1102tools-host
 ```
 
-The profile repeats the complete launcher definitions for the shared servers
-that need stable tool exposure or user credentials. It uses `env_vars` to
-allowlist credential variable names; it never stores credential values.
+The profile owns the complete launcher definitions for all nine federal MCP
+servers used by the five agents. This prevents same-name plugin declarations
+from selecting stale bytes or an incomplete operation surface. It uses
+`env_vars` to allowlist credential variable names; it never stores credential
+values.
 `client_session_runner.py --codex-profile 1102tools-host` exercises this exact
 path in disposable client homes.
 

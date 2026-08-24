@@ -16,7 +16,7 @@
     "regulations-gov": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--from", "regulationsgov-mcp==1.0.5", "regulationsgov-mcp"],
+      "args": ["--from", "regulationsgov-mcp==1.0.7", "regulationsgov-mcp"],
       "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4"}
     },
     "acquisition-gov": {

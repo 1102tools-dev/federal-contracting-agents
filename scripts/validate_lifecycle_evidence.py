@@ -126,7 +126,11 @@ def semantic_errors(ledger: dict[str, Any], root: Path = DEFAULT_ROOT) -> list[s
         manifest = load_json(root / "plugins" / name / "plugin.json")
         observed = item.get("target_version")
         current = manifest.get("version")
-        historical_qualified = current == "1.0.0" and observed == QUALIFIED_RC_VERSIONS[name]
+        historical_qualified = (
+            isinstance(current, str)
+            and re.fullmatch(r"1\.0\.\d+", current) is not None
+            and observed == QUALIFIED_RC_VERSIONS[name]
+        )
         if observed != current and not historical_qualified:
             errors.append(
                 f"ledger target for {name} must match manifest version {current!r} or the "

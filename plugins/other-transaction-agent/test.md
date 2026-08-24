@@ -2,9 +2,9 @@
 
 Date: August 23, 2026
 
-Package: `other-transaction-agent` `1.0.0`
+Package: `other-transaction-agent` `1.0.1`
 
-Status: stable; qualified for the `v1.2.0` suite tag
+Status: credential-readiness correction candidate for the `v1.2.1` suite tag
 
 ## Stable 1.0 qualification
 
@@ -20,11 +20,11 @@ review gates passed. No unresolved P0 or P1 defect remained at promotion.
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `d49ad2051cc7053794b5f5c5a986b4824ff315bf`
-- Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
-- `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
+- Canonical skills commit: `658108e2c59b591f617c89b4c38e1822a6429bd7`
+- Canonical MCP commit: `0ba64dc946c95ee1763e484c03a5ae18205a85f3`
+- `bls-oews-mcp==1.0.8`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
-- `gsa-perdiem-mcp==1.0.6`, explicit 4-second safeguard
+- `gsa-perdiem-mcp==1.0.8`, explicit 4-second safeguard
 
 Every vendored runtime file matched its SHA-256 lock. Development-only `test.md` and `testing.md` files were not copied into installed skill folders.
 

@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
-  "round": "rc6",
+  "round": "stable-1.0.1",
   "credential_variables": [
     {
       "name": "SAM_API_KEY",
       "source": "sam-gov",
-      "missing_behavior": "reduced_scope",
-      "invalid_behavior": "one_bounded_auth_failure",
+      "missing_behavior": "missing_required_no_upstream_call",
+      "invalid_behavior": "actionable_tool_error",
       "valid_behavior": "one_minimal_authenticated_call"
     },
     {
       "name": "BLS_API_KEY",
       "source": "bls-oews",
-      "missing_behavior": "reduced_scope",
-      "invalid_behavior": "one_bounded_auth_failure",
+      "missing_behavior": "limited_fallback",
+      "invalid_behavior": "actionable_tool_error",
       "valid_behavior": "one_minimal_authenticated_call"
     },
     {
       "name": "REGULATIONS_GOV_API_KEY",
       "source": "regulations-gov",
-      "missing_behavior": "reduced_scope",
-      "invalid_behavior": "one_bounded_auth_failure",
+      "missing_behavior": "limited_fallback",
+      "invalid_behavior": "actionable_tool_error",
       "valid_behavior": "one_minimal_authenticated_call"
     },
     {
       "name": "PERDIEM_API_KEY",
       "source": "gsa-perdiem",
-      "missing_behavior": "reduced_scope",
-      "invalid_behavior": "one_bounded_auth_failure",
+      "missing_behavior": "limited_fallback",
+      "invalid_behavior": "actionable_tool_error",
       "valid_behavior": "one_minimal_authenticated_call"
     }
   ],
@@ -44,7 +44,7 @@
     {
       "server": "sam-gov",
       "distribution": "sam-gov-mcp",
-      "pinned_version": "1.0.9",
+      "pinned_version": "1.0.11",
       "operation": "list_opportunities_minimal"
     },
     {
@@ -62,13 +62,13 @@
     {
       "server": "bls-oews",
       "distribution": "bls-oews-mcp",
-      "pinned_version": "1.0.6",
+      "pinned_version": "1.0.8",
       "operation": "list_common_soc_codes_minimal"
     },
     {
       "server": "gsa-perdiem",
       "distribution": "gsa-perdiem-mcp",
-      "pinned_version": "1.0.6",
+      "pinned_version": "1.0.8",
       "operation": "lookup_per_diem_minimal"
     },
     {
@@ -86,7 +86,7 @@
     {
       "server": "regulations-gov",
       "distribution": "regulationsgov-mcp",
-      "pinned_version": "1.0.5",
+      "pinned_version": "1.0.7",
       "operation": "search_dockets_minimal"
     },
     {

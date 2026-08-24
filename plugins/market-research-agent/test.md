@@ -1,6 +1,6 @@
 # Market Research Agent test record
 
-Version: `1.0.0`
+Version: `1.0.1`
 Evidence date: August 23, 2026
 
 ## Stable 1.0 qualification
@@ -19,7 +19,7 @@ provider and is never a silent fallback.
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `6f8911f0b6110e139408c0d6766513847b9ead14`. The `rc.3` package renames the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid during the RC transition, but new explicit invocations use `$market-research-workflow`. Its canonical `test.md` records:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `658108e2c59b591f617c89b4c38e1822a6429bd7`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.

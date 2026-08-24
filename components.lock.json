@@ -4,11 +4,11 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "9615523274b7d224552a7d9c7e1ba554a3992f4c"
+      "commit": "658108e2c59b591f617c89b4c38e1822a6429bd7"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "1d286d2015b8cca628f35d7b19c995b9cb5fb906",
+      "commit": "0ba64dc946c95ee1763e484c03a5ae18205a85f3",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
@@ -16,7 +16,7 @@
         },
         "bls-oews": {
           "distribution": "bls-oews-mcp",
-          "version": "1.0.6"
+          "version": "1.0.8"
         },
         "ecfr": {
           "distribution": "ecfr-mcp",
@@ -32,15 +32,15 @@
         },
         "gsa-perdiem": {
           "distribution": "gsa-perdiem-mcp",
-          "version": "1.0.6"
+          "version": "1.0.8"
         },
         "sam-gov": {
           "distribution": "sam-gov-mcp",
-          "version": "1.0.9"
+          "version": "1.0.11"
         },
         "regulations-gov": {
           "distribution": "regulationsgov-mcp",
-          "version": "1.0.5"
+          "version": "1.0.7"
         },
         "usaspending": {
           "distribution": "usaspending-gov-mcp",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -94,7 +94,7 @@
         },
         "igce-builder-ffp": {
           "files": {
-            "SKILL.md": "d45c13270ba0d2854225f8bc542bac923bd6d1fa368d3a1ca236c73af182ae24",
+            "SKILL.md": "b73619415a80b789c61e1a81cc0d246838c6f3deccbaec7d84379bc2e0f3dc0e",
             "agents/openai.yaml": "7f6829b2ea276adca433feb1c0de93dedf74ead18ccf7a13ea2244f7eff1688e",
             "references/data-source-operations.md": "4c533b8aa4f34882ea0fcf6a86831f2efcfa0dc46bea5441e9b52d41d1309e38",
             "references/runtime-adaptation.md": "82473ccc0a0190955404702f40cd5572b0d0f38338580a447a7a729eda6135d6",
@@ -107,7 +107,7 @@
         },
         "igce-builder-lh-tm": {
           "files": {
-            "SKILL.md": "ab7a444eb8def5cb8456ff529b6e561f0ae779abe3fa0de6b347a8a589aeb799",
+            "SKILL.md": "3ec4e11d310b8b9d57b0f8656275448db118d549535df76ecf04a10283e62796",
             "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
             "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
@@ -120,7 +120,7 @@
         },
         "igce-builder-cr": {
           "files": {
-            "SKILL.md": "c9dd352d42ef139ed0ea7793dd36e04d3ab108918ebb994252f9e9708de4de6b",
+            "SKILL.md": "47f2497ce328a2a8e08acb2a1723c81a9cc7928f5f6f31776a8230ed50dca4b0",
             "agents/openai.yaml": "93485c245128c2de80e06d513d25d65f4210cf5e368fc77fdcfb39f3a5bfa99a",
             "references/data-source-operations.md": "23bbbda749131f7a26dcea08889bf0893959da78f910b0b07546e9312625b8e1",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -151,7 +151,7 @@
         },
         "ot-cost-analysis": {
           "files": {
-            "SKILL.md": "2754bc444eb4e6b9e0e8d61dc0baf6479924091491b5f04f8536f102dffaad4a",
+            "SKILL.md": "c9fc9da94fa3a2d47e0a18153f7dadf67da1bd940715996bff1f41af43ce9e3d",
             "agents/openai.yaml": "96b4376fce31e81038a4806df129389424d05950432f388e4bdd681bec658ce3",
             "references/authority-and-cost-sharing.md": "9ef3bcd4c493fba4452da2d9c0f9030eb7648a336854aabdf27f9f566452f4fa",
             "references/data-source-operations.md": "d011471cb2cd1a41b4ea10bc0ce994f61d921079a974983daa5fd43399d7e82a",
@@ -166,11 +166,11 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "3d266cca6636d7e8eacecec709b410e39257e218d32339ae1dd3b25ac7625e02",
+            "SKILL.md": "c445384af2c01fcd27565a85d813cfd9e19afc09e91d821e6b2d8494f4b7ce67",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
@@ -192,17 +192,17 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "66901f5306cccc66bcdd17bc028266a62f18faa2e8bc311e7dc6385391dc3dad",
+            "SKILL.md": "83790ff0a37f0a3ebbcb9a23acbd6225c694d27a9ae5768ef63f0dbbcecec18e",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
-            "references/federal-data-operations.md": "cf8f362fb1fed702d2660a00eb5dd78e33d27fe0a774f4e62409722e6bc70bfd",
+            "references/federal-data-operations.md": "6050b045514e206f52be505ab3eae36eabcff4cf0684ff2f0e45da85ff401fc2",
             "references/launch-menu-and-question-blocks.md": "88a2ad4765b181787498f85b19c7e88cdc142683df7f2d7af56808b89da61123",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
             "references/runtime-adaptation.md": "9e2021318ee8645327fb4fb49b884bfe9291e1d1c89f28d4ad5b85a59ce4eedf",
@@ -217,11 +217,11 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "762088427c54da83b451a3e05c099b76085fb8919416b75fea197db2ee1b7a05",
+            "SKILL.md": "aba90f71352b69811c0281db9c76a1cb5184bd613b7c6b615f77699ca6b61497",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",

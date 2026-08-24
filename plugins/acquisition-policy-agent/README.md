@@ -1,12 +1,12 @@
 # Acquisition Policy Agent
 
-Stable release `1.0.0`.
+Stable release `1.0.1`.
 
 The Acquisition Policy Agent combines one host-neutral workflow with four source-specific federal MCP servers:
 
 - eCFR `1.0.5` for the codified baseline and version comparisons;
 - Federal Register `1.0.4` for proposed and final rules, effective dates, notices, and rulemaking history;
-- Regulations.gov `1.0.5` for docket confirmation and public-comment evidence;
+- Regulations.gov `1.0.7` for docket confirmation and public-comment evidence;
 - Acquisition.gov `1.0.1` for RFO model text, approved guidance, and agency deviations posted to the official index.
 
 Use `$acquisition-policy-workflow` in Codex or `/acquisition-policy-agent:acquisition-policy-workflow` in Claude Code. Codex Desktop/CLI and Claude Code in Claude Desktop/CLI are the maintained stable paths; other compatible clients are self-supported. A vague request produces the complete ten-choice workflow menu; a clear request routes directly and asks only for missing framing.
@@ -15,7 +15,9 @@ The agent produces sourced chat findings and, when requested and approved, a val
 
 ## Credentials and pacing
 
-The plugin never stores `REGULATIONS_GOV_API_KEY`. Export the key in the environment that launches the client or use the client credential surface. The Regulations.gov MCP retains its clearly labeled, limited `DEMO_KEY` fallback.
+Every new invocation first performs a local, presence-only Regulations.gov readiness check. If `REGULATIONS_GOV_API_KEY` is absent, the agent says so before its menu or routed answer and explains that the shared `DEMO_KEY` fallback is limited to approximately 10 requests per hour. It links to [credential setup](https://1102tools.com/setup#credentials), never asks for a key in chat, and does not describe the fallback limit as an outage.
+
+The plugin never stores `REGULATIONS_GOV_API_KEY`. Configure the key in the environment that launches the client or in the client credential surface, restart the client, and rerun the readiness check.
 
 The package sets three-second pacing for eCFR, Federal Register, and Acquisition.gov, and four seconds for Regulations.gov.
 
