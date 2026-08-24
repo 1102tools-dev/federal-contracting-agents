@@ -48,6 +48,24 @@ After the canonical and vendored source-link correction:
 - The preserved Codex and Claude PWS DOCX artifacts passed the current document validator.
 - The preserved Codex and Claude FFP workbooks passed the current workbook validator after LibreOffice recalculation and independent recomputation.
 
+## Remote stable distribution acceptance
+
+After the untagged stable commit passed GitHub Actions:
+
+- The real Codex installation upgraded its GitHub marketplace and replaced all five RC packages with `1.0.0` packages.
+- The real Claude installation refreshed the same marketplace and updated all five RC packages to `1.0.0` with the documented `claude plugin update` path.
+- Both marketplace checkouts resolved to the exact stable GitHub `main` commit.
+- All ten installed package trees, five per client, were byte-equal to the corresponding repository package trees.
+- Fresh isolated Codex and Claude configurations each installed the marketplace and all five stable packages directly from GitHub `main`; all twelve install commands returned success.
+- The ten clean-installed package trees were also byte-equal to the repository package trees.
+- Unrelated Codex and Claude settings remained byte-identical across the real upgrade.
+
+The first isolated Codex attempt exposed a P2 harness defect: an empty test home
+did not yet contain the explicitly configured `.codex` directory. The client
+correctly refused to start. The test-only runner now creates only the scoped
+client configuration root with mode `0700`, a deterministic regression passes,
+and the fresh-install attempt of record passed. No packaged plugin byte changed.
+
 ## Stable support contract
 
 Two client families and four surfaces are maintained:

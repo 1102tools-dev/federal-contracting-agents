@@ -22,6 +22,16 @@ invocation. Ambient activation remains measured host behavior rather than a
 package guarantee. Supported client details and artifact limits are stated in
 the root README and setup guide.
 
+The untagged stable GitHub `main` commit then passed real RC-to-stable updates
+in both maintained clients and clean installation in two isolated
+configurations. All twenty installed-tree comparisons (real update plus clean
+install, five agents per client in each lane) matched the repository package
+trees. A test-only empty-home initialization defect caused the first isolated
+Codex harness attempt to fail before installation; the runner was corrected to
+create only its mode-`0700` client configuration root, regression coverage was
+added, and the attempt of record passed. This was not a packaged workflow
+defect.
+
 ## Evidence required in every handoff-based end-to-end run
 
 - The user did not copy or restate the internal handoff.

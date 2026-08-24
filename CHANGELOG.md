@@ -15,6 +15,7 @@ The repository marketplace promotes all five agent packages to stable `1.0.0`:
 - Passed clean remote installation and explicit workflow checks in both maintained client families.
 - Passed all nine pinned federal MCP startup, discovery, pacing, and bounded live-canary gates.
 - Passed the deterministic routing, approval-boundary, component-lock, validator, and representative artifact gates recorded in the stable qualification summary.
+- Passed real RC-to-stable updates and clean stable installation from GitHub `main` in Codex and Claude, with installed package trees matching the repository bytes.
 - Preserved zero unresolved P0 or P1 defects at the release decision.
 
 ### Stable-promotion correction
