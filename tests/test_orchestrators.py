@@ -142,6 +142,29 @@ class OrchestratorContractTests(unittest.TestCase):
                 for required in required_strings:
                     self.assertIn(required, text)
 
+    def test_pre_award_and_ot_vague_invocations_have_complete_mode_menus(self) -> None:
+        expected = {
+            ("pre-award-agent", "pre-award-workflow"): (
+                "1. Scope only",
+                "2. Pricing only",
+                "3. End to end",
+                "4. Revision and repricing",
+            ),
+            ("other-transaction-agent", "other-transaction-workflow"): (
+                "1. Project description only",
+                "2. Cost analysis only",
+                "3. End to end",
+                "4. Milestone revision and recosting",
+            ),
+        }
+        for (plugin, skill), modes in expected.items():
+            text = self.text(plugin, skill)
+            with self.subTest(plugin=plugin):
+                self.assertIn("For a vague invocation with no defined task", text)
+                self.assertLess(text.index("## Startup data-access readiness"), text.index("## Select the mode"))
+                for mode in modes:
+                    self.assertIn(mode, text)
+
     def test_acquisition_policy_status_and_source_gates_are_preserved(self) -> None:
         text = self.text("acquisition-policy-agent", "acquisition-policy-workflow")
         menu = (

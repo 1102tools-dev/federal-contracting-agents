@@ -59,6 +59,20 @@ Apply this before mode selection or any remaining cost analysis when the request
 
 ## Select the mode
 
+For a vague invocation with no defined task, show this complete mode menu after
+the readiness block and stop at its question:
+
+```text
+What would you like to do?
+
+1. Project description only — develop or revise the milestone-based project description and chat-only handoff
+2. Cost analysis only — build or revise the milestone-based cost analysis
+3. End to end — develop the project description, approve the handoff, then build the cost analysis
+4. Milestone revision and recosting — reopen only affected milestone decisions and recost them
+
+Which option would you like? You can reply with the number, label, or your own wording.
+```
+
 Infer the mode from the request. If more than one mode is plausible and the difference changes the workflow, ask one concise question and wait.
 
 - **Project description only:** invoke `ot-project-description-builder`. Complete and validate the `.docx` and chat-only milestone handoff, then stop.

@@ -8,7 +8,7 @@
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "0ba64dc946c95ee1763e484c03a5ae18205a85f3",
+      "commit": "02a781abfe48d671890d3ab26cd43f8e98361e23",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",

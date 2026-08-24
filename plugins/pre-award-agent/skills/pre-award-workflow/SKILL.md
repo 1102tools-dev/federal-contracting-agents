@@ -73,6 +73,20 @@ For another pricing method, use its component skill's equivalent controlled boun
 
 ## Select the mode
 
+For a vague invocation with no defined task, show this complete mode menu after
+the readiness block and stop at its question:
+
+```text
+What would you like to do?
+
+1. Scope only — develop or revise a SOW/PWS and its chat-only handoffs
+2. Pricing only — build or revise an IGCE using the user-confirmed contract type
+3. End to end — develop the SOW/PWS, approve the handoff, then build the IGCE
+4. Revision and repricing — reopen only affected scope decisions and recost them
+
+Which option would you like? You can reply with the number, label, or your own wording.
+```
+
 Infer the mode from the request. If more than one mode is plausible and the difference changes the workflow, ask one concise question and wait.
 
 - **Scope only:** invoke `sow-pws-builder`. Complete and validate the `.docx` and chat-only handoffs, then stop.
