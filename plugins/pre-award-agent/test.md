@@ -219,3 +219,12 @@ still gate final `1.0.0`. Evidence:
 `1.0.0-rc.8` vendors canonical skills commit `3149c79cec32cee4c4a24ada79b18668e9b7b7c8`. Stable qualification proved that the rc7 T&M validator could accept an undisclosed 7% material-handling formula even though the workflow requires zero unless the user supplies an accounting or solicitation basis. The delivered seven-sheet Claude workbook was correct and used numeric zero; the defect was validator coverage.
 
 The vendored validator now rejects every nonzero or formula-driven material-handling cell unless the validation sidecar names the exact cell and value or formula and records a non-empty user-supplied basis. Deterministic zero, undisclosed-percentage, and disclosed-basis regressions pass. The preserved Claude workbook passes the corrected validator after LibreOffice recalculation and cached-value audit.
+
+## 1.0.1 credential-readiness qualification — 2026-08-24
+
+Fresh installed-package sessions in Claude Code and Codex CLI, with every
+credential variable absent, displayed the BLS and GSA Per Diem limited-fallback
+warnings before the exact four-mode menu. The warnings state the BLS v1 and
+shared DEMO-key limits and permit bounded continuation. Claude coexistence
+replay kept all three pricing MCPs reachable in both install orders, and Codex
+used the complete host-owned nine-server union without dropping an operation.

@@ -178,3 +178,13 @@ package release gate.
 ## RC10 LibreOffice evidence-table pagination correction — 2026-08-23
 
 `1.0.0-rc.10` vendors canonical skills commit `3cfca7adffd6f45ae84f9f60d8530e740b363de1`. A long qualification brief reproduced a clipped repeated Evidence Register header on a later LibreOffice-rendered page. The builder now keeps that long table's header on its first page only while preserving repeating headers for the other tables. Deterministic OOXML coverage rejects reintroducing the repeated header, and the preserved nine-page brief passed record validation, brief validation, LibreOffice PDF conversion, citation checks, and page-by-page visual review without clipping.
+
+## 1.0.1 credential-readiness qualification — 2026-08-24
+
+Fresh installed-package sessions in Claude Code and Codex CLI, with every
+credential variable absent, called only the local SAM.gov `get_access_status`
+operation before output. Both displayed `SAM_API_KEY is not configured` before
+the exact nine-choice menu, made no upstream request, did not retry, and did not
+describe the result as a SAM.gov or connectivity outage. Claude coexistence
+replay retained the SAM.gov capability in both install orders and promoted the
+other package's identical server declaration when the initial owner was removed.

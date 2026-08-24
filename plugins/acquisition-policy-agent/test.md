@@ -141,3 +141,13 @@ or artifact; the complete Codex resume chain remains advisory. No Acquisition
 Policy P0 or P1 remains. The broader live rulemaking/comment matrix still gates
 final `1.0.0`. Evidence:
 [`../../tests/manual/rc5_lifecycle_ledger.json`](../../tests/manual/rc5_lifecycle_ledger.json).
+
+## 1.0.1 credential-readiness qualification — 2026-08-24
+
+Fresh installed-package sessions in Claude Code and Codex CLI, with every
+credential variable absent, called only the local Regulations.gov
+`get_access_status` operation before output. Both displayed
+`REGULATIONS_GOV_API_KEY is not configured` and the shared DEMO-key limit before
+the exact ten-choice menu, while preserving the keyless eCFR, Federal Register,
+and Acquisition.gov routes. Neither client blamed Regulations.gov or described
+the limited fallback as an outage.

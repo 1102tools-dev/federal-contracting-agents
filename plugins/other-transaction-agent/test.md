@@ -229,3 +229,12 @@ and stable-release gates remain open.
 ## RC8 host-artifact hardening — 2026-08-23
 
 `1.0.0-rc.8` vendors canonical skills commit `d49ad2051cc7053794b5f5c5a986b4824ff315bf`. A normal Codex CLI workbook run on `0.149.0-alpha.4` exposed no supported spreadsheet dependency loader and correctly produced no workbook. The orchestrator and cost skill now disclose artifact mode before artifact-specific approval, follow governing host hard stops, and allow only a structured JSON plus Markdown/CSV fallback on a surface without workbook support. Codex Desktop and Claude remain the full-workbook acceptance lanes.
+
+## 1.0.1 credential-readiness qualification — 2026-08-24
+
+Fresh installed-package sessions in Claude Code and Codex CLI, with every
+credential variable absent, displayed the BLS and GSA Per Diem limited-fallback
+warnings before the exact four-mode menu. The warnings state the BLS v1 and
+shared DEMO-key limits and permit bounded continuation. Claude coexistence
+replay kept all three pricing MCPs reachable in both install orders, including
+a successful plugin-attributed CALC+ operation after shared-name deduplication.

@@ -205,3 +205,13 @@ package release gate.
 ## RC12 calculation-evidence correction — 2026-08-23
 
 `1.0.0-rc.12` vendors canonical skills commit `6f8911f0b6110e139408c0d6766513847b9ead14`. Stable qualification found that a consequential numeric paragraph could use the generic marker `[calculation]` despite a stable calculation evidence item in the record. The builder now requires exactly one linked calculation evidence item and cites its stable ID. The DOCX validator verifies that ID on the same paragraph as the total, and deterministic negative coverage removes only the paragraph citation while leaving the evidence register intact.
+
+## 1.0.1 credential-readiness qualification — 2026-08-24
+
+Fresh installed-package sessions in Claude Code and Codex CLI, with every
+credential variable absent, called only the local SAM.gov `get_access_status`
+operation before output. Both displayed `SAM_API_KEY is not configured` before
+the exact six-choice menu, made no upstream request, did not retry, and did not
+describe the result as a SAM.gov or connectivity outage. The Claude run also
+passed with its prior needs-auth cache restored, proving the access-status
+configuration marker invalidates stale whole-server suppression after update.
