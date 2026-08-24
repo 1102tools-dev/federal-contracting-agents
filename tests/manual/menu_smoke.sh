@@ -18,9 +18,11 @@
 #
 # Usage: bash tests/manual/menu_smoke.sh [outdir]
 # Requires: the five agents installed from the marketplace under test.
+# Set CLAUDE_BIN to exercise a specific CLI or Desktop-bundled runtime.
 
 set -uo pipefail
 OUT="${1:-/tmp/menu-smoke}"
+CLAUDE_BIN="${CLAUDE_BIN:-claude}"
 mkdir -p "$OUT"
 FAILED=0
 
@@ -28,7 +30,7 @@ ask() {
   local file="$1"
   local invocation="$2"
   env -u SAM_API_KEY -u BLS_API_KEY -u PERDIEM_API_KEY -u REGULATIONS_GOV_API_KEY \
-    claude -p "$invocation
+    "$CLAUDE_BIN" -p "$invocation
 
 Follow the workflow's startup data-access readiness contract with credentials
 absent, then state the complete set of choices exactly as the skill defines
@@ -43,9 +45,11 @@ check_readiness() {
   shift
   local file="$OUT/$label.txt"
   local missing=0
+  local normalized
   local phrase
+  normalized=$(tr -d '\140' < "$file")
   for phrase in "$@"; do
-    if grep -Fqi "$phrase" "$file"; then printf '    readiness found: %s\n' "$phrase"
+    if grep -Fqi "$phrase" <<<"$normalized"; then printf '    readiness found: %s\n' "$phrase"
     else printf '    READINESS MISSING: %s\n' "$phrase"; missing=$((missing+1)); fi
   done
   if [ "$missing" -ne 0 ]; then FAILED=$((FAILED+1)); fi

@@ -8,10 +8,16 @@
 #
 # Usage: bash tests/manual/codex_menu_smoke.sh [outdir]
 # Requires: all five agents installed and ~/.codex/1102tools-host.config.toml.
+# Set CODEX_BIN to exercise a specific CLI or Desktop-bundled runtime. Set
+# CODEX_1102TOOLS_PROFILE=base to exercise the managed base configuration that
+# Codex Desktop loads instead of the named profile used by Codex CLI.
 
 set -uo pipefail
 OUT="${1:-/tmp/codex-menu-smoke}"
+CODEX_BIN="${CODEX_BIN:-codex}"
 PROFILE="${CODEX_1102TOOLS_PROFILE:-1102tools-host}"
+PROFILE_ARGS=(--profile "$PROFILE")
+if [ "$PROFILE" = "base" ]; then PROFILE_ARGS=(); fi
 FAILED=0
 mkdir -p "$OUT"
 
@@ -20,7 +26,7 @@ ask() {
   local invocation="$2"
   env -u SAM_API_KEY -u BLS_API_KEY -u PERDIEM_API_KEY \
     -u GSA_API_KEY -u REGULATIONS_GOV_API_KEY \
-    codex -a never exec --profile "$PROFILE" --ephemeral -C "$PWD" \
+    "$CODEX_BIN" -a never exec "${PROFILE_ARGS[@]+"${PROFILE_ARGS[@]}"}" --ephemeral -C "$PWD" \
       -s read-only -c 'model_reasoning_effort="low"' --color never \
       -o "$file" "$invocation
 
@@ -37,9 +43,11 @@ check_readiness() {
   shift
   local file="$OUT/$label.txt"
   local missing=0
+  local normalized
   local phrase
+  normalized=$(tr -d '\140' < "$file")
   for phrase in "$@"; do
-    if grep -Fqi "$phrase" "$file"; then printf '    readiness found: %s\n' "$phrase"
+    if grep -Fqi "$phrase" <<<"$normalized"; then printf '    readiness found: %s\n' "$phrase"
     else printf '    READINESS MISSING: %s\n' "$phrase"; missing=$((missing+1)); fi
   done
   if [ "$missing" -ne 0 ]; then FAILED=$((FAILED+1)); fi
