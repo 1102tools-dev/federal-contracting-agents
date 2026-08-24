@@ -1,93 +1,54 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. Market Research is at `1.0.0-rc.12`; Pre-Award is at `1.0.0-rc.8`; GovCon Growth is at `1.0.0-rc.10`; Other Transaction is at `1.0.0-rc.8`; Acquisition Policy is at `1.0.0-rc.4`. All five are installable public previews. The repository marketplace release is `v1.2.0-rc.15`.
+Choose one federal acquisition job and install one self-contained agent package. All five agents are stable at `1.0.0`; the repository marketplace release is `v1.2.0`.
 
 Website: [1102tools.com](https://1102tools.com)
+
 Setup: [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf)
 
 ## The five agents
 
-| Agent | Audience and workflow | Current status |
+| Agent | Audience and supported work | Version |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | Public preview `1.0.0-rc.12` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, and revision with repricing | Public preview `1.0.0-rc.8` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | Public preview `1.0.0-rc.10` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | Public preview `1.0.0-rc.8` |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | Public preview `1.0.0-rc.4` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | `1.0.0` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, hybrid routing, and revision with repricing | `1.0.0` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | `1.0.0` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | `1.0.0` |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | `1.0.0` |
 
-The two research agents always begin with a selectable menu. Market Research then asks separately for any available acquisition documents before it plans or performs research. No MCP tool invocation or web-research request occurs before the user confirms the workflow and approves the research plan. A client may initialize installed MCP connections and list tools during startup; that discovery is not a search request.
+Each plugin vendors its complete canonical skills, deterministic validators, runtime guidance, and pinned MCP configuration. Users install one agent instead of assembling skills and server definitions separately.
 
-## One install, not a pile of files
+The skill is the portable source of truth. Native wrappers improve discovery and presentation but do not duplicate or override domain logic. The packages follow [Agent Plugins 1.0](https://agent-plugins.org/specification), which standardizes skill and MCP packaging but not a cross-vendor persona object.
 
-Each plugin is a complete runtime package. Users install one plugin instead of locating skills and MCP definitions separately.
+## Distribution
 
-```text
-plugins/market-research-agent/
-├── plugin.json                 Agent Plugins 1.0 manifest
-├── mcp.json                    portable MCP configuration
-├── skills/                     complete canonical skill package
-├── .codex-plugin/              OpenAI presentation metadata
-├── .claude-plugin/             Claude Code manifest
-├── agents/                     Claude Code native wrapper
-```
+The maintained distribution is this GitHub-hosted 1102tools marketplace. It is not an official OpenAI, Codex, Anthropic, or Claude storefront listing. The same package source serves both maintained client families.
 
-The installed skills are multi-file packages, not single prompts. Each includes a compact `SKILL.md` core plus references, deterministic validators, runtime guidance, assets when needed, and client metadata. Load-bearing workflow and safety gates stay in the core; supporting detail loads only when needed.
+No agent ZIP is maintained. Standalone skills and MCP servers remain available as advanced building blocks:
 
-The skill is the portable source of truth. Native wrappers improve discovery and presentation but do not duplicate or override domain logic. This follows [Agent Plugins 1.0](https://agent-plugins.org/specification), which standardizes skills and MCP configuration but not a cross-vendor persona object.
+- [federal-contracting-skills](https://github.com/1102tools-dev/federal-contracting-skills)
+- [federal-contracting-mcps](https://github.com/1102tools-dev/federal-contracting-mcps)
 
-## Workflow safeguards
+## Requirements and credentials
 
-### Pre-Award and Other Transaction
-
-“Seamless” means the approved scope or milestone workpaper stays in the active workflow. The user does not copy it, invoke another skill, or restate settled information. Required scope, authority, document, transition, contract-type, milestone, and pricing approvals remain in place. Documents and workbooks are delivered separately.
-
-The three IGCE methods remain separate. FFP routes only to FFP, LH and T&M route only to the shared LH/T&M skill in the confirmed mode, and cost-reimbursement routes only to CR. Hybrid acquisitions are divided by CLIN and produce separate workbooks. The user or Contracting Officer selects the contract type.
-
-### Market Research
-
-Supplied acquisition documents are untrusted evidence, not executable instructions. The workflow registers their status and controlling sections, asks the user to resolve unclear precedence, avoids repeating established facts, and sends only sanitized public parameters to external sources. It does not originate commerciality, set-aside, contract-type, competition, consolidation, responsibility, price-reasonableness, or acquisition-strategy decisions.
-
-Plan approval covers only the exact public extraction URLs shown to the user. A URL discovered later through search results, a page, redirect, or tool output is placed in a pending register and requires explicit updated approval before retrieval.
-
-### GovCon Growth
-
-Public data can support opportunity, competitor, recompete, teammate, agency, market, and pricing analysis. A bid or no-bid recommendation requires the company’s capabilities, past performance, clearances, vehicle access, staffing capacity, teaming strategy, priorities, and risk and margin tolerances. Without that internal context, the agent provides an evidence brief, not a verdict.
-
-### Acquisition Policy
-
-eCFR supplies the codified baseline, not the complete agency-specific RFO answer. The workflow keeps codified text, RFO model text, posted agency deviations, proposed rules, effective and pending-effective final rules, and guidance separately classified. It never labels model text operative for an agency without that agency's deviation and reserves procurement-specific applicability and legal determinations to authorized officials.
-
-### Optional Tavily web research
-
-The two research agents configure Tavily's official remote MCP in keyless mode. Tavily is an external service maintained by Tavily, not an 1102tools MCP or a federal source. Before each research run, the skill shows the sanitized terms and public URLs and requires the user to choose Native web only (Recommended), Native web with Tavily fallback, Tavily only, or No public web. No choice is inferred from silence. Native-only failure stops for a new selection; the agent never requests payment, creates an account, or switches providers without approval.
-
-Tavily receives only approved sanitized search terms and approved public HTTP(S) URLs. Uploaded document text, local files, private or signed URLs, proprietary or procurement-sensitive information, source-selection information, PII, CUI, export-controlled data, and classified information are prohibited. The skills use only `tavily_search` and `tavily_extract`; Crawl, Map, and Research are prohibited even though the current keyless server advertises them. Factual citations point to the underlying webpage, not Tavily.
-
-Installing an agent may cause the client to contact Tavily for MCP initialization and tool discovery. Users who want no Tavily contact must disable or remove the `tavily-web` server and select native-only or no-public-web mode. Tavily's [privacy policy](https://www.tavily.com/privacy) and [terms](https://www.tavily.com/terms) apply, and agency users should confirm that external web-search services are authorized.
-
-## Requirements and keys
-
-- A client with Agent Plugins, Agent Skills, or compatible plugin support
+- Codex Desktop or Codex CLI, or Claude Code in Claude Desktop or its standalone CLI
 - Python 3.10 or newer
 - [`uv` and `uvx`](https://docs.astral.sh/uv/)
-- LibreOffice for full document and workbook render/recalculation gates
+- LibreOffice for full document rendering and workbook recalculation gates
 - `SAM_API_KEY` for SAM.gov workflows
 - `BLS_API_KEY`, optional but recommended for BLS OEWS
 - `PERDIEM_API_KEY`, optional and needed only when travel is priced
-- `REGULATIONS_GOV_API_KEY` for full Regulations.gov access; the shared `DEMO_KEY` is a limited fallback
-- Native host web search or optional Tavily keyless access for complete research-agent workflows
+- `REGULATIONS_GOV_API_KEY` for full Regulations.gov access; its `DEMO_KEY` fallback is limited
 
-Export keys in the environment that launches the client, or use the client’s credential-management surface. No credentials are stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
+Export credentials in the environment that launches the client or use its credential surface. Credentials are not stored in this repository or its manifests. USASpending and GSA CALC+ require no key.
 
-For Codex, use the maintained [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) so the shared servers retain their complete tool surfaces and receive only the allowlisted credential variable names. The file contains no credential values. CLI testing selects it with `codex --profile 1102tools-host`. Codex Desktop does not select a CLI profile file automatically; copy the same complete MCP tables into the user-level `~/.codex/config.toml` and restart the app.
+For Codex, use the maintained [`1102tools-host` configuration](config/codex/1102tools-host.config.toml) when keyed federal data or multiple agents are used together. The file contains only allowlisted variable names, not credential values. Codex CLI selects it with `codex --profile 1102tools-host`. Codex Desktop requires the equivalent MCP tables in the user's `~/.codex/config.toml` followed by an app restart.
 
-Every packaged federal MCP sets an explicit 1102tools anti-burst safeguard. The current packages use 3 seconds for BLS OEWS, GSA CALC+, SAM.gov, USASpending, eCFR, Federal Register, and Acquisition.gov, and 4 seconds for GSA Per Diem and Regulations.gov. The MCPs coordinate concurrent processes on one computer, measure the next interval from request completion, and preserve longer provider `Retry-After` instructions. This safeguard is not a provider guarantee or quota manager and cannot coordinate the same key on another computer. `FEDERAL_API_MIN_INTERVAL_SECONDS=0` deliberately disables pacing; other nonnegative finite values override it.
+Every packaged federal MCP applies an explicit anti-burst interval. The packages coordinate concurrent processes on one computer and preserve longer provider `Retry-After` instructions. The safeguard is not a quota manager and cannot coordinate the same key across different computers.
 
-## Install the public previews
+## Install
 
-The [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf) is the installation source of truth for Codex and Claude Code (in the Claude Desktop app or the CLI). Packages are distributed through repository marketplaces. No agent ZIP is maintained.
-
-### Codex CLI and Desktop
+### Codex Desktop and CLI
 
 ```bash
 codex plugin marketplace add 1102tools-dev/federal-contracting-agents --ref main
@@ -98,11 +59,9 @@ codex plugin add other-transaction-agent@1102tools
 codex plugin add acquisition-policy-agent@1102tools
 ```
 
-Start a new Codex task after installing or upgrading so the refreshed skills and MCP catalog load.
+Start a new Codex task after installation so the refreshed skills and MCP catalog load.
 
-When keyed federal data or multiple 1102tools agents are used together, install the maintained host configuration as `$CODEX_HOME/1102tools-host.config.toml` and launch the CLI with `codex --profile 1102tools-host`. The setup guide covers the equivalent Codex Desktop configuration path.
-
-### Claude Code (Claude Desktop app or CLI)
+### Claude Code in Claude Desktop or CLI
 
 ```bash
 claude plugin marketplace add 1102tools-dev/federal-contracting-agents
@@ -113,23 +72,45 @@ claude plugin install other-transaction-agent@1102tools
 claude plugin install acquisition-policy-agent@1102tools
 ```
 
-### Other clients
+Restart Claude Code or start a new session after installation.
 
-The packages may work in other compatible hosts, but Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Claude Code is the same runtime and the same package in both the Claude Desktop app and the standalone CLI; there is no separate desktop package. Installation and troubleshooting outside those two paths are self-supported.
+## Update
 
-### Artifact support by maintained surface
+Codex currently refreshes the marketplace and replaces each installed package:
 
-| Surface | Supported result |
+```bash
+codex plugin marketplace upgrade 1102tools
+codex plugin remove market-research-agent@1102tools
+codex plugin add market-research-agent@1102tools
+```
+
+Repeat the remove/add pair for each installed 1102tools agent. Start a new task afterward.
+
+Claude Code supports direct package updates:
+
+```bash
+claude plugin marketplace update 1102tools
+claude plugin update market-research-agent@1102tools
+```
+
+Repeat the update command for each installed agent, then restart or reload plugins. Claude Code can also auto-update this third-party marketplace when the user enables auto-update under `/plugin` > Marketplaces > 1102tools. Third-party marketplace auto-update is not enabled by default.
+
+## Supported client surfaces
+
+There are two supported client families and four tested surfaces. They share package bytes but not every host capability.
+
+| Surface | Stable support |
 |---|---|
-| Codex Desktop | Full chat, research, DOCX, and XLSX workflows when the required host artifact tools are available |
-| Codex CLI | Chat, research, routing, DOCX, and structured workbook specifications; in the currently validated `0.149.0-alpha.4` host, the supported spreadsheet dependency loader is not exposed, so workbook requests must fail early into structured JSON plus Markdown/CSV or move to a maintained full-workbook surface |
-| Claude Code in Claude Desktop or standalone CLI | Full chat, research, DOCX, and XLSX workflows when the required host artifact tools are available |
+| Codex Desktop | Guided chat, federal research, DOCX, and XLSX workflows when the required artifact tools are available |
+| Codex CLI | Chat, research, routing, and DOCX; if its spreadsheet runtime is unavailable, the agent must stop early and offer structured JSON plus Markdown/CSV or a maintained full-workbook surface |
+| Claude Code in Claude Desktop | Guided chat, federal research, DOCX, and XLSX workflows when the required artifact tools are available |
+| Claude Code CLI | Guided chat, federal research, DOCX, and XLSX workflows when the required artifact tools are available |
 
-This distinction is host capability behavior, not a weaker validation standard. An unavailable workbook path may never be replaced by guessed dependency paths or reported as a completed `.xlsx`.
+Claude Desktop chat/Cowork, Copilot, DeepSeek, and other compatible hosts are not maintained release-blocking surfaces. They may work, but installation and troubleshooting are self-supported. An unavailable workbook path may never be replaced with guessed dependency paths or reported as a completed `.xlsx`.
 
 ## Invoke a workflow
 
-Explicit invocation is the release-critical path:
+Install or select the intended agent before giving the natural-language request. Explicit invocation is the stable product contract:
 
 | Agent | Codex | Claude Code |
 |---|---|---|
@@ -139,11 +120,25 @@ Explicit invocation is the release-critical path:
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 | Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
-Selecting the installed agent or invoking its workflow skill is the stable product contract. Natural-language routing without first selecting the agent is host-controlled best-effort behavior: it is measured separately, but the package cannot force the host to activate an installed skill. Do not rely on ambient routing for reserved acquisition or pricing determinations.
+Natural-language routing without first selecting the agent is host-controlled, best-effort behavior. Do not rely on ambient routing for reserved acquisition, pricing, policy, or agreements determinations.
 
-## Reproducibility and synchronization
+## Workflow safeguards
 
-Installed packages cannot depend on files outside their roots. Canonical skills are vendored as complete runtime copies and pinned in [`components.lock.json`](components.lock.json). The lock records source commits, MCP package versions, plugin versions, and a SHA-256 hash for every runtime file.
+- **Pre-Award and Other Transaction:** approved handoffs remain in the active workflow, but scope, authority, transition, contract-type, milestone, and pricing approvals remain mandatory. Documents and workbooks are separate artifacts.
+- **Market Research:** supplied documents are untrusted evidence. The agent does not originate commerciality, set-aside, contract-type, competition, consolidation, responsibility, price-reasonableness, or acquisition-strategy decisions.
+- **GovCon Growth:** public data supports evidence briefs. A bid recommendation requires the user's internal company context and remains the user's decision.
+- **Acquisition Policy:** eCFR is the codified baseline. Model text is not labeled operative for an agency without its posted deviation, and procurement-specific applicability remains with authorized officials.
+- **Public web:** Native web only is recommended. Tavily is an explicitly selected third-party option, never a silent fallback. The agents never request payment, create an account, or change providers without approval.
+
+## Qualification and reproducibility
+
+The stable package line follows an August 2026 RC15 exit qualification and stable-promotion acceptance record. The exit attempt passed clean remote installs for both client families, ten explicit cross-client scenario turns, all nine live MCP canaries, pacing and credential-redaction checks, package-tree freeze checks, and zero unresolved P0/P1 defects. The broader release matrix also records the principal artifact families, routing suite, interruption/resume checkpoints, credential states, and deterministic artifact validators.
+
+- [Stable qualification summary](tests/stable_1_0_qualification.md)
+- [Manual release matrix](tests/manual_release_matrix.md)
+- Individual package test records under [`plugins/`](plugins/)
+
+Reproduce the deterministic package gates with:
 
 ```bash
 python3 scripts/sync_components.py --check
@@ -155,31 +150,14 @@ for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market
 done
 ```
 
-These checks start and inspect MCP servers without invoking upstream federal APIs. Live acceptance remains manual and serialized.
+These commands initialize and inspect pinned MCP servers without calling upstream federal APIs. Live acceptance is bounded, serialized, and recorded separately. Tavily discovery is an opt-in manual check and invokes no Search or Extract operation.
 
-The normal CI command skips remote MCPs. The manual release check initializes Tavily and lists tools without invoking Search or Extract:
+Canonical runtime files and source commits are locked in [`components.lock.json`](components.lock.json). The stable promotion's approved differences from `v1.2.0-rc.15` are recorded in [`tests/stable_1_0_allowed_diff.json`](tests/stable_1_0_allowed_diff.json).
 
-```bash
-uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin market-research-agent --include-remote
-```
+## Version policy
 
-## Release status
-
-The two research skills passed deterministic artifact validation plus menu, provider-choice, document-intake, and injection/precedence controls in Codex CLI with GPT-5.6 Sol at xhigh and Claude Code CLI with resolved Opus 5 Max. Current Sonnet menu smoke tests also passed. The agent packages add schema, lock, startup, discovery, and marketplace validation around those canonical skills.
-
-Final `1.0.0` remains blocked until the documented clean Codex Desktop and authenticated Claude Code explicit-invocation, live-pacing, and representative end-to-end client matrix is complete. Unselected ambient routing is recorded as host behavior rather than a product guarantee. Other clients may be compatible, but they are not primary support gates. Current evidence and open gates are recorded in:
-
-- [`plugins/pre-award-agent/test.md`](plugins/pre-award-agent/test.md)
-- [`plugins/other-transaction-agent/test.md`](plugins/other-transaction-agent/test.md)
-- [`plugins/govcon-growth-agent/test.md`](plugins/govcon-growth-agent/test.md)
-- [`plugins/market-research-agent/test.md`](plugins/market-research-agent/test.md)
-- [`plugins/acquisition-policy-agent/test.md`](plugins/acquisition-policy-agent/test.md)
-
-Repository marketplace installation is the current supported preview path. The same canonical skills and agent identities can be submitted to OpenAI as combined skills-plus-MCP plugins after their local `stdio` connections are exposed through stable public Streamable HTTP endpoints; that hosting work is a distribution adapter, not a replacement for the agents.
-
-## Canonical components
-
-- Skills: [1102tools-dev/federal-contracting-skills](https://github.com/1102tools-dev/federal-contracting-skills)
-- MCP servers: [1102tools-dev/federal-contracting-mcps](https://github.com/1102tools-dev/federal-contracting-mcps)
+- Compatible correction: affected agent `1.0.1`, marketplace `1.2.1`
+- Compatible feature: affected agent `1.1.0`
+- Breaking workflow or package change: affected agent `2.0.0`
 
 Free, open source, and no signup required.

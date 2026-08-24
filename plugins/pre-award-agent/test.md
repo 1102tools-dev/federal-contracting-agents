@@ -1,15 +1,32 @@
-# Pre-Award Agent Release-Candidate Test Record
+# Pre-Award Agent Stable Qualification and Historical RC Record
 
-Date: August 21, 2026
+Date: August 23, 2026
 
-Package: `pre-award-agent` `1.0.0-rc.8`
+Package: `pre-award-agent` `1.0.0`
 
-Status: release candidate; not approved for a `1.0.0` tag
+Status: stable; qualified for the `v1.2.0` suite tag
+
+## Stable 1.0 qualification
+
+RC15 exit qualification passed clean remote installation in both maintained
+client families, exact package-tree checks, explicit routing, authority and
+approval boundaries, credential redaction, and the nine-server live-canary
+gate. The stable promotion corrects one obsolete canonical source link in the
+FFP skill without changing executable behavior.
+
+After that link correction, seven Pre-Award routes passed in Claude. Six passed
+immediately in Codex; one harness false positive rejected compliant language
+that explicitly said no handoff copy was needed. A deterministic regression
+narrowed the matcher to actual copy directives, and the affected Codex route
+then passed. Preserved Codex and Claude PWS files passed the current DOCX
+validator, and both FFP workbooks passed current validation after LibreOffice
+recalculation and independent recomputation. No unresolved P0 or P1 defect
+remained at promotion.
 
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `d49ad2051cc7053794b5f5c5a986b4824ff315bf`
+- Canonical skills commit: `9615523274b7d224552a7d9c7e1ba554a3992f4c`
 - Canonical MCP commit: `1d286d2015b8cca628f35d7b19c995b9cb5fb906`
 - `bls-oews-mcp==1.0.6`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
@@ -136,7 +153,7 @@ The `rc.3` client checks cover installation, inventory, package validation, and 
 
 When both 1102tools plugins are installed, Codex 0.149.0-alpha.4 reports duplicate MCP-name warnings for the three shared servers and resolves one configuration for each name. Both package configurations are byte-for-byte equivalent at the semantic server level, and repository validation rejects drift. This warning is recorded as current client behavior.
 
-## Unexecuted release gates
+## Historical unexecuted release gates
 
 The full manual scenarios `PRE-01` through `PRE-16` in [`tests/manual_release_matrix.md`](../../tests/manual_release_matrix.md) have not all been rerun as multi-turn agent sessions. In particular, clean end-to-end PWS-to-IGCE artifact runs for FFP, LH, T&M, CR, hybrid, revision, rejected-key, and zero-travel paths remain open across the required client matrix.
 

@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: 3cfca7adffd6f45ae84f9f60d8530e740b363de1
+          ref: 9615523274b7d224552a7d9c7e1ba554a3992f4c
           fetch-depth: 0
           path: _skills
 
@@ -49,6 +49,9 @@ jobs:
 
       - name: Validate sanitized RC5 lifecycle ledger and current evidence wording
         run: python scripts/validate_lifecycle_evidence.py
+
+      - name: Prove stable promotion allowed differences
+        run: python scripts/validate_stable_diff.py
 
       - name: Reject vendored component drift
         run: python scripts/sync_components.py --check --skills-root _skills --mcp-root _mcps

@@ -1,6 +1,21 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.0-rc.10`
+Version: `1.0.0`
+
+## Stable 1.0 qualification
+
+The stable package preserves the qualified `rc.10` workflow bytes and current
+MCP pins. RC15 exit qualification passed clean remote installation in both
+maintained client families, exact package-tree checks, explicit menu routing,
+approval boundaries, credential redaction, and the nine-server live-canary
+gate. The validated Codex and Claude brief artifacts, retrieval-timestamp
+checks, and lifecycle evidence remain applicable. No unresolved P0 or P1
+defect remained at promotion.
+
+Explicit agent selection or invocation is the stable routing contract. Ambient
+activation is host-controlled and best effort. Native web only remains the
+recommended public-web choice; Tavily remains an explicitly selected optional
+provider and is never a silent fallback.
 Evidence date: August 22, 2026
 
 ## Canonical skill evidence

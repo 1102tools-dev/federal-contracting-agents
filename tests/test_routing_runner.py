@@ -31,6 +31,31 @@ class RoutingRunnerTests(unittest.TestCase):
             self.assertIn("prior conversation state", prompt)
             self.assertIn("apply after that read-only skill activation", prompt)
 
+    def test_approved_handoff_scenario_allows_negated_copy_language(self) -> None:
+        scenario = next(
+            item
+            for item in json.loads(
+                (REPO_ROOT / "tests" / "routing_scenarios.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            if item["id"] == "pre-approved-handoff-no-redecomposition"
+        )
+        compliant = (
+            "Carry forward the approved FFP handoffs with no need to restate or copy "
+            "the handoffs. Do you approve moving them into the pricing workflow?"
+        )
+        passed, failures = RUNNER.grade(scenario, compliant)
+        self.assertTrue(passed, failures)
+
+        directive = (
+            "Carry forward the approved FFP handoffs. Please copy the handoff before "
+            "you approve moving into the pricing workflow."
+        )
+        passed, failures = RUNNER.grade(scenario, directive)
+        self.assertFalse(passed)
+        self.assertIn("contains forbidden phrase 'please copy the handoff'", failures)
+
     def test_provider_matrix_has_complete_cross_agent_coverage(self) -> None:
         scenarios = json.loads(
             (REPO_ROOT / "tests" / "provider_scenarios.json").read_text(encoding="utf-8")

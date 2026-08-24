@@ -1,5 +1,7 @@
 # Pre-Award Agent
 
+Stable release `1.0.0`.
+
 The Pre-Award Agent creates a SOW or PWS and carries its approved scope into the correct IGCE workflow without manual handoff copying.
 
 ## Included capabilities
@@ -41,6 +43,6 @@ Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is required onl
 - Codex: `$pre-award-workflow`
 - Claude Code: `/pre-award-agent:pre-award-workflow`
 
-Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Other compatible clients are self-supported.
+Codex Desktop/CLI and Claude Code in Claude Desktop/CLI are the maintained stable paths. Other compatible clients are self-supported.
 
-See the repository [README](../../README.md) for installation, optional-key setup, architecture, and release status. See [`test.md`](test.md) for exact evidence and open gates.
+See the repository [README](../../README.md) for installation, optional-key setup, architecture, and supported-surface differences. See [`test.md`](test.md) for the stable qualification record and historical RC evidence.

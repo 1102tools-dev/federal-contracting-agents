@@ -44,6 +44,11 @@ class LifecycleEvidenceTests(unittest.TestCase):
         errors = semantic_errors(ledger, REPO_ROOT)
         self.assertTrue(any("must match manifest version" in error for error in errors))
 
+    def test_qualified_rc_targets_remain_valid_after_stable_promotion(self) -> None:
+        ledger = json.loads(LEDGER.read_text(encoding="utf-8"))
+        errors = semantic_errors(ledger, REPO_ROOT)
+        self.assertFalse(any("ledger target" in error for error in errors))
+
     def test_stale_current_preview_claim_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -51,7 +56,7 @@ class LifecycleEvidenceTests(unittest.TestCase):
                 plugin = root / "plugins" / name
                 plugin.mkdir(parents=True)
                 (plugin / "plugin.json").write_text(
-                    json.dumps({"version": "1.0.0-rc.5"}), encoding="utf-8"
+                    json.dumps({"version": "1.0.0"}), encoding="utf-8"
                 )
                 (plugin / "test.md").write_text(
                     "# Test\n\nThe current public preview is `1.0.0-rc.4`.\n", encoding="utf-8"

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "base_tag": "v1.2.0-rc.15",
+  "base_commit": "26c675fc330a80466e87bc5881d6304c403bcd50",
+  "target": "v1.2.0",
+  "runtime_change": {
+    "path": "plugins/pre-award-agent/skills/igce-builder-ffp/SKILL.md",
+    "classification": "source-link-only",
+    "old_text": "github.com/1102tools/federal-contracting-skills",
+    "new_text": "github.com/1102tools-dev/federal-contracting-skills"
+  },
+  "allowed_categories": [
+    "agent and marketplace version synchronization",
+    "component source lock and vendored hash synchronization",
+    "current package and repository documentation",
+    "stable qualification and release records",
+    "test-only routing matcher regression",
+    "unused stale promotional asset deletion"
+  ],
+  "prohibited_changes": [
+    "MCP command or package pin",
+    "pacing value",
+    "credential contract",
+    "artifact builder",
+    "artifact validator",
+    "workflow behavior other than the approved source URL"
+  ]
+}

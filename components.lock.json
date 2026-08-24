@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "3cfca7adffd6f45ae84f9f60d8530e740b363de1"
+      "commit": "9615523274b7d224552a7d9c7e1ba554a3992f4c"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.0-rc.8",
+      "version": "1.0.0",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -94,7 +94,7 @@
         },
         "igce-builder-ffp": {
           "files": {
-            "SKILL.md": "4a3c13b5d445deba601c01e3956d9e4a3d889df5bf37562f0649b2b839a25942",
+            "SKILL.md": "d45c13270ba0d2854225f8bc542bac923bd6d1fa368d3a1ca236c73af182ae24",
             "agents/openai.yaml": "7f6829b2ea276adca433feb1c0de93dedf74ead18ccf7a13ea2244f7eff1688e",
             "references/data-source-operations.md": "4c533b8aa4f34882ea0fcf6a86831f2efcfa0dc46bea5441e9b52d41d1309e38",
             "references/runtime-adaptation.md": "82473ccc0a0190955404702f40cd5572b0d0f38338580a447a7a729eda6135d6",
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.0-rc.8",
+      "version": "1.0.0",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -166,7 +166,7 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.0-rc.10",
+      "version": "1.0.0",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
@@ -192,7 +192,7 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.0-rc.12",
+      "version": "1.0.0",
       "skills": {
         "market-research-workflow": {
           "files": {
@@ -217,7 +217,7 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.0-rc.4",
+      "version": "1.0.0",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {

@@ -1,10 +1,21 @@
-# Other Transaction Agent Release-Candidate Test Record
+# Other Transaction Agent Stable Qualification and Historical RC Record
 
-Date: August 21, 2026
+Date: August 23, 2026
 
-Package: `other-transaction-agent` `1.0.0-rc.8`
+Package: `other-transaction-agent` `1.0.0`
 
-Status: release candidate; not approved for a `1.0.0` tag
+Status: stable; qualified for the `v1.2.0` suite tag
+
+## Stable 1.0 qualification
+
+The stable package preserves the qualified `rc.8` workflow bytes and current
+MCP pins. RC15 exit qualification passed clean remote installation in both
+maintained client families, exact package-tree checks, explicit routing,
+authority and approval boundaries, credential redaction, and the nine-server
+live-canary gate. Both maintained client families produced validated project
+descriptions and workbooks during qualification; the global cached-error audit,
+independent recomputation, LibreOffice recalculation, ZIP integrity, and visual
+review gates passed. No unresolved P0 or P1 defect remained at promotion.
 
 ## Locked components
 
@@ -135,7 +146,7 @@ The `rc.3` client checks cover installation, inventory, package validation, and 
 
 When both 1102tools plugins are installed, Codex 0.149.0-alpha.4 reports duplicate MCP-name warnings for the three shared servers and resolves one configuration for each name. Both package configurations are byte-for-byte equivalent at the semantic server level, and repository validation rejects drift. This warning is recorded as current client behavior.
 
-## Unexecuted release gates
+## Historical unexecuted release gates
 
 The full manual scenarios `OT-01` through `OT-15` in [`tests/manual_release_matrix.md`](../../tests/manual_release_matrix.md) have not all been rerun as multi-turn agent sessions. Research OT, Prototype OT, 4022(f), project-only, cost-only, end-to-end, fixed, cost-type, mixed, contribution, pending-decision, revision, and rejected-key paths remain open across the required client matrix.
 

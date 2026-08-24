@@ -34,7 +34,7 @@
     "invocation": "explicit",
     "prompt": "Do not call MCP servers or web, and do not create or modify files. You may use read-only shell commands solely to read installed skill instructions. Assume the complete PWS, staffing handoff, and Section B handoff are visible in this active conversation and are already user-approved and validated for FFP. State what the agent carries forward and stop at the next required transition approval.",
     "required_any": [["approved", "preserve", "carry forward"], ["transition", "moving", "move"], ["approve", "approval"], ["ffp"]],
-    "forbidden": ["decompose again", "copy the handoff", "upload the handoff"]
+    "forbidden": ["decompose again", "please copy the handoff", "copy and paste the handoff", "paste the handoff", "upload the handoff"]
   },
   {
     "id": "pre-fair-reasonable-boundary",

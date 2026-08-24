@@ -2,6 +2,26 @@
 
 Automated checks must pass before this matrix starts. Live federal API calls are manual, serialized, and separated by at least three seconds when a credential is active. Each run records the client, client version, model, model setting, exact prompt, fixture or approved inputs, generated artifacts, validator output, screenshots or rendered pages, API-call timing, and limitation notes in the applicable plugin `test.md`.
 
+## Stable 1.0 decision
+
+The RC15 exit attempt `exit-attempt-20260824T003055.562927Z` passed clean
+remote installation in both maintained client families, ten of ten explicit
+cross-client scenario turns, nine of nine live federal MCP canaries, pacing,
+credential redaction, package-tree freeze checks, and real-profile restoration.
+The evidence contained 126 hashed artifacts and no failed or blocked event.
+
+The approved Pre-Award source-link correction was then synchronized from the
+canonical skill, and both-client routing plus preserved PWS and FFP workbook
+artifacts were revalidated. The only observed routing failure was a test-grader
+false positive for compliant negated wording; a deterministic matcher
+regression corrected it, and the exact Codex route passed on replay. No
+unresolved P0 or P1 defect remained at the stable decision.
+
+The current stable contract is explicit installed-agent selection or
+invocation. Ambient activation remains measured host behavior rather than a
+package guarantee. Supported client details and artifact limits are stated in
+the root README and setup guide.
+
 ## Evidence required in every handoff-based end-to-end run
 
 - The user did not copy or restate the internal handoff.

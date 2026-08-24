@@ -30,13 +30,20 @@ PLUGIN_NAMES = (
     "other-transaction-agent",
     "acquisition-policy-agent",
 )
+QUALIFIED_RC_VERSIONS = {
+    "market-research-agent": "1.0.0-rc.12",
+    "pre-award-agent": "1.0.0-rc.8",
+    "govcon-growth-agent": "1.0.0-rc.10",
+    "other-transaction-agent": "1.0.0-rc.8",
+    "acquisition-policy-agent": "1.0.0-rc.4",
+}
 LANE_IDS = {"install", "upgrade", "credentials", "resume", "concurrency", "drift", "long-session"}
 HISTORICAL_MARKERS = ("historical", "before rc5", "pre-rc5", "superseded", "dated checkpoint")
 CURRENT_PREVIEW_RE = re.compile(
     r"(?:current (?:public|installable) preview|public preview)\s+is\s+[`']?(1\.0\.0-rc\.\d+)",
     re.IGNORECASE,
 )
-VERSION_RE = re.compile(r"\bVersion:\s*[`']?(1\.0\.0-rc\.\d+)", re.IGNORECASE)
+VERSION_RE = re.compile(r"\bVersion:\s*[`']?(1\.0\.0(?:-rc\.\d+)?)", re.IGNORECASE)
 SUPPORT_TERMS = re.compile(r"\b(copilot|vs\s*code)\b", re.IGNORECASE)
 SUPPORT_CLAIM_TERMS = re.compile(
     r"\b(?:maintained|support(?:ed)?|support\s+gate|release\s+gate|block(?:s|ed)?|open|pending|remain(?:s|ed)?|required)\b",
@@ -117,9 +124,13 @@ def semantic_errors(ledger: dict[str, Any], root: Path = DEFAULT_ROOT) -> list[s
         if name not in PLUGIN_NAMES:
             continue
         manifest = load_json(root / "plugins" / name / "plugin.json")
-        if item.get("target_version") != manifest.get("version"):
+        observed = item.get("target_version")
+        current = manifest.get("version")
+        historical_qualified = current == "1.0.0" and observed == QUALIFIED_RC_VERSIONS[name]
+        if observed != current and not historical_qualified:
             errors.append(
-                f"ledger target for {name} must match manifest version {manifest.get('version')!r}"
+                f"ledger target for {name} must match manifest version {current!r} or the "
+                f"qualified historical RC {QUALIFIED_RC_VERSIONS[name]!r}"
             )
     lane_ids = {item.get("id") for item in ledger.get("lanes", [])}
     if lane_ids != LANE_IDS:
@@ -168,7 +179,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
-    print("RC5 lifecycle ledger schema and present-tense evidence claims passed.")
+    print("Lifecycle ledger schema, qualified RC provenance, and present-tense evidence claims passed.")
     return 0
 
 

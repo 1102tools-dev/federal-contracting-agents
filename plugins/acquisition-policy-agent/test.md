@@ -1,6 +1,16 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.0-rc.4`
+Version: `1.0.0`
+
+## Stable 1.0 qualification
+
+The stable package preserves the qualified `rc.4` workflow bytes and pinned
+Acquisition.gov, eCFR, Federal Register, and Regulations.gov servers. RC15 exit
+qualification passed clean remote installation in both maintained client
+families, exact package-tree checks, explicit menu routing, conflict and
+authority boundaries, credential redaction, and the nine-server live-canary
+gate. The validated Codex and Claude impact briefs remain applicable. No
+unresolved P0 or P1 defect remained at promotion.
 
 ## Passed before packaging
 
@@ -66,11 +76,11 @@ Installed and verified at `1.0.0-rc.2`.
 - Explicit invocation returned the exact packaged ten-item launch menu verbatim, in order, with no retrieval or MCP call.
 - All four pinned servers connected and discovered their tools: Acquisition.gov 5, eCFR 13, Federal Register 8, Regulations.gov 8.
 
-## Upstream live gate
+## Historical upstream live gate
 
 On 2026-08-22 the serialized release gate passed twice. The official RFO index, Part 10 model page, an indexed four-page NSF deviation PDF, and the FAQ each returned HTTP 200 with complete extraction. The MCP recorded source hashes and retained the rule that future hash changes require review rather than silent acceptance.
 
-## Published-package and clean-install gate
+## Historical published-package and clean-install gate
 
 The immutable MCP source commit `3f9376a406a2af17e5810d81f319d81efe34417e` installed into an isolated `uvx` environment directly from GitHub and exposed exactly five tools without invoking an upstream tool. Release workflow `32561799836` then passed shared safety checks, all nine package test-and-build jobs, trusted publication, and release creation. A fresh `uvx` environment installed `acquisition-gov-mcp==1.0.0` from PyPI and discovered all four policy-agent servers without invoking an upstream tool: Acquisition.gov 5 tools, eCFR 13, Federal Register 8, and Regulations.gov 8.
 

@@ -1,5 +1,7 @@
 # Other Transaction Agent
 
+Stable release `1.0.0`.
+
 The Other Transaction Agent creates an OT project description and carries its approved milestones into an auditable cost analysis without manual handoff copying.
 
 ## Included capabilities
@@ -39,6 +41,6 @@ Labor pricing requires both BLS OEWS and GSA CALC+. GSA Per Diem is required onl
 - Codex: `$other-transaction-workflow`
 - Claude Code: `/other-transaction-agent:other-transaction-workflow`
 
-Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Other compatible clients are self-supported.
+Codex Desktop/CLI and Claude Code in Claude Desktop/CLI are the maintained stable paths. Other compatible clients are self-supported.
 
-See the repository [README](../../README.md) for installation, optional-key setup, architecture, and release status. See [`test.md`](test.md) for exact evidence and open gates.
+See the repository [README](../../README.md) for installation, optional-key setup, architecture, and supported-surface differences. See [`test.md`](test.md) for the stable qualification record and historical RC evidence.

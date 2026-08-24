@@ -1,6 +1,6 @@
 # GovCon Growth Agent
 
-Public preview `1.0.0-rc.10`.
+Stable release `1.0.0`.
 
 This self-contained Agent Plugins 1.0 package installs one authoritative multi-file skill, pinned SAM.gov, USASpending, and GSA CALC+ MCP definitions, plus Tavily's optional official keyless remote MCP. It supports opportunity discovery, bid screens, competitor and incumbent analysis, recompete radar, teaming research, agency and market intelligence, pricing context, and prior-research refreshes.
 
@@ -10,6 +10,6 @@ Before public web research, the agent shows the sanitized search terms and publi
 
 A bid recommendation requires internal company capabilities, past performance, clearances and certifications, vehicle access, staffing and geographic capacity, teaming strategy, strategic priorities, and risk and margin tolerances. Without that context, the agent produces an evidence brief and no verdict.
 
-Install and update through the [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf). Codex and Claude Code (in the Claude Desktop app or the CLI) are the maintained public-preview paths. Other compatible clients are self-supported. No plugin ZIP is maintained.
+Install and update through the [1102tools Agent Setup Guide](https://1102tools.com/downloads/1102tools-agent-setup-guide.pdf). Codex Desktop/CLI and Claude Code in Claude Desktop/CLI are the maintained stable paths. Other compatible clients are self-supported. No plugin ZIP is maintained.
 
 Current test evidence and limitations are in [test.md](test.md).
