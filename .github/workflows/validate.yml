@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: 9615523274b7d224552a7d9c7e1ba554a3992f4c
+          ref: 93a0e26201fdc257044ec7e5f021a88ca4e0edc1
           fetch-depth: 0
           path: _skills
 
@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-mcps
-          ref: 1d286d2015b8cca628f35d7b19c995b9cb5fb906
+          ref: 02a781abfe48d671890d3ab26cd43f8e98361e23
           path: _mcps
 
       - name: Set up Python
