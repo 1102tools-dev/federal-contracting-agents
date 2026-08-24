@@ -9,6 +9,7 @@ env_vars = ["SAM_API_KEY"]
 
 [mcp_servers."sam-gov".env]
 FEDERAL_API_MIN_INTERVAL_SECONDS = "3"
+MCP_ACCESS_STATUS_VERSION = "1"
 
 [mcp_servers."usaspending"]
 command = "uvx"
@@ -25,6 +26,7 @@ env_vars = ["BLS_API_KEY"]
 
 [mcp_servers."bls-oews".env]
 FEDERAL_API_MIN_INTERVAL_SECONDS = "3"
+MCP_ACCESS_STATUS_VERSION = "1"
 
 [mcp_servers."gsa-calc"]
 command = "uvx"
@@ -40,6 +42,7 @@ env_vars = ["PERDIEM_API_KEY"]
 
 [mcp_servers."gsa-perdiem".env]
 FEDERAL_API_MIN_INTERVAL_SECONDS = "4"
+MCP_ACCESS_STATUS_VERSION = "1"
 
 [mcp_servers."ecfr"]
 command = "uvx"
@@ -62,6 +65,7 @@ env_vars = ["REGULATIONS_GOV_API_KEY"]
 
 [mcp_servers."regulations-gov".env]
 FEDERAL_API_MIN_INTERVAL_SECONDS = "4"
+MCP_ACCESS_STATUS_VERSION = "1"
 
 [mcp_servers."acquisition-gov"]
 command = "uvx"

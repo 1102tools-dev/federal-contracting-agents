@@ -214,6 +214,12 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
                 f"{plugin_root.name}: {name} must set the explicit "
                 f"{EXPECTED_PACING[name]}-second pacing safeguard"
             )
+        if name in {"sam-gov", "bls-oews", "gsa-perdiem", "regulations-gov"} and (
+            not isinstance(env, dict) or env.get("MCP_ACCESS_STATUS_VERSION") != "1"
+        ):
+            errors.append(
+                f"{plugin_root.name}: {name} must carry the access-status cachebuster"
+            )
         if name == "usaspending" and (
             not isinstance(env, dict)
             or env.get("USASPENDING_TOOL_PROFILE") != "acquisition-agent"

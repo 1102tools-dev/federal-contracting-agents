@@ -13,7 +13,7 @@
     "regulations-gov": {
       "command": "uvx",
       "args": ["--from", "regulationsgov-mcp==1.0.7", "regulationsgov-mcp"],
-      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4"}
+      "env": {"FEDERAL_API_MIN_INTERVAL_SECONDS": "4", "MCP_ACCESS_STATUS_VERSION": "1"}
     },
     "acquisition-gov": {
       "command": "uvx",

@@ -29,7 +29,7 @@ SERVER_CONFIG = (
         "sam-gov-mcp",
         "3",
         ("SAM_API_KEY",),
-        (),
+        (("MCP_ACCESS_STATUS_VERSION", "1"),),
     ),
     (
         "usaspending",
@@ -45,7 +45,7 @@ SERVER_CONFIG = (
         "bls-oews-mcp",
         "3",
         ("BLS_API_KEY",),
-        (),
+        (("MCP_ACCESS_STATUS_VERSION", "1"),),
     ),
     (
         "gsa-calc",
@@ -61,7 +61,7 @@ SERVER_CONFIG = (
         "gsa-perdiem-mcp",
         "4",
         ("PERDIEM_API_KEY",),
-        (),
+        (("MCP_ACCESS_STATUS_VERSION", "1"),),
     ),
     (
         "ecfr",
@@ -85,7 +85,7 @@ SERVER_CONFIG = (
         "regulationsgov-mcp",
         "4",
         ("REGULATIONS_GOV_API_KEY",),
-        (),
+        (("MCP_ACCESS_STATUS_VERSION", "1"),),
     ),
     (
         "acquisition-gov",
