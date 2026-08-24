@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. All five agents are stable at `1.0.0`; the repository marketplace release is `v1.2.0`.
+Choose one federal acquisition job and install one self-contained agent package. All five 1102tools agents are stable at `1.0.0`. They are installed from the GitHub-hosted 1102tools marketplace. The marketplace catalog itself is version `1.2.0`; that catalog version is separate from the agent package versions.
 
 Website: [1102tools.com](https://1102tools.com)
 
