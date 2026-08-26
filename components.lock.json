@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "6a0bd06dae4d100bde9f03f619ed509e548eebe7"
+      "commit": "b19b30b914f327deb9c2b55c07f8a92790df1258"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -221,7 +221,7 @@
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "338d0f0e0ea0dc8f7cd42c26645578c798f2f4f80f44f0ff5bf7f89eda91a8ac",
+            "SKILL.md": "0a8dc59818aaf9123ffcf64cad95bd1656f6d7458df6d24fed71afa1b7f2e8e1",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",

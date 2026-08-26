@@ -218,7 +218,7 @@ class OrchestratorContractTests(unittest.TestCase):
             default_prompt = codex_manifest["interface"]["defaultPrompt"]
             self.assertIn("four-line", default_prompt)
             self.assertIn("first visible text", default_prompt)
-            if plugin in {"pre-award-agent", "other-transaction-agent"}:
+            if plugin in {"acquisition-policy-agent", "pre-award-agent", "other-transaction-agent"}:
                 self.assertIn("no preface/fence", default_prompt)
                 self.assertIn("do not add a preface or code fence", wrapper)
 
