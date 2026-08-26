@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "8e211369006d900533abd1a6c4ee5a77b4de278a"
+      "commit": "0d42070425495dc8d5c4156decd9826526b6e07e"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -170,13 +170,13 @@
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "5d63855503f1a20fd0bef5d92946118900ed65b23e21beae2ffd1f554d3dc519",
+            "SKILL.md": "cdb8579f8980ba8cc47a9208cdb2f031945b843f117a0f79ef3f14ad0ec33922",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
-            "references/launch-menu-and-question-blocks.md": "3a8b405a3a1c956ebd4912e10ddc31d5a34b8b4e8290faca942333e956697e3e",
+            "references/launch-menu-and-question-blocks.md": "a572dd2ffb14ef49c269320d542c30c139bdab43a5a84330fb8bef818abd76cc",
             "references/market-and-agency-intelligence.md": "1c7e5b9ba834f91cbfe06b9806f4f4b81f68730241b1568e187941a4fc787f42",
             "references/opportunity-intelligence.md": "8f8f8743b23c7c07ad29c22d24ae50ba2416516c1db160ca60ab0598bf18adeb",
             "references/pricing-context.md": "c46eea842c138beeffbb7e201272525e6dcfd84d18aeafbd7b9f5b441556c165",
@@ -196,14 +196,14 @@
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "ed5bc56c5c128226b43fcf67b5c58118f182742ac65ee5f133327a6c4f5e2c99",
+            "SKILL.md": "4e72a25ddbee618e78b23f85f8595d656120d105fd55796fb4e34ab8b56ab322",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/federal-data-operations.md": "6050b045514e206f52be505ab3eae36eabcff4cf0684ff2f0e45da85ff401fc2",
-            "references/launch-menu-and-question-blocks.md": "bada0e787e677e2646c70ab9cc635e8537b1026c6fbe8ec2b47f0dddc682eba7",
+            "references/launch-menu-and-question-blocks.md": "3fd8ae55b88ad936437469854ce4695fa6582130f0cb5707b62914ddf7d9da1d",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
             "references/runtime-adaptation.md": "9e2021318ee8645327fb4fb49b884bfe9291e1d1c89f28d4ad5b85a59ce4eedf",
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
@@ -221,11 +221,11 @@
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "94eadedd87467818b5b30ddea63d7aa552f06cbe12d04cc309c910dc9e2d04cd",
+            "SKILL.md": "3f2abe6b17f8c76bbc40480e77169a8d735230806870ee836db8f2b76309ec87",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",
-            "references/launch-menu-and-framing.md": "27a56d76b28fbb34cc529c77be3c062aeaf48402046b8fc10558b4803ba90b48",
+            "references/launch-menu-and-framing.md": "44948e85e2e18316c05cffbe5647a4255da335f911bc92600b5842728bc58c74",
             "references/report-specification.md": "aa8be549fb181d3f9e4382324ccca415abc5e4ca517e39fd968437711da45f76",
             "references/runtime-adaptation.md": "f95d1755a37219773a59a7055abe16610298bd45e1ee0637ad825ab7783526c4",
             "references/source-routing.md": "5b8a238203af9e6f48d26f5f8da0e37788222ea1c7c6ae6ca553aa521d68ba32",
