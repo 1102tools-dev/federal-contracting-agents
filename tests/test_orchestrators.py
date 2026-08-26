@@ -218,9 +218,13 @@ class OrchestratorContractTests(unittest.TestCase):
             default_prompt = codex_manifest["interface"]["defaultPrompt"]
             self.assertIn("four-line", default_prompt)
             self.assertIn("first visible text", default_prompt)
+            self.assertIn("no preface/fence", default_prompt)
             if plugin in {"acquisition-policy-agent", "pre-award-agent", "other-transaction-agent"}:
-                self.assertIn("no preface/fence", default_prompt)
                 self.assertIn("do not add a preface or code fence", wrapper)
+            if plugin in {"pre-award-agent", "other-transaction-agent"}:
+                orchestrator = self.text(plugin, "pre-award-workflow" if plugin == "pre-award-agent" else "other-transaction-workflow")
+                self.assertIn("Selection-turn stop", orchestrator)
+                self.assertIn("Do not invoke a component skill or narrate component routing in that turn", orchestrator)
 
     def test_component_skills_recover_a_skipped_orchestrator_preview(self) -> None:
         components = {

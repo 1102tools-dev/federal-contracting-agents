@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "b19b30b914f327deb9c2b55c07f8a92790df1258"
+      "commit": "8e211369006d900533abd1a6c4ee5a77b4de278a"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -170,7 +170,7 @@
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "5d87eb74d45dc1e9b23542b9c0a35f1304455c60547c04b583ee4e23eb38bf2c",
+            "SKILL.md": "5d63855503f1a20fd0bef5d92946118900ed65b23e21beae2ffd1f554d3dc519",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
@@ -196,7 +196,7 @@
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "5264b3af9eff70eedc763de920038fc0a826718904fbc808086ffde62c9777a1",
+            "SKILL.md": "ed5bc56c5c128226b43fcf67b5c58118f182742ac65ee5f133327a6c4f5e2c99",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
@@ -221,7 +221,7 @@
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "0a8dc59818aaf9123ffcf64cad95bd1656f6d7458df6d24fed71afa1b7f2e8e1",
+            "SKILL.md": "94eadedd87467818b5b30ddea63d7aa552f06cbe12d04cc309c910dc9e2d04cd",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",

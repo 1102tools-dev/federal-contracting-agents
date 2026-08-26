@@ -77,6 +77,8 @@ Next: <first required fact, document, authority choice, or approval>
 
 Then ask one bounded question or one batched set of related questions. Reuse all supplied facts, never ask the user to invent or name a report, and offer an alternative only when it materially changes the product or effort. The startup readiness calls and a directly triggered reserved-determination hard stop take precedence over this preview. Preserve every component research, generation, transition, and authority gate.
 
+**Selection-turn stop:** When the user supplied only a numbered productive selection, render the four-line preview, ask the first bounded intake question, and stop. Do not invoke a component skill or narrate component routing in that turn. Apply the selected mode rule only after the user's next response supplies context or confirms the next gate.
+
 | Mode | Recommended outcome | Includes | Boundary/default | Next |
 |---|---|---|---|---|
 | 1 | Validated SOW/PWS `.docx` plus two chat-only handoffs | an executable work statement, measurable standards, staffing handoff, and Section B handoff | recommend PWS for performance-based services when the requirement supports it; the user or Contracting Officer retains contract type, commerciality, and other reserved decisions | collect the current requirement or source material and missing acquisition-strategy facts |

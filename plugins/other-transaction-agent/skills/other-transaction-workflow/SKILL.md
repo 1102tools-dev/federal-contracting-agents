@@ -72,6 +72,8 @@ Next: <first required fact, document, authority choice, or approval>
 
 Then ask one bounded question or one batched set of related questions. Reuse all supplied facts, never ask the user to invent or name a report, and offer an alternative only when it materially changes the product or effort. Startup readiness, a directly triggered required-capability hard stop, and a directly triggered reserved authority or determination boundary take precedence over this preview. Preserve every component research, generation, transition, and authority gate.
 
+**Selection-turn stop:** When the user supplied only a numbered productive selection, render the four-line preview, ask the first bounded intake question, and stop. Do not invoke a component skill or narrate component routing in that turn. Apply the selected mode rule only after the user's next response supplies context or confirms the next gate.
+
 | Mode | Recommended outcome | Includes | Boundary/default | Next |
 |---|---|---|---|---|
 | 1 | Validated OT Project Description `.docx` plus chat-only milestone handoff | authority record, objective, milestone structure, deliverables, completion evidence, schedule, and downstream cost handoff | milestone payment type remains pending unless supplied; the user or Agreements Officer retains authority, participant, contribution, successful-completion, and follow-on decisions | collect the concept or source material and missing authority facts |
