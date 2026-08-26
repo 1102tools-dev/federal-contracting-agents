@@ -198,6 +198,8 @@ class OrchestratorContractTests(unittest.TestCase):
             text = self.text(plugin, skill)
             with self.subTest(plugin=plugin):
                 self.assertIn(required, text)
+                self.assertIn("first non-whitespace characters must be `Recommended outcome:`", text)
+                self.assertIn("Do not narrate component routing", text)
         for plugin in (
             "market-research-agent",
             "govcon-growth-agent",
@@ -216,6 +218,9 @@ class OrchestratorContractTests(unittest.TestCase):
             default_prompt = codex_manifest["interface"]["defaultPrompt"]
             self.assertIn("four-line", default_prompt)
             self.assertIn("first visible text", default_prompt)
+            if plugin in {"pre-award-agent", "other-transaction-agent"}:
+                self.assertIn("no preface/fence", default_prompt)
+                self.assertIn("do not add a preface or code fence", wrapper)
 
     def test_component_skills_recover_a_skipped_orchestrator_preview(self) -> None:
         components = {

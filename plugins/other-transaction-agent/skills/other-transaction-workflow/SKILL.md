@@ -61,6 +61,8 @@ Apply this before mode selection or any remaining cost analysis when the request
 
 After a productive selection or an unambiguous direct route, the first response must begin with these exact labels in this order, before intake, capability preflight, or artifact preflight:
 
+**First-visible-text hard gate:** In the post-selection turn, the first non-whitespace characters must be `Recommended outcome:`. Do not add a heading, acknowledgement, selection recap, routing narration, or code fence. Render all four preview lines as assistant text before invoking a component skill. Do not narrate component routing.
+
 ```text
 Recommended outcome: <named product>
 Includes: <major contents>

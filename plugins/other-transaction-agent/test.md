@@ -20,7 +20,7 @@ review gates passed. No unresolved P0 or P1 defect remained at promotion.
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `e4c18eefebf479bb04a84cdb229338f38d9ed0a5`
+- Canonical skills commit: `6a0bd06dae4d100bde9f03f619ed509e548eebe7`
 - Canonical MCP commit: `0ba64dc946c95ee1763e484c03a5ae18205a85f3`
 - `bls-oews-mcp==1.0.8`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard

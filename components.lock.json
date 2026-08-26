@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "27313731d7c987670b2cc015b024bfd9e4497ff2"
+      "commit": "6a0bd06dae4d100bde9f03f619ed509e548eebe7"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -81,7 +81,7 @@
       "skills": {
         "sow-pws-builder": {
           "files": {
-            "SKILL.md": "ef0551de07308fe1fe6632a2b417de86e597a859342aabb1652d865ae627f104",
+            "SKILL.md": "80446e7d4784ffabdc5d138d7e5acd381cb1fef916be1b80cb61e847472bc026",
             "agents/openai.yaml": "92fd031bf53de6bb7535ac950993a85410d743ea7677712d4d586af1d18f9f48",
             "references/document-specification.md": "18d256310578d904049ab502b46a2fd91934dbb3cdd5910a23894f00e932aba4",
             "references/handoff-specification.md": "31f636cfa9d59535af58fa63ebe2cda17cc0cd8b008ed39075fa421951907a0e",
@@ -94,7 +94,7 @@
         },
         "igce-builder-ffp": {
           "files": {
-            "SKILL.md": "9e0fae75dc0b9b3caeb40ba019d1c5444c21ce81d62f700f1f89057f9eb8786c",
+            "SKILL.md": "7c003ee35b8c9b1a747e8571ec4c821e2e108bdf8c17898289687f6472e566e2",
             "agents/openai.yaml": "7f6829b2ea276adca433feb1c0de93dedf74ead18ccf7a13ea2244f7eff1688e",
             "references/data-source-operations.md": "4c533b8aa4f34882ea0fcf6a86831f2efcfa0dc46bea5441e9b52d41d1309e38",
             "references/runtime-adaptation.md": "82473ccc0a0190955404702f40cd5572b0d0f38338580a447a7a729eda6135d6",
@@ -107,7 +107,7 @@
         },
         "igce-builder-lh-tm": {
           "files": {
-            "SKILL.md": "21529001be1d25cb99b0f51c48edc9de42031c8cf0bd52b4b2450b2319f27581",
+            "SKILL.md": "0c04bfa20674537e19025cbcc37ee0d3df07dc70714a26d7387102c939cd68e8",
             "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
             "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
@@ -120,7 +120,7 @@
         },
         "igce-builder-cr": {
           "files": {
-            "SKILL.md": "8743b742fd0bc816864a32fc58b510f57758dcc0fec2b964df43a75f1c15bdbd",
+            "SKILL.md": "93802e509f55293235df86605aa75f4d9b0cb88647b8965e0b2c4c6211e58ccf",
             "agents/openai.yaml": "93485c245128c2de80e06d513d25d65f4210cf5e368fc77fdcfb39f3a5bfa99a",
             "references/data-source-operations.md": "23bbbda749131f7a26dcea08889bf0893959da78f910b0b07546e9312625b8e1",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
@@ -138,7 +138,7 @@
       "skills": {
         "ot-project-description-builder": {
           "files": {
-            "SKILL.md": "3dc57f13190f1c8550d85034a59d8c5a0a1bbd0706c243ee94e7d23b3b276132",
+            "SKILL.md": "059cd95730139aaaa477f346f8faad5cfaa65d5fbd1de9a4c3a938882c33b0b4",
             "agents/openai.yaml": "c6ceb8947291f6185580d886db47b678ea24bd9eae1d6ac155449aeea805809f",
             "references/authority-and-scope-rules.md": "1f07042b623b2be487038a8a3cd497ad6ee8fdfa2dfc39f8f08ef98a65d0aa4d",
             "references/document-specification.md": "c0aa275a05563ce0d1ad141791560daa256fe074e9d40f75d68c4d9dee1cb1a3",
@@ -151,7 +151,7 @@
         },
         "ot-cost-analysis": {
           "files": {
-            "SKILL.md": "0c1dcc23cc68c0a1ad6e650510cea67b5535a40310ba00410e99d9c443b525b4",
+            "SKILL.md": "66a4a6f8f554ab147dd9e271fe920f15c3fc120be038a33c1a79b579604edd48",
             "agents/openai.yaml": "96b4376fce31e81038a4806df129389424d05950432f388e4bdd681bec658ce3",
             "references/authority-and-cost-sharing.md": "9ef3bcd4c493fba4452da2d9c0f9030eb7648a336854aabdf27f9f566452f4fa",
             "references/data-source-operations.md": "d011471cb2cd1a41b4ea10bc0ce994f61d921079a974983daa5fd43399d7e82a",
@@ -170,7 +170,7 @@
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "3899d787b7433651c1a00eed77f0e119c951e6e34f65deafdc228f980b6c2c40",
+            "SKILL.md": "5d87eb74d45dc1e9b23542b9c0a35f1304455c60547c04b583ee4e23eb38bf2c",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
             "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
@@ -196,7 +196,7 @@
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "92e4fe66693433f35b556ad18517e1357d85d2dfa014a9028bd30cc5e28e221d",
+            "SKILL.md": "5264b3af9eff70eedc763de920038fc0a826718904fbc808086ffde62c9777a1",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
@@ -221,7 +221,7 @@
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "15ca56faa29eb7ff32289c22ce1d319f1c6c15a85344815d87419867675c08cf",
+            "SKILL.md": "338d0f0e0ea0dc8f7cd42c26645578c798f2f4f80f44f0ff5bf7f89eda91a8ac",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",

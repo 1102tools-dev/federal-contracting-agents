@@ -30,6 +30,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $pre-award-workflow. Check BLS/Per Diem first. On selection, make its four-line outcome preview the first visible text."
+    "defaultPrompt": "Use $pre-award-workflow. Check BLS/Per Diem. On selection, four-line preview is first visible text; no preface/fence."
   }
 }
