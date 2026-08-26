@@ -210,6 +210,25 @@ class OrchestratorContractTests(unittest.TestCase):
             self.assertIn("`Boundary/default:`", wrapper)
             self.assertIn("`Next:`", wrapper)
 
+    def test_component_skills_recover_a_skipped_orchestrator_preview(self) -> None:
+        components = {
+            ("pre-award-agent", "sow-pws-builder"): "Validated SOW/PWS `.docx` plus two chat-only handoffs",
+            ("pre-award-agent", "igce-builder-ffp"): "Routed IGCE `.xlsx`, separated by confirmed pricing method or hybrid CLIN",
+            ("pre-award-agent", "igce-builder-lh-tm"): "Routed IGCE `.xlsx`, separated by confirmed pricing method or hybrid CLIN",
+            ("pre-award-agent", "igce-builder-cr"): "Routed IGCE `.xlsx`, separated by confirmed pricing method or hybrid CLIN",
+            ("other-transaction-agent", "ot-project-description-builder"): "Validated OT Project Description `.docx` plus chat-only milestone handoff",
+            ("other-transaction-agent", "ot-cost-analysis"): "Milestone-based OT Cost Analysis `.xlsx`",
+        }
+        labels = ("Recommended outcome:", "Includes:", "Boundary/default:", "Next:")
+        for (plugin, skill), product in components.items():
+            text = self.text(plugin, skill)
+            with self.subTest(plugin=plugin, skill=skill):
+                self.assertIn("routing fallback, not a second preview", text)
+                self.assertIn(product, text)
+                fallback = text.index("When this skill is entered immediately after a numbered")
+                positions = [text.index(label, fallback) for label in labels]
+                self.assertEqual(positions, sorted(positions))
+
     def test_govcon_growth_menu_and_bid_boundary_are_hard_gates(self) -> None:
         text = self.text("govcon-growth-agent", "govcon-growth-workflow")
         for required in (
