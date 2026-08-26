@@ -18,6 +18,6 @@
     "capabilities": ["Interactive", "Write"],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $acquisition-policy-workflow. Check Regulations.gov first. After routing, show its four-part outcome preview."
+    "defaultPrompt": "Use $acquisition-policy-workflow. Check Regulations.gov first. On selection, make its four-line preview the first visible text."
   }
 }

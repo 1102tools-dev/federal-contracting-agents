@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import unittest
 
@@ -209,6 +210,12 @@ class OrchestratorContractTests(unittest.TestCase):
             self.assertIn("`Includes:`", wrapper)
             self.assertIn("`Boundary/default:`", wrapper)
             self.assertIn("`Next:`", wrapper)
+            codex_manifest = json.loads(
+                (REPO_ROOT / "plugins" / plugin / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
+            )
+            default_prompt = codex_manifest["interface"]["defaultPrompt"]
+            self.assertIn("four-line", default_prompt)
+            self.assertIn("first visible text", default_prompt)
 
     def test_component_skills_recover_a_skipped_orchestrator_preview(self) -> None:
         components = {

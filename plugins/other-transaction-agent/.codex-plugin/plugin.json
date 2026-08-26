@@ -29,6 +29,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $other-transaction-workflow. Check BLS/Per Diem first. After selection, show its four-part outcome preview before intake."
+    "defaultPrompt": "Use $other-transaction-workflow. Check BLS/Per Diem first. On selection, make its four-line preview the first visible text."
   }
 }
