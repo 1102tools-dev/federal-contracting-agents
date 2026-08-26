@@ -1,8 +1,8 @@
-# Manual 1.0.1 Credential-Readiness Release Matrix
+# Manual 1.0.2 Outcome-Guidance Release Matrix
 
 Automated checks must pass before this matrix starts. Live federal API calls are manual, serialized, and separated by at least three seconds when a credential is active. Each run records the client, client version, model, model setting, exact prompt, fixture or approved inputs, generated artifacts, validator output, screenshots or rendered pages, API-call timing, and limitation notes in the applicable plugin `test.md`.
 
-## 1.0.1 release gate
+## 1.0.2 release gate
 
 With `SAM_API_KEY`, `BLS_API_KEY`, `PERDIEM_API_KEY`, and
 `REGULATIONS_GOV_API_KEY` absent, cold-start all five agents in Codex CLI,
@@ -12,6 +12,15 @@ or routed response, no upstream call for a missing required SAM key, no retry
 loop, no provider-outage diagnosis, no invented settings path, and no request
 to paste a key in chat. Install all five together and prove the complete
 nine-server federal MCP inventory plus every required readiness operation.
+
+In fresh number-only sessions, every one of the 33 menu selections must meet
+the post-selection guidance contract before intake or preflight. Productive
+routes show `Recommended outcome:`, `Includes:`, `Boundary/default:`, and
+`Next:` in the first post-selection response. Each Help route asks at most
+three diagnostic questions and then recommends exactly one numbered route.
+Menu repetition, blank-canvas output design, repeated supplied facts,
+premature research or generation, and reserved-decision overreach are
+release-blocking.
 
 ## Stable 1.0 decision
 

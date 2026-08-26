@@ -1,6 +1,6 @@
 # Acquisition Policy Agent
 
-Stable release `1.0.1`.
+Stable release `1.0.2`.
 
 The Acquisition Policy Agent combines one host-neutral workflow with four source-specific federal MCP servers:
 

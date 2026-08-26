@@ -2,9 +2,9 @@
 
 Date: August 23, 2026
 
-Package: `other-transaction-agent` `1.0.1`
+Package: `other-transaction-agent` `1.0.2`
 
-Status: credential-readiness correction candidate for the `v1.2.1` suite tag
+Status: outcome-guidance candidate for the `v1.2.2` suite tag
 
 ## Stable 1.0 qualification
 
@@ -20,7 +20,7 @@ review gates passed. No unresolved P0 or P1 defect remained at promotion.
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `658108e2c59b591f617c89b4c38e1822a6429bd7`
+- Canonical skills commit: `e4c18eefebf479bb04a84cdb229338f38d9ed0a5`
 - Canonical MCP commit: `0ba64dc946c95ee1763e484c03a5ae18205a85f3`
 - `bls-oews-mcp==1.0.8`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
@@ -238,3 +238,14 @@ warnings before the exact four-mode menu. The warnings state the BLS v1 and
 shared DEMO-key limits and permit bounded continuation. Claude coexistence
 replay kept all three pricing MCPs reachable in both install orders, including
 a successful plugin-attributed CALC+ operation after shared-name deduplication.
+
+## 1.0.2 outcome-guidance candidate — 2026-08-26
+
+All four modes now name the selected `.docx`, `.xlsx`, combined package, or
+revision package and its contents, reserved Agreements Officer decisions, and
+next gate before useful intake or artifact preflight. The two component skills
+retain useful intake in read-only or artifact-limited sessions and stop only at
+the dependent provider or artifact boundary. Package static tests cover all
+four routes, required-capability and reserved-decision precedence, handoff
+preservation, and preview ordering. Installed CLI and Desktop qualification
+remains a promotion gate and is recorded separately when complete.

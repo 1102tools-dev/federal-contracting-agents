@@ -1,6 +1,6 @@
 # GovCon Growth Agent test record
 
-Version: `1.0.1`
+Version: `1.0.2`
 
 ## Stable 1.0 qualification
 
@@ -20,7 +20,7 @@ Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `93a0e26201fdc257044ec7e5f021a88ca4e0edc1`. Its canonical test record includes:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `e4c18eefebf479bb04a84cdb229338f38d9ed0a5`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -188,3 +188,12 @@ the exact nine-choice menu, made no upstream request, did not retry, and did not
 describe the result as a SAM.gov or connectivity outage. Claude coexistence
 replay retained the SAM.gov capability in both install orders and promoted the
 other package's identical server declaration when the initial owner was removed.
+
+## 1.0.2 outcome-guidance candidate — 2026-08-26
+
+All eight productive routes now name their default sourced chat product,
+contents, business-decision boundary, and next gate before intake or preflight.
+Help diagnoses with at most three questions and then recommends exactly one
+route without repeating the menu. Canonical and package static tests cover all
+nine selections and the preview ordering. Installed CLI and Desktop
+qualification remains a promotion gate and is recorded separately when complete.

@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.2 — Outcome-guidance correction
+
+All five agents advance to `1.0.2`.
+
+- Every productive menu selection names the recommended product, its major contents, the default or reserved decision boundary, and the next gate before intake or artifact preflight.
+- Market Research, GovCon Growth, and Acquisition Policy Help routes diagnose the user's objective and recommend exactly one route instead of repeating the menu.
+- Pre-Award and Other Transaction map every mode to a concrete `.docx`, `.xlsx`, combined package, or revision package while preserving every Contracting Officer and Agreements Officer decision boundary.
+- Six component skills permit useful intake in read-only or artifact-limited sessions and stop only before dependent provider work or artifact generation.
+- Static qualification covers all 33 top-level selections and preserves startup readiness, provider choice, document injection, URL approval, handoff, hybrid pricing, cost-sharing, and reserved-determination controls.
+
 ## v1.2.1 — Credential-readiness correction
 
 All five agents advance to `1.0.1`.
@@ -55,4 +65,4 @@ The repository marketplace promotes all five agent packages to stable `1.0.0`:
 - Codex: upgrade the marketplace, remove each installed package, and add it again.
 - Start a new task or reload plugins after updating.
 
-Future compatible corrections use the affected agent's `1.0.1` and marketplace `1.2.1`; compatible features use `1.1.0`; breaking changes use `2.0.0`.
+Future compatible corrections use the affected agent's next patch version and the marketplace's next patch version; compatible features use `1.1.0`; breaking changes use `2.0.0`.

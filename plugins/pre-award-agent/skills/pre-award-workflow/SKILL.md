@@ -38,7 +38,7 @@ Neither is an upstream outage. Do not retry automatically.
 ## Permanent release gates
 
 1. **Reserved determination:** Any request to decide, write, draft, or conclude that a proposed FFP price or rate is fair and reasonable routes immediately to the fixed Option A/Option B block below. A shorter refusal, generic request for proposal data, alternate option labels, or promise to write the conclusion later is invalid.
-2. **Artifact mode preflight:** Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the component skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
+2. **Artifact mode preflight:** Show the selected route's outcome preview and complete useful intake before testing artifact dependencies. Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the component skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
 
 ## Reserved-determination hard stop
 
@@ -61,6 +61,26 @@ For an FFP labor-rate request, enter `igce-builder-ffp` Workflow B. The first re
 > Which option?
 
 For another pricing method, use its component skill's equivalent controlled boundary. Never output determination language that the user did not already supply verbatim, even when it is labeled draft, example, conditional, or unsupported.
+
+## Post-selection outcome contract
+
+After a productive selection or an unambiguous direct route, the first response must begin with these exact labels in this order, before intake, routing preflight, or artifact preflight:
+
+```text
+Recommended outcome: <named product>
+Includes: <major contents>
+Boundary/default: <recommended default and reserved decisions>
+Next: <first required fact, document, authority choice, or approval>
+```
+
+Then ask one bounded question or one batched set of related questions. Reuse all supplied facts, never ask the user to invent or name a report, and offer an alternative only when it materially changes the product or effort. The startup readiness calls and a directly triggered reserved-determination hard stop take precedence over this preview. Preserve every component research, generation, transition, and authority gate.
+
+| Mode | Recommended outcome | Includes | Boundary/default | Next |
+|---|---|---|---|---|
+| 1 | Validated SOW/PWS `.docx` plus two chat-only handoffs | an executable work statement, measurable standards, staffing handoff, and Section B handoff | recommend PWS for performance-based services when the requirement supports it; the user or Contracting Officer retains contract type, commerciality, and other reserved decisions | collect the current requirement or source material and missing acquisition-strategy facts |
+| 2 | Routed IGCE `.xlsx`, separated by confirmed pricing method or hybrid CLIN | auditable labor, indirect, escalation, travel and other-cost build-up, benchmarks, assumptions, formulas, and validation | no contract type is inferred; the user or Contracting Officer must confirm FFP, LH, T&M, a CR subtype, or hybrid routing | collect the approved handoff or requirements and the confirmed pricing method |
+| 3 | SOW/PWS, approved chat-only handoffs, and routed IGCE workbook or workbooks | the complete validated scope-to-price package with the approved handoff carried forward | component approval and transition gates remain mandatory; contract type and reserved acquisition decisions stay with the user or Contracting Officer | collect the current requirement or source material and missing acquisition-strategy facts |
+| 4 | Affected artifact rebuild plus before/after change register | changed scope or pricing fields, dependent artifacts, preserved approvals, revised handoffs, and rebuilt validated outputs | preserve every unaffected decision and never patch calculated totals in place | collect the existing artifacts or handoffs and the exact changed facts |
 
 ## Operating rules
 
@@ -88,6 +108,8 @@ Which option would you like? You can reply with the number, label, or your own w
 ```
 
 Infer the mode from the request. If more than one mode is plausible and the difference changes the workflow, ask one concise question and wait.
+
+After selection or direct routing, render the matching row from the post-selection outcome contract before applying the mode rule below.
 
 - **Scope only:** invoke `sow-pws-builder`. Complete and validate the `.docx` and chat-only handoffs, then stop.
 - **Pricing only:** require the user-confirmed contract type and route directly to the matching IGCE skill.

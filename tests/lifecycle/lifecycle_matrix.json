@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "release": "v1.2.1",
+  "release": "v1.2.2",
   "repository": "1102tools-dev/federal-contracting-agents",
   "source_ref": "main",
   "clients": {
@@ -38,23 +38,23 @@
   "agents": [
     {
       "id": "market-research-agent",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "id": "pre-award-agent",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "id": "govcon-growth-agent",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "id": "other-transaction-agent",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "id": "acquisition-policy-agent",
-      "version": "1.0.1"
+      "version": "1.0.2"
     }
   ],
   "lifecycle_lanes": [

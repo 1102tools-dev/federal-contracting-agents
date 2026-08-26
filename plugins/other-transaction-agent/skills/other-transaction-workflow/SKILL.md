@@ -36,7 +36,7 @@ outage. Do not retry automatically.
 
 ## Artifact-mode preflight
 
-Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the cost skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
+Show the selected route's outcome preview and complete useful intake before testing artifact dependencies. Before the first artifact-specific approval, follow the active host's authoritative document and spreadsheet instructions and state whether full artifact mode is available. Do not bypass a host hard stop by guessing dependency paths or changing authoring libraries. If workbook generation is unavailable, preserve the approved inputs, offer the cost skill's structured JSON plus Markdown or CSV fallback, or ask the user to continue in a maintained client surface that supports `.xlsx`; never call that fallback a completed workbook.
 
 ## Required-capability hard stop
 
@@ -57,6 +57,26 @@ Apply this before mode selection or any remaining cost analysis when the request
 5. Preserve unresolved authority, contribution, payment-type, and eligibility issues as pending decisions rather than filling them with assumptions.
 6. Do not bypass a missing MCP capability by calling an improvised public API.
 
+## Post-selection outcome contract
+
+After a productive selection or an unambiguous direct route, the first response must begin with these exact labels in this order, before intake, capability preflight, or artifact preflight:
+
+```text
+Recommended outcome: <named product>
+Includes: <major contents>
+Boundary/default: <recommended default and reserved decisions>
+Next: <first required fact, document, authority choice, or approval>
+```
+
+Then ask one bounded question or one batched set of related questions. Reuse all supplied facts, never ask the user to invent or name a report, and offer an alternative only when it materially changes the product or effort. Startup readiness, a directly triggered required-capability hard stop, and a directly triggered reserved authority or determination boundary take precedence over this preview. Preserve every component research, generation, transition, and authority gate.
+
+| Mode | Recommended outcome | Includes | Boundary/default | Next |
+|---|---|---|---|---|
+| 1 | Validated OT Project Description `.docx` plus chat-only milestone handoff | authority record, objective, milestone structure, deliverables, completion evidence, schedule, and downstream cost handoff | milestone payment type remains pending unless supplied; the user or Agreements Officer retains authority, participant, contribution, successful-completion, and follow-on decisions | collect the concept or source material and missing authority facts |
+| 2 | Milestone-based OT Cost Analysis `.xlsx` | milestone should-cost, labor and market benchmarks, materials, travel, ODCs, fees, contribution treatment, funding profile, scenarios, and validation | approved milestones are the default basis; do not infer authority, statutory path, cost share, payment type, ceiling, or a price-reasonableness conclusion | collect approved milestones or concept, authority facts, and missing cost inputs |
+| 3 | Validated OT Project Description and OT Cost Analysis with the approved handoff carried forward | both separate artifacts, their validation records, and the approved chat-only milestone transition | every authority, milestone, artifact, and transition approval remains mandatory; reserved Agreements Officer decisions remain open | collect the concept or source material and missing authority facts |
+| 4 | Affected artifact rebuild plus before/after milestone register | changed milestones or cost bases, dependent artifacts, preserved approvals, revised handoff, and rebuilt validated outputs | preserve every unaffected decision and never patch calculated totals in place | collect the existing artifacts or handoff and the exact changed milestone or cost facts |
+
 ## Select the mode
 
 For a vague invocation with no defined task, show this complete mode menu after
@@ -74,6 +94,8 @@ Which option would you like? You can reply with the number, label, or your own w
 ```
 
 Infer the mode from the request. If more than one mode is plausible and the difference changes the workflow, ask one concise question and wait.
+
+After selection or direct routing, render the matching row from the post-selection outcome contract before applying the mode rule below.
 
 - **Project description only:** invoke `ot-project-description-builder`. Complete and validate the `.docx` and chat-only milestone handoff, then stop.
 - **Cost analysis only:** invoke `ot-cost-analysis` with the user's approved milestones or its own guarded concept-to-milestone workflow.

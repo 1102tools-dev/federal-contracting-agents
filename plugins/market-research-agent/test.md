@@ -1,6 +1,6 @@
 # Market Research Agent test record
 
-Version: `1.0.1`
+Version: `1.0.2`
 Evidence date: August 23, 2026
 
 ## Stable 1.0 qualification
@@ -19,7 +19,7 @@ provider and is never a silent fallback.
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `93a0e26201fdc257044ec7e5f021a88ca4e0edc1`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `e4c18eefebf479bb04a84cdb229338f38d9ed0a5`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -215,3 +215,13 @@ the exact six-choice menu, made no upstream request, did not retry, and did not
 describe the result as a SAM.gov or connectivity outage. The Claude run also
 passed with its prior needs-auth cache restored, proving the access-status
 configuration marker invalidates stale whole-server suppression after update.
+
+## 1.0.2 outcome-guidance candidate — 2026-08-26
+
+All five productive routes now name their default chat or `.docx` product,
+contents, reserved acquisition decisions, and next gate before the mandatory
+document question. Help diagnoses with at most three questions and then
+recommends exactly one route without repeating the menu. Canonical and package
+static tests cover all six selections and the preview-before-preflight order.
+Installed CLI and Desktop qualification remains a promotion gate and is
+recorded separately when complete.

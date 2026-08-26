@@ -1,6 +1,6 @@
 {
   "name": "govcon-growth-agent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Check SAM_API_KEY readiness before the nine-choice federal growth workflow.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -18,6 +18,6 @@
     "capabilities": ["Interactive", "Write"],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $govcon-growth-workflow. Check SAM readiness first; show any missing-key warning before the menu and research."
+    "defaultPrompt": "Use $govcon-growth-workflow. Check SAM first. After selection, show its four-part outcome preview before intake."
   }
 }

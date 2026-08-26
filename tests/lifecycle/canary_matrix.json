@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "round": "stable-1.0.1",
+  "round": "stable-1.0.2",
   "credential_variables": [
     {
       "name": "SAM_API_KEY",

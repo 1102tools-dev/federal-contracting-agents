@@ -1,6 +1,6 @@
 # Acquisition Policy Agent test record
 
-Version: `1.0.1`
+Version: `1.0.2`
 
 ## Stable 1.0 qualification
 
@@ -16,7 +16,7 @@ unresolved P0 or P1 defect remained at promotion.
 
 - The bundled `acquisition-policy-workflow` runtime is synchronized from
   `federal-contracting-skills` commit
-  `658108e2c59b591f617c89b4c38e1822a6429bd7`.
+  `e4c18eefebf479bb04a84cdb229338f38d9ed0a5`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.
@@ -151,3 +151,13 @@ credential variable absent, called only the local Regulations.gov
 the exact ten-choice menu, while preserving the keyless eCFR, Federal Register,
 and Acquisition.gov routes. Neither client blamed Regulations.gov or described
 the limited fallback as an outage.
+
+## 1.0.2 outcome-guidance candidate — 2026-08-26
+
+The vendored canonical workflow now names the selected chat product or Impact
+Brief, its contents, documented-status boundary, and next gate before framing
+or capability preflight. Help diagnoses with at most three questions and then
+recommends exactly one route without repeating the menu. Canonical and package
+static tests cover all ten selections, the fixed status-boundary precedence,
+and the preview ordering. Installed CLI and Desktop qualification remains a
+promotion gate and is recorded separately when complete.
