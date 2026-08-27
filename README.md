@@ -67,9 +67,9 @@ Every packaged federal MCP applies an explicit anti-burst interval. The packages
 
 ```bash
 codex plugin marketplace add 1102tools-dev/federal-contracting-agents --ref main
+codex plugin add govcon-growth-agent@1102tools
 codex plugin add market-research-agent@1102tools
 codex plugin add pre-award-agent@1102tools
-codex plugin add govcon-growth-agent@1102tools
 codex plugin add other-transaction-agent@1102tools
 codex plugin add acquisition-policy-agent@1102tools
 ```
@@ -80,9 +80,9 @@ Install the complete [`1102tools-host` configuration](config/codex/1102tools-hos
 
 ```bash
 claude plugin marketplace add 1102tools-dev/federal-contracting-agents
+claude plugin install govcon-growth-agent@1102tools
 claude plugin install market-research-agent@1102tools
 claude plugin install pre-award-agent@1102tools
-claude plugin install govcon-growth-agent@1102tools
 claude plugin install other-transaction-agent@1102tools
 claude plugin install acquisition-policy-agent@1102tools
 ```
@@ -123,19 +123,29 @@ There are two supported client families and four tested surfaces. They share pac
 
 Claude Desktop chat/Cowork, Copilot, DeepSeek, and other compatible hosts are not maintained release-blocking surfaces. They may work, but installation and troubleshooting are self-supported. An unavailable workbook path may never be replaced with guessed dependency paths or reported as a completed `.xlsx`.
 
-## Invoke a workflow
+## Start an installed agent
 
-Install or select the intended agent before giving the natural-language request. Explicit invocation is the stable product contract:
+Start a fresh task or session after installation.
+
+- **Codex Desktop or CLI:** type `@`, begin typing the agent name, and wait for the matching agent to appear.
+- **Claude Code in Desktop or CLI:** type `/`, begin typing the agent name, and wait for its workflow to appear.
+- In either client, press Enter once to load the autocomplete into the prompt box, then press Enter again to send it and start the agent. After the first Enter, you may add an ordinary-language request before sending.
+
+The agent then runs its local data-access readiness check and shows its complete menu. Natural-language routing without first selecting the agent is host-controlled, best-effort behavior.
+
+### Optional direct workflow names
+
+The client picker is the easiest start. Explicit workflow invocation remains available:
 
 | Agent | Codex | Claude Code |
 |---|---|---|
+| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
 | Market Research | `$market-research-workflow` | `/market-research-agent:market-research-workflow` |
 | Pre-Award | `$pre-award-workflow` | `/pre-award-agent:pre-award-workflow` |
-| GovCon Growth | `$govcon-growth-workflow` | `/govcon-growth-agent:govcon-growth-workflow` |
 | Other Transaction | `$other-transaction-workflow` | `/other-transaction-agent:other-transaction-workflow` |
 | Acquisition Policy | `$acquisition-policy-workflow` | `/acquisition-policy-agent:acquisition-policy-workflow` |
 
-Natural-language routing without first selecting the agent is host-controlled, best-effort behavior. Do not rely on ambient routing for reserved acquisition, pricing, policy, or agreements determinations.
+Do not rely on ambient routing for reserved acquisition, pricing, policy, or agreements determinations.
 
 ## Workflow safeguards
 
