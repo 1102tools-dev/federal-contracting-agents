@@ -4,11 +4,11 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "0d42070425495dc8d5c4156decd9826526b6e07e"
+      "commit": "abe7bd59188bf87dea65c47aa0cb1676313dce95"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
-      "commit": "53406aa2fb6655fa8def17e5a9a3fc230c7015b4",
+      "commit": "b56de8475033aa46b12c842344e81dd1fcef18c7",
       "packages": {
         "acquisition-gov": {
           "distribution": "acquisition-gov-mcp",
@@ -16,7 +16,7 @@
         },
         "bls-oews": {
           "distribution": "bls-oews-mcp",
-          "version": "1.0.8"
+          "version": "1.0.9"
         },
         "ecfr": {
           "distribution": "ecfr-mcp",
@@ -32,15 +32,15 @@
         },
         "gsa-perdiem": {
           "distribution": "gsa-perdiem-mcp",
-          "version": "1.0.8"
+          "version": "1.0.9"
         },
         "sam-gov": {
           "distribution": "sam-gov-mcp",
-          "version": "1.0.11"
+          "version": "1.0.12"
         },
         "regulations-gov": {
           "distribution": "regulationsgov-mcp",
-          "version": "1.0.7"
+          "version": "1.0.8"
         },
         "usaspending": {
           "distribution": "usaspending-gov-mcp",
@@ -202,7 +202,7 @@
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
             "references/document-intake.md": "912c8d023f31edb88f8a426f17602b639b4f280fb398300426e9293bbcf4235c",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
-            "references/federal-data-operations.md": "6050b045514e206f52be505ab3eae36eabcff4cf0684ff2f0e45da85ff401fc2",
+            "references/federal-data-operations.md": "6b53ec10addf91a4766b7ecea34182295de012f280298760e227fcd2dda02b79",
             "references/launch-menu-and-question-blocks.md": "3fd8ae55b88ad936437469854ce4695fa6582130f0cb5707b62914ddf7d9da1d",
             "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
             "references/runtime-adaptation.md": "9e2021318ee8645327fb4fb49b884bfe9291e1d1c89f28d4ad5b85a59ce4eedf",

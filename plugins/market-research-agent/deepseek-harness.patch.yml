@@ -5,7 +5,7 @@
         serverName: sam-gov
         transport: stdio
         command: uvx
-        args: ['--from', 'sam-gov-mcp==1.0.11', 'sam-gov-mcp']
+        args: ['--from', 'sam-gov-mcp==1.0.12', 'sam-gov-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
           SAM_API_KEY: !!js "process.env.SAM_API_KEY ?? ''"

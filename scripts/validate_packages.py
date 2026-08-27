@@ -62,13 +62,13 @@ EXPECTED_MCPS = {
 }
 EXPECTED_MCP_REQUIREMENTS = {
     "acquisition-gov": "acquisition-gov-mcp==1.0.1",
-    "bls-oews": "bls-oews-mcp==1.0.8",
+    "bls-oews": "bls-oews-mcp==1.0.9",
     "ecfr": "ecfr-mcp==1.0.5",
     "federal-register": "federal-register-mcp==1.0.4",
     "gsa-calc": "gsa-calc-mcp==1.0.4",
-    "gsa-perdiem": "gsa-perdiem-mcp==1.0.8",
-    "sam-gov": "sam-gov-mcp==1.0.11",
-    "regulations-gov": "regulationsgov-mcp==1.0.7",
+    "gsa-perdiem": "gsa-perdiem-mcp==1.0.9",
+    "sam-gov": "sam-gov-mcp==1.0.12",
+    "regulations-gov": "regulationsgov-mcp==1.0.8",
     "usaspending": "usaspending-gov-mcp==1.0.4",
 }
 EXPECTED_PACING = {

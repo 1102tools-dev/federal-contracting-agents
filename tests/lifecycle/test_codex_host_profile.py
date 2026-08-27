@@ -88,7 +88,7 @@ class CodexHostProfileTests(unittest.TestCase):
 
     def test_partial_host_override_is_rejected(self) -> None:
         text = render_profile().replace(
-            'args = ["--from", "sam-gov-mcp==1.0.11", "sam-gov-mcp"]\n',
+            'args = ["--from", "sam-gov-mcp==1.0.12", "sam-gov-mcp"]\n',
             "",
             1,
         )

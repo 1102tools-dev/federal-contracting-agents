@@ -5,7 +5,7 @@
         serverName: bls-oews
         transport: stdio
         command: uvx
-        args: ['--from', 'bls-oews-mcp==1.0.8', 'bls-oews-mcp']
+        args: ['--from', 'bls-oews-mcp==1.0.9', 'bls-oews-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '3'
           BLS_API_KEY: !!js "process.env.BLS_API_KEY ?? ''"
@@ -24,7 +24,7 @@
         serverName: gsa-perdiem
         transport: stdio
         command: uvx
-        args: ['--from', 'gsa-perdiem-mcp==1.0.8', 'gsa-perdiem-mcp']
+        args: ['--from', 'gsa-perdiem-mcp==1.0.9', 'gsa-perdiem-mcp']
         env:
           FEDERAL_API_MIN_INTERVAL_SECONDS: '4'
           PERDIEM_API_KEY: !!js "process.env.PERDIEM_API_KEY ?? 'DEMO_KEY'"

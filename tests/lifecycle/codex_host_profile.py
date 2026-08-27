@@ -25,7 +25,7 @@ PROFILE_NAME = "1102tools-host"
 SERVER_CONFIG = (
     (
         "sam-gov",
-        "sam-gov-mcp==1.0.11",
+        "sam-gov-mcp==1.0.12",
         "sam-gov-mcp",
         "3",
         ("SAM_API_KEY",),
@@ -41,7 +41,7 @@ SERVER_CONFIG = (
     ),
     (
         "bls-oews",
-        "bls-oews-mcp==1.0.8",
+        "bls-oews-mcp==1.0.9",
         "bls-oews-mcp",
         "3",
         ("BLS_API_KEY",),
@@ -57,7 +57,7 @@ SERVER_CONFIG = (
     ),
     (
         "gsa-perdiem",
-        "gsa-perdiem-mcp==1.0.8",
+        "gsa-perdiem-mcp==1.0.9",
         "gsa-perdiem-mcp",
         "4",
         ("PERDIEM_API_KEY",),
@@ -81,7 +81,7 @@ SERVER_CONFIG = (
     ),
     (
         "regulations-gov",
-        "regulationsgov-mcp==1.0.7",
+        "regulationsgov-mcp==1.0.8",
         "regulationsgov-mcp",
         "4",
         ("REGULATIONS_GOV_API_KEY",),

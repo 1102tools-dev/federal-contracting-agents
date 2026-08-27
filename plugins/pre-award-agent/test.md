@@ -26,11 +26,11 @@ remained at promotion.
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `0d42070425495dc8d5c4156decd9826526b6e07e`
+- Canonical skills commit: `abe7bd59188bf87dea65c47aa0cb1676313dce95`
 - Canonical MCP commit: `0ba64dc946c95ee1763e484c03a5ae18205a85f3`
-- `bls-oews-mcp==1.0.8`, explicit 3-second safeguard
+- `bls-oews-mcp==1.0.9`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
-- `gsa-perdiem-mcp==1.0.8`, explicit 4-second safeguard
+- `gsa-perdiem-mcp==1.0.9`, explicit 4-second safeguard
 
 Every vendored runtime file matched its SHA-256 lock. Development-only `test.md` and `testing.md` files were not copied into installed skill folders.
 
