@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.5 — Customer-facing fallback and formatting correction
+
+All five agents advance to `1.0.5`. This small follow-up release keeps incomplete records readable and actionable in the delivered report.
+
+- Market Research incomplete records now show an explicit evidence-request plan instead of repeated “Not recorded” rows.
+- Growth, Market Research, and Acquisition Policy scope metadata now uses reader-facing labels and list values.
+- Money-like calculated totals render as currency in the customer-facing report.
+
 ## v1.2.4 — Consulting-grade output correction
 
 All five agents advance to `1.0.4`. This release makes the customer-visible work product the controlling quality standard across the suite.

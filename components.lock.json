@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "0f6f2d3ac9bcc4a22613d2cc332221a8b7879959"
+      "commit": "9fce3446f75ea01b5fa35b48762ab352d3237784"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -166,7 +166,7 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
@@ -184,7 +184,7 @@
             "references/runtime-adaptation.md": "8a55589a7175a7eebc8ee17aff947b82c9276a1403c7f29465439e92017b2173",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
-            "scripts/build_growth_brief.py": "eed0d2b19a5baa09f841ac983e7087a6031f63239328ddc20b3db4074aacf216",
+            "scripts/build_growth_brief.py": "19e529c0395f4283490bb87d595b6ebd8e5ceee589605e01273733d7273a4c2e",
             "scripts/validate_growth_brief.py": "3fc2615d1534a0b662c98cce8caee03a5f90a78a87a3581c8fc31796c807fd43",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }
@@ -192,7 +192,7 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "skills": {
         "market-research-workflow": {
           "files": {
@@ -209,7 +209,7 @@
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
             "references/web-research-method.md": "04c3dc1de20f591f4aad97de78373c058e0c6e68560a20d71547414e9db2dd92",
-            "scripts/build_market_research_report.py": "801918cb7f403812443c128bbcc2e6fac852bd3ef07d33dc901c728943caa1a8",
+            "scripts/build_market_research_report.py": "7ab84a117a73c0bcf182e4e90213dd448c16fd0aa5161d74095769f091e63215",
             "scripts/validate_market_research_report.py": "9df8c99937d27a748f9f2be0105e9256b2379fc0a7be83851d6f75f1e57906a0",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }
@@ -217,7 +217,7 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
@@ -230,7 +230,7 @@
             "references/runtime-adaptation.md": "f95d1755a37219773a59a7055abe16610298bd45e1ee0637ad825ab7783526c4",
             "references/source-routing.md": "5b8a238203af9e6f48d26f5f8da0e37788222ea1c7c6ae6ca553aa521d68ba32",
             "references/status-and-decision-boundaries.md": "2ef479318620e7cfdbeced83134eb1ee0f33618af8d8cc35a34bbdab66dd8d2d",
-            "scripts/build_acquisition_policy_brief.py": "bf62c9c0683852cf4593061a583c06256c7704819827f71a7ad76257ccd77e9a",
+            "scripts/build_acquisition_policy_brief.py": "cf093d752955f89ead1e67edae9ef2b30a4dd873fe257abb8fbacae84446d915",
             "scripts/validate_acquisition_policy_brief.py": "54de362abc44d5b9a5b696b1e82ad1969933f75bc1f7c1dfc158e70a74bd92cc",
             "scripts/validate_policy_research_record.py": "129e2c479b44707f1a1df050ae7e9ac5e4e46ec43f4c0fafd604cecf2e76d01c"
           }
