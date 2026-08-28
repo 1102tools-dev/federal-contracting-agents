@@ -20,7 +20,7 @@ Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `9fce3446f75ea01b5fa35b48762ab352d3237784`. Its canonical test record includes:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `3c2dca2e3f20770b2095690ce0c85050fbbbace1`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.
@@ -79,7 +79,7 @@ dated evidence and is not the current package-preview declaration.
 Installed and verified at `1.0.0-rc.3`.
 
 - Explicit invocation returned the complete nine-item workflow menu and its closing selection question, with no research, retrieval, or MCP call.
-- `sam-gov` now pins `sam-gov-mcp==1.0.7`, whose missing-key guidance is host-neutral.
+- `sam-gov` now pins `sam-gov-mcp==1.0.8`, whose missing-key guidance is host-neutral.
 - The shipped source-commit citation above was corrected to the commit this package actually vendors. The prior citation named a commit whose later delta changed `references/evidence-contract.md` and `scripts/validate_research_record.py`, so the record attested to bytes the package no longer ships.
 
 ## Package and remote-MCP evidence

@@ -24,13 +24,13 @@ PLUGIN_NAMES = (
     "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
-    "pre-award-agent": "1.0.7",
-    "other-transaction-agent": "1.0.7",
-    "govcon-growth-agent": "1.0.7",
-    "market-research-agent": "1.0.7",
-    "acquisition-policy-agent": "1.0.7",
+    "pre-award-agent": "1.0.8",
+    "other-transaction-agent": "1.0.8",
+    "govcon-growth-agent": "1.0.8",
+    "market-research-agent": "1.0.8",
+    "acquisition-policy-agent": "1.0.8",
 }
-MARKETPLACE_VERSION = "1.2.7"
+MARKETPLACE_VERSION = "1.2.8"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",

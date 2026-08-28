@@ -19,7 +19,7 @@ provider and is never a silent fallback.
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `ce8497414e80ef4f661bc08550036ea6c7f380a8`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `3c2dca2e3f20770b2095690ce0c85050fbbbace1`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.
@@ -78,7 +78,7 @@ dated evidence and is not the current package-preview declaration.
 Installed and verified at `1.0.0-rc.4`.
 
 - Explicit invocation returned the complete six-item workflow menu and its closing selection question, with no research, retrieval, or MCP call.
-- `sam-gov` now pins `sam-gov-mcp==1.0.7`, whose missing-key guidance is host-neutral.
+- `sam-gov` now pins `sam-gov-mcp==1.0.8`, whose missing-key guidance is host-neutral.
 
 ## `rc.3` rename and repackage evidence
 

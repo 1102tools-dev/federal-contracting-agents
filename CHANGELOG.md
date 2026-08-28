@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.8 - Rendered-deliverable correction from the paid-output review
+
+All five agents advance to `1.0.8`. Every change in this release corrects a defect a paying reader can see in the delivered file.
+
+- Market Research reports render reader-facing source labels instead of internal class tokens, deduplicate repeated action tables, renumber evidence IDs without gaps, share one document design across routes, and reject session narration and named-firm incoherence at validation.
+- GovCon Growth briefs carry the customer identity verbatim from intake, ban internal harness vocabulary in reader-visible text, require a checkable locator and retrieval date on every federal evidence row, stop restating page-one lists, and must answer each route's management question or lead with an explicit shortfall statement.
+- Acquisition Policy products render one decision-gate table with readable column widths, carry the customer organization and decision date into every scope header, constrain status cells to a fixed vocabulary, and identify the prior analysis on refresh.
+- Cost-reimbursement IGCEs must price as cost plus fee wherever a label says price, keep scenario fee bases consistent with the summary, and show per-period exposure for multi-period requirements. LH and T&M IGCEs must cover every stated period, keep escalation inputs live, and trace summary constants to the refresh register.
+- OT project descriptions must carry one product identity across cover, title, and header with no instructional residue. OT cost models require per-category benchmarks or named proxies, hours reconciled to milestone durations, and readable narrative columns. Recost workbooks reject orphan benchmarks, lump-sum deltas, and silently dropped register-directed elements.
+
 ## v1.2.7 — Paid-output differentiation and print correction
 
 All five agents advance to `1.0.7`. This release corrects the last material presentation defects found in a full paid-output review.
