@@ -8,6 +8,10 @@ license: MIT
 
 Coordinate the bundled skills. Do not replace their acquisition logic, artifact specifications, approval gates, or validators.
 
+## Product-first default
+
+Treat the route as a request for an acquisition work product, not a narrated workflow. After the required outcome preview and approvals, write for the Contracting Officer, program manager, COR, and analyst who must act on the result. Put the decision supported, material assumptions, material risks, and next human action on page one or in the workbook summary. Keep evidence in a compact methodology or source appendix; do not make the reader traverse a research diary. Reuse an approved acquisition context and handoff verbatim instead of repeatedly re-collecting it. A gate remains only when it protects a scope decision, source plan, contract-type decision, authority boundary, or artifact correctness. For any workbook, recalculate and save the delivered file through a spreadsheet engine, then render the delivered `IGCE Summary` before delivery. A blank or zero displayed total caused by missing cached formula values is a delivery failure, not a styling issue.
+
 Runtime requirements: the bundled SOW/PWS and IGCE skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
 ## Startup data-access readiness

@@ -56,6 +56,13 @@ Apply this before mode selection or any remaining cost analysis when the request
 4. Reuse approved milestone and authority facts exactly. Ask only for required fields that remain missing or that the user explicitly reopens.
 5. Preserve unresolved authority, contribution, payment-type, and eligibility issues as pending decisions rather than filling them with assumptions.
 6. Do not bypass a missing MCP capability by calling an improvised public API.
+7. Treat confirmed project and cost facts as a reusable context record. Carry it
+   into the selected route and ask only for changed or genuinely missing facts.
+8. Keep process narration out of products. Put compact source notes and
+   validation evidence in a short appendix or workbook Methodology sheet.
+9. Use a proportional research budget: no more than 30 external calls per
+   route. Stop when an additional source would not change a milestone,
+   assumption, or decision, then record the source date and limitation.
 
 ## Post-selection outcome contract
 
@@ -80,6 +87,18 @@ Then ask one bounded question or one batched set of related questions. Reuse all
 | 2 | Milestone-based OT Cost Analysis `.xlsx` | milestone should-cost, labor and market benchmarks, materials, travel, ODCs, fees, contribution treatment, funding profile, scenarios, and validation | approved milestones are the default basis; do not infer authority, statutory path, cost share, payment type, ceiling, or a price-reasonableness conclusion | collect approved milestones or concept, authority facts, and missing cost inputs |
 | 3 | Validated OT Project Description and OT Cost Analysis with the approved handoff carried forward | both separate artifacts, their validation records, and the approved chat-only milestone transition | every authority, milestone, artifact, and transition approval remains mandatory; reserved Agreements Officer decisions remain open | collect the concept or source material and missing authority facts |
 | 4 | Affected artifact rebuild plus before/after milestone register | changed milestones or cost bases, dependent artifacts, preserved approvals, revised handoff, and rebuilt validated outputs | preserve every unaffected decision and never patch calculated totals in place | collect the existing artifacts or handoff and the exact changed milestone or cost facts |
+
+## Product-first delivery standard
+
+Use a distinct, plain-English title for each route; never title every output
+"Evidence Brief" or reuse an identical cover structure. The first page must
+answer, in order: prototype outcome, decision supported, pivotal milestones or
+financial drivers, major assumptions, and next action for the Agreements Officer
+and program team. Keep a compact decision brief on page one and evidence later.
+For a cost workbook, calculate and save the delivered file through a spreadsheet
+engine, then render `OT Cost Summary` before delivery. A blank formula result or
+a zero created by missing cached values is a delivery failure, even when formula
+structure is correct.
 
 ## Select the mode
 

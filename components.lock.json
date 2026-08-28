@@ -81,7 +81,7 @@
       "skills": {
         "sow-pws-builder": {
           "files": {
-            "SKILL.md": "80446e7d4784ffabdc5d138d7e5acd381cb1fef916be1b80cb61e847472bc026",
+            "SKILL.md": "e4bb05162c94c3365cd1f4862bdcec05ada85386b25c1cb9fc5fc70bedd3dc8a",
             "agents/openai.yaml": "92fd031bf53de6bb7535ac950993a85410d743ea7677712d4d586af1d18f9f48",
             "references/document-specification.md": "18d256310578d904049ab502b46a2fd91934dbb3cdd5910a23894f00e932aba4",
             "references/handoff-specification.md": "31f636cfa9d59535af58fa63ebe2cda17cc0cd8b008ed39075fa421951907a0e",
@@ -94,12 +94,12 @@
         },
         "igce-builder-ffp": {
           "files": {
-            "SKILL.md": "7c003ee35b8c9b1a747e8571ec4c821e2e108bdf8c17898289687f6472e566e2",
+            "SKILL.md": "01e60db298d5e99a2a4be8bc3882e7c622b8f364f2bbd2312181b9f5afc27e6e",
             "agents/openai.yaml": "7f6829b2ea276adca433feb1c0de93dedf74ead18ccf7a13ea2244f7eff1688e",
             "references/data-source-operations.md": "4c533b8aa4f34882ea0fcf6a86831f2efcfa0dc46bea5441e9b52d41d1309e38",
             "references/runtime-adaptation.md": "82473ccc0a0190955404702f40cd5572b0d0f38338580a447a7a729eda6135d6",
             "references/validation-gates.md": "b8139ceab6733049667633cfad93eb9e52cb2e9f5a5ec8969add398f08c54e36",
-            "references/workbook-specification.md": "2a1ea15305532092d369cac0d398b90b51d4c367c045d37e5ba2eb8dfcd38e20",
+            "references/workbook-specification.md": "00ea592d56d90bbc2573314e5936a37d7f217138963316f46a6b55bbe6f2b33c",
             "references/wrap-rate-presets.md": "4739f05f086e0d1865c7120b1421f20d3598d0a199e32ea09d282c0d42813201",
             "scripts/recompute_expected_values.py": "df2c6dd83e7aea590423ce6224da2352c87c59985273dce51b91b3c5ccd98a51",
             "scripts/validate_workbook.py": "21c4289e5d9789802c4bd4587f91acba816b35e8febb55d09269bc82b15c1f46"
@@ -107,12 +107,12 @@
         },
         "igce-builder-lh-tm": {
           "files": {
-            "SKILL.md": "0c04bfa20674537e19025cbcc37ee0d3df07dc70714a26d7387102c939cd68e8",
+            "SKILL.md": "41960f3eaf1fc78088dfdd3dcbb32b3aa84946721cae2d757c2fe71ddf9684be",
             "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
             "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
             "references/validation-gates.md": "575c8343f0737fafea854f8e13ae662caee93083e81b3d3baa6fb5b1be6d9c0f",
-            "references/workbook-specification.md": "3fcb49aabadc3cadc558c5ca1c233c22ae40c5be977013cda1c0721ff77ed71c",
+            "references/workbook-specification.md": "088cddbe904d283ccd405b29d4335b8bc7a03c2fd35b8ca50bf9b00766faa1a1",
             "references/wrap-rate-presets.md": "340b5a6f8458be4da567921fa8830f713fff2616635f4c72f04a9693e79d65e1",
             "scripts/recompute_expected_values.py": "bbfb40352eb6c5a309dcf6945eddcdb5a48df79c616ac90c16ef5074c709f3df",
             "scripts/validate_workbook.py": "bf65262b5b91a8a579a11cf23968fb0955db5ec7bc3380ee0b8c6186c7ef218c"
@@ -120,12 +120,12 @@
         },
         "igce-builder-cr": {
           "files": {
-            "SKILL.md": "93802e509f55293235df86605aa75f4d9b0cb88647b8965e0b2c4c6211e58ccf",
+            "SKILL.md": "1ecaa81846b765d3258625344c3859fe15350bdd88836c4a143ade1325f54720",
             "agents/openai.yaml": "93485c245128c2de80e06d513d25d65f4210cf5e368fc77fdcfb39f3a5bfa99a",
             "references/data-source-operations.md": "23bbbda749131f7a26dcea08889bf0893959da78f910b0b07546e9312625b8e1",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
             "references/validation-gates.md": "4c1f56f2a70ed871640c7a3c354d1aaae8d2a43803e855bb9db498960983dce0",
-            "references/workbook-specification.md": "7cfec6d7cfa4a95f40a06b0acf721f057c8f7fc74c95dfab3a041322f08be5c6",
+            "references/workbook-specification.md": "d6d7bb4f4731970671b5c80a047b5535c71a70a14b2117cd03ae666c21d5921e",
             "references/wrap-rate-presets.md": "458502322a8f88f759a14d1db54653899be7d94f551a2fc8482658db13a62404",
             "scripts/recompute_expected_values.py": "682d38537cf57a3a564d8834aa827644e575d1e48304a527a9410ff5d07f3cba",
             "scripts/validate_workbook.py": "0b9c8d96e52ab08afe6b7bf08ae06bf02b3eaf3a13338fc5e347846490a50173"
@@ -141,9 +141,9 @@
             "SKILL.md": "059cd95730139aaaa477f346f8faad5cfaa65d5fbd1de9a4c3a938882c33b0b4",
             "agents/openai.yaml": "c6ceb8947291f6185580d886db47b678ea24bd9eae1d6ac155449aeea805809f",
             "references/authority-and-scope-rules.md": "1f07042b623b2be487038a8a3cd497ad6ee8fdfa2dfc39f8f08ef98a65d0aa4d",
-            "references/document-specification.md": "c0aa275a05563ce0d1ad141791560daa256fe074e9d40f75d68c4d9dee1cb1a3",
+            "references/document-specification.md": "dce83b8421dcc978e265b9715dda6a9d254251e7ee1a377cb2a1cb50e3c93206",
             "references/handoff-specification.md": "e9354b6e574fbe80c0b00fbe0afe4b11b76ad0acacf1ba26e60a659dd0e9e566",
-            "references/question-blocks.md": "617e4c33d5d206c5f4896e40d9eb744439c0f6af523dce26a8ece6983c1c84ec",
+            "references/question-blocks.md": "b7802e9edbf9c6d00c081dff187da755cd473553183c752c78329fcacab9e250",
             "references/runtime-adaptation.md": "6b77a23a1f64e63d194b739b1f6ae8e1b99a696d1d20a2ad1a906f7379bffd94",
             "references/validation-gates.md": "b53fe010962376844a95aa42e6153fae6f5e6f4573780a0f95542cf26f8932f1",
             "scripts/validate_docx.py": "aaa26fadc63178a579f80857eb38aa50af6e3e0341814162bfa2644af076468d"
@@ -158,7 +158,7 @@
             "references/labor-and-costing-methods.md": "535b0ad4944a118c7325bb7401b3eba672d2323d7f69d9bc2189693caf0f8247",
             "references/runtime-adaptation.md": "681e602446a7f656572bd2b01c0261d4ab1d626820276e4141e3c139155938da",
             "references/validation-gates.md": "7c2296777ffc715e3f04ce2f739df6eada0c031c5917e93ace2edd722bce46fb",
-            "references/workbook-specification.md": "eaaf01ce69a4f13a6805f5703c8f91b67e2cdb7c9d202c3efc113f2e229fe787",
+            "references/workbook-specification.md": "e6bdfb877145366cdbc164cdd1df6b45f95736a959c30fd6f96a37ad3a42b792",
             "scripts/recompute_expected_values.py": "a818480ab4e7b3dd95f4251475721ccf0925ddbd4dcb5347b11115d0c5ad293b",
             "scripts/validate_workbook.py": "77a800169528c188f26c4fa2ef3b0155fa28bbe64fd67f17c84ebd50cf5d12d4"
           }
@@ -170,9 +170,9 @@
       "skills": {
         "govcon-growth-workflow": {
           "files": {
-            "SKILL.md": "cdb8579f8980ba8cc47a9208cdb2f031945b843f117a0f79ef3f14ad0ec33922",
+            "SKILL.md": "b49bc3bd189c86a38e8d79281e79fc130ee7dc2c66aafe470c4e9ce7d6407465",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
-            "references/brief-specification.md": "808242d5e63ea2e5bdabb1241ca93d67d7e837a90d43631852822d93f7f60087",
+            "references/brief-specification.md": "00519d5feed8c45771422713b2e14681acec4cf89ef28850ed220129fe2b2e0f",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
@@ -184,8 +184,8 @@
             "references/runtime-adaptation.md": "8a55589a7175a7eebc8ee17aff947b82c9276a1403c7f29465439e92017b2173",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
-            "scripts/build_growth_brief.py": "25aee3cbf246b01ddcac6c03d8749e30a3c6de749c1900f1fa2d7a453dcd9031",
-            "scripts/validate_growth_brief.py": "fbcf48b92863c86da7d85cfb7c32072435bca1d10a67bf09173e372730a5eff6",
+            "scripts/build_growth_brief.py": "54a0f5642c70bdc22cb0dc8590eecc5ef97479a07dfd3f3b69c1ffe9009366cb",
+            "scripts/validate_growth_brief.py": "ade9bfecfb2757fb613bc72dc2f5428043a9cad8edc5cce37ff6bffeb7948140",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }
         }
@@ -196,7 +196,7 @@
       "skills": {
         "market-research-workflow": {
           "files": {
-            "SKILL.md": "4e72a25ddbee618e78b23f85f8595d656120d105fd55796fb4e34ab8b56ab322",
+            "SKILL.md": "23b1da14bd67675298b1b6168af1070d155da6ad0e2f6beecb844660a3800b1d",
             "agents/openai.yaml": "1b89f13f239644c00656fcb3fd9d2a4a4ab3abdfb454534cb43bc60b1d4e33c2",
             "references/analysis-methods.md": "d5c82aa539d0c7056d0dfaabd958d737320456e90f56eee23a802c0883f8d96e",
             "references/decision-boundaries.md": "6fc743b9ceac4bc3076218e71713a11fd6808782bb023fe574f4522376d84ad0",
@@ -204,13 +204,13 @@
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/federal-data-operations.md": "6b53ec10addf91a4766b7ecea34182295de012f280298760e227fcd2dda02b79",
             "references/launch-menu-and-question-blocks.md": "3fd8ae55b88ad936437469854ce4695fa6582130f0cb5707b62914ddf7d9da1d",
-            "references/report-specification.md": "4954b56f05c5827af221448de40cb57df3f1caa80856eac50084bde723b37746",
+            "references/report-specification.md": "d6c68e51e48b10fcc16a33a0c9ca7a93cbef42f6cc2fcfaac4e6bacd9bc0db48",
             "references/runtime-adaptation.md": "9e2021318ee8645327fb4fb49b884bfe9291e1d1c89f28d4ad5b85a59ce4eedf",
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
             "references/web-research-method.md": "04c3dc1de20f591f4aad97de78373c058e0c6e68560a20d71547414e9db2dd92",
-            "scripts/build_market_research_report.py": "2859766d072cc939d549dcdc1ee74bdd6c1e0d337cae299db606650666b31ec3",
-            "scripts/validate_market_research_report.py": "f81072dd2030e5357e9cf6a066ce23790c777d40345bd35c2241dc05521a2c66",
+            "scripts/build_market_research_report.py": "d157f387581416fa892dcda76ad93d9d6233c38090e79c8a5322cf7695692166",
+            "scripts/validate_market_research_report.py": "51bc743e9237f90432529aba972422ab3bad8b250f8d890b857ae8a0490f93cb",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }
         }
@@ -221,17 +221,17 @@
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
-            "SKILL.md": "3f2abe6b17f8c76bbc40480e77169a8d735230806870ee836db8f2b76309ec87",
+            "SKILL.md": "ea49db40dd63a85532dc0a9c663a2bd5d968e9c00881d92dbe53365121b488aa",
             "agents/openai.yaml": "5e05791ce8d4cf8b3c72ecc9ab02c736e694242bd2c25578b18b3e87c1f28eb4",
             "references/document-intake.md": "dc7cd9fc608e0829298ef0e25bfd82bb7f1378b87feeaa5ec35322db8d368178",
             "references/evidence-contract.md": "5ddff75844eec5e550ccda6be9929cd3afea2721641b4499df434ff641c3e3cd",
             "references/launch-menu-and-framing.md": "44948e85e2e18316c05cffbe5647a4255da335f911bc92600b5842728bc58c74",
-            "references/report-specification.md": "aa8be549fb181d3f9e4382324ccca415abc5e4ca517e39fd968437711da45f76",
+            "references/report-specification.md": "e1643ab6663a728f88f749347e6d32f72093a939362681f1d1b1a1a6d7aa85d0",
             "references/runtime-adaptation.md": "f95d1755a37219773a59a7055abe16610298bd45e1ee0637ad825ab7783526c4",
             "references/source-routing.md": "5b8a238203af9e6f48d26f5f8da0e37788222ea1c7c6ae6ca553aa521d68ba32",
             "references/status-and-decision-boundaries.md": "2ef479318620e7cfdbeced83134eb1ee0f33618af8d8cc35a34bbdab66dd8d2d",
-            "scripts/build_acquisition_policy_brief.py": "623c716e711619e9d0ff9326fbabe38ba076c72bf0148affda9b2a61111cbebf",
-            "scripts/validate_acquisition_policy_brief.py": "d59f51ed669b0c4ca97a9ca622a74b848d354557b29d1543b9547d5a6ee6c657",
+            "scripts/build_acquisition_policy_brief.py": "394f4ffbffb62f8c10fd21455860e8ea38879dddf9850374fa073c6428d4c7da",
+            "scripts/validate_acquisition_policy_brief.py": "15c48345863317c97eb14528c2e35bde1344f1426ba8c5bb1350ed09089a3b3d",
             "scripts/validate_policy_research_record.py": "129e2c479b44707f1a1df050ae7e9ac5e4e46ec43f4c0fafd604cecf2e76d01c"
           }
         }
