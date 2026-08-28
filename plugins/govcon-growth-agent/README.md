@@ -1,6 +1,6 @@
 # GovCon Growth Agent
 
-Stable release `1.0.6`.
+Stable release `1.0.7`.
 
 This self-contained Agent Plugins 1.0 package installs one authoritative multi-file skill, pinned SAM.gov, USASpending, and GSA CALC+ MCP definitions, plus Tavily's optional official keyless remote MCP. It supports opportunity discovery, bid screens, competitor and incumbent analysis, recompete radar, teaming research, agency and market intelligence, pricing context, and prior-research refreshes.
 

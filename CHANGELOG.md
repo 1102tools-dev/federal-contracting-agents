@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.7 — Paid-output differentiation and print correction
+
+All five agents advance to `1.0.7`. This release corrects the last material presentation defects found in a full paid-output review.
+
+- Current Rule, Agency Status, Three-Layer, and Rulemaking routes now deliver distinct route-native analyses instead of reusing the Acquisition Policy Impact Brief body.
+- Agency-specific Policy conclusions are derived from the named scope and matched deviation evidence instead of a hardcoded comparator agency.
+- FFP, LH/T&M, cost-reimbursement, and OT cost workbooks now require a populated print area, one-page-wide scaling, and an unsplit first-view decision summary.
+
 ## v1.2.6 — Focused decision-product correction
 
 All five agents advance to `1.0.6`. This release replaces seven generic-looking focused reports with route-native paid work products.
