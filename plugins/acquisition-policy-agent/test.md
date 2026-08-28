@@ -16,7 +16,7 @@ unresolved P0 or P1 defect remained at promotion.
 
 - The bundled `acquisition-policy-workflow` runtime is synchronized from
   `federal-contracting-skills` commit
-  `d392dc47ee5002fb736600254bb36aa4f5d941ff`.
+  `88ec66651496e5d059a5f6e6147bfbea92b73979`.
 - Canonical skill quick validation and repository validation.
 - Policy-record fixture validation, controlled negative cases, and deterministic unit tests.
 - Impact-brief generation, evidence-ID validation, link validation, LibreOffice conversion, text extraction, and all-page visual review.

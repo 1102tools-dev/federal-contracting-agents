@@ -26,7 +26,7 @@ remained at promotion.
 ## Locked components
 
 - Agent Plugins specification: 1.0.0
-- Canonical skills commit: `d392dc47ee5002fb736600254bb36aa4f5d941ff`
+- Canonical skills commit: `88ec66651496e5d059a5f6e6147bfbea92b73979`
 - Canonical MCP commit: `0ba64dc946c95ee1763e484c03a5ae18205a85f3`
 - `bls-oews-mcp==1.0.9`, explicit 3-second safeguard
 - `gsa-calc-mcp==1.0.4`, explicit 3-second safeguard
