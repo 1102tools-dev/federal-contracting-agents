@@ -1,6 +1,6 @@
 # 1102tools Federal Acquisition Agents
 
-Choose one federal acquisition job and install one self-contained agent package. All five 1102tools agents are stable at `1.0.5`. They are installed from the GitHub-hosted 1102tools marketplace. The marketplace catalog itself is version `1.2.5`; that catalog version is separate from the agent package versions.
+Choose one federal acquisition job and install one self-contained agent package. All five 1102tools agents are stable at `1.0.6`. They are installed from the GitHub-hosted 1102tools marketplace. The marketplace catalog itself is version `1.2.6`; that catalog version is separate from the agent package versions.
 
 Website: [1102tools.com](https://1102tools.com)
 
@@ -10,11 +10,11 @@ Setup: [visible HTML instructions](https://1102tools.com/setup) · [downloadable
 
 | Agent | Audience and supported work | Version |
 |---|---|---|
-| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | `1.0.5` |
-| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, hybrid routing, and revision with repricing | `1.0.5` |
-| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | `1.0.5` |
-| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | `1.0.5` |
-| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | `1.0.5` |
+| **Market Research Agent** | Acquisition workforce: quick research, FAR Part 10 reports, report refresh, focused decision support, and Pre-Award handoff | `1.0.6` |
+| **Pre-Award Agent** | Acquisition workforce: scope only, pricing only, SOW/PWS to IGCE, hybrid routing, and revision with repricing | `1.0.6` |
+| **GovCon Growth Agent** | Industry: opportunity discovery, bid screens, competitor and incumbent intelligence, recompetes, teaming, market intelligence, and pricing context | `1.0.6` |
+| **Other Transaction Agent** | Agreements workforce: project description, cost analysis, end-to-end milestone handoff, and recosting | `1.0.6` |
+| **Acquisition Policy Agent** | Government, industry, or neutral: codified status, RFO agency status, version comparison, rulemaking, comment analysis, and impact briefs | `1.0.6` |
 
 Each plugin vendors its complete canonical skills, deterministic validators, runtime guidance, and pinned MCP configuration. Users install one agent instead of assembling skills and server definitions separately.
 
@@ -185,7 +185,7 @@ Canonical runtime files and source commits are locked in [`components.lock.json`
 
 ## Version policy
 
-- Compatible correction: affected agent `1.0.5`, marketplace `1.2.5`
+- Compatible correction: affected agent `1.0.6`, marketplace `1.2.6`
 - Compatible feature: affected agent `1.1.0`
 - Breaking workflow or package change: affected agent `2.0.0`
 

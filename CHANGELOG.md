@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.6 — Focused decision-product correction
+
+All five agents advance to `1.0.6`. This release replaces seven generic-looking focused reports with route-native paid work products.
+
+- Market Research refreshes now compare the prior baseline to current evidence and state the acquisition consequence of each change.
+- Small-business analyses now identify candidate concerns, test supporting and contrary evidence, bound the Rule of Two conclusion, and assign outreach actions.
+- Pre-Award handoffs now translate market evidence into scope, packaging, performance, competition, pricing-input, and risk decisions.
+- Regulatory change, rulemaking watchlist, public-comment, and policy-refresh products now use their own decision tables, management actions, source notes, and route-specific running headers.
+- Focused products are not generated when the approved evidence does not earn the selected title; the workflow returns an evidence-acquisition note instead.
+
 ## v1.2.5 — Customer-facing fallback and formatting correction
 
 All five agents advance to `1.0.5`. This small follow-up release keeps incomplete records readable and actionable in the delivered report.

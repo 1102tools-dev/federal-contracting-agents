@@ -1,6 +1,6 @@
 # Market Research Agent
 
-Stable release `1.0.5`.
+Stable release `1.0.6`.
 
 This self-contained Agent Plugins 1.0 package installs one authoritative multi-file skill, pinned SAM.gov and USASpending MCP definitions, plus Tavily's optional official keyless remote MCP. It supports quick research, a complete FAR Part 10 report, refreshes, one-question analysis, and a structured Pre-Award Agent handoff.
 
