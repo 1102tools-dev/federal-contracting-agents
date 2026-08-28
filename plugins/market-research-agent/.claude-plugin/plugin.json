@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Check SAM_API_KEY readiness, then build staged FAR Part 10 research; SAM work stops clearly when the key is absent.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

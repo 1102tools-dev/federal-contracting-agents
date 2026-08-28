@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.2.4 — Consulting-grade output correction
+
+All five agents advance to `1.0.4`. This release makes the customer-visible work product the controlling quality standard across the suite.
+
+- GovCon Growth routes now produce distinct executive decision products instead of thin shared briefs.
+- Market Research refresh, focused-analysis, and Pre-Award handoff routes now answer their specific management question and assign executable next actions.
+- Acquisition Policy products lead with route-specific planning postures, implications, owners, and decision gates.
+- Pre-Award work statements and IGCEs require useful first-view briefs or dashboards, populated analysis, visible ranges, cost drivers, and source limitations.
+- Other Transaction products require executable milestone evidence, controlled change visibility, readable funding summaries, and clear next actions.
+- Rendered usefulness is the release standard; structural validity alone is not treated as a successful work product.
+
 ## v1.2.3 — Human-readable work-product correction
 
 All five agents advance to `1.0.3`. This release ships route-specific, decision-first work-product presentation and fixes the package-validation source lock so the published CI gate validates the same canonical skills that are vendored in the agents.
