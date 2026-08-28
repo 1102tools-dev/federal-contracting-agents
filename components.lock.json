@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "d392dc47ee5002fb736600254bb36aa4f5d941ff"
+      "commit": "88ec66651496e5d059a5f6e6147bfbea92b73979"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -184,7 +184,7 @@
             "references/runtime-adaptation.md": "8a55589a7175a7eebc8ee17aff947b82c9276a1403c7f29465439e92017b2173",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
-            "scripts/build_growth_brief.py": "54a0f5642c70bdc22cb0dc8590eecc5ef97479a07dfd3f3b69c1ffe9009366cb",
+            "scripts/build_growth_brief.py": "0e1b77534309ae90b21af508e4d305701f0fa345f73be7be94c816b2f76fabb7",
             "scripts/validate_growth_brief.py": "ade9bfecfb2757fb613bc72dc2f5428043a9cad8edc5cce37ff6bffeb7948140",
             "scripts/validate_research_record.py": "6a88a1a0285b8768c52b378ad25338e74f1defd3b7c4d2f6d5a73e87d654dab4"
           }
