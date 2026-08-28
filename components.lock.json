@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -166,7 +166,7 @@
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
@@ -192,7 +192,7 @@
       }
     },
     "market-research-agent": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "skills": {
         "market-research-workflow": {
           "files": {
@@ -217,7 +217,7 @@
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.3 — Human-readable work-product correction
+
+All five agents advance to `1.0.3`. This release ships route-specific, decision-first work-product presentation and fixes the package-validation source lock so the published CI gate validates the same canonical skills that are vendored in the agents.
+
 ## v1.2.2 — Outcome-guidance correction
 
 All five agents advance to `1.0.2`.
