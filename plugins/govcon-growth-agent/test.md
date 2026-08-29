@@ -20,7 +20,7 @@ Evidence date: August 22, 2026
 
 ## Canonical skill evidence
 
-The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `f3cfcaa958fd313c382a54a3369be41336e83bb0`. Its canonical test record includes:
+The bundled `govcon-growth-workflow` runtime is synchronized from `federal-contracting-skills` commit `f0941ab10f247480e414ae9f92075fbdec5007f1`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, the evidence-brief artifact builder, LibreOffice conversion, extraction, citation, recomputation, bid-boundary checks, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and incomplete-company-context controls.

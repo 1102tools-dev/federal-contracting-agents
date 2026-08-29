@@ -19,7 +19,7 @@ provider and is never a silent fallback.
 
 ## Canonical skill evidence
 
-The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `f3cfcaa958fd313c382a54a3369be41336e83bb0`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
+The bundled `market-research-workflow` runtime is synchronized from `federal-contracting-skills` commit `f0941ab10f247480e414ae9f92075fbdec5007f1`. The `rc.3` package renamed the canonical skill from `market-research-builder` to `market-research-workflow`; archived research records carrying the old identifier remain valid, but new explicit invocations use `$market-research-workflow`. Its canonical test record includes:
 
 - Sixteen deterministic repository tests, both artifact builders, LibreOffice conversion, extraction, citation, recomputation, and portable-skill validation.
 - All four provider modes, approved fallback, prohibited provider and tool use, private and credential-bearing URL rejection, and prompt-injection/document-precedence controls.

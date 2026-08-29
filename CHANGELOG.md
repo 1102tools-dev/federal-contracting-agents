@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.11 - Readable labels, derived hours, and honest retrieval times
+
+All five agents advance to `1.0.11`. This release closes defects a reader can see on the page, including two introduced by the previous release.
+
+- Shortening an action name split on the period inside a citation, so a report shipped the cell "Complete the FAR 19". Sentence detection now refuses to break inside citations, decimals, initialisms, and abbreviations, cuts on a word boundary when it must cut, and always marks a cut with one ellipsis.
+- Workbook labels truncated in print wherever a neighbouring cell blocked overflow. All four workbook builders now carry a print-clipping gate whose width model was calibrated against rendered output rather than estimated.
+- Milestone hours had become asserted constants with a prose note in place of the reconciliation formula. Hours must now be derived in cells from staffing and duration, the reconciliation must be a formula, and any sheet restating hours must link to them.
+- Market research reports must record a real retrieval time for each source call rather than one synthesized batch stamp.
+
 ## v1.2.10 - Reader vocabulary in the GovCon Growth evidence appendix
 
 All five agents advance to `1.0.10`.

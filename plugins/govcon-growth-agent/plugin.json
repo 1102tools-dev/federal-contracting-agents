@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "govcon-growth-agent",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Run a SAM_API_KEY readiness check, then research federal growth signals; SAM-dependent work stops clearly when the key is absent.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
