@@ -1,6 +1,6 @@
 {
   "name": "other-transaction-agent",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build OT scope and cost analysis.",
   "author": {
     "name": "1102tools",

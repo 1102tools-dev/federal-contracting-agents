@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.9 - Deliverable defects closed from the 1.0.8 output review
+
+All five agents advance to `1.0.9`. Each change closes a defect found by reading the rendered 1.0.8 deliverables as a paying customer would.
+
+- Acquisition Policy validation maps every focused route to its own required structure, so a correct route-native product no longer fails a gate written for the impact brief.
+- Market Research complete reports drop a stray blank page, render the execution plan as timing plus a cross-reference rather than a second copy of the action table, and reject any citation naming evidence the register does not contain.
+- Labor-Hour and Time-and-Materials workbooks must tie current-assumption scenario figures to the summary per-period totals, which catches a scenario table silently disconnected by a stale range.
+- Other Transaction cost workbooks must ship the canonical sheet set with print areas and fit-to-page scaling, so a bespoke layout or an unprintable workbook is not deliverable.
+- GovCon Growth briefs must state an evidence basis matching the research record and must record real retrieval times instead of placeholders.
+
 ## v1.2.8 - Rendered-deliverable correction from the paid-output review
 
 All five agents advance to `1.0.8`. Every change in this release corrects a defect a paying reader can see in the delivered file.

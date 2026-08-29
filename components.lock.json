@@ -4,7 +4,7 @@
   "sources": {
     "skills": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-skills",
-      "commit": "3c2dca2e3f20770b2095690ce0c85050fbbbace1"
+      "commit": "a5f326ea27b2031547566a08b5dc1fdb42d21136"
     },
     "mcps": {
       "repository": "https://github.com/1102tools-dev/federal-contracting-mcps",
@@ -77,7 +77,7 @@
   },
   "plugins": {
     "pre-award-agent": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "skills": {
         "sow-pws-builder": {
           "files": {
@@ -111,11 +111,11 @@
             "agents/openai.yaml": "ae02cf7b713adf0cfd4c54b8429cba9271691e810ebfac8470a5c0d64cee5bb4",
             "references/data-source-operations.md": "81b620cb05009e0e456e50c8650ccc130a0136516aaa16126c41551b8d519706",
             "references/runtime-adaptation.md": "c30717998fa66c167f31a041563c1b0fdc862f5dc2d9245437fc71232957c949",
-            "references/validation-gates.md": "0352976ed34e610f0e272d1a962386a01d40d19b55ddf35bf1c9b198cde0d8d5",
-            "references/workbook-specification.md": "46b427dcf84d5f8d74d07bc76bcce5652455ec00c0d64f38d88013fe22f7801b",
+            "references/validation-gates.md": "5dcd2fcde2b01421e7eddafd0c9c486ce3ccad3342bca71034c859a0a02a01d4",
+            "references/workbook-specification.md": "26a77fac18bf7c4e4df53eae865984725e31f3271b86edae61c83d37d378a49d",
             "references/wrap-rate-presets.md": "340b5a6f8458be4da567921fa8830f713fff2616635f4c72f04a9693e79d65e1",
             "scripts/recompute_expected_values.py": "5f6391a19413d2fff539fff3b4c52611c8d9591928b7aa97feeab10140d43cf1",
-            "scripts/validate_workbook.py": "e80c6ef5e250dc3529da94eb83c81a382247234d1047894727ef5b9b78e6f2e4"
+            "scripts/validate_workbook.py": "606fcaa68558b051ba54c2f05fa654310d7a331a0a7cac40d645a06cbb62f6e4"
           }
         },
         "igce-builder-cr": {
@@ -134,7 +134,7 @@
       }
     },
     "other-transaction-agent": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "skills": {
         "ot-project-description-builder": {
           "files": {
@@ -151,28 +151,28 @@
         },
         "ot-cost-analysis": {
           "files": {
-            "SKILL.md": "66a4a6f8f554ab147dd9e271fe920f15c3fc120be038a33c1a79b579604edd48",
+            "SKILL.md": "e95eab698256bc2426fda9efc295215b070372434a63044c1ae8f2b5fd0ec07b",
             "agents/openai.yaml": "96b4376fce31e81038a4806df129389424d05950432f388e4bdd681bec658ce3",
             "references/authority-and-cost-sharing.md": "9ef3bcd4c493fba4452da2d9c0f9030eb7648a336854aabdf27f9f566452f4fa",
             "references/data-source-operations.md": "d011471cb2cd1a41b4ea10bc0ce994f61d921079a974983daa5fd43399d7e82a",
             "references/labor-and-costing-methods.md": "535b0ad4944a118c7325bb7401b3eba672d2323d7f69d9bc2189693caf0f8247",
             "references/runtime-adaptation.md": "681e602446a7f656572bd2b01c0261d4ab1d626820276e4141e3c139155938da",
-            "references/validation-gates.md": "1dcb6c122be73e0165dadd4e7ebcd5b4153c8209a8a586939ca5324b6e48e013",
-            "references/workbook-specification.md": "a941b92d7de2ff2f92927bc63cffe5ee67b1401e41c29aa317b9e11ed23f6f45",
+            "references/validation-gates.md": "2923f3e98eece7d630fe6f6e4ef5a49f79eefc4cb0d18d3852cc47099dc55958",
+            "references/workbook-specification.md": "784121442de38d3dfb799ecedd9af2b32683d8beab40e119795bad092b03ce33",
             "scripts/recompute_expected_values.py": "a818480ab4e7b3dd95f4251475721ccf0925ddbd4dcb5347b11115d0c5ad293b",
-            "scripts/validate_workbook.py": "2380c3ad6dc30cde23999170f20bee42672581c052b910cd6602d64030363ef0"
+            "scripts/validate_workbook.py": "4bfbd84369775918259423aa416eeac1463ed4f8dd34863d0e1e64ef36e79adb"
           }
         }
       }
     },
     "govcon-growth-agent": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "skills": {
         "govcon-growth-workflow": {
           "files": {
             "SKILL.md": "34831afb416d2ecf277040a0130823ac854f0266bc7eaa8c03e5a72db984b537",
             "agents/openai.yaml": "44b693e429f1c9edc6fae1eb7f06c885377d4cef90858737836daab3903f52e0",
-            "references/brief-specification.md": "8654636e417516089dc61f2ae221125cdc20e3a2c44d0c005f4b113b96d11775",
+            "references/brief-specification.md": "acd6e02a451ca6173edef726f7c262405dec1823a768bd79e0673da7c990075b",
             "references/competitor-intelligence.md": "d904837947aee37966c349190db4ad77181e386aaec58f30bd8971ac8f22d201",
             "references/evidence-contract.md": "5ae1c0adb1338e14bd540703934436bb9df220fb49a8fb2e84c03633e8faf1a0",
             "references/evidence-limitations.md": "b745147a880295cfbc342bb6938d76938a3c50f27efdac5914653c98f1f21bd5",
@@ -184,15 +184,15 @@
             "references/runtime-adaptation.md": "8a55589a7175a7eebc8ee17aff947b82c9276a1403c7f29465439e92017b2173",
             "references/teaming-due-diligence.md": "e0ac5830e76ef22efbbaac1af12f033158bbb2231c43561e18d7cd403bef9ef2",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
-            "scripts/build_growth_brief.py": "c6724154a43e5b3bec657fb79ff46250ec8541a044e365cd1c5e707998bf5c20",
-            "scripts/validate_growth_brief.py": "c655fd46d77422a64affeb287dd6968deea2d769d80b1a311b18f63155771f92",
-            "scripts/validate_research_record.py": "a70e356d54d1099c3d664ad509bb8a2f467a3298d61e0bee624e56d13fa3c320"
+            "scripts/build_growth_brief.py": "a9aa94c5046c17d6343caf2ca710da3069c13e4e38c7285c41480902803e71fb",
+            "scripts/validate_growth_brief.py": "ce3ca84025cb14ad94c1556873e27f1361f7c9d33d9d6471a54c7dd21486ec08",
+            "scripts/validate_research_record.py": "c704fefec4f5503042fcb38ec4c52c8e1fa225b083ec7c5bb208222b84627ee7"
           }
         }
       }
     },
     "market-research-agent": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "skills": {
         "market-research-workflow": {
           "files": {
@@ -209,15 +209,15 @@
             "references/source-hierarchy.md": "2c89d6bc35ec272f3901c1b7fb665f95aec847c25c238fd8496fddb1a7ec7a6e",
             "references/web-provider-policy.md": "c5622cdc5483278902a98a7098ca5132e72c7a4a510c76cde9b04728c07e76a3",
             "references/web-research-method.md": "04c3dc1de20f591f4aad97de78373c058e0c6e68560a20d71547414e9db2dd92",
-            "scripts/build_market_research_report.py": "23e1cf0e8d61ed313bc20acd41d2dbba9b70049f2635c4bd21d01cced7f845cf",
-            "scripts/validate_market_research_report.py": "34315e32ecc00ea1061b76cc3da375fff867b3a6227616381fd9e3b6f8d5ea72",
-            "scripts/validate_research_record.py": "a70e356d54d1099c3d664ad509bb8a2f467a3298d61e0bee624e56d13fa3c320"
+            "scripts/build_market_research_report.py": "b9542302adc6205c900e797952a5988e01f517cb9d41aaa908e25f819746104c",
+            "scripts/validate_market_research_report.py": "53e081b28193b93d32fe3265142c347a6d044c40501533cf507b97e7d4e17df2",
+            "scripts/validate_research_record.py": "c704fefec4f5503042fcb38ec4c52c8e1fa225b083ec7c5bb208222b84627ee7"
           }
         }
       }
     },
     "acquisition-policy-agent": {
-      "version": "1.0.8",
+      "version": "1.0.9",
       "skills": {
         "acquisition-policy-workflow": {
           "files": {
@@ -231,7 +231,7 @@
             "references/source-routing.md": "5b8a238203af9e6f48d26f5f8da0e37788222ea1c7c6ae6ca553aa521d68ba32",
             "references/status-and-decision-boundaries.md": "2ef479318620e7cfdbeced83134eb1ee0f33618af8d8cc35a34bbdab66dd8d2d",
             "scripts/build_acquisition_policy_brief.py": "a3982383ce20b871cb66daa60e8b24f696c58d1af59a4950c53fc5b5d329587a",
-            "scripts/validate_acquisition_policy_brief.py": "0045f032718c5e80baf4bf972bb1445e1e696ad4eee2f87e0d62a2303e5394ee",
+            "scripts/validate_acquisition_policy_brief.py": "0e3197d293f926b94c4a7616e0c3ddd0348f92b87ee8ae6291a028a4a8afd0e5",
             "scripts/validate_policy_research_record.py": "9d4eb5b83a9dde216f0e0e966ceffc40ca7bc925c893e430c1854f435e87cb1c"
           }
         }
