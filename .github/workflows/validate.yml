@@ -18,11 +18,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve the locked skills commit
+        id: locked_skills
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          lock = json.load(open("components.lock.json"))
+          commit = lock["sources"]["skills"]["commit"]
+          if not isinstance(commit, str) or len(commit) != 40:
+              raise SystemExit(f"components.lock.json skills commit is not a full SHA: {commit!r}")
+          print(f"ref={commit}")
+          PY
+
       - name: Check out locked skills source
         uses: actions/checkout@v6
         with:
           repository: 1102tools-dev/federal-contracting-skills
-          ref: 9fce3446f75ea01b5fa35b48762ab352d3237784
+          ref: ${{ steps.locked_skills.outputs.ref }}
           fetch-depth: 0
           path: _skills
 
