@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.10 - Reader vocabulary in the GovCon Growth evidence appendix
+
+All five agents advance to `1.0.10`.
+
+- The GovCon Growth evidence appendix rendered the internal class token for every row, so a customer-facing table read `federal_mcp` and `user_statement`. It now renders the same reader labels the Market Research report uses, the class column is widened to hold them, and validation rejects any internal token that reaches the page.
+
 ## v1.2.9 - Deliverable defects closed from the 1.0.8 output review
 
 All five agents advance to `1.0.9`. Each change closes a defect found by reading the rendered 1.0.8 deliverables as a paying customer would.

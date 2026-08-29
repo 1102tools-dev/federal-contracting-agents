@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Check SAM_API_KEY readiness, then build evidence-backed FAR Part 10 market research.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

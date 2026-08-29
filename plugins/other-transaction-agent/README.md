@@ -1,6 +1,6 @@
 # Other Transaction Agent
 
-Stable release `1.0.9`.
+Stable release `1.0.10`.
 
 Every new invocation first performs local, presence-only readiness checks for BLS OEWS and GSA Per Diem. With no `BLS_API_KEY`, BLS remains available through its limited v1 fallback: 25 requests per day and 10 years per query. With no `PERDIEM_API_KEY`, Per Diem uses the shared `DEMO_KEY`, limited to approximately 10 requests per hour. The agent discloses those limits before its workflow choices, never requests a key in chat, and links to [credential setup](https://1102tools.com/setup#credentials). Project-description-only work and keyless GSA CALC+ remain available.
 

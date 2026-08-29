@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "other-transaction-agent",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then create an OT project description and auditable cost analysis.",
   "author": {
     "name": "1102tools",
