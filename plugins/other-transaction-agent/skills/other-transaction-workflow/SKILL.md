@@ -8,6 +8,8 @@ license: MIT
 
 Coordinate the bundled skills. Do not replace their OT logic, artifact specifications, approval gates, or validators.
 
+The component skill's `references/professional-product-standard.md` governs every reader-facing artifact. Preserve that controlled freedom instead of imposing a suite-wide memo outline: the component may choose structure, length, and emphasis to serve its reader while retaining route-specific controls, artifact boundaries, and validation. Do not add a compliance wrapper, research diary, query log, internal evidence IDs, or generic decision gates around an otherwise complete component product. Reader-facing sourced claims use the component's `S#` convention and resolved Source Register.
+
 Runtime requirements: the bundled OT Project Description and OT Cost Analysis skills, Python 3.10+, `uvx`, and document and spreadsheet artifact support. Pricing requires the bundled BLS OEWS and GSA CALC+ MCP servers; travel also requires GSA Per Diem.
 
 ## Startup data-access readiness

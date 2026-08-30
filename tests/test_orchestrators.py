@@ -12,6 +12,62 @@ class OrchestratorContractTests(unittest.TestCase):
             REPO_ROOT / "plugins" / plugin / "skills" / skill / "SKILL.md"
         ).read_text(encoding="utf-8")
 
+    def test_professional_product_standard_is_suite_wide_and_identical(self) -> None:
+        artifact_skills = {
+            "pre-award-agent": (
+                "sow-pws-builder",
+                "igce-builder-ffp",
+                "igce-builder-lh-tm",
+                "igce-builder-cr",
+            ),
+            "other-transaction-agent": (
+                "ot-project-description-builder",
+                "ot-cost-analysis",
+            ),
+            "govcon-growth-agent": ("govcon-growth-workflow",),
+            "market-research-agent": ("market-research-workflow",),
+            "acquisition-policy-agent": ("acquisition-policy-workflow",),
+        }
+        standards = []
+        for plugin, skills in artifact_skills.items():
+            for skill in skills:
+                skill_root = REPO_ROOT / "plugins" / plugin / "skills" / skill
+                skill_text = (skill_root / "SKILL.md").read_text(encoding="utf-8")
+                standard = (
+                    skill_root / "references" / "professional-product-standard.md"
+                ).read_text(encoding="utf-8")
+                with self.subTest(plugin=plugin, skill=skill):
+                    self.assertIn("professional-product-standard.md", skill_text)
+                    self.assertIn("controlled freedom", standard.lower())
+                    self.assertIn(
+                        "Assign each distinct reader-visible source an identifier", standard
+                    )
+                    self.assertIn("`S1`, `S2`, `S3`", standard)
+                    self.assertIn("Internal evidence identifiers such as `E001`", standard)
+                standards.append(standard)
+        self.assertEqual(len(set(standards)), 1)
+
+        for plugin in artifact_skills:
+            native = (
+                REPO_ROOT / "plugins" / plugin / "agents" / f"{plugin}.md"
+            ).read_text(encoding="utf-8")
+            copilot = (
+                REPO_ROOT
+                / "plugins"
+                / plugin
+                / "com.github.copilot"
+                / "agents"
+                / f"{plugin}.agent.md"
+            ).read_text(encoding="utf-8")
+            with self.subTest(plugin=plugin, wrapper="native"):
+                self.assertIn("professional-product standard", native)
+                self.assertIn("`S#` citations", native)
+                self.assertIn("internal evidence IDs", native)
+            with self.subTest(plugin=plugin, wrapper="copilot"):
+                self.assertIn("professional-product standard", copilot)
+                self.assertIn("`S#` citations", copilot)
+                self.assertIn("internal evidence IDs", copilot)
+
     def test_pre_award_preserves_routing_and_transition_gates(self) -> None:
         text = self.text("pre-award-agent", "pre-award-workflow")
         for required in (

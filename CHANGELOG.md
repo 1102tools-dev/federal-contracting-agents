@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.2.12 - Professional judgment and reader-ready source citations
+
+All five agents advance to `1.0.12`. This release replaces a rigid, process-heavy presentation default with a shared professional-product standard while preserving each route's acquisition controls and validation.
+
+- Every artifact-producing skill now applies the same paid-work-product test: lead with the useful result, exercise editorial judgment over structure and length, keep caveats proportional, remove empty or duplicative sections, and stop adding background or process once it no longer helps the reader.
+- The standard is intentionally a decision framework rather than a universal report template. Formal SOW/PWS, project-description, and workbook requirements remain controlled; research briefs may vary their organization and emphasis to fit the question and evidence.
+- Reader-facing research products use `S1`, `S2`, and so on, with each citation resolved in a concise, link-ready Source Register. Internal `E001` identifiers remain available only in machine-readable research records for traceability.
+- GovCon Growth, Market Research, and Acquisition Policy builders now deduplicate sources, remove forced query logs and duplicate execution plans, suppress empty sections, and reject internal evidence IDs in the delivered document.
+- Acquisition Policy no longer manufactures generic owners, deadlines, or decision gates when the approved record supplies none.
+- The shared standard is synchronized from one canonical source into every packaged skill, and the five native-agent and Copilot wrappers preserve it instead of imposing a generic compliance-memo shell.
+
 ## v1.2.11 - Readable labels, derived hours, and honest retrieval times
 
 All five agents advance to `1.0.11`. This release closes defects a reader can see on the page, including two introduced by the previous release.

@@ -1,6 +1,6 @@
 {
   "name": "pre-award-agent",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build a SOW/PWS and IGCE.",
   "author": {
     "name": "1102tools",
