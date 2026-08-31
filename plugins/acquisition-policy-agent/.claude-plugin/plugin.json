@@ -1,6 +1,6 @@
 {
   "name": "acquisition-policy-agent",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Check Regulations.gov readiness, disclose its limited DEMO_KEY fallback, then trace acquisition policy.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",

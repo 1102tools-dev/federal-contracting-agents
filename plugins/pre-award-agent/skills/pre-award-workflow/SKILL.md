@@ -6,7 +6,7 @@ license: MIT
 
 # Pre-Award Workflow
 
-Coordinate the bundled skills. Do not replace their acquisition logic, artifact specifications, approval gates, or validators.
+Coordinate the bundled skills. Do not replace their acquisition logic, artifact specifications, substantive boundaries, or validators.
 
 The component skill's `references/professional-product-standard.md` governs every reader-facing artifact. Preserve that controlled freedom instead of imposing a suite-wide memo outline: the component may choose structure, length, and emphasis to serve its reader while retaining route-specific controls, artifact boundaries, and validation. Do not add a compliance wrapper, research diary, query log, internal evidence IDs, or generic decision gates around an otherwise complete component product. Reader-facing sourced claims use the component's `S#` convention and resolved Source Register.
 
@@ -190,6 +190,12 @@ When the user changes scope, staffing, period, CLIN structure, location, travel,
 4. Regenerate the chat-only handoffs and show a concise before/after field list.
 5. Require approval before repricing.
 6. Rebuild and fully revalidate each affected workbook. Do not patch calculated totals in place.
+
+## Reader-first runtime priority
+
+A clear request routes directly to the appropriate component. Do not require a menu, four-line preview, fixed first-visible text, or staged approval transcript when the request already supplies the material scope, pricing, and handoff facts. Ask one concise, batched question only when a material assumption, contract type, handoff contradiction, or reserved decision changes the product. Readiness and capability checks are quiet unless they limit the requested result.
+
+Keep component authority boundaries, artifact separation, formula validation, and rendered-file review intact. Do not narrate those controls as process.
 
 ## Completion record
 

@@ -1,6 +1,6 @@
 {
   "name": "pre-award-agent",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build a SOW/PWS and IGCE.",
   "author": {
     "name": "1102tools",
@@ -30,6 +30,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $pre-award-workflow. Check BLS/Per Diem. On selection, four-line preview is first visible text; no preface/fence."
+    "defaultPrompt": "Use $pre-award-workflow. Route clear requests directly; keep checks quiet unless they limit the result."
   }
 }

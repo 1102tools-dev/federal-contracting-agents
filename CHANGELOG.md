@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.13 - Reader-first runtime simplification
+
+All five agents advance to `1.0.13`. Clear requests now route directly instead of requiring fixed menus, scripted previews, and transcript-shaped approval turns. The agents keep their authority, privacy, evidence, calculation, and rendered-artifact controls, but perform readiness, capability, validation, and internal-record work quietly unless it limits the result.
+
+- Native official and public research proceeds from a clear request; a concise source plan is reserved for materially uncertain, multi-source, or sensitive work.
+- Third-party provider consent is session-scoped and requested only before a new provider receives a query.
+- Reader-facing artifacts remain governed by the shared professional-product standard: editorial judgment, route-native structure, no filler, and proportionate limitations.
+- Release provenance, packaging, schema, install, and live-canary controls remain in validation and release practice rather than dictating ordinary user conversation.
+
 ## v1.2.12 - Professional judgment and reader-ready source citations
 
 All five agents advance to `1.0.12`. This release replaces a rigid, process-heavy presentation default with a shared professional-product standard while preserving each route's acquisition controls and validation.

@@ -5,38 +5,38 @@
   },
   "metadata": {
     "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.12"
+    "version": "1.2.13"
   },
   "plugins": [
     {
       "name": "pre-award-agent",
       "source": "./plugins/pre-award-agent",
       "description": "Build a SOW/PWS and IGCE; startup discloses limited BLS and Per Diem fallback when optional keys are absent.",
-      "version": "1.0.12"
+      "version": "1.0.13"
     },
     {
       "name": "other-transaction-agent",
       "source": "./plugins/other-transaction-agent",
       "description": "Build an OT project description and cost analysis; startup discloses limited BLS and Per Diem fallback.",
-      "version": "1.0.12"
+      "version": "1.0.13"
     },
     {
       "name": "govcon-growth-agent",
       "source": "./plugins/govcon-growth-agent",
       "description": "Research federal growth; SAM.gov work requires SAM_API_KEY and startup reports when it is not configured.",
-      "version": "1.0.12"
+      "version": "1.0.13"
     },
     {
       "name": "market-research-agent",
       "source": "./plugins/market-research-agent",
       "description": "Conduct acquisition market research; SAM.gov work requires SAM_API_KEY and startup reports when it is not configured.",
-      "version": "1.0.12"
+      "version": "1.0.13"
     },
     {
       "name": "acquisition-policy-agent",
       "source": "./plugins/acquisition-policy-agent",
       "description": "Trace acquisition policy; startup discloses the limited Regulations.gov DEMO_KEY fallback when no user key is configured.",
-      "version": "1.0.12"
+      "version": "1.0.13"
     }
   ]
 }
