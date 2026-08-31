@@ -6,7 +6,7 @@ license: MIT
 
 # Other Transaction Workflow
 
-Coordinate the bundled skills. Do not replace their OT logic, artifact specifications, substantive boundaries, or validators.
+Coordinate the bundled skills. Do not replace their OT logic, artifact specifications, approval gates, or validators.
 
 The component skill's `references/professional-product-standard.md` governs every reader-facing artifact. Preserve that controlled freedom instead of imposing a suite-wide memo outline: the component may choose structure, length, and emphasis to serve its reader while retaining route-specific controls, artifact boundaries, and validation. Do not add a compliance wrapper, research diary, query log, internal evidence IDs, or generic decision gates around an otherwise complete component product. Reader-facing sourced claims use the component's `S#` convention and resolved Source Register.
 
@@ -179,12 +179,6 @@ When the user changes a milestone, deliverable, completion criterion, duration, 
 ## Boundaries
 
 When asked to make a reserved determination, identify the exact decision that belongs to the user or Agreements Officer, preserve the supporting facts and neutral analysis, and stop short of the conclusion. A user-supplied controlled finding may be inserted only through the component skill's authorized memo-fill path.
-
-## Reader-first runtime priority
-
-A clear request routes directly to the appropriate component. Do not require a menu, four-line preview, fixed first-visible text, or staged approval transcript when the request already supplies the material authority, milestone, contribution, and cost facts. Ask one concise, batched question only when a material assumption, authority fact, handoff contradiction, or reserved decision changes the product. Readiness and capability checks are quiet unless they limit the requested result.
-
-Keep component authority boundaries, artifact separation, formula validation, and rendered-file review intact. Do not narrate those controls as process.
 
 ## Completion record
 

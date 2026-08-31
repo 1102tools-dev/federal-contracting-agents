@@ -1,6 +1,6 @@
 {
   "name": "other-transaction-agent",
-  "version": "1.0.13",
+  "version": "1.0.12",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then build OT scope and cost analysis.",
   "author": {
     "name": "1102tools",
@@ -29,6 +29,6 @@
     ],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $other-transaction-workflow. Route clear requests directly; keep checks quiet unless they limit the result."
+    "defaultPrompt": "Use $other-transaction-workflow. Check BLS/Per Diem. On selection, four-line preview is first visible text; no preface/fence."
   }
 }

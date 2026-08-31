@@ -1,6 +1,6 @@
 {
   "name": "market-research-agent",
-  "version": "1.0.13",
+  "version": "1.0.12",
   "description": "Check SAM_API_KEY readiness, then build evidence-backed FAR Part 10 market research.",
   "author": {"name": "1102tools", "url": "https://1102tools.com"},
   "homepage": "https://1102tools.com",
@@ -18,6 +18,6 @@
     "capabilities": ["Interactive", "Write"],
     "websiteURL": "https://1102tools.com",
     "brandColor": "#5CB8E6",
-    "defaultPrompt": "Use $market-research-workflow. Route clear requests directly; keep checks quiet unless they limit the result."
+    "defaultPrompt": "Use $market-research-workflow. Check SAM. On selection, four-line preview is first visible text; no preface/fence."
   }
 }

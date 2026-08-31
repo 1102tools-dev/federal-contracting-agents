@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "pre-award-agent",
-  "version": "1.0.13",
+  "version": "1.0.12",
   "description": "Check BLS and Per Diem readiness, disclose keyless limits, then create a federal SOW/PWS and correctly routed IGCE.",
   "author": {
     "name": "1102tools",
