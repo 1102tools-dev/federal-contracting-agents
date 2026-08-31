@@ -18,14 +18,14 @@ SPEC.loader.exec_module(RUNNER)
 class RoutingRunnerTests(unittest.TestCase):
     def test_explicit_prompt_preserves_read_only_skill_activation_and_prior_state(self):
         scenario = {
-            "plugin": "market-research-agent",
-            "orchestrator": "market-research-workflow",
+            "plugin": "govcon-growth-agent",
+            "orchestrator": "govcon-growth-workflow",
             "invocation": "explicit",
             "prompt": "Assume the provider gate is active. No calls.",
         }
         codex_prompt = RUNNER.prompt_for("codex", scenario)
         claude_prompt = RUNNER.prompt_for("claude", scenario)
-        self.assertTrue(codex_prompt.startswith("$market-research-workflow"))
+        self.assertTrue(codex_prompt.startswith("$govcon-growth-workflow"))
         for prompt in (codex_prompt, claude_prompt):
             self.assertIn("read-only access", prompt)
             self.assertIn("prior conversation state", prompt)
@@ -60,14 +60,10 @@ class RoutingRunnerTests(unittest.TestCase):
         scenarios = json.loads(
             (REPO_ROOT / "tests" / "provider_scenarios.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(len(scenarios), 14)
-        for prefix in ("market", "growth"):
-            self.assertEqual(
-                len([scenario for scenario in scenarios if scenario["id"].startswith(prefix)]),
-                7,
-            )
+        self.assertEqual(len(scenarios), 7)
+        self.assertEqual(len([scenario for scenario in scenarios if scenario["id"].startswith("growth")]), 7)
         ambiguous = [scenario for scenario in scenarios if scenario["id"].endswith("ambiguous-provider-reply")]
-        self.assertEqual(len(ambiguous), 2)
+        self.assertEqual(len(ambiguous), 1)
         for scenario in ambiguous:
             self.assertEqual(
                 scenario["required_order"],
@@ -150,7 +146,7 @@ class RoutingRunnerTests(unittest.TestCase):
                 self.assertIn("Do not label the fallback as a completed workbook", text)
 
     def test_claude_resolver_selects_current_manifest_version_among_old_caches(self) -> None:
-        plugin = "market-research-agent"
+        plugin = "govcon-growth-agent"
         version = json.loads(
             (REPO_ROOT / "plugins" / plugin / "plugin.json").read_text()
         )["version"]

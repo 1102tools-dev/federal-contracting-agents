@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0.0 - Three-agent 1102tools catalog
+
+The current 1102tools marketplace now contains GovCon Growth, Pre-Award, and Other Transaction. Market Research and Acquisition Policy have been removed from this catalog as their stewardship moves to [AcqAgent](https://github.com/acqagent).
+
+- The three retained packages remain at `1.0.12`; only the marketplace catalog changes to `2.0.0`.
+- Current manifests, host configuration, validation, and public documentation now cover 17 routes across three agents.
+- The maintained federal MCP inventory is reduced to SAM.gov, USAspending, BLS OEWS, GSA CALC+, and GSA Per Diem. Tavily remains an approved optional external provider for GovCon Growth.
+- Historical five-agent release records remain available as dated qualification evidence and are not presented as the current catalog.
+
 ## v1.2.12 - Professional judgment and reader-ready source citations
 
 All five agents advance to `1.0.12`. This release replaces a rigid, process-heavy presentation default with a shared professional-product standard while preserving each route's acquisition controls and validation.

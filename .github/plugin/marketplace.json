@@ -4,8 +4,8 @@
     "name": "1102tools"
   },
   "metadata": {
-    "description": "Five federal acquisition and GovCon workflow plugins",
-    "version": "1.2.12"
+    "description": "Three federal acquisition and GovCon workflow plugins",
+    "version": "2.0.0"
   },
   "plugins": [
     {
@@ -25,18 +25,6 @@
       "description": "Research federal growth; SAM.gov work requires SAM_API_KEY and startup reports when it is not configured.",
       "version": "1.0.12",
       "source": "./plugins/govcon-growth-agent"
-    },
-    {
-      "name": "market-research-agent",
-      "description": "Conduct acquisition market research; SAM.gov work requires SAM_API_KEY and startup reports when it is not configured.",
-      "version": "1.0.12",
-      "source": "./plugins/market-research-agent"
-    },
-    {
-      "name": "acquisition-policy-agent",
-      "description": "Trace acquisition policy; startup discloses the limited Regulations.gov DEMO_KEY fallback when no user key is configured.",
-      "version": "1.0.12",
-      "source": "./plugins/acquisition-policy-agent"
     }
   ]
 }

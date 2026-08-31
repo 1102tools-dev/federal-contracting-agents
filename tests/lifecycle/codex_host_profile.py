@@ -4,7 +4,7 @@
 Codex plugin MCP declarations intentionally do not contain user credential
 values. Codex also does not merge a partial host declaration into a plugin
 declaration with the same server name. This profile therefore owns the complete
-nine-server federal MCP inventory used across all five agents and allowlists
+five-server federal MCP inventory used across the three current agents and allowlists
 credential variable names with ``env_vars``. Values remain in the launching
 environment and are never written to the profile.
 """
@@ -63,43 +63,10 @@ SERVER_CONFIG = (
         ("PERDIEM_API_KEY",),
         (("MCP_ACCESS_STATUS_VERSION", "1"),),
     ),
-    (
-        "ecfr",
-        "ecfr-mcp==1.0.5",
-        "ecfr-mcp",
-        "3",
-        (),
-        (),
-    ),
-    (
-        "federal-register",
-        "federal-register-mcp==1.0.4",
-        "federal-register-mcp",
-        "3",
-        (),
-        (),
-    ),
-    (
-        "regulations-gov",
-        "regulationsgov-mcp==1.0.8",
-        "regulationsgov-mcp",
-        "4",
-        ("REGULATIONS_GOV_API_KEY",),
-        (("MCP_ACCESS_STATUS_VERSION", "1"),),
-    ),
-    (
-        "acquisition-gov",
-        "acquisition-gov-mcp==1.0.1",
-        "acquisition-gov-mcp",
-        "3",
-        (),
-        (),
-    ),
 )
 KNOWN_CREDENTIALS = {
     "SAM_API_KEY",
     "BLS_API_KEY",
-    "REGULATIONS_GOV_API_KEY",
     "PERDIEM_API_KEY",
 }
 

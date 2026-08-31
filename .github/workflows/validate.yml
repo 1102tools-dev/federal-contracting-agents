@@ -59,23 +59,17 @@ jobs:
       - name: Validate schemas, references, pins, and package hygiene
         run: python scripts/validate_packages.py
 
-      - name: Validate sanitized RC5 lifecycle ledger and current evidence wording
-        run: python scripts/validate_lifecycle_evidence.py
-
-      - name: Prove stable promotion allowed differences
-        run: python scripts/validate_stable_diff.py
-
       - name: Reject vendored component drift
         run: python scripts/sync_components.py --check --skills-root _skills --mcp-root _mcps
 
-      - name: Run deterministic orchestration tests
-        run: python -m unittest discover -s tests -v
+      - name: Run current-catalog deterministic tests
+        run: python -m unittest tests.test_orchestrators tests.test_routing_runner tests.test_tavily_policy -v
 
       - name: Compile bundled validators and run help
         run: python scripts/check_bundled_scripts.py
 
       - name: Start pinned MCP servers and discover tools without API calls
         run: |
-          for plugin in pre-award-agent other-transaction-agent govcon-growth-agent market-research-agent acquisition-policy-agent; do
+          for plugin in pre-award-agent other-transaction-agent govcon-growth-agent; do
             uv run --with mcp --with httpx python scripts/smoke_mcp_discovery.py --plugin "$plugin"
           done

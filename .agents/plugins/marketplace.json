@@ -39,30 +39,6 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
-    },
-    {
-      "name": "market-research-agent",
-      "source": {
-        "source": "local",
-        "path": "./plugins/market-research-agent"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "acquisition-policy-agent",
-      "source": {
-        "source": "local",
-        "path": "./plugins/acquisition-policy-agent"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
     }
   ]
 }

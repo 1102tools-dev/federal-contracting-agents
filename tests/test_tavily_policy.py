@@ -7,16 +7,13 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESEARCH_PLUGINS = {
-    "govcon-growth-agent": "govcon-growth-workflow",
-    "market-research-agent": "market-research-workflow",
-}
+RESEARCH_PLUGINS = {"govcon-growth-agent": "govcon-growth-workflow"}
 
 
 def load_validator():
     path = (
         ROOT
-        / "plugins/market-research-agent/skills/market-research-workflow/scripts/validate_research_record.py"
+        / "plugins/govcon-growth-agent/skills/govcon-growth-workflow/scripts/validate_research_record.py"
     )
     spec = importlib.util.spec_from_file_location("vendored_research_validator", path)
     module = importlib.util.module_from_spec(spec)
@@ -27,8 +24,8 @@ def load_validator():
 
 def base_record(mode: str, providers: list[str]) -> dict[str, object]:
     return {
-        "schema_version": "1.2",
-        "skill": "market-research-workflow",
+        "schema_version": "1.1",
+        "skill": "govcon-growth-workflow",
         "workflow_mode": "quick-chat",
         "question": "Synthetic offline policy test",
         "scope": {"as_of_date": "2026-08-21"},
@@ -81,7 +78,7 @@ class TavilyPolicyTests(unittest.TestCase):
                     / "references/web-provider-policy.md"
                 ).read_bytes()
             )
-        self.assertEqual(policies[0], policies[1])
+        self.assertTrue(all(policy == policies[0] for policy in policies))
         text = policies[0].decode()
         for required in (
             "1. **Native web only (Recommended):**",
@@ -195,7 +192,7 @@ class TavilyPolicyTests(unittest.TestCase):
         result = self.validator.validate_record(prohibited)
         self.assertEqual(result["status"], "fail")
 
-    def test_remote_service_is_confined_to_research_agents(self):
+    def test_remote_service_is_confined_to_current_research_agent(self):
         for plugin in RESEARCH_PLUGINS:
             portable = json.loads((ROOT / "plugins" / plugin / "mcp.json").read_text())
             server = portable["mcpServers"]["tavily-web"]

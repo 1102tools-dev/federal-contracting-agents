@@ -4,10 +4,10 @@ set -euo pipefail
 agent_name="${1:-}"
 
 case "$agent_name" in
-  pre-award-agent|other-transaction-agent|market-research-agent|govcon-growth-agent|acquisition-policy-agent)
+  pre-award-agent|other-transaction-agent|govcon-growth-agent)
     ;;
   *)
-    printf 'Usage: %s {pre-award-agent|other-transaction-agent|market-research-agent|govcon-growth-agent|acquisition-policy-agent}\n' "$0" >&2
+    printf 'Usage: %s {pre-award-agent|other-transaction-agent|govcon-growth-agent}\n' "$0" >&2
     exit 2
     ;;
 esac
