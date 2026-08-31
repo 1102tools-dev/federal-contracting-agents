@@ -43,33 +43,3 @@ env_vars = ["PERDIEM_API_KEY"]
 [mcp_servers."gsa-perdiem".env]
 FEDERAL_API_MIN_INTERVAL_SECONDS = "4"
 MCP_ACCESS_STATUS_VERSION = "1"
-
-[mcp_servers."ecfr"]
-command = "uvx"
-args = ["--from", "ecfr-mcp==1.0.5", "ecfr-mcp"]
-
-[mcp_servers."ecfr".env]
-FEDERAL_API_MIN_INTERVAL_SECONDS = "3"
-
-[mcp_servers."federal-register"]
-command = "uvx"
-args = ["--from", "federal-register-mcp==1.0.4", "federal-register-mcp"]
-
-[mcp_servers."federal-register".env]
-FEDERAL_API_MIN_INTERVAL_SECONDS = "3"
-
-[mcp_servers."regulations-gov"]
-command = "uvx"
-args = ["--from", "regulationsgov-mcp==1.0.8", "regulationsgov-mcp"]
-env_vars = ["REGULATIONS_GOV_API_KEY"]
-
-[mcp_servers."regulations-gov".env]
-FEDERAL_API_MIN_INTERVAL_SECONDS = "4"
-MCP_ACCESS_STATUS_VERSION = "1"
-
-[mcp_servers."acquisition-gov"]
-command = "uvx"
-args = ["--from", "acquisition-gov-mcp==1.0.1", "acquisition-gov-mcp"]
-
-[mcp_servers."acquisition-gov".env]
-FEDERAL_API_MIN_INTERVAL_SECONDS = "3"

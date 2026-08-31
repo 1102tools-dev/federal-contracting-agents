@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the five self-contained 1102tools Agent Plugins packages."""
+"""Validate the three self-contained 1102tools Agent Plugins packages."""
 
 from __future__ import annotations
 
@@ -20,17 +20,13 @@ PLUGIN_NAMES = (
     "pre-award-agent",
     "other-transaction-agent",
     "govcon-growth-agent",
-    "market-research-agent",
-    "acquisition-policy-agent",
 )
 EXPECTED_VERSIONS = {
     "pre-award-agent": "1.0.12",
     "other-transaction-agent": "1.0.12",
     "govcon-growth-agent": "1.0.12",
-    "market-research-agent": "1.0.12",
-    "acquisition-policy-agent": "1.0.12",
 }
-MARKETPLACE_VERSION = "1.2.12"
+MARKETPLACE_VERSION = "2.0.0"
 EXPECTED_SKILLS = {
     "pre-award-agent": {
         "pre-award-workflow",
@@ -45,41 +41,24 @@ EXPECTED_SKILLS = {
         "ot-cost-analysis",
     },
     "govcon-growth-agent": {"govcon-growth-workflow"},
-    "market-research-agent": {"market-research-workflow"},
-    "acquisition-policy-agent": {"acquisition-policy-workflow"},
 }
 EXPECTED_MCPS = {
     "pre-award-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
     "other-transaction-agent": {"bls-oews", "gsa-calc", "gsa-perdiem"},
     "govcon-growth-agent": {"sam-gov", "usaspending", "gsa-calc", "tavily-web"},
-    "market-research-agent": {"sam-gov", "usaspending", "tavily-web"},
-    "acquisition-policy-agent": {
-        "ecfr",
-        "federal-register",
-        "regulations-gov",
-        "acquisition-gov",
-    },
 }
 EXPECTED_MCP_REQUIREMENTS = {
-    "acquisition-gov": "acquisition-gov-mcp==1.0.1",
     "bls-oews": "bls-oews-mcp==1.0.9",
-    "ecfr": "ecfr-mcp==1.0.5",
-    "federal-register": "federal-register-mcp==1.0.4",
     "gsa-calc": "gsa-calc-mcp==1.0.4",
     "gsa-perdiem": "gsa-perdiem-mcp==1.0.9",
     "sam-gov": "sam-gov-mcp==1.0.12",
-    "regulations-gov": "regulationsgov-mcp==1.0.8",
     "usaspending": "usaspending-gov-mcp==1.0.4",
 }
 EXPECTED_PACING = {
-    "acquisition-gov": "3",
     "bls-oews": "3",
-    "ecfr": "3",
-    "federal-register": "3",
     "gsa-calc": "3",
     "gsa-perdiem": "4",
     "sam-gov": "3",
-    "regulations-gov": "4",
     "usaspending": "3",
 }
 TAVILY_ENDPOINT = "https://mcp.tavily.com/mcp/"
@@ -214,7 +193,7 @@ def validate_mcp_manifests(plugin_root: Path, errors: list[str]) -> None:
                 f"{plugin_root.name}: {name} must set the explicit "
                 f"{EXPECTED_PACING[name]}-second pacing safeguard"
             )
-        if name in {"sam-gov", "bls-oews", "gsa-perdiem", "regulations-gov"} and (
+        if name in {"sam-gov", "bls-oews", "gsa-perdiem"} and (
             not isinstance(env, dict) or env.get("MCP_ACCESS_STATUS_VERSION") != "1"
         ):
             errors.append(
@@ -324,8 +303,6 @@ def validate_plugin(plugin_name: str, schemas: dict[str, dict[str, object]], err
             orchestrator = f"{plugin_name}:{plugin_name.removesuffix('-agent')}-workflow"
             if plugin_name == "other-transaction-agent":
                 orchestrator = "other-transaction-agent:other-transaction-workflow"
-            elif plugin_name == "acquisition-policy-agent":
-                orchestrator = "acquisition-policy-agent:acquisition-policy-workflow"
             expected_initial_prompt = f"/{orchestrator}"
             if claude_frontmatter.get("initialPrompt") != expected_initial_prompt:
                 errors.append(
@@ -567,7 +544,7 @@ def main() -> None:
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         raise SystemExit(1)
-    print("All five Agent Plugins packages passed schema, portability, reference, federal pin, Tavily, and hygiene checks.")
+    print("All three Agent Plugins packages passed schema, portability, reference, federal pin, Tavily, and hygiene checks.")
 
 
 if __name__ == "__main__":
